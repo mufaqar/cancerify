@@ -8,16 +8,17 @@ export const metadata = {
   description: "Superio - Job Borad React NextJS Template",
 };
 
-const page = async () => {
-  const res = await client.request(GET_ALL_DOCTORS);
+const page = async ({searchParams}) => {
+  const {endCursor} = searchParams;
+  const res = await client.request(GET_ALL_DOCTORS,{ after: ""});
 
-  const doctors = res.doctors.nodes;
+  const doctors = res?.doctors?.nodes ||[];
 
-  console.log(doctors);
+    
   return (
     <>
       
-      <DoctorLists doctors={doctors} />
+      <DoctorLists pageInfo={res?.doctors?.pageInfo} doctors={doctors} />
     </>
   );
 };

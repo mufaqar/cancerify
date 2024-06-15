@@ -10,17 +10,17 @@ const menus = [
   },
   {
     id: 2,
-    title: "Cancer Types",
-    href: "/cancer-types",
+    title: "Cancers",
+    href: "/cancers",
   },
   {
     id: 4,
-    title: "Doctors",
+    title: "Find a doctor",
     href: "/doctors",
   },
   {
     id: 5,
-    title: "Blog",
+    title: "News",
     href: "/blog",
   },
 

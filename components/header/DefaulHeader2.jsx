@@ -52,25 +52,13 @@ const DefaulHeader2 = () => {
         {/* End .nav-outer */}
 
         <div className="outer-box">
-          {/* <!-- Add Listing --> */}
-          <Link href="/candidates-dashboard/cv-manager" className="upload-cv">
-            Upload your CV
-          </Link>
-          {/* <!-- Login/Register --> */}
+
           <div className="btn-box">
-            <a
-              href="#"
-              className="theme-btn btn-style-three call-modal"
-              data-bs-toggle="modal"
-              data-bs-target="#loginPopupModal"
-            >
-              Login / Register
-            </a>
             <Link
-              href="/employers-dashboard/post-jobs"
+              href="/contact"
               className="theme-btn btn-style-one"
             >
-              Job Post
+              Contact
             </Link>
           </div>
         </div>

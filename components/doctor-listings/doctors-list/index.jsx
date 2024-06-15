@@ -7,7 +7,7 @@ import FilterTopBox from "./FilterTopBox";
 import FilterSidebar from "./FilterSidebar";
 
 const DoctorsList = (props) => {
-    const {doctors} = props;
+    const {doctors, pageInfo} = props;
     return (
         <>
             {/* <!-- Header Span --> */}
@@ -40,14 +40,14 @@ const DoctorsList = (props) => {
                         </div>
                         {/* End filter column for tablet and mobile devices */}
 
-                        <div className="filters-column hidden-1023 col-lg-4 col-md-12 col-sm-12">
+                        <div className="filters-column hidden-1023 col-lg-4 col-md-12 col-sm-12 ">
                             <FilterSidebar />
                         </div>
                         {/* <!-- End Filters Column for destop and laptop --> */}
 
                         <div className="content-column col-lg-8 col-md-12 col-sm-12">
                             <div className="ls-outer">
-                                <FilterTopBox doctors={doctors} />
+                                <FilterTopBox pageInfo={pageInfo} doctors={doctors} />
                                 {/* <!-- ls Switcher --> */}
                             </div>
                         </div>
