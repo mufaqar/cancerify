@@ -1,20 +1,13 @@
 import Link from "next/link";
 
-const TagList = () => {
-  const tagContent = [
-    "app",
-    "administrative",
-    "android",
-    "wordpress",
-    "design",
-    "react",
-  ];
+const TagList = (props) => {
+  const {tags} = props;
 
   return (
     <>
-      {tagContent.map((item, i) => (
+      {tags?.map((item, i) => (
         <li key={i}>
-          <Link href="#">{item}</Link>
+          <Link href="#">{item?.name}</Link>
         </li>
       ))}
     </>

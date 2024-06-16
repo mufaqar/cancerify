@@ -3,7 +3,8 @@ import RecentPost from "./RecentPost";
 import SearchBox from "./SearchBox";
 import TagList from "./TagList";
 
-const index = () => {
+const index = (props) => {
+  const {categories,tags,recentPosts}= props;
   return (
     <aside className="sidebar blog-sidebar">
       {/* <!-- Recent Post --> */}
@@ -24,7 +25,7 @@ const index = () => {
           <h4>Categories</h4>
         </div>
         <ul className="catagory-list">
-          <Categories />
+          <Categories categories={categories} />
         </ul>
       </div>
 
@@ -35,7 +36,7 @@ const index = () => {
         </div>
 
         <div className="widget-content">
-          <RecentPost />
+          <RecentPost recentPosts={recentPosts} />
         </div>
       </div>
 
@@ -45,7 +46,7 @@ const index = () => {
           <h4>Tags</h4>
         </div>
         <ul className="tag-list">
-          <TagList />
+          <TagList tags={tags} />
         </ul>
       </div>
     </aside>

@@ -1,4 +1,3 @@
-'use client'
 import Blog6 from "../../blog/Blog6";
 import LoginPopup from "../../common/form/login/LoginPopup";
 import FooterDefault from "../../footer/common-footer";
@@ -7,22 +6,10 @@ import MobileMenu from "../../header/MobileMenu";
 import BlogPagination from "../blog-sidebar/BlogPagination";
 import BlogSidebar from "../blog-sidebar";
 import Breadcrumb from "../../common/Breadcrumb";
-import { useEffect } from "react";
-import client from "@/lib/ApolloClient";
-import { GET_ALL_POSTS } from "@/lib/Queries";
+
 const index = (props) => {
 
-  const {posts, pageInfo}= props;
-
-  console.log(posts);
-  // useEffect(() => {
-
-  //   const handelFetch = async () => {
-  //     const res = await client.request(GET_ALL_POSTS);
-  //     console.log(res);
-  //   }
-  //   handelFetch();
-  // } , [])
+  const {posts, pageInfo, categories,tags}= props;
 
 
   return (
@@ -30,16 +17,13 @@ const index = (props) => {
       {/* <!-- Header Span --> */}
       <span className="header-span"></span>
 
-      <LoginPopup />
-      {/* End Login Popup Modal */}
-
       <DefaulHeader />
       {/* <!--End Main Header --> */}
 
       <MobileMenu />
       {/* End MobileMenu */}
 
-      <Breadcrumb title="News Feed" meta="News" />
+      <Breadcrumb title="Blog" meta="blog" />
       {/* <!--End Page Title--> */}
 
       <div className="sidebar-page-container">
@@ -62,7 +46,7 @@ const index = (props) => {
             {/* <!--End Content Side--> */}
 
             <div className="sidebar-side col-lg-4 col-md-12 col-sm-12">
-              <BlogSidebar />
+              <BlogSidebar recentPosts={posts} categories={categories} tags={tags} />
             </div>
             {/* <!--End Sidebar Side--> */}
           </div>

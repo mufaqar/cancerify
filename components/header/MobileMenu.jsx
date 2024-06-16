@@ -14,9 +14,9 @@ const MobileMenu = () => {
               <div className="logo">
                 <Link href="/">
                   <Image
-                    width={154}
-                    height={50}
-                    src="/images/logo.svg"
+                    width={40}
+                    height={40}
+                    src="/Cancerify.png"
                     alt="brand"
                   />
                 </Link>

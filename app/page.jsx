@@ -3,7 +3,7 @@ import Home from "@/components/home-9";
 
 
 export const metadata = {
-  title: "Home-1 || Superio - Job Borad React NextJS Template",
+  title: "Home || Find Cancer doctors",
   description: "Superio - Job Borad React NextJS Template",
 };
 

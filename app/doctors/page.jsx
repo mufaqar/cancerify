@@ -4,7 +4,7 @@ import DoctorLists from "@/components/doctor-listings/doctors-list";
 import dynamic from "next/dynamic";
 
 export const metadata = {
-  title: "Doctors || Superio - Job Borad React NextJS Template",
+  title: "Doctors || Find Cancer doctors",
   description: "Superio - Job Borad React NextJS Template",
 };
 

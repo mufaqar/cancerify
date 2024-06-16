@@ -7,6 +7,18 @@ const nextConfig = {
             protocol: 'https',
             hostname: 'vni.fe7.mytemp.website',
           },
+          {
+            protocol: 'https',
+            hostname: 'placehold.co',
+          },
+          {
+            protocol: 'https',
+            hostname: 'webdevstudios.com',
+          },
+          {
+            protocol: 'https',
+            hostname: 'secure.gravatar.com',
+          },
         ],
       },
 }

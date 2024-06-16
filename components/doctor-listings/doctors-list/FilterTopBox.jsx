@@ -32,7 +32,7 @@ const FilterTopBox = (props) => {
 
   const page = searchParams.get('endCursor')
 
-  const [filteredData, setFilteredData] = useState([...doctors]);
+  const [filteredData, setFilteredData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
   const {
@@ -49,30 +49,8 @@ const FilterTopBox = (props) => {
     dispatch(addSort(e.target.value));
   };
 
-  // Filter data
-  useEffect(() => {
-    if (keyword || location || category || sort) {
-      const filteredData = doctors.filter((doctor) => {
-        return (
-          doctor.title.toLowerCase().includes(keyword.toLowerCase()) &&
-          doctor.doctorsoptions.address
-            .toLowerCase()
-            .includes(location.toLowerCase()) &&
-          doctor.expertiseOfDoctors.nodes.some((val) =>
-            val.name.toLowerCase().includes(category.toLowerCase())
-          ) &&
-          sort === "asc" ? doctor.date : -doctor.date
 
-
-        );
-      });
-      setFilteredData(filteredData);
-    } else {
-      setFilteredData(doctors);
-    }
-  }, [keyword, location, category,sort, doctors]);
-
-// if there is new data save previous doctors data in variable and append new data to it.
+  // if there is new data save previous doctors data in variable and append new data to it.
 
   useEffect(() => {
     if (page) {
@@ -88,6 +66,29 @@ const FilterTopBox = (props) => {
       fetchMoreData();
     }
   }, [page]);
+
+  // Filter data
+  useEffect(() => {
+    if( keyword || location || category || sort) {
+      const SearchfilteredData = doctors.filter((doctor) => {
+        return (
+          doctor.title.toLowerCase().includes(keyword.toLowerCase()) &&
+          doctor.doctorsoptions.address
+            .toLowerCase()
+            .includes(location.toLowerCase()) &&
+          doctor.expertiseOfDoctors.nodes.some((val) =>
+            val.name.toLowerCase().includes(category.toLowerCase())
+          ) 
+        );
+      });
+      
+      setFilteredData(SearchfilteredData);
+    }else{
+      setFilteredData([...doctors]);
+    }
+  }, [keyword, location, category, sort, doctors]);
+
+  console.log(filteredData);
  
 
   return (
