@@ -31,10 +31,16 @@ const menus = [
     href: "/doctors",
   },
   {
+    id: 6,
+    title: "News Feed",
+    href: "/news",
+  },
+  {
     id: 5,
-    title: "News",
+    title: "Blog",
     href: "/blog",
   },
+
 
 ];
 
@@ -57,11 +63,10 @@ const Index = () => {
         <Sidebar>
           <Menu>
           {menus?.map((menu) => (
-            <MenuItem key={menu.id}>
-              <Link href={menu?.href}>
-              <span>{menu?.title}</span>
-              </Link>
-            </MenuItem>
+            <Link key={menu.id} href={menu?.href}>
+            <span>{menu?.title}</span>
+            </Link>
+   
           ))}
           </Menu>
         </Sidebar>

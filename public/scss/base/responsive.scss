@@ -777,9 +777,13 @@
 		visibility: hidden;
 		opacity: 0;
 	}
+
 }
 
 @media only screen and (max-width: 1023px) {
+	.news_feed_wraper .news_feed_lists {
+		column-count: 2 !important;
+	}
 	.job-search-form .form-group {
 		border-radius: 0;
 
@@ -1640,6 +1644,9 @@
 			}
 		}
 	}
+	.news_feed_wraper .news_feed_lists {
+		column-count: 2 !important;
+	}
 }
 
 @media only screen and (max-width: 599px) {
@@ -2381,9 +2388,15 @@
 	.banner-section-ten .job-search-form {
 		margin-bottom: 100px;
 	}
+	.news_feed_wraper .news_feed_lists {
+		column-count: 1 !important;
+	}
 }
 
 @media only screen and (max-width: 479px) {
+	.news_feed_wraper .news_feed_lists {
+		column-count: 1 !important;
+	}
 	.ls-section .filters-outer {
 		padding: 30px 20px 10px;
 	}

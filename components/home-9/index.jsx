@@ -16,8 +16,6 @@ import MobileMenu from "../header/MobileMenu";
 const index = () => {
   return (
     <>
-      <LoginPopup />
-      {/* End Login Popup Modal */}
 
       <Header />
       {/* <!--End Main Header --> */}

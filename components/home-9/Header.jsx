@@ -37,9 +37,9 @@ const Header = () => {
               <div className="logo">
                 <Link href="/">
                   <Image
-                    width={154}
+                    width={50}
                     height={50}
-                    src="/images/logo-2.svg"
+                    src="/Cancerify.png"
                     alt="brand"
                   />
                 </Link>

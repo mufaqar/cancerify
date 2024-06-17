@@ -4,9 +4,10 @@ import DoctorLists from "@/components/doctor-listings/doctors-list";
 import dynamic from "next/dynamic";
 
 export const metadata = {
-  title: "Doctors || Find Cancer doctors",
-  description: "Superio - Job Borad React NextJS Template",
+  title: "Doctors || Cancerify Find Cancer doctors",
+  description: "Cancerify - Find Cancer doctors",
 };
+
 
 const page = async ({searchParams}) => {
   const {endCursor} = searchParams;

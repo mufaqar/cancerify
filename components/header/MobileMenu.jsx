@@ -33,14 +33,13 @@ const MobileMenu = () => {
 
             {/* login popup end */}
 
-            <a
-              href="#"
+            <button
               className="mobile-nav-toggler"
               data-bs-toggle="offcanvas"
               data-bs-target="#offcanvasMenu"
             >
               <span className="flaticon-menu-1"></span>
-            </a>
+            </button>
             {/* right humberger menu */}
           </div>
         </div>

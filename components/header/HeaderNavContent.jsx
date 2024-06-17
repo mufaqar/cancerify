@@ -19,10 +19,16 @@ const menus = [
     href: "/doctors",
   },
   {
+    id: 6,
+    title: "News Feed",
+    href: "/news",
+  },
+  {
     id: 5,
-    title: "News",
+    title: "Blog",
     href: "/blog",
   },
+
 
 ];
 

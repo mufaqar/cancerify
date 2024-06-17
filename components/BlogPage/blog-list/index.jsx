@@ -1,5 +1,4 @@
 import Blog6 from "../../blog/Blog6";
-import LoginPopup from "../../common/form/login/LoginPopup";
 import FooterDefault from "../../footer/common-footer";
 import DefaulHeader from "../../header/DefaulHeader";
 import MobileMenu from "../../header/MobileMenu";
@@ -26,7 +25,7 @@ const index = (props) => {
       <Breadcrumb title="Blog" meta="blog" />
       {/* <!--End Page Title--> */}
 
-      <div className="sidebar-page-container">
+      <div className="sidebar-page-container ">
         <div className="auto-container">
           <div className="row">
             <div className="content-side col-lg-8 col-md-12 col-sm-12">
