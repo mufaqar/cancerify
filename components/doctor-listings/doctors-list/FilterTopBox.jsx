@@ -125,7 +125,7 @@ const FilterTopBox = (props) => {
 
                 <ul className="post-tags">
                   {doctor.expertiseOfDoctors?.nodes?.map((val, i) => (
-                    <li key={i}>
+                    <li className="" key={i}>
                       <span>{val.name}</span>
                     </li>
                   ))}

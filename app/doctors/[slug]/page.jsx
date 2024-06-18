@@ -343,7 +343,7 @@ const Page = async ({ params: { slug } }) => {
               {/* End .content-column */}
 
               <div className="sidebar-column col-lg-4 col-md-12 col-sm-12">
-                <aside className="sidebar sticky">
+                <aside className="sidebar">
                   <div className="btn-box">
                     <Link
                       className="theme-btn btn-style-one"
@@ -355,21 +355,27 @@ const Page = async ({ params: { slug } }) => {
 
                   <div className="sidebar-widget">
                     <div className="widget-content">
-                      <ul className="job-overview">
-                        <li>
-                          <i className="icon icon-degree"></i>
-                          <h5>Specializations:</h5>
-                          {specializations?.map((val, i) => (
-                            <span key={i}>
+                      <h4 className="widget-title">Specializations</h4>
+                        <ul className="list-disc">
+                        {specializations?.map((val, i) => (
+                            <li className="p-1" key={i}>
                               {val?.title} <br />
-                            </span>
-                          ))}
-                          {/* <span>Master Degree</span> */}
-                        </li>
-                      </ul>
+                            </li>
+                          ))}  
+                        </ul> 
                     </div>
                   </div>
                   {/* End .sidebar-widget conadidate overview */}
+
+
+                  <div className="sidebar-widget">
+                    <h4 className="widget-title">Insurances</h4>
+                    <div className="widget-content">
+                      <ul className="job-skills">
+                        <JobSkills insurances={insurances} />
+                      </ul>
+                    </div>
+                  </div>
                   {isSocial && (
                     <div className="sidebar-widget social-media-widget">
                       <h4 className="widget-title">Social media</h4>
@@ -384,15 +390,6 @@ const Page = async ({ params: { slug } }) => {
                   )}
 
                   {/* End .sidebar-widget social-media-widget */}
-
-                  <div className="sidebar-widget">
-                    <h4 className="widget-title">Insurances</h4>
-                    <div className="widget-content">
-                      <ul className="job-skills">
-                        <JobSkills insurances={insurances} />
-                      </ul>
-                    </div>
-                  </div>
                   {/* End .sidebar-widget skill widget */}
 
                   {/* End .sidebar-widget contact-widget */}
@@ -406,9 +403,6 @@ const Page = async ({ params: { slug } }) => {
         {/* <!-- job-detail-outer--> */}
       </section>
       {/* <!-- End Job Detail Section --> */}
-
-      <FooterDefault footerStyle="alternate5" />
-      {/* <!-- End Main Footer --> */}
     </>
   );
 };
