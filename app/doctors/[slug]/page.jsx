@@ -9,7 +9,6 @@ import client from "@/lib/ApolloClient";
 import { GET_DOCTOR, GET_DOCTORS_SEO } from "@/lib/Queries";
 import Link from "next/link";
 
-
 export async function generateMetadata({ params: { slug } }) {
   const res = await client.request(
     GET_DOCTORS_SEO,
@@ -61,12 +60,22 @@ const Page = async ({ params: { slug } }) => {
   const researchpublications = details?.meta?.researchpublications
     ? Object.values(details?.meta?.researchpublications)
     : [];
-  
-  const insurances= details?.meta?.insurances ? Object.values(details?.meta?.insurances) : [];
-  const specializations = details?.meta?.specializations ? Object.values(details?.meta?.specializations) : [];
+
+  const insurances = details?.meta?.insurances
+    ? Object.values(details?.meta?.insurances)
+    : [];
+  const specializations = details?.meta?.specializations
+    ? Object.values(details?.meta?.specializations)
+    : [];
 
   // console.log(doctor);
-
+  const isSocial =
+    doctor?.doctorsoptions?.socialMedias?.facebook ||
+    doctor?.doctorsoptions?.socialMedias?.twitter ||
+    doctor?.doctorsoptions?.socialMedias?.instagram ||
+    doctor?.doctorsoptions?.socialMedias?.linkedin
+      ? true
+      : false;
 
   return (
     <>
@@ -88,20 +97,9 @@ const Page = async ({ params: { slug } }) => {
                 <div className="candidate-block-five">
                   <div className="inner-box">
                     <div className="content">
-                      {/* <figure className="image">
-                          <Image
-                            width={100}
-                            height={100}
-                            src={candidate?.avatar}
-                            alt="avatar"
-                          />
-                        </figure> */}
                       <h4 className="name">{doctor?.title}</h4>
 
                       <ul className="candidate-info">
-                        {/* <li className="designation">
-                            {doctor?.designation}
-                          </li> */}
                         <li>
                           <span className="icon flaticon-map-locator"></span>
                           {doctor?.doctorsoptions?.address}
@@ -149,9 +147,13 @@ const Page = async ({ params: { slug } }) => {
                                 <h3>{item?.cancername}</h3>
                                 <span>{item?.institution}</span>
                               </div>
-                              <div className="edit-box">
-                                <span className="year">{item?.daterange}</span>
-                              </div>
+                              {item?.daterange && (
+                                <div className="edit-box">
+                                  <span className="year">
+                                    {item?.daterange}
+                                  </span>
+                                </div>
+                              )}
                             </div>
                             <div className="text">{item?.description}</div>
                           </div>
@@ -180,9 +182,13 @@ const Page = async ({ params: { slug } }) => {
                                 <h3>{item?.schoolname}</h3>
                                 <span>{item?.degree}</span>
                               </div>
-                              <div className="edit-box">
-                                <span className="year">{item?.daterange}</span>
-                              </div>
+                              {item?.daterange && (
+                                <div className="edit-box">
+                                  <span className="year">
+                                    {item?.daterange}
+                                  </span>
+                                </div>
+                              )}
                             </div>
                             <div className="text">{item?.description}</div>
                           </div>
@@ -212,9 +218,13 @@ const Page = async ({ params: { slug } }) => {
                                 <h3>{item?.awardname}</h3>
                                 <span>{item?.awardfrom}</span>
                               </div>
-                              <div className="edit-box">
-                                <span className="year">{item?.daterange}</span>
-                              </div>
+                              {item?.daterange && (
+                                <div className="edit-box">
+                                  <span className="year">
+                                    {item?.daterange}
+                                  </span>
+                                </div>
+                              )}
                             </div>
                             <div className="text">{item?.description}</div>
                           </div>
@@ -242,9 +252,13 @@ const Page = async ({ params: { slug } }) => {
                                 <h3>{item?.title}</h3>
                                 <span>{item?.subtitle}</span>
                               </div>
-                              <div className="edit-box">
-                                <span className="year">{item?.daterange}</span>
-                              </div>
+                              {item?.daterange && (
+                                <div className="edit-box">
+                                  <span className="year">
+                                    {item?.daterange}
+                                  </span>
+                                </div>
+                              )}
                             </div>
                             <div className="text">{item?.description}</div>
                           </div>
@@ -272,9 +286,13 @@ const Page = async ({ params: { slug } }) => {
                                 <h3>{item?.title}</h3>
                                 <span>{item?.institution}</span>
                               </div>
-                              <div className="edit-box">
-                                <span className="year">{item?.daterange}</span>
-                              </div>
+                              {item?.daterange && (
+                                <div className="edit-box">
+                                  <span className="year">
+                                    {item?.daterange}
+                                  </span>
+                                </div>
+                              )}
                             </div>
                             <div className="text">{item?.description}</div>
                           </div>
@@ -302,9 +320,13 @@ const Page = async ({ params: { slug } }) => {
                                 <h3>{item?.title}</h3>
                                 <span>{item?.subtitle}</span>
                               </div>
-                              <div className="edit-box">
-                                <span className="year">{item?.daterange}</span>
-                              </div>
+                              {item?.daterange && (
+                                <div className="edit-box">
+                                  <span className="year">
+                                    {item?.daterange}
+                                  </span>
+                                </div>
+                              )}
                             </div>
                             <div className="text">{item?.description}</div>
                           </div>
@@ -314,7 +336,6 @@ const Page = async ({ params: { slug } }) => {
                   ) : null}
                   {/* <!-- researchpublications Resume End --> */}
 
-
                   {/* <!-- Portfolio --> */}
                 </div>
                 {/* End job-details */}
@@ -322,15 +343,14 @@ const Page = async ({ params: { slug } }) => {
               {/* End .content-column */}
 
               <div className="sidebar-column col-lg-4 col-md-12 col-sm-12">
-                <aside className="sidebar">
+                <aside className="sidebar sticky">
                   <div className="btn-box">
                     <Link
                       className="theme-btn btn-style-one"
-                      href={doctor?.doctorsoptions?.bookAppointmentLink || '#'}
+                      href={doctor?.doctorsoptions?.bookAppointmentLink || "#"}
                     >
                       Book An Appointment
                     </Link>
-            
                   </div>
 
                   <div className="sidebar-widget">
@@ -339,26 +359,30 @@ const Page = async ({ params: { slug } }) => {
                         <li>
                           <i className="icon icon-degree"></i>
                           <h5>Specializations:</h5>
-                          {
-                            specializations?.map((val, i) => (
-                              <span key={i}>{val?.title} <br /></span>
-                            ))
-                          }
+                          {specializations?.map((val, i) => (
+                            <span key={i}>
+                              {val?.title} <br />
+                            </span>
+                          ))}
                           {/* <span>Master Degree</span> */}
                         </li>
                       </ul>
                     </div>
                   </div>
                   {/* End .sidebar-widget conadidate overview */}
-
-                  <div className="sidebar-widget social-media-widget">
-                    <h4 className="widget-title">Social media</h4>
-                    <div className="widget-content">
-                      <div className="social-links">
-                        <Social socials={doctor?.doctorsoptions?.socialMedias} />
+                  {isSocial && (
+                    <div className="sidebar-widget social-media-widget">
+                      <h4 className="widget-title">Social media</h4>
+                      <div className="widget-content">
+                        <div className="social-links">
+                          <Social
+                            socials={doctor?.doctorsoptions?.socialMedias}
+                          />
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  )}
+
                   {/* End .sidebar-widget social-media-widget */}
 
                   <div className="sidebar-widget">
@@ -371,14 +395,6 @@ const Page = async ({ params: { slug } }) => {
                   </div>
                   {/* End .sidebar-widget skill widget */}
 
-                  <div className="sidebar-widget contact-widget">
-                    <h4 className="widget-title">Contact Us</h4>
-                    <div className="widget-content">
-                      <div className="default-form">
-                        <Contact />
-                      </div>
-                    </div>
-                  </div>
                   {/* End .sidebar-widget contact-widget */}
                 </aside>
                 {/* End .sidebar */}

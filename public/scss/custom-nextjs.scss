@@ -336,3 +336,73 @@
 .news_feed_item{
     overflow: hidden;
 }
+
+.flex{
+    display: flex;
+}
+
+.item-center{
+    align-items: center;
+}
+.justify-center{
+    justify-content: center;
+}
+.justify-between{
+    justify-content: space-between;
+}
+.justify-end{
+    justify-content: flex-end;
+}
+
+
+.inline-flex{
+  display: inline-flex;
+}
+
+.relative{
+    position: relative !important;
+}
+.absolute{
+    position: absolute;
+}
+
+.custom-align{
+  top: 14px;
+  right: 50px;
+}
+
+.rounded-50{
+    border-radius: 50px;
+}
+.tag-sekleton{
+    width: 70px;
+    height: 30px;
+    border-radius: 50px;
+    background: #fff;
+}
+.border-theme-color{
+    border: 1px solid var(--primary-color);
+}
+.text-theme-color{
+    color: var(--primary-color);
+}
+
+.sticky{
+  position: -webkit-sticky;
+  position: sticky;
+  top: 10%;
+
+}
+
+.fixed{
+    position: fixed;
+    z-index: 1000;
+}
+
+.h-300{
+    height: 300px;
+}
+
+.bg-theme-color{
+    background: var(--primary-color);
+}

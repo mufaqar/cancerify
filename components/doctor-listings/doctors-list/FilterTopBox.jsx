@@ -88,46 +88,12 @@ const FilterTopBox = (props) => {
     }
   }, [keyword, location, category, sort, doctors]);
 
-  console.log(filteredData);
+
  
 
   return (
     <>
-      <div className="ls-switcher">
-        <div className="showing-result">
-          <div className="show-1023">
-            <button
-              type="button"
-              className="theme-btn toggle-filters "
-              data-bs-toggle="offcanvas"
-              data-bs-target="#filter-sidebar"
-            >
-              <span className="icon icon-filter"></span> Filter
-            </button>
-          </div>
-          {/* Collapsible sidebar button */}
 
-          <div className="text">
-            <strong>{filteredData?.length}</strong> Doctors
-          </div>
-        </div>
-        {/* End showing-result */}
-
-        <div className="sort-by">
-          <select
-            onChange={sortHandler}
-            className="chosen-single form-select"
-            value={sort}
-          >
-            <option value="">Sort by (default)</option>
-            <option value="asc">Newest</option>
-            <option value="des">Oldest</option>
-          </select>
-          {/* End select */}
-
-          {/* End select */}
-        </div>
-      </div>
       {/* End top filter bar box */}
 
       {filteredData?.length === 0 ? (
@@ -137,14 +103,7 @@ const FilterTopBox = (props) => {
           <div className="candidate-block-three" key={doctor.id}>
             <div className="inner-box">
               <div className="content">
-                {/* <figure className="image">
-                  <Image
-                    width={90}
-                    height={90}
-                    src={doctor.avatar}
-                    alt="doctor"
-                  />
-                </figure> */}
+  
                 <h4 className="name">
                   <Link href={`/doctors/${doctor.slug}`}>{doctor.title}</Link>
                 </h4>
@@ -184,7 +143,7 @@ const FilterTopBox = (props) => {
                   href={`/doctors/${doctor.slug}`}
                   className="theme-btn btn-style-three"
                 >
-                  <span className="btn-title">View Profile</span>
+                  <span className="btn-title">Doctor info</span>
                 </Link>
               </div>
               {/* End btn-box */}

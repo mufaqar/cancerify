@@ -1,10 +1,10 @@
 import Wrapper from "@/layout/Wrapper";
-import Home from "@/components/home-9";
+import Home from "@/components/Home";
 
 
 export const metadata = {
-  title: "Home || Find Cancer doctors",
-  description: "Superio - Job Borad React NextJS Template",
+  title: "Cancerify || Find Cancer doctors",
+  description: "Cancerify || Find Cancer doctors",
 };
 
 export default async function page() {

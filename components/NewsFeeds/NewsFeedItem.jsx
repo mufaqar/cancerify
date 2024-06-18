@@ -52,6 +52,9 @@ export default function NewsFeedItem(props) {
           width="100%"
         />
       ) : null}
+      <div className="news_feed_content pt-3 pb-1 px-2 ">
+        <h5 className=" capitalize ">{item?.title}</h5>
+      </div>
     </div>
   );
 }

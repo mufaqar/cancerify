@@ -10,8 +10,8 @@ const LocationBox = () => {
   const dispath = useDispatch();
 
   // location handler
-  const locationHandler = (e) => {
-    setLocation(e.target.value);
+  const locationHandler = ({name}) => {
+    setLocation(name);
   };
 
   // location dispatch
@@ -20,8 +20,26 @@ const LocationBox = () => {
   }, [dispath, addLocation, getLocation]);
 
   return (
-    <>
-      <select
+    <div className="flex tag-list">
+      <li
+          className="rounded-full"
+          onClick={() => locationHandler({ name: 'New york' })}
+        >
+          <a className={`rounded-50  ${location === "New york" ? 'text-theme-color border-theme-color' : ''} `} href="#">New york</a>
+        </li>
+        <li
+          className="rounded-full"
+          onClick={() => locationHandler({ name: 'California' })}
+        >
+          <a className={`rounded-50  ${location === "California" ? 'text-theme-color border-theme-color' : ''} `} href="#">California</a>
+        </li>
+        <li
+          className="rounded-full"
+          onClick={() => locationHandler({ name: 'Florida' })}
+        >
+          <a className={`rounded-50  ${location === "Florida" ? 'text-theme-color border-theme-color' : ''} `} href="#">Florida</a>
+        </li>
+      {/* <select
         onChange={locationHandler}
         value={location}
         className="form-select"
@@ -37,8 +55,8 @@ const LocationBox = () => {
             Florida
         </option>
       </select>
-      <span className="icon flaticon-map-locator"></span>
-    </>
+      <span className="icon flaticon-map-locator"></span> */}
+    </div>
   );
 };
 

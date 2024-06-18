@@ -5,8 +5,8 @@ import MobileMenu from "../../header/MobileMenu";
 import FilterTopBox from "./FilterTopBox";
 import FilterSidebar from "./FilterSidebar";
 
-const DoctorsList = (props) => {
-  const { doctors, pageInfo } = props;
+const index = (props) => {
+  const {cancers} = props;
   return (
     <>
       {/* <!-- Header Span --> */}
@@ -18,34 +18,32 @@ const DoctorsList = (props) => {
       <MobileMenu />
       {/* End MobileMenu */}
 
-      <Breadcrumb title="Doctors" meta="Doctors" />
+      <Breadcrumb title="Cancers" meta="Cancers" />
       {/* <!--End Breadcrumb Start--> */}
-
-      {/* <div className="sticky">I will stick to the screen when you reach my scroll position</div> */}
 
       <section className="ls-section">
         <div className="auto-container">
           <div className="row">
-            <div
+            {/* <div
               className="offcanvas offcanvas-start"
               tabIndex="-1"
               id="filter-sidebar"
               aria-labelledby="offcanvasLabel"
             >
-              <div className="filters-column hide-left ">
+              <div className="filters-column hide-left">
                 <FilterSidebar />
               </div>
-            </div>
+            </div> */}
             {/* End filter column for tablet and mobile devices */}
-      
-            <div className="filters-column hidden-1023 col-lg-4 col-md-12 col-sm-12 ">
-                <FilterSidebar />
-            </div>
+
+            {/* <div className="filters-column hidden-1023 col-lg-4 col-md-12 col-sm-12">
+              <FilterSidebar />
+            </div> */}
             {/* <!-- End Filters Column for destop and laptop --> */}
 
-            <div className="content-column col-lg-8 col-md-12 col-sm-12">
-              <div className="ls-outer  ">
-                <FilterTopBox pageInfo={pageInfo} doctors={doctors} />
+            <div className="content-column col-lg-12 col-md-12 col-sm-12">
+              <div className="ls-outer">
+                <FilterTopBox cancers={cancers} />
                 {/* <!-- ls Switcher --> */}
               </div>
             </div>
@@ -63,4 +61,4 @@ const DoctorsList = (props) => {
   );
 };
 
-export default DoctorsList;
+export default index;

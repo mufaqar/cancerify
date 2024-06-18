@@ -30,11 +30,15 @@ export default async function Page() {
       <Breadcrumb title="News Feed" meta="News feed" />
       {/* <!--End Page Title--> */}
       <div className="news_feed_wraper auto-container mt-5">
-        <div className="news_feed_lists">
-          {newsFeeds?.map((newsFeed) => (
-            <NewsFeedItem key={newsFeed.id} item={newsFeed} />
-          ))}
-        </div>
+        {newsFeeds?.length ? (
+          <div className="news_feed_lists">
+            {newsFeeds?.map((newsFeed) => (
+              <NewsFeedItem key={newsFeed.id} item={newsFeed} />
+            ))}
+          </div>
+        ) : (
+          <p>No news feed found</p>
+        )}
       </div>
 
       {/* End .row */}

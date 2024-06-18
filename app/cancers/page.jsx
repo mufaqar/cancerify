@@ -1,8 +1,23 @@
-export default function Page() {
+import CancerList from '@/components/Cancers-listing/cancers-list'
+import {GET_ALL_CANCERS} from '@/lib/Queries'
+import client from '@/lib/ApolloClient';
+
+
+
+export const metadata = {
+    title: "Cancers || Cancerify Find Cancer doctors",
+    description: "Cancerify - Find Cancer doctors",
+  };
+export default async function Page() {
+
+    const res = await client.request(GET_ALL_CANCERS);
+
+    const cancers = res?.cancers?.nodes || [];
+
+
     return (
-        <div>
-        <h1>Doctors</h1>
-        <p>Find Cancer doctors</p>
-        </div>
+        <>
+            <CancerList cancers={cancers}/>
+        </>
     );
 }
