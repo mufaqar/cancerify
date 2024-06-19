@@ -1,25 +1,49 @@
+'use client'
 import Link from "next/link";
-import jobCatContent from "@/data/job-catergories";
 
-const TypesOfCancers = () => {
+const TypesOfCancers = (props) => {
+
+  const {cancers,isError, isLoading} = props;
+
   return (
     <>
-      {jobCatContent.map((item) => (
-        <div
-          className="category-block col-lg-3 col-md-6 col-sm-12"
-          key={item.id}
+
+      {
+      isLoading ?(
+        [...Array(20)].map((_, i) => (
+          <div
+          className=" category-block col-lg-3 col-md-6 col-sm-12"
+          key={i}
         >
-          <div className="inner-box">
-            <div className="content">
-              <span className={`icon ${item.icon}`}></span>
-              <h4>
-                <Link href="/cancers">{item.catTitle}</Link>
-              </h4>
-              <p>({item.jobNumber} open positions)</p>
-            </div>
+          <div className="inner-box cancers_lists_skeleton">
+            
           </div>
         </div>
-      ))}
+        ))
+      ) : isError ? (
+        <p>Error</p>
+      ) : (
+        cancers?.map((item) => (
+          <div
+            className="category-block col-lg-3 col-md-6 col-sm-12"
+            key={item.id}
+          >
+            <div className="inner-box">
+              <Link href={`/cancers/${item?.slug}`} className="content cancers ">
+                {/* <span className={`icon ${item.icon}`}></span> */}
+                <h4>
+                  {item?.title}
+                </h4>
+                {/* <p>({item.jobNumber} open positions)</p> */}
+              </Link>
+            </div>
+          </div>
+        ))
+      )
+      
+
+      
+      }
     </>
   );
 };

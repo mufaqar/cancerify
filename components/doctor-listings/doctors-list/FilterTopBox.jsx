@@ -134,11 +134,6 @@ const FilterTopBox = (props) => {
               {/* End content */}
 
               <div className="btn-box">
-                {/* <button className="bookmark-btn me-2">
-                <span className="flaticon-bookmark"></span>
-              </button> */}
-                {/* End bookmark-btn */}
-
                 <Link
                   href={`/doctors/${doctor.slug}`}
                   className="theme-btn btn-style-three"

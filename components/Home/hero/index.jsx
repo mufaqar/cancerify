@@ -1,7 +1,8 @@
 import SearchForm from "@/components/Home/SearchForm";
 // import Funfact2 from "../../fun-fact-counter/Funfact2";
 
-const index = () => {
+const index = (props) => {
+  const { cancers } = props;
   return (
     <section
       className="banner-section-nine bg-theme-color"
@@ -22,7 +23,7 @@ const index = () => {
             data-aos-delay="0"
             data-aos="fade-up"
           >
-            <SearchForm />
+            <SearchForm cancers={cancers} />
           </div>
         </div>
         {/* <!-- Job Search Form --> */}

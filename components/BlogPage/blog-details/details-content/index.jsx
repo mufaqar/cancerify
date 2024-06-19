@@ -1,8 +1,4 @@
 'use client'
-import Image from "next/image";
-import CommentBox from "./CommentBox";
-import Form from "./Form";
-import Pagination from "./Pagination";
 import SocialShare from "./SocialShare";
 import Tag from "./Tag";
 import HeadingBlock from "../../Blocks/HeadingBlock";

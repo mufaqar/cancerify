@@ -1,3 +1,4 @@
+'use client'
 import Header from "./Header";
 import Hero from "../Home/hero";
 import CallToAction from "@/components/Home/CallToAction";
@@ -11,8 +12,23 @@ import JobCategorie1 from "../job-categories/JobCategorie1";
 import OurMission from '@/components/Home/OurMission';
 import TypesOfCancers from "@/components/Home/TypesOfCancers";
 import MobileMenu from "../header/MobileMenu";
+import { useQuery } from "@tanstack/react-query";
+import client from "@/lib/ApolloClient";
+import { GET_ALL_CANCERS } from "@/lib/Queries";
 
 const index = () => {
+
+  
+  const { data, isLoading, isError } = useQuery({
+    queryKey: [`all-cancers-homepage`],
+    queryFn: async () => await client.request(
+      GET_ALL_CANCERS
+    ),
+  });
+
+  const cancers = data?.cancers?.nodes || [];
+
+
   return (
     <>
 
@@ -22,7 +38,7 @@ const index = () => {
       <MobileMenu />
       {/* End MobileMenu */}
 
-      <Hero />
+      <Hero cancers={cancers}/>
       {/* <!-- End Hero Section --> */}
 
       <section className="job-categories">
@@ -37,8 +53,9 @@ const index = () => {
             data-aos="fade-up"
             data-aos-anchor-placement="top-bottom"
           >
+            
             {/* <!-- Category Block --> */}
-            <TypesOfCancers />
+            <TypesOfCancers isError={isError} isLoading={isLoading} cancers={cancers} />
           </div>
         </div>
       </section>

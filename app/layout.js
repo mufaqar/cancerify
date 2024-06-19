@@ -2,13 +2,13 @@
 import Aos from "aos";
 import "aos/dist/aos.css";
 import "../styles/index.scss";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import ScrollToTop from "../components/common/ScrollTop";
 import { Provider } from "react-redux";
 import { store } from "../store/store";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
-
+import {QueryClientProvider, QueryClient} from "@tanstack/react-query";
 if (typeof window !== "undefined") {
   require("bootstrap/dist/js/bootstrap");
 }
@@ -20,6 +20,13 @@ export default function RootLayout({ children }) {
       once: false,
     });
   }, []);
+
+  const [client] = useState(
+    new QueryClient({defaultOptions: {queries: {staleTime: 5000}}})
+);
+
+
+
   return (
     <html lang="en">
       <head>
@@ -33,6 +40,7 @@ export default function RootLayout({ children }) {
 
       <body>
         <Provider store={store}>
+        <QueryClientProvider client={client}>
           <div className="page-wrapper">
             {children}
 
@@ -52,6 +60,7 @@ export default function RootLayout({ children }) {
             {/* <!-- Scroll To Top --> */}
             <ScrollToTop />
           </div>
+          </QueryClientProvider>
         </Provider>
       </body>
     </html>

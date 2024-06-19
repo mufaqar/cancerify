@@ -1,4 +1,3 @@
-import FooterDefault from "../../footer/common-footer";
 import Breadcrumb from "../../common/Breadcrumb";
 import DefaulHeader2 from "../../header/DefaulHeader2";
 import MobileMenu from "../../header/MobileMenu";
