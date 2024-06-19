@@ -7,26 +7,27 @@ import { GET_CANCER, GET_CANCER_SEO } from "@/lib/Queries";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import Breadcrumb from "@/components/common/Breadcrumb";
+import FindDocButton from "@/components/Cancers-listing/FindDocButton";
 
 export async function generateMetadata({ params: { slug } }) {
-    const res = await client.request(
-        GET_CANCER_SEO,
-      // variables are type-checked too!
-      { id: slug }
-    );
-  
-    const seo = res?.cancer?.seo || {};
-    return {
-      title: seo?.title || "",
-      description: seo?.metaDesc || "",
-      keywords: `${seo.focuskw},${seo?.metaKeywords}`,
-      openGraph: {
-        images: seo?.opengraphImage?.sourceUrl
-          ? [{ url: seo?.opengraphImage?.sourceUrl }]
-          : [],
-      },
-    };
-  }
+  const res = await client.request(
+    GET_CANCER_SEO,
+    // variables are type-checked too!
+    { id: slug }
+  );
+
+  const seo = res?.cancer?.seo || {};
+  return {
+    title: seo?.title || "",
+    description: seo?.metaDesc || "",
+    keywords: `${seo.focuskw},${seo?.metaKeywords}`,
+    openGraph: {
+      images: seo?.opengraphImage?.sourceUrl
+        ? [{ url: seo?.opengraphImage?.sourceUrl }]
+        : [],
+    },
+  };
+}
 
 const Page = async ({ params }) => {
   const { slug } = params;
@@ -34,7 +35,7 @@ const Page = async ({ params }) => {
   const resCancer = await client.request(GET_CANCER, { id: slug });
   const cancer = resCancer.cancer;
 
-  if(!cancer?.title) return notFound();
+  if (!cancer?.title) return notFound();
 
   const symptoms = cancer?.cancersOptions?.symptoms;
   const riskFactors = cancer?.cancersOptions?.riskFactors;
@@ -52,16 +53,14 @@ const Page = async ({ params }) => {
       <MobileMenu />
       {/* End MobileMenu */}
 
-
-
       <section className="job-detail-section">
         {/* <!-- Upper Box --> */}
         <div className="upper-box">
           <div className="auto-container">
             <div className="job-block-seven style-three">
               <div className="inner-box">
-                <Breadcrumb title={cancer?.title} meta={cancer?.title} /> 
-                
+                <Breadcrumb title={cancer?.title} meta={cancer?.title} />
+
                 {/* End .content */}
               </div>
             </div>
@@ -90,9 +89,7 @@ const Page = async ({ params }) => {
                     </div>
 
                     <div className="btn-box pt-4">
-                      <Link href="#" className="theme-btn btn-style-three">
-                        Find a doctor
-                      </Link>
+                      <FindDocButton title={cancer?.title} />
                     </div>
                   </div>
                   {/* End company-widget */}
@@ -102,15 +99,11 @@ const Page = async ({ params }) => {
                     <div className="widget-content">
                       {/*  compnay-info */}
                       <ul className="company-info mt-0 custom-risk">
-                        {
-                            riskFactors?.map((risk) => (
-                                <li className="p-1" key={risk.id}>
-                                    {risk.name}: <p>{risk?.description}</p>
-                                </li>
-                            ))
-                        }
-
-
+                        {riskFactors?.map((risk) => (
+                          <li className="p-1" key={risk.id}>
+                            {risk.name}: <p>{risk?.description}</p>
+                          </li>
+                        ))}
                       </ul>
                     </div>
                   </div>
@@ -124,7 +117,7 @@ const Page = async ({ params }) => {
 
               <div className="content-column col-lg-8 col-md-12 col-sm-12">
                 {/*  job-detail */}
-                <Details blocks={blocks}/>
+                <Details blocks={blocks} />
                 {/* End job-detail */}
               </div>
               {/* End .content-column */}
@@ -132,7 +125,6 @@ const Page = async ({ params }) => {
             {/* End row */}
           </div>
         </div>
-
       </section>
     </>
   );

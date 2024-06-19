@@ -1,3 +1,4 @@
+import parseHtml from "@/lib/Parser";
 function getClassName(align) {
   if (align === "center" || align === "right") {
     return `text-${align}`;
@@ -20,7 +21,7 @@ export default function ListsBlock({
   return (
     <ul className={`${getClassName(align)} block-list`}>
       {innerBlocks.map((block, index) => (
-        <li key={index}>{block?.originalContent?.replace(/(<([^>]+)>)/gi, "")}</li>
+        <li key={index}>{parseHtml(block?.originalContent)}</li>
       ))}
     </ul>
   );

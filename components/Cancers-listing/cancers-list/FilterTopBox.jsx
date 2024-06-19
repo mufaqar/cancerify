@@ -1,15 +1,14 @@
 
-
 'use client'
 
 import Link from "next/link";
-import { useQuery } from "@tanstack/react-query";
-import client from "@/lib/ApolloClient";
-import { GET_ALL_CANCERS } from "@/lib/Queries";
+// import { useQuery } from "@tanstack/react-query";
+// import client from "@/lib/ApolloClient";
+// import { GET_ALL_CANCERS } from "@/lib/Queries";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState, Suspense } from "react";
 
-const FilterTopBox = () => {
+const FilterTopBox = ({cancers}) => {
   const searchParams = useSearchParams();
   const [filteredCancers, setFilteredCancers] = useState([]);
   const symtom = searchParams.get('symptom');
@@ -17,13 +16,13 @@ const FilterTopBox = () => {
 
 
   
-  const { data, isLoading, isError } = useQuery({
-    queryKey: [`all-cancers-page`],
-    queryFn: async () => await client.request(
-      GET_ALL_CANCERS
-    ),
-  });
-  const cancers = data?.cancers?.nodes || [];
+  // const { data, isLoading, isError } = useQuery({
+  //   queryKey: [`all-cancers-page`],
+  //   queryFn: async () => await client.request(
+  //     GET_ALL_CANCERS
+  //   ),
+  // });
+  // const cancers = data?.cancers?.nodes || [];
 
   useEffect(() => {
     if(symtom || risk){
@@ -53,20 +52,20 @@ const FilterTopBox = () => {
    
       {/* End top filter bar box */}
       {
-        isLoading ?(
-          [...Array(20)].map((_, i) => (
-            <div
-            className="company-block-three"
-            key={i}
-          >
-            <div className="inner-box cancers_lists_skeleton">
+        // isLoading ?(
+        //   [...Array(20)].map((_, i) => (
+        //     <div
+        //     className="company-block-three"
+        //     key={i}
+        //   >
+        //     <div className="inner-box cancers_lists_skeleton">
               
-            </div>
-          </div>
-          ))
-        ) : isError ? (
-          <p>Error</p>
-        ) :
+        //     </div>
+        //   </div>
+        //   ))
+        // ) : isError ? (
+        //   <p>Error</p>
+        // ) :
         filteredCancers?.length === 0 ? (
           <p>No cancer found</p>
         ) :
