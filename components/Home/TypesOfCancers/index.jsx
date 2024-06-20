@@ -9,7 +9,7 @@ const TypesOfCancers = (props) => {
       {cancers?.length ? (
         cancers?.map((item) => (
           <div
-            className="category-block col-lg-3 col-md-6 col-sm-12"
+            className="category-block col-lg-3 col-md-3 col-sm-3 col-xs-4 col-xss-6"
             key={item.id}
           >
             <div className="inner-box">
