@@ -1,14 +1,10 @@
 import DetailsContent from "@/components/BlogPage/blog-details/details-content";
 import dynamic from "next/dynamic";
-import LoginPopup from "@/components/common/form/login/LoginPopup";
-import FooterDefault from "@/components/footer/common-footer";
-import DefaulHeader from "@/components/header/DefaulHeader";
 import MobileMenu from "@/components/header/MobileMenu";
 import Image from "next/image";
 
 import client from "@/lib/ApolloClient";
 import { GET_SINGLE_POST, GET_POST_SEO } from "@/lib/Queries";
-import moment from "moment";
 import Header from "@/components/Home/Header";
 
 export async function generateMetadata({ params: { slug } }) {
@@ -70,8 +66,7 @@ const SingleBlog = async ({ params }) => {
                 </span>
                 {post?.author?.node?.name}
               </li>
-              <li>{moment(post?.date).format("MMMM DD, YYYY")}</li>
-              <li>{post?.commentCount || 0} Comment</li>
+         
             </ul>
             {/* End post info */}
           </div>
