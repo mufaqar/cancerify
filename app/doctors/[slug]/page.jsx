@@ -108,11 +108,11 @@ const Page = async ({ params: { slug } }) => {
                         </li>
                       </ul>
 
-                      <ul className="post-tags">
+                      {/* <ul className="post-tags">
                         {doctor?.expertiseOfDoctors?.nodes?.map((val, i) => (
                           <li key={i}>{val?.name}</li>
                         ))}
-                      </ul>
+                      </ul> */}
                     </div>
                   </div>
                 </div>
@@ -344,13 +344,21 @@ const Page = async ({ params: { slug } }) => {
                 <aside className="sidebar">
                   <div className="btn-box">
                     <Link
+                      target="__blank"
                       className="theme-btn btn-style-one"
                       href={doctor?.doctorsoptions?.bookAppointmentLink || "#"}
                     >
                       Book An Appointment
                     </Link>
                   </div>
-
+                  <div className="cancer_treted pb-5 pt-4">
+                    <h4 className="widget-title pb-3">Cancer Treated</h4>
+                   <ul className="post-tags">
+                        {doctor?.expertiseOfDoctors?.nodes?.map((val, i) => (
+                          <li key={i}>{val?.name}</li>
+                        ))}
+                      </ul>
+                  </div>
                   <div className="sidebar-widget">
                     <div className="widget-content">
                       <h4 className="widget-title">Specializations</h4>

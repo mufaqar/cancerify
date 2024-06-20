@@ -4,9 +4,7 @@ import MobileMenu from "@/components/header/MobileMenu";
 import Details from "@/components/Cancers-listing/Cancer-single/Details";
 import client from "@/lib/ApolloClient";
 import { GET_CANCER, GET_CANCER_SEO } from "@/lib/Queries";
-import Link from "next/link";
 import { notFound } from "next/navigation";
-import Breadcrumb from "@/components/common/Breadcrumb";
 import FindDocButton from "@/components/Cancers-listing/FindDocButton";
 
 export async function generateMetadata({ params: { slug } }) {
@@ -39,8 +37,11 @@ const Page = async ({ params }) => {
 
   const symptoms = cancer?.cancersOptions?.symptoms;
   const riskFactors = cancer?.cancersOptions?.riskFactors;
+  const topLinks = cancer?.cancersOptions?.topLinks;
 
   const blocks = JSON.parse(cancer?.blocksJSON);
+
+
 
   return (
     <>
@@ -54,20 +55,6 @@ const Page = async ({ params }) => {
       {/* End MobileMenu */}
 
       <section className="job-detail-section">
-        {/* <!-- Upper Box --> */}
-        <div className="upper-box">
-          <div className="auto-container">
-            <div className="job-block-seven style-three">
-              <div className="inner-box">
-                <Breadcrumb title={cancer?.title} meta={cancer?.title} />
-
-                {/* End .content */}
-              </div>
-            </div>
-            {/* <!-- Job Block --> */}
-          </div>
-        </div>
-        {/* <!-- Upper Box --> */}
 
         {/* <!-- job-detail-outer--> */}
         <div className="job-detail-outer reverse">
@@ -108,7 +95,12 @@ const Page = async ({ params }) => {
                     </div>
                   </div>
                   {/* End sidebar-widget */}
-
+                  <div className="sidebar-widget company-widget">
+                    <div className="widget-content ">
+                      <h4 className="widget-title">Top Links</h4>
+                      <div className="top_links" dangerouslySetInnerHTML={{__html: `${topLinks}`}} />
+                    </div>
+                  </div>
                   {/* End contact-widget */}
                 </aside>
                 {/* End .sidebar */}
@@ -117,7 +109,7 @@ const Page = async ({ params }) => {
 
               <div className="content-column col-lg-8 col-md-12 col-sm-12">
                 {/*  job-detail */}
-                <Details blocks={blocks} />
+                <Details title={cancer?.title} blocks={blocks} />
                 {/* End job-detail */}
               </div>
               {/* End .content-column */}

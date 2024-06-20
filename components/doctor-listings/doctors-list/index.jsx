@@ -1,11 +1,10 @@
-import Breadcrumb from "../../common/Breadcrumb";
 import DefaulHeader2 from "../../header/DefaulHeader2";
 import MobileMenu from "../../header/MobileMenu";
 import FilterTopBox from "./FilterTopBox";
 import FilterSidebar from "./FilterSidebar";
 
 const DoctorsList = (props) => {
-  const { doctors, pageInfo } = props;
+  const { doctors, pageInfo, cancers } = props;
   return (
     <>
       {/* <!-- Header Span --> */}
@@ -17,7 +16,6 @@ const DoctorsList = (props) => {
       <MobileMenu />
       {/* End MobileMenu */}
 
-      <Breadcrumb title="Doctors" meta="Doctors" />
       {/* <!--End Breadcrumb Start--> */}
 
       {/* <div className="sticky">I will stick to the screen when you reach my scroll position</div> */}
@@ -32,13 +30,13 @@ const DoctorsList = (props) => {
               aria-labelledby="offcanvasLabel"
             >
               <div className="filters-column hide-left ">
-                <FilterSidebar />
+                <FilterSidebar cancers={cancers} />
               </div>
             </div>
             {/* End filter column for tablet and mobile devices */}
       
             <div className="filters-column hidden-1023 col-lg-4 col-md-12 col-sm-12 ">
-                <FilterSidebar />
+                <FilterSidebar cancers={cancers} />
             </div>
             {/* <!-- End Filters Column for destop and laptop --> */}
 

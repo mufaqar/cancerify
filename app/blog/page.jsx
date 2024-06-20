@@ -14,7 +14,7 @@ export const metadata = {
 
 const page = async () => {
   // Get all posts
-  const res = await client.request(GET_ALL_POSTS, { after: "" });
+  const res = await client.request(GET_ALL_POSTS, { after: "", first: 10});
   const posts = res?.posts?.nodes || [];
   // get all categories
 

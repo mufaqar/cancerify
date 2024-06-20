@@ -12,15 +12,8 @@ import {
   addLocation,
   addPerPage,
   addSort,
-  clearExperienceF,
-  clearQualificationF,
 } from "../../../features/filter/candidateFilterSlice";
-import {
-  clearDatePost,
-  clearExperience,
-  clearQualification,
-} from "../../../features/candidate/candidateSlice";
-import Image from "next/image";
+
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { GET_ALL_DOCTORS } from "@/lib/Queries";

@@ -9,18 +9,21 @@ import EmbedBlock from "@/components/BlogPage/Blocks/EmbedBlock";
 import TableBlock from "@/components/BlogPage/Blocks/TableBlock";
 
 const Details = (props) => {
-  const { blocks } = props;
+  const { blocks,title } = props;
 
   return (
-    <div className="job-detail">
+    <div className="job-detail cancer_detail">
+      <h1 className="pb-3">{title}</h1>
       {blocks?.map((block, index) =>
         block.name === "core/heading" ? (
-          <HeadingBlock
+          <div className="cancer_heading">
+            <HeadingBlock
             key={index}
             content={block?.dynamicContent.replace(/(<([^>]+)>)/gi, "")}
             textAlign={block?.attributes?.textAlign}
             level={block?.attributes?.level}
           />
+          </div>
         ) : block.name === "core/paragraph" ? (
           <ParagraphBlock
             key={index}

@@ -1,10 +1,9 @@
 import Blog6 from "../../blog/Blog6";
-import FooterDefault from "../../footer/common-footer";
 import DefaulHeader from "../../header/DefaulHeader";
 import MobileMenu from "../../header/MobileMenu";
 import BlogPagination from "../blog-sidebar/BlogPagination";
 import BlogSidebar from "../blog-sidebar";
-import Breadcrumb from "../../common/Breadcrumb";
+// import Breadcrumb from "../../common/Breadcrumb";
 
 const index = (props) => {
 
@@ -22,7 +21,7 @@ const index = (props) => {
       <MobileMenu />
       {/* End MobileMenu */}
 
-      <Breadcrumb title="Blog" meta="blog" />
+      {/* <Breadcrumb title="Blog" meta="blog" /> */}
       {/* <!--End Page Title--> */}
 
       <div className="sidebar-page-container ">

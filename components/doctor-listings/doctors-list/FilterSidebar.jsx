@@ -1,15 +1,16 @@
 "use client";
 import Categories from "../components/Categories";
 import LocationBox from "../components/LocationBox";
-import SearchBox from "../components/SearchBox";
 import { useDispatch, useSelector } from "react-redux";
 import {
   addCategory,
   addLocation,
+  addKeyword
 } from "@/features/filter/candidateFilterSlice";
 // import { addLocation } from "../../../features/filter/candidateFilterSlice";
 
-const FilterSidebar = () => {
+const FilterSidebar = (props) => {
+  const {cancers} = props;
   const dispatch = useDispatch();
   const { category: getCategory } =
     useSelector((state) => state.candidateFilter) || {};
@@ -50,17 +51,9 @@ const FilterSidebar = () => {
               )}
             </div>
             <div className="form-group">
-              <Categories />
+              <Categories cancers={cancers} />
             </div>
           </div>
-
-          {/* <div className="filter-block">
-                    <h4>Search by Doctor</h4>
-                    <div className="form-group">
-                        <SearchBox />
-                    </div>
-                </div> */}
-          {/* <!-- Filter Block --> */}
 
           <div className="filter-block">
             <div className=" relative">
@@ -78,20 +71,8 @@ const FilterSidebar = () => {
               <LocationBox />
             </div>
 
-            {/* <p>Radius around selected destination</p>
-                    <DestinationRangeSlider /> */}
           </div>
-          {/* <!-- Filter Block --> */}
 
-          {/* <div className="filter-block">
-                    <h4>Cancers</h4>
-                    <div className="form-group">
-                        <Categories />
-                    </div>
-                </div> */}
-          {/* <!-- Filter Block --> */}
-
-          {/* <!-- Filter Block --> */}
         
       </div>
       {/* Filter Outer */}

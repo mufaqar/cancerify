@@ -13,7 +13,7 @@ const index = (props) => {
           <div className="title-box" data-aso-delay="0" data-aos="fade-up">
             <h3>Find a Top Cancer Doctor</h3>
             <div className="text">
-              Stay up to dated with the latest science back research
+              Top Oncologists for Leading Care. We've done the research!
             </div>
           </div>
 

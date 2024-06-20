@@ -1,5 +1,5 @@
 import client from "@/lib/ApolloClient";
-import { GET_ALL_DOCTORS } from "@/lib/Queries";
+import { GET_ALL_DOCTORS,GET_ALL_CANCERS } from "@/lib/Queries";
 import DoctorLists from "@/components/doctor-listings/doctors-list";
 import dynamic from "next/dynamic";
 
@@ -11,15 +11,19 @@ export const metadata = {
 
 const page = async ({searchParams}) => {
   const {endCursor} = searchParams;
+  // get doctors
   const res = await client.request(GET_ALL_DOCTORS,{ after: ""});
-
   const doctors = res?.doctors?.nodes ||[];
 
-    
+  // get cancers
+  const resCan = await client.request(GET_ALL_CANCERS);
+  const cancers = resCan?.cancers?.nodes || [];
+
+
   return (
     <>
       
-      <DoctorLists pageInfo={res?.doctors?.pageInfo} doctors={doctors} />
+      <DoctorLists cancers={cancers} pageInfo={res?.doctors?.pageInfo} doctors={doctors} />
     </>
   );
 };

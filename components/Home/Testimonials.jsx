@@ -3,10 +3,11 @@
 'use client'
 
 import Image from "next/image";
-import testimonilaContent from "../../data/testimonial";
 import Slider from "react-slick";
+import parseHtml from "@/lib/Parser";
 
-const Testimonial4 = () => {
+const Testimonials = (props) => {
+  const { testimonials } = props;
   const settings = {
     dots: true,
     speed: 500,
@@ -23,25 +24,27 @@ const Testimonial4 = () => {
     ],
   };
 
+  console.log(testimonials);
+
   return (
     <>
       <Slider {...settings} arrows={false}>
-        {testimonilaContent.slice(3, 6).map((item) => (
+        {testimonials?.map((item) => (
           <div className="testimonial-block " key={item.id}>
             <div className="inner-box bg-theme-color reviews_custom">
-              <h4 className="title text_white">{item.feedback}</h4>
-              <div className="text text_white">{item.feedbackText}</div>
+              <h4 className="title text_white">{item.title}</h4>
+              <div className="text text_white">{item?.content.replace(/(<([^>]+)>)/gi, "")}</div>
               <div className="info-box">
                 <div className="thumb">
                   <Image
                     width={70}
                     height={70}
-                    src={item.avatar}
+                    src={item?.testimonialOptions?.avatar ? item?.testimonialOptions?.avatar : '/images/resource/testi-thumb-1.png'}
                     alt="testimonial"
                   />
                 </div>
-                <h4 className="name text_white">{item.name}</h4>
-                <span className="designation text_white">{item.designation}</span>
+                <h4 className="name text_white">{item?.testimonialOptions?.authorName}</h4>
+                <span className="designation text_white">{item?.testimonialOptions?.designation}</span>
               </div>
             </div>
           </div>
@@ -51,4 +54,4 @@ const Testimonial4 = () => {
   );
 };
 
-export default Testimonial4;
+export default Testimonials;

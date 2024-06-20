@@ -61,14 +61,16 @@ const Index = () => {
 
       
         <Sidebar>
-          <Menu>
+          <ul className="px-3">
           {menus?.map((menu) => (
-            <Link key={menu.id} href={menu?.href}>
-            <span>{menu?.title}</span>
-            </Link>
+            <li className="p-2 list_itm">
+              <Link href={menu?.href}>
+                {menu?.title}
+              </Link>
+            </li>
    
           ))}
-          </Menu>
+          </ul>
         </Sidebar>
 
 

@@ -1,11 +1,9 @@
-import Breadcrumb from "../../common/Breadcrumb";
 import DefaulHeader2 from "../../header/DefaulHeader2";
 import MobileMenu from "../../header/MobileMenu";
-import FilterSidebar from "./FilterSidebar";
-import FilterTopBox from "./FilterTopBox";
+import Link from "next/link";
 
 const index = (props) => {
-  const {cancers} = props;
+  const { cancers } = props;
   return (
     <>
       {/* <!-- Header Span --> */}
@@ -16,47 +14,40 @@ const index = (props) => {
 
       <MobileMenu />
       {/* End MobileMenu */}
-
-      <Breadcrumb title="Cancers" meta="Cancers" />
-      {/* <!--End Breadcrumb Start--> */}
-
-
-      <section className="ls-section">
+      <section className="cancer_wraper flex item-center">
         <div className="auto-container">
-          <div className="row">
-            <div
-              className="offcanvas offcanvas-start"
-              tabIndex="-1"
-              id="filter-sidebar"
-              aria-labelledby="offcanvasLabel"
-            >
-              <div className="filters-column hide-left">
-                <FilterSidebar />
-              </div>
-            </div>
-            {/* End filter column for tablet and mobile devices */}
-
-            <div className="filters-column hidden-1023 col-lg-4 col-md-12 col-sm-12">
-              <FilterSidebar />
-            </div>
-            {/* <!-- End Filters Column for destop and laptop --> */}
-
-            <div className="content-column col-lg-8 col-md-12 col-sm-12">
-              <div className="ls-outer">
-                <FilterTopBox cancers={cancers} />
-                {/* <!-- ls Switcher --> */}
-              </div>
-            </div>
-            {/* <!-- End Content Column --> */}
+          <div
+            className="row "
+            data-aos="fade-up"
+            data-aos-anchor-placement="top-bottom"
+          >
+            {/* <!-- Category Block --> */}
+            <>
+              {cancers?.length ? (
+                cancers?.map((item) => (
+                  <div
+                    className="category-block col-lg-3 col-w-20 col-md-6 col-sm-12"
+                    key={item.id}
+                  >
+                    <div className="inner-box">
+                      <Link
+                        href={`/cancers/${item?.slug}`}
+                        className="content cancers "
+                      >
+                        <h4>{item?.title}</h4>
+                      </Link>
+                    </div>
+                  </div>
+                ))
+              ) : (
+                <p>No cancers found!</p>
+              )}
+            </>
           </div>
-          {/* End row */}
         </div>
-        {/* End container */}
       </section>
 
-  
       {/* <!--End Listing Page Section --> */}
-
     </>
   );
 };

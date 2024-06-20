@@ -2,7 +2,6 @@ import { GET_NEWS_FEEDS } from "@/lib/Queries";
 import client from "@/lib/ApolloClient";
 import FooterDefault from "@/components/footer/common-footer";
 import DefaulHeader from "@/components/header/DefaulHeader";
-import Breadcrumb from "@/components/common/Breadcrumb";
 import MobileMenu from "@/components/header/MobileMenu";
 import NewsFeedItem from "@/components/NewsFeeds/NewsFeedItem";
 
@@ -27,7 +26,7 @@ export default async function Page() {
       <MobileMenu />
       {/* End MobileMenu */}
 
-      <Breadcrumb title="News Feed" meta="News feed" />
+ 
       {/* <!--End Page Title--> */}
       <div className="news_feed_wraper auto-container mt-5">
         {newsFeeds?.length ? (

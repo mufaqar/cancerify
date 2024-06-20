@@ -1,34 +1,17 @@
-'use client'
 import Header from "./Header";
 import Hero from "../Home/hero";
 import CallToAction from "@/components/Home/CallToAction";
-import Candidates from "../candidates/Candidates";
-import Blog from "../blog/Blog";
-import CallToAction6 from "../call-to-action/CallToAction6";
-import Footer from "./Footer";
-import Funfact from "../fun-fact-counter/Funfact";
-import Testimonia4 from "../testimonial/Testimonial4";
-import JobCategorie1 from "../job-categories/JobCategorie1";
 import OurMission from '@/components/Home/OurMission';
 import TypesOfCancers from "@/components/Home/TypesOfCancers";
 import MobileMenu from "../header/MobileMenu";
-import { useQuery } from "@tanstack/react-query";
-import client from "@/lib/ApolloClient";
-import { GET_ALL_CANCERS } from "@/lib/Queries";
+import Testimonials from "./Testimonials";
+import Disclaimer from "./Disclaimer";
+import BlogSection from "./BlogSection";
 
-const index = () => {
 
+const index = (props) => {
+  const {cancers,testimonials, posts} = props
   
-  const { data, isLoading, isError } = useQuery({
-    queryKey: [`all-cancers-homepage`],
-    queryFn: async () => await client.request(
-      GET_ALL_CANCERS
-    ),
-  });
-
-  const cancers = data?.cancers?.nodes || [];
-
-
   return (
     <>
 
@@ -55,7 +38,7 @@ const index = () => {
           >
             
             {/* <!-- Category Block --> */}
-            <TypesOfCancers isError={isError} isLoading={isLoading} cancers={cancers} />
+            <TypesOfCancers cancers={cancers} />
           </div>
         </div>
       </section>
@@ -69,12 +52,11 @@ const index = () => {
 
 
       <section
-        className="testimonial-section style-two alternate"
-        style={{ backgroundImage: "url(/images/background/9.png)" }}
+        className="testimonial-section  style-two alternate bg-white"
       >
         <div className="auto-container">
           {/* <!-- Sec Title --> */}
-          <div className="sec-title light text-center">
+          <div className="sec-title dark text-center">
             <h2>Testimonials From Our Customers</h2>
             <div className="text">
               Lorem ipsum dolor sit amet elit, sed do eiusmod tempor
@@ -84,7 +66,7 @@ const index = () => {
           <div className="carousel-outer" data-aos="fade-up">
             {/* <!-- Testimonial Carousel --> */}
             <div className="testimonial-carousel-three gap-x25">
-              <Testimonia4 />
+              <Testimonials testimonials={testimonials} />
             </div>
           </div>
           {/* End .carousel-outer */}
@@ -93,15 +75,7 @@ const index = () => {
       </section>
       {/* <!-- End Testimonial Section --> */}
 
-      {/* <!-- Fun Fact Section --> */}
-      <div className="fun-fact-section style-two">
-        <div className="auto-container">
-          <div className="row" data-aos="fade-in">
-            <Funfact />
-          </div>
-        </div>
-      </div>
-      {/* <!-- Fun Fact Section --> */}
+    
 
       <section className="news-section">
         <div className="auto-container">
@@ -113,15 +87,15 @@ const index = () => {
           </div>
           {/* End ."sec-title */}
           <div className="row" data-aos="fade-up">
-            <Blog />
+            <BlogSection posts={posts} />
           </div>
         </div>
       </section>
       {/* <!-- End News Section --> */}
 
-      <CallToAction6 />
+      <Disclaimer />
       {/* <!-- End Call To Action --> */}
-
+      {/* Disclaimer */}
     </>
   );
 };

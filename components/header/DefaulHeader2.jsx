@@ -24,42 +24,41 @@ const DefaulHeader2 = () => {
   return (
     // <!-- Main Header-->
     <header
-      className={`main-header  ${
+      className={`main-header alternate2 header-style-two-other-page  ${
         navbar ? "fixed-header animated slideInDown" : ""
       }`}
     >
       {/* <!-- Main box --> */}
-      <div className="main-box">
-        {/* <!--Nav Outer --> */}
-        <div className="nav-outer">
-          <div className="logo-box">
-            <div className="logo">
-              <Link href="/">
-                <Image
-                  width={50}
-                  height={50}
-                  src="/Cancerify.png"
-                  alt="brand"
-                />
+      <div className="auto-container">
+        {/* <!-- Main box --> */}
+        <div className="main-box">
+          {/* <!--Nav Outer --> */}
+          <div className="nav-outer">
+            <div className="logo-box">
+              <div className="logo">
+                <Link href="/">
+                  <Image
+                    width={50}
+                    height={50}
+                    src="/Cancerify.png"
+                    alt="brand"
+                  />
+                </Link>
+              </div>
+            </div>
+            {/* End .logo-box */}
+
+            
+            {/* <!-- Main Menu End--> */}
+          </div>
+          {/* End .nav-outer */}
+          <HeaderNavContent />
+          <div className="outer-box">
+            <div className="btn-box">
+              <Link href="/contact" className="theme-btn btn-style-one">
+                Contact
               </Link>
             </div>
-          </div>
-          {/* End .logo-box */}
-
-          <HeaderNavContent />
-          {/* <!-- Main Menu End--> */}
-        </div>
-        {/* End .nav-outer */}
-
-        <div className="outer-box">
-
-          <div className="btn-box">
-            <Link
-              href="/contact"
-              className="theme-btn btn-style-one"
-            >
-              Contact
-            </Link>
           </div>
         </div>
       </div>
