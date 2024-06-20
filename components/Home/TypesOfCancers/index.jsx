@@ -7,7 +7,8 @@ const TypesOfCancers = (props) => {
   return (
     <>
       {cancers?.length ? (
-        cancers?.map((item) => (
+        cancers?.sort((a, b) => a.title.localeCompare(b.title))?.map((item) => (
+          // sort the cancers by alphabetical order
           <div
             className="category-block col-lg-3 col-md-3 col-sm-3 col-xs-4 col-xss-6"
             key={item.id}

@@ -1,12 +1,27 @@
 import Wrapper from "@/layout/Wrapper";
 import Home from "@/components/Home";
 import client from "@/lib/ApolloClient";
-import { GET_ALL_CANCERS,GET_TESTIMONIALS, GET_ALL_POSTS } from "@/lib/Queries";
+import { GET_ALL_CANCERS,GET_TESTIMONIALS, GET_ALL_POSTS, GET_PAGE_SEO } from "@/lib/Queries";
 
-export const metadata = {
-  title: "Cancerify || Find Cancer doctors",
-  description: "Cancerify || Find Cancer doctors",
-};
+export async function generateMetadata() {
+  const res = await client.request(
+    GET_PAGE_SEO,
+    // variables are type-checked too!
+    { id: 'home' }
+  );
+
+  const seo = res?.page?.seo || {};
+  return {
+    title: seo?.title || "",
+    description: seo?.metaDesc || "",
+    keywords: `${seo.focuskw},${seo?.metaKeywords}`,
+    openGraph: {
+      images: seo?.opengraphImage?.sourceUrl
+        ? [{ url: seo?.opengraphImage?.sourceUrl }]
+        : [],
+    },
+  };
+}
 
 export default async function page() {
 

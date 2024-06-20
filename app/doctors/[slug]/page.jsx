@@ -123,38 +123,7 @@ const Page = async ({ params: { slug } }) => {
                   />
 
                   {/* <!-- cancerstreated Start --> */}
-                  {cancerstreated?.length ? (
-                    <div className={`resume-outer`}>
-                      <div className="upper-title">
-                        <h4>Cancer Treated</h4>
-                      </div>
-                      {/* educations */}
-
-                      {cancerstreated?.map((item, idx) => (
-                        <div className="resume-block" key={idx}>
-                          <div className="inner">
-                            <span className="name">
-                              {item?.cancername?.substring(0, 1) + "" || ""}
-                            </span>
-                            <div className="title-box">
-                              <div className="info-box">
-                                <h3>{item?.cancername}</h3>
-                                <span>{item?.institution}</span>
-                              </div>
-                              {item?.daterange && (
-                                <div className="edit-box">
-                                  <span className="year">
-                                    {item?.daterange}
-                                  </span>
-                                </div>
-                              )}
-                            </div>
-                            <div className="text">{item?.description}</div>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  ) : null}
+         
                   {/* <!-- cancerstreated Resume End --> */}
 
                   {/* <!-- educations Start --> */}

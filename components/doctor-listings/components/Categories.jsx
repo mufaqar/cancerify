@@ -17,14 +17,14 @@ const Categories = (props) => {
     };
 
 
-    console.log("cancers",cancers);
+
 
 
     return (
         <div className="flex tag-list">
             {
                 cancers?.length ?
-                cancers?.map((item) => (
+                cancers?.sort((a, b) => a.title.localeCompare(b.title))?.map((item) => (
                     <li className="rounded-full" key={item?.id}  onClick={() => categoryHandler({name: item.title})}>
                         <a className={`${getCategory === item.title ? 'text-theme-color border-theme-color' : ''} rounded-50 `}  href="#">{item.title}</a>
                     </li>
