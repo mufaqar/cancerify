@@ -56,14 +56,7 @@ const Blog6 = (props) => {
             {/* End image-box */}
 
             <div className="lower-content">
-              <ul className="post-meta">
-                <li>
-                  <a href="#">{moment(item?.date).format('MMMM DD, YYYY')}</a>
-                </li>
-                <li>
-                  <a href="#">{item?.commentCount || 0} Comment</a>
-                </li>
-              </ul>
+              
               {/* End post meta */}
 
               <h3>
