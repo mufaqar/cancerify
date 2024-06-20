@@ -1,8 +1,8 @@
 import Blog6 from "../../blog/Blog6";
-import DefaulHeader from "../../header/DefaulHeader";
 import MobileMenu from "../../header/MobileMenu";
 import BlogPagination from "../blog-sidebar/BlogPagination";
 import BlogSidebar from "../blog-sidebar";
+import Header from "@/components/Home/Header";
 // import Breadcrumb from "../../common/Breadcrumb";
 
 const index = (props) => {
@@ -15,7 +15,7 @@ const index = (props) => {
       {/* <!-- Header Span --> */}
       <span className="header-span"></span>
 
-      <DefaulHeader />
+      <Header />
       {/* <!--End Main Header --> */}
 
       <MobileMenu />

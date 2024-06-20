@@ -94,7 +94,7 @@ const SearchForm4 = (props) => {
         {/* <!-- Form Group --> */}
         <div className="form-group col-lg-2 col-md-12 col-sm-12 text-right ">
           <button type="submit" className="theme-btn btn-style-two rounded-50">
-            Find Jobs
+            Find Doctor
           </button>
         </div>
       </div>

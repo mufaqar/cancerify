@@ -5,6 +5,7 @@ import DefaulHeader from "@/components/header/DefaulHeader";
 import MobileMenu from "@/components/header/MobileMenu";
 import NewsFeedItem from "@/components/NewsFeeds/NewsFeedItem";
 import dynamic from "next/dynamic";
+import Header from "@/components/Home/Header";
 
 export const metadata = {
   title: "News Feed || Cancerify Find Cancer doctors",
@@ -21,7 +22,7 @@ const Page = async () => {
       {/* <!-- Header Span --> */}
       <span className="header-span"></span>
 
-      <DefaulHeader />
+      <Header />
       {/* <!--End Main Header --> */}
 
       <MobileMenu />

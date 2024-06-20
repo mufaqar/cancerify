@@ -1,3 +1,4 @@
+import Header from "@/components/Home/Header";
 import DefaulHeader2 from "../../header/DefaulHeader2";
 import MobileMenu from "../../header/MobileMenu";
 import Link from "next/link";
@@ -9,7 +10,7 @@ const index = (props) => {
       {/* <!-- Header Span --> */}
       <span className="header-span"></span>
 
-      <DefaulHeader2 />
+      <Header   />
       {/* End Header with upload cv btn */}
 
       <MobileMenu />

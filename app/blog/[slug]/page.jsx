@@ -9,6 +9,7 @@ import Image from "next/image";
 import client from "@/lib/ApolloClient";
 import { GET_SINGLE_POST, GET_POST_SEO } from "@/lib/Queries";
 import moment from "moment";
+import Header from "@/components/Home/Header";
 
 export async function generateMetadata({ params: { slug } }) {
   const res = await client.request(
@@ -42,7 +43,7 @@ const SingleBlog = async ({ params }) => {
       {/* <!-- Header Span --> */}
       <span className="header-span"></span>
 
-      <DefaulHeader />
+      <Header />
       {/* <!--End Main Header --> */}
 
       <MobileMenu />

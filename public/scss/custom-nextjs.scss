@@ -497,7 +497,9 @@
   color: #fff !important;
 }
 
-
+.doctor_content{
+  min-height: 0 !important;
+}
 // Responsive css
 
 @media only screen and (min-width: 992px) {

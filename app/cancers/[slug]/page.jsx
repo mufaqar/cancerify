@@ -6,6 +6,7 @@ import client from "@/lib/ApolloClient";
 import { GET_CANCER, GET_CANCER_SEO } from "@/lib/Queries";
 import { notFound } from "next/navigation";
 import FindDocButton from "@/components/Cancers-listing/FindDocButton";
+import Header from "@/components/Home/Header";
 
 export async function generateMetadata({ params: { slug } }) {
   const res = await client.request(
@@ -48,7 +49,7 @@ const Page = async ({ params }) => {
       {/* <!-- Header Span --> */}
       <span className="header-span"></span>
 
-      <DefaulHeader />
+      <Header />
       {/* <!--End Main Header --> */}
 
       <MobileMenu />

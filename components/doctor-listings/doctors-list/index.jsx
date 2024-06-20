@@ -2,6 +2,7 @@ import DefaulHeader2 from "../../header/DefaulHeader2";
 import MobileMenu from "../../header/MobileMenu";
 import FilterTopBox from "./FilterTopBox";
 import FilterSidebar from "./FilterSidebar";
+import Header from "@/components/Home/Header";
 
 const DoctorsList = (props) => {
   const { doctors, pageInfo, cancers } = props;
@@ -10,7 +11,7 @@ const DoctorsList = (props) => {
       {/* <!-- Header Span --> */}
       <span className="header-span"></span>
 
-      <DefaulHeader2 />
+      <Header />
       {/* End Header with upload cv btn */}
 
       <MobileMenu />

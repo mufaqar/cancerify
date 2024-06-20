@@ -24,7 +24,7 @@ const Header = () => {
   return (
     // <!-- Main Header-->
     <header
-      className={`main-header header-style-two alternate2 ${
+      className={`main-header header-style-two alternate2 bg-theme-color ${
         navbar ? "fixed-header animated slideInDown" : ""
       }`}
     >

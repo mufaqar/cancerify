@@ -6,6 +6,7 @@ import JobSkills from "@/components/candidates-single-pages/shared-components/Jo
 import client from "@/lib/ApolloClient";
 import { GET_DOCTOR, GET_DOCTORS_SEO } from "@/lib/Queries";
 import Link from "next/link";
+import Header from "@/components/Home/Header";
 
 export async function generateMetadata({ params: { slug } }) {
   const res = await client.request(
@@ -80,7 +81,7 @@ const Page = async ({ params: { slug } }) => {
       {/* <!-- Header Span --> */}
       <span className="header-span"></span>
 
-      <DefaulHeader />
+      <Header />
       {/* <!--End Main Header --> */}
 
       <MobileMenu />
@@ -94,7 +95,7 @@ const Page = async ({ params: { slug } }) => {
               <div className="content-column col-lg-8 col-md-12 col-sm-12">
                 <div className="candidate-block-five">
                   <div className="inner-box">
-                    <div className="content">
+                    <div className="content doctor_content">
                       <h4 className="name">{doctor?.title}</h4>
 
                       <ul className="candidate-info">
@@ -108,11 +109,6 @@ const Page = async ({ params: { slug } }) => {
                         </li>
                       </ul>
 
-                      {/* <ul className="post-tags">
-                        {doctor?.expertiseOfDoctors?.nodes?.map((val, i) => (
-                          <li key={i}>{val?.name}</li>
-                        ))}
-                      </ul> */}
                     </div>
                   </div>
                 </div>
