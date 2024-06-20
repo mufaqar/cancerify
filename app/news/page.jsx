@@ -4,13 +4,14 @@ import FooterDefault from "@/components/footer/common-footer";
 import DefaulHeader from "@/components/header/DefaulHeader";
 import MobileMenu from "@/components/header/MobileMenu";
 import NewsFeedItem from "@/components/NewsFeeds/NewsFeedItem";
+import dynamic from "next/dynamic";
 
 export const metadata = {
   title: "News Feed || Cancerify Find Cancer doctors",
   description: "Cancerify - Find Cancer doctors",
 };
 
-export default async function Page() {
+const Page = async () => {
   const res = await client.request(GET_NEWS_FEEDS);
 
   const newsFeeds = res?.newsFeeds?.nodes || [];
@@ -47,3 +48,4 @@ export default async function Page() {
     </>
   );
 }
+export default dynamic(() => Promise.resolve(Page), { ssr: false });

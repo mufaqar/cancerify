@@ -4,7 +4,6 @@
 
 import Image from "next/image";
 import Slider from "react-slick";
-import parseHtml from "@/lib/Parser";
 
 const Testimonials = (props) => {
   const { testimonials } = props;
@@ -24,7 +23,7 @@ const Testimonials = (props) => {
     ],
   };
 
-  console.log(testimonials);
+
 
   return (
     <>
