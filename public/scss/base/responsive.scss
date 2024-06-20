@@ -1650,6 +1650,9 @@
 }
 
 @media only screen and (max-width: 599px) {
+	.col-xs-4{
+		width: 33.33%;
+	}
 	.banner-section-six,
 	.banner-section-five,
 	.banner-section-two,
@@ -2394,6 +2397,9 @@
 }
 
 @media only screen and (max-width: 479px) {
+	.col-xs-4{
+		width: 33.33%;
+	}
 	.news_feed_wraper .news_feed_lists {
 		column-count: 1 !important;
 	}
@@ -2429,5 +2435,11 @@
 
 	#login-modal .login-form .field-outer {
 		align-items: flex-end;
+	}
+}
+
+@media only screen and (max-width: 365px) {
+	.col-xss-6{
+		width: 50%;
 	}
 }
