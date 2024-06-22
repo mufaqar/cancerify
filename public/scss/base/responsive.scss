@@ -175,6 +175,9 @@
 }
 
 @media only screen and (max-width: 1266px) {
+	.custom-row{
+		width: 100% !important;
+	}
 	.main-header {
 		.outer-box .upload-cv {
 			margin-right: 0;
@@ -781,6 +784,7 @@
 }
 
 @media only screen and (max-width: 1023px) {
+
 	.news_feed_wraper .news_feed_lists {
 		column-count: 2 !important;
 	}
@@ -1297,6 +1301,9 @@
 }
 
 @media only screen and (max-width: 767px) {
+	.grid-cols-md-2{
+		grid-template-columns: repeat(2, 1fr) !important;
+	  }
 	.job-search-form {
 		min-width: auto;
 	}
@@ -1650,6 +1657,7 @@
 }
 
 @media only screen and (max-width: 599px) {
+
 	.col-xs-4{
 		width: 33.33%;
 	}
@@ -2397,6 +2405,7 @@
 }
 
 @media only screen and (max-width: 479px) {
+
 	.col-xs-4{
 		width: 33.33%;
 	}

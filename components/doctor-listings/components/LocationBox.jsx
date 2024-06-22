@@ -25,19 +25,19 @@ const LocationBox = () => {
           className="rounded-full"
           onClick={() => locationHandler({ name: 'New york' })}
         >
-          <a className={`rounded-50  ${location === "New york" ? 'text-theme-color border-theme-color' : ''} `} href="#">New york</a>
+          <a className={`rounded-50  ${location === "New york" ? 'text-theme-color border-theme-color' : 'border'} `} href="#">New york</a>
         </li>
         <li
           className="rounded-full"
           onClick={() => locationHandler({ name: 'California' })}
         >
-          <a className={`rounded-50  ${location === "California" ? 'text-theme-color border-theme-color' : ''} `} href="#">California</a>
+          <a className={`rounded-50  ${location === "California" ? 'text-theme-color border-theme-color' : 'border'} `} href="#">California</a>
         </li>
         <li
           className="rounded-full"
           onClick={() => locationHandler({ name: 'Florida' })}
         >
-          <a className={`rounded-50  ${location === "Florida" ? 'text-theme-color border-theme-color' : ''} `} href="#">Florida</a>
+          <a className={`rounded-50  ${location === "Florida" ? 'text-theme-color border-theme-color' : 'border'} `} href="#">Florida</a>
         </li>
       {/* <select
         onChange={locationHandler}

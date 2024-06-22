@@ -10,7 +10,7 @@ import BlogSection from "./BlogSection";
 
 
 const index = (props) => {
-  const {cancers,testimonials, posts} = props
+  const {cancers,testimonials, posts, page} = props
   
   return (
     <>
@@ -27,12 +27,12 @@ const index = (props) => {
       <section className="job-categories">
         <div className="auto-container">
           <div className="sec-title text-center">
-            <h2>Types of Cancers</h2>
-            {/* <div className="text">2020 jobs live - 293 added today.</div> */}
+            <h2 className="text_theme">Learn more about your cancer</h2>
+            
           </div>
 
           <div
-            className="row "
+            className="row custom-row"
             data-aos="fade-up"
             data-aos-anchor-placement="top-bottom"
           >
@@ -44,7 +44,7 @@ const index = (props) => {
       </section>
       {/* <!-- End Job Section --> */}
 
-      <OurMission />
+      <OurMission page={page} />
       {/* <!-- End Steps Section --> */}
 
       <CallToAction />
@@ -58,9 +58,9 @@ const index = (props) => {
           {/* <!-- Sec Title --> */}
           <div className="sec-title dark text-center">
             <h2>Testimonials From Our Customers</h2>
-            <div className="text">
+            {/* <div className="text">
               Lorem ipsum dolor sit amet elit, sed do eiusmod tempor
-            </div>
+            </div> */}
           </div>
 
           <div className="carousel-outer" data-aos="fade-up">
@@ -81,9 +81,9 @@ const index = (props) => {
         <div className="auto-container">
           <div className="sec-title text-center">
             <h2>Recent News Articles</h2>
-            <div className="text">
+            {/* <div className="text">
               Fresh job related news content posted each day.
-            </div>
+            </div> */}
           </div>
           {/* End ."sec-title */}
           <div className="row" data-aos="fade-up">

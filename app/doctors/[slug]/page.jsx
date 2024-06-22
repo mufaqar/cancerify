@@ -1,5 +1,4 @@
 import dynamic from "next/dynamic";;
-import DefaulHeader from "@/components/header/DefaulHeader";
 import MobileMenu from "@/components/header/MobileMenu";
 import Social from "@/components/candidates-single-pages/social/Social";
 import JobSkills from "@/components/candidates-single-pages/shared-components/JobSkills";
@@ -40,9 +39,7 @@ const Page = async ({ params: { slug } }) => {
   const educations = details?.meta?.education
     ? Object.values(details?.meta?.education)
     : [];
-  const cancerstreated = details?.meta?.cancerstreated
-    ? Object.values(details?.meta?.cancerstreated)
-    : [];
+
   const awards = details?.meta?.awards
     ? Object.values(details?.meta?.awards)
     : [];
@@ -75,6 +72,9 @@ const Page = async ({ params: { slug } }) => {
     doctor?.doctorsoptions?.socialMedias?.linkedin
       ? true
       : false;
+  const cancerTreated = doctor?.doctorsoptions?.cancerTreated || [];
+
+
 
   return (
     <>
@@ -143,7 +143,9 @@ const Page = async ({ params: { slug } }) => {
                             <div className="title-box">
                               <div className="info-box">
                                 <h3>{item?.schoolname}</h3>
-                                <span>{item?.degree}</span>
+                                {
+                                  item?.degree && <span>{item?.degree}</span>
+                                }
                               </div>
                               {item?.daterange && (
                                 <div className="edit-box">
@@ -153,7 +155,9 @@ const Page = async ({ params: { slug } }) => {
                                 </div>
                               )}
                             </div>
-                            <div className="text">{item?.description}</div>
+                            {
+                              item?.description && <div className="text">{item?.description}</div>
+                            }
                           </div>
                         </div>
                       ))}
@@ -179,7 +183,10 @@ const Page = async ({ params: { slug } }) => {
                             <div className="title-box">
                               <div className="info-box">
                                 <h3>{item?.awardname}</h3>
-                                <span>{item?.awardfrom}</span>
+                                {
+                                  item?.awardfrom && <span>{item?.awardfrom}</span>
+                                }
+                        
                               </div>
                               {item?.daterange && (
                                 <div className="edit-box">
@@ -189,7 +196,10 @@ const Page = async ({ params: { slug } }) => {
                                 </div>
                               )}
                             </div>
-                            <div className="text">{item?.description}</div>
+                            {
+                              item?.description && <div className="text">{item?.description}</div>
+                            }
+              
                           </div>
                         </div>
                       ))}
@@ -318,9 +328,9 @@ const Page = async ({ params: { slug } }) => {
                   </div>
                   <div className="cancer_treted pb-5 pt-4">
                     <h4 className="widget-title pb-3">Cancer Treated</h4>
-                   <ul className="post-tags">
-                        {doctor?.expertiseOfDoctors?.nodes?.map((val, i) => (
-                          <li key={i}>{val?.name}</li>
+                   <ul className="post-tags grid grid-cols-3 grid-cols-md-2 gap-10">
+                        {cancerTreated?.map((val, i) => (
+                          <li className="" key={i}>{val?.title} Cancer</li>
                         ))}
                       </ul>
                   </div>

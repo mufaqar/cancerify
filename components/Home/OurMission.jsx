@@ -1,24 +1,9 @@
 import Image from "next/image";
 
-const OurMission = () => {
-  const blockContent = {
-    title: "Our Mission",
-    descriptions: ` Cancerify's mission is to make the world's top cancer doctors more accessible and keep you updated with the latest science-backed cancer research.`,
-    list: [
-      {
-        count: "1",
-        text: `Don't worry We did the research for you! Search through only the top cancer doctors!`,
-      },
-      {
-        count: "2",
-        text: `There's a lot of misinformation out there stay up to date to the latest science backed  research!`,
-      },
-      {
-        count: "3",
-        text: `Trust and community. We do not monitize our platform this information is for the people!`,
-      },
-    ],
-  };
+const OurMission = (props) => {
+  const { page } = props;
+  const ourMission = page?.homeOptions?.ourMission || {};
+  
   return (
     <section className="steps-section pt-0">
       <div className="auto-container">
@@ -34,17 +19,7 @@ const OurMission = () => {
                 />
               </figure>
               {/* <!-- Count Employers --> */}
-              <div className="count-employers" data-aos="fade-up">
-                <span className="title">300k+ Employers</span>
-                <figure className="image">
-                  <Image
-                    width={209}
-                    height={54}
-                    src="/images/resource/multi-peoples.png"
-                    alt="resource"
-                  />
-                </figure>
-              </div>
+              
             </div>
           </div>
           {/* End image-column */}
@@ -52,14 +27,23 @@ const OurMission = () => {
           <div className="content-column col-lg-6 col-md-12 col-sm-12">
             <div className="inner-column" data-aos="fade-up">
               <div className="sec-title">
-                <h2>{blockContent.title}</h2>
-                <div className="text">{blockContent.descriptions}</div>
+                <h2>{ourMission?.heading}</h2>
+                <div className="text">{ourMission?.description}</div>
                 <ul className="steps-list">
-                  {blockContent.list.map((list, i) => (
+                  {/* {Object.values(ourMission.lists) || [].map((list, i) => (
                     <li key={i}>
-                      <span className="count">{list.count}</span> {list.text}
+                      <span className="count">{ i + 1}</span> {list}
                     </li>
-                  ))}
+                  ))} */}
+                  <li>
+                    <span className="count">1</span> {ourMission.lists.itemOne}
+                  </li>
+                  <li>
+                    <span className="count">2</span> {ourMission.lists.itemTwo}
+                  </li>
+                  <li>
+                    <span className="count">3</span> {ourMission.lists.itemThree}
+                  </li>
                 </ul>
               </div>
             </div>

@@ -60,11 +60,11 @@ const Blog6 = (props) => {
               {/* End post meta */}
 
               <h3>
-                <Link href={`/blog/${item?.slug}`}>{item.title}</Link>
+                <Link className="truncate-1" href={`/blog/${item?.slug}`}>{item.title}</Link>
               </h3>
 
               <div
-                className="text line-clamp-3"
+                className="text truncate-4"
                 dangerouslySetInnerHTML={{ __html: item.excerpt }}
               />
               <Link href={`/blog/${item.slug}`} className="read-more ">

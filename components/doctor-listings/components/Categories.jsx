@@ -2,6 +2,7 @@
 'use client'
 import { useDispatch, useSelector } from "react-redux";
 import { addCategory } from "../../../features/filter/candidateFilterSlice";
+import Link from "next/link";
 
 const Categories = (props) => {
     const { cancers } = props;
@@ -26,7 +27,7 @@ const Categories = (props) => {
                 cancers?.length ?
                 cancers?.sort((a, b) => a.title.localeCompare(b.title))?.map((item) => (
                     <li className="rounded-full" key={item?.id}  onClick={() => categoryHandler({name: item.title})}>
-                        <a className={`${getCategory === item.title ? 'text-theme-color border-theme-color' : ''} rounded-50 `}  href="#">{item.title}</a>
+                        <Link className={`${getCategory === item.title ? 'text-theme-color border-theme-color ' : 'border'} rounded-50  `}  href="#">{item.title}</Link>
                     </li>
                 ))
                 : 

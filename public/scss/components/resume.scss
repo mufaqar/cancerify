@@ -330,7 +330,7 @@
   position: relative;
   padding-left: 60px;
   z-index: 1;
-  padding-bottom: 60px;
+  padding-bottom: 25px;
 }
 
 .resume-block .inner:before {
@@ -375,7 +375,7 @@
   -webkit-box-align: start;
   -ms-flex-align: start;
   align-items: flex-start;
-  margin-bottom: 30px;
+  // margin-bottom: 30px;
 }
 
 .resume-block .info-box {

@@ -1,5 +1,5 @@
 import SearchForm from "@/components/Home/SearchForm";
-// import Funfact2 from "../../fun-fact-counter/Funfact2";
+
 
 const index = (props) => {
   const { cancers } = props;
@@ -11,9 +11,9 @@ const index = (props) => {
       <div className="auto-container">
         <div className="cotnent-box">
           <div className="title-box" data-aso-delay="0" data-aos="fade-up">
-            <h3>Find a Top Cancer Doctor</h3>
+            <h3>Find Top Cancer Doctors</h3>
             <div className="text">
-              Top Oncologists for Leading Care. We've done the research!
+             We've researched and selected only the world's best oncologists!
             </div>
           </div>
 

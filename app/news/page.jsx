@@ -1,7 +1,5 @@
 import { GET_NEWS_FEEDS } from "@/lib/Queries";
 import client from "@/lib/ApolloClient";
-import FooterDefault from "@/components/footer/common-footer";
-import DefaulHeader from "@/components/header/DefaulHeader";
 import MobileMenu from "@/components/header/MobileMenu";
 import NewsFeedItem from "@/components/NewsFeeds/NewsFeedItem";
 import dynamic from "next/dynamic";
@@ -44,8 +42,7 @@ const Page = async () => {
 
       {/* End .row */}
 
-      <FooterDefault footerStyle="alternate5" />
-      {/* <!-- End Main Footer --> */}
+
     </>
   );
 }

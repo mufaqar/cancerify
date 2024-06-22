@@ -3,9 +3,6 @@
 import {
 
   Sidebar,
-  Menu,
-  MenuItem,
-  SubMenu,
 } from "react-pro-sidebar";
 
 import Link from "next/link";
@@ -74,7 +71,7 @@ const Index = () => {
         </Sidebar>
 
 
-      <SidebarFooter />
+      {/* <SidebarFooter /> */}
     </div>
   );
 };

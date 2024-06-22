@@ -35,22 +35,14 @@ const BlogSection = (props) => {
             {/* End image-box */}
 
             <div className="lower-content">
-              {/* <ul className="post-meta">
-                <li>
-                  <a href="#">{moment(item?.date).format('MMMM DD, YYYY')}</a>
-                </li>
-                <li>
-                  <a href="#">{item?.commentCount || 0} Comment</a>
-                </li>
-              </ul> */}
-              {/* End post meta */}
+
 
               <h3>
-                <Link href={`/blog/${item?.slug}`}>{item.title}</Link>
+                <Link className="truncate-1" href={`/blog/${item?.slug}`}>{item.title}</Link>
               </h3>
 
               <div
-                className="text line-clamp-3"
+                className="text truncate-4"
                 dangerouslySetInnerHTML={{ __html: item.excerpt }}
               />
               <Link href={`/blog/${item.slug}`} className="read-more ">

@@ -31,7 +31,7 @@ const MobileMenu = () => {
 
           <div className="outer-box">
 
-            {/* login popup end */}
+        
 
             <button
               className="mobile-nav-toggler"
@@ -40,7 +40,7 @@ const MobileMenu = () => {
             >
               <span className="flaticon-menu-1"></span>
             </button>
-            {/* right humberger menu */}
+        
           </div>
         </div>
       </div>

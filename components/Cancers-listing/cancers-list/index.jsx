@@ -10,7 +10,7 @@ const index = (props) => {
       {/* <!-- Header Span --> */}
       <span className="header-span"></span>
 
-      <Header   />
+      <Header />
       {/* End Header with upload cv btn */}
 
       <MobileMenu />
@@ -25,21 +25,32 @@ const index = (props) => {
             {/* <!-- Category Block --> */}
             <>
               {cancers?.length ? (
-                cancers?.sort((a, b) => a.title.localeCompare(b.title))?.map((item) => (
-                  <div
-                    className="category-block col-lg-3 col-w-20 col-md-3 col-sm-3 col-xs-4 col-xss-6"
-                    key={item.id}
-                  >
-                    <div className="inner-box">
+                cancers
+                  ?.sort((a, b) => a.title.localeCompare(b.title))
+                  ?.map((item) => (
+                    <div
+                      className="category-block col-lg-3 col-w-20 col-md-3 col-sm-3 col-xs-4 col-xss-6"
+                      key={item.id}
+                    >
                       <Link
                         href={`/cancers/${item?.slug}`}
-                        className="content cancers "
+                        className="inner-box flex items-center"
                       >
-                        <h4>{item?.title}</h4>
+                        {item?.cancersOptions?.cancerIcon?.sourceUrl && (
+                          <div className="cancer_icons ">
+                            <Image
+                              width={50}
+                              height={50}
+                              src={item?.cancersOptions?.cancerIcon?.sourceUrl}
+                              alt="item brand"
+                            />
+                          </div>
+                        )}
+
+                        <h4 className="cancer_text">{item?.title} Cancer</h4>
                       </Link>
                     </div>
-                  </div>
-                ))
+                  ))
               ) : (
                 <p>No cancers found!</p>
               )}

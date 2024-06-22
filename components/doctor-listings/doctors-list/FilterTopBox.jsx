@@ -4,13 +4,6 @@ import Link from "next/link";
 import ListingShowing from "../components/ListingShowing";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  addCandidateGender,
-  addCategory,
-  addDatePost,
-  addDestination,
-  addKeyword,
-  addLocation,
-  addPerPage,
   addSort,
 } from "../../../features/filter/candidateFilterSlice";
 
@@ -20,20 +13,16 @@ import { GET_ALL_DOCTORS } from "@/lib/Queries";
 import client from "@/lib/ApolloClient";
 
 const FilterTopBox = (props) => {
-  const { doctors ,pageInfo} = props;
-  const searchParams = useSearchParams()
+  const { doctors, pageInfo } = props;
+  const searchParams = useSearchParams();
 
-  const page = searchParams.get('endCursor')
+  const page = searchParams.get("endCursor");
 
   const [filteredData, setFilteredData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  const {
-    keyword,
-    location,
-    category,
-    sort,
-  } = useSelector((state) => state.candidateFilter) || {};
+  const { keyword, location, category, sort } =
+    useSelector((state) => state.candidateFilter) || {};
 
   const dispatch = useDispatch();
 
@@ -41,7 +30,6 @@ const FilterTopBox = (props) => {
   const sortHandler = (e) => {
     dispatch(addSort(e.target.value));
   };
-
 
   // if there is new data save previous doctors data in variable and append new data to it.
 
@@ -52,7 +40,7 @@ const FilterTopBox = (props) => {
         const res = await client.request(GET_ALL_DOCTORS, { after: page });
         const newDoctors = res?.doctors?.nodes || [];
         const allDoctors = [...doctors, ...newDoctors];
-       
+
         setFilteredData(allDoctors);
         setIsLoading(false);
       };
@@ -62,31 +50,38 @@ const FilterTopBox = (props) => {
 
   // Filter data
   useEffect(() => {
-    if( keyword || location || category || sort) {
+    if (keyword || location || category || sort) {
       const SearchfilteredData = doctors.filter((doctor) => {
+        // return console.log(doctor?.doctorsoptions?.cancerTreated, 'doctors')
         return (
-          doctor.title.toLowerCase().includes(keyword.toLowerCase()) &&
+          // doctor.title.toLowerCase().includes(keyword.toLowerCase()) &&
           doctor.doctorsoptions.address
             .toLowerCase()
-            .includes(location.toLowerCase()) &&
-          doctor.expertiseOfDoctors.nodes.some((val) =>
-            val.name.toLowerCase().includes(category.toLowerCase())
-          ) 
+            .includes(location.toLowerCase()) ||
+          doctor?.doctorsoptions?.cancerTreated?.some((val) =>
+            val?.title?.toLowerCase().includes(category.toLowerCase())
+          )
         );
       });
-      
+
       setFilteredData(SearchfilteredData);
-    }else{
+    } else {
       setFilteredData([...doctors]);
     }
   }, [keyword, location, category, sort, doctors]);
 
-
- 
-
   return (
     <>
-
+      <div className="show-1023">
+        <button
+          type="button"
+          className="theme-btn toggle-filters "
+          data-bs-toggle="offcanvas"
+          data-bs-target="#filter-sidebar"
+        >
+          <span className="icon icon-filter"></span> Filter
+        </button>
+      </div>
       {/* End top filter bar box */}
 
       {filteredData?.length === 0 ? (
@@ -96,7 +91,6 @@ const FilterTopBox = (props) => {
           <div className="candidate-block-three" key={doctor.id}>
             <div className="inner-box">
               <div className="content">
-  
                 <h4 className="name">
                   <Link href={`/doctors/${doctor.slug}`}>{doctor.title}</Link>
                 </h4>
@@ -140,12 +134,12 @@ const FilterTopBox = (props) => {
         ))
       )}
 
-      {
-        filteredData?.length ?
+      {filteredData?.length
+        ? pageInfo?.hasNextPage && (
+            <ListingShowing isLoading={isLoading} pageInfo={pageInfo} />
+          )
+        : null}
 
-        pageInfo?.hasNextPage && <ListingShowing isLoading={isLoading} pageInfo={pageInfo} />  : null
-      }
-      
       {/* <!-- Listing Show More --> */}
     </>
   );
