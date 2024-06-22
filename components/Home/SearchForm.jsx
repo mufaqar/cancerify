@@ -85,7 +85,7 @@ const SearchForm4 = (props) => {
         <label>Location?</label>
           <span className="icon flaticon-map-locator"></span>
           <select id="location" className="chosen-single form-select">
-            <option defaultValue="">Locations</option>
+            <option defaultValue="">All Location</option>
             <option value="New York">New York</option>
             <option value="California">California</option>
             <option value="Florida">Florida</option>

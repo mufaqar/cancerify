@@ -16,7 +16,7 @@ const CallToAction = () => {
         {/* End sec-title */}
 
         <div className="btn-box">
-          <Link href="/" className="theme-btn btn-style-three">
+          <Link href="/news" className="theme-btn btn-style-three">
             Watch Now
           </Link>
         </div>

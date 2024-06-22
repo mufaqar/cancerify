@@ -42,8 +42,17 @@ const Page = async ({ params }) => {
 
   const blocks = JSON.parse(cancer?.blocksJSON);
 
+  const metaDetails = await fetch(`https://vni.fe7.mytemp.website/wp-json/wp/v2/cancers/${cancer?.databaseId}`);
+  const metaDetailsJson = await metaDetails.json();
 
 
+
+
+  const metaSymptoms = Object.values(metaDetailsJson?.meta?.symptoms) || [];
+
+  const metaRiskFactors = Object.values(metaDetailsJson?.meta?.riskfactors) || [];
+
+  
   return (
     <>
       {/* <!-- Header Span --> */}
@@ -67,9 +76,9 @@ const Page = async ({ params }) => {
                     <div className="widget-content">
                       <h4 className="widget-title"> Symptons</h4>
                       <ul className="list-disc">
-                        {symptoms?.map((symptom) => (
-                          <li className="p-1" key={symptom.id}>
-                            {symptom.name}
+                        {metaSymptoms?.map((symptom, idx) => (
+                          <li className="p-1" key={idx}>
+                            {symptom.title}
                           </li>
                         ))}
                         {/* <li></li> */}
@@ -87,9 +96,9 @@ const Page = async ({ params }) => {
                     <div className="widget-content">
                       {/*  compnay-info */}
                       <ul className="company-info mt-0 custom-risk">
-                        {riskFactors?.map((risk) => (
-                          <li className="p-1" key={risk.id}>
-                            {risk.name}: <p>{risk?.description}</p>
+                        {metaRiskFactors?.map((risk, idx) => (
+                          <li className="p-1" key={idx}>
+                            {risk.title}: <p>{risk?.description}</p>
                           </li>
                         ))}
                       </ul>
