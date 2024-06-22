@@ -3,8 +3,8 @@ const JobSkills = (props) => {
   return (
     <ul className="job-skills">
       {insurances?.map((skill, i) => (
-        <li key={i}>
-          <a href="#">{skill?.title}</a>
+        <li className="custom-isurance" key={i}>
+          {skill?.title}
         </li>
       ))}
     </ul>

@@ -3,14 +3,16 @@ import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
 import {
   addCategory,
+  addKeyword
 } from "@/features/filter/candidateFilterSlice";
 export default function FindDocButton(props) {
     const { title } = props;
   const dispatch = useDispatch();
 
   const categoryHandler = ({ name }) => {
-    dispatch(addCategory(name));
+    dispatch(addKeyword(name));
   };
+
   return (
     <Link
       onClick={() => categoryHandler({ name: title })}

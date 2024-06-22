@@ -1,7 +1,7 @@
 import Wrapper from "@/layout/Wrapper";
 import Home from "@/components/Home";
 import client from "@/lib/ApolloClient";
-import { GET_ALL_CANCERS,GET_TESTIMONIALS, GET_ALL_POSTS, GET_PAGE_SEO,GET_PAGE } from "@/lib/Queries";
+import { GET_ALL_CANCERS,GET_LOCATIONS,GET_TESTIMONIALS, GET_ALL_POSTS, GET_PAGE_SEO,GET_PAGE } from "@/lib/Queries";
 
 export async function generateMetadata() {
   const res = await client.request(
@@ -44,14 +44,19 @@ export default async function page() {
   const resPage = await client.request(GET_PAGE, { id: 'home' });
   const page = resPage?.page || [];
 
+  // get locations
+  const resLocations = await client.request(GET_LOCATIONS);
+  const locations = resLocations?.locations?.nodes || [];
+
 
   return (
     <Wrapper>
       <Home 
+      cancers={cancers}
         testimonials={testimonials} 
-        cancers={cancers} 
         posts={posts}
         page={page}
+        locations={locations}
       />
     </Wrapper>
   );

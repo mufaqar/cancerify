@@ -10,8 +10,10 @@ import {
 import { useRouter } from "next/navigation";
 
 const SearchForm4 = (props) => {
+  const { locations } = props;
   const router = useRouter();
   const dispatch = useDispatch();
+
   const { category: getCategory } =
     useSelector((state) => state.candidateFilter) || {};
 
@@ -35,38 +37,38 @@ const SearchForm4 = (props) => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    const location = event.target.location.value;
-    const cancers = event.target.cancers.value;
+    // const location = event.target.location.value;
+    // const cancers = event.target.cancers.value;
     const name = event.target.name.value;
 
 
-    if (location === "Locations" && cancers === "All Cancers") {
+    if (name === "Locations" && !name) {
       alert("Please select location and cancer type");
     } else {
       keywordHandler({ value: name });
-      locationHandler({ name: location });
-      categoryHandler({ name: cancers });
+      // locationHandler({ name: location });
+      // categoryHandler({ name: cancers });
       router.push("/doctors");
     }
   };
 
-  const { cancers } = props;
+
 
   return (
     <form onSubmit={handleSubmit}>
       <div className="row">
-        {/* <div className="form-group col-lg-4 col-md-12 col-sm-12">
-          <label>Search by keywords?</label>
+        <div className="form-group col-lg-10 col-md-12 col-sm-12">
+          {/* <label>Type of Cancer</label> */}
           <span className="icon flaticon-search-1"></span>
           <input
             type="text"
             name="name"
-            placeholder="Search by keywords"
+            placeholder="Search by type cancer"
           />
-        </div> */}
+        </div>
 
         {/* <!-- Form Group --> */}
-        <div className="form-group col-lg-5 col-md-12 col-sm-12 location">
+        {/* <div className="form-group col-lg-5 col-md-12 col-sm-12 location">
         <label>Types of Cancer</label>
           <span className="icon flaticon-briefcase"></span>
           <select id="cancers" className="chosen-single form-select">
@@ -78,19 +80,24 @@ const SearchForm4 = (props) => {
             ))}
           </select>
 
-        </div>
+        </div> */}
 
         {/* <!-- Form Group --> */}
-        <div className="form-group col-lg-5 col-md-12 col-sm-12 category">
+        {/* <div className="form-group col-lg-4 col-md-12 col-sm-12 category">
         <label>Location?</label>
           <span className="icon flaticon-map-locator"></span>
           <select id="location" className="chosen-single form-select">
-            <option defaultValue="">All Location</option>
-            <option value="New York">New York</option>
-            <option value="California">California</option>
-            <option value="Florida">Florida</option>
+            <option defaultValue="">All locations</option>
+            {
+              locations?.map((item) => (
+                <option key={item.id} value={item.title}>
+                  {item.title}
+                </option>
+              ))
+            }
+
           </select>
-        </div>
+        </div> */}
 
         {/* <!-- Form Group --> */}
         <div className="form-group col-lg-2 col-md-12 col-sm-12 text-right ">

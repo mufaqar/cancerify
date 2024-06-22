@@ -13,7 +13,7 @@ const Details = (props) => {
 
   return (
     <div className="job-detail cancer_detail">
-      <h1 className="pb-3">{title}</h1>
+      <h1 className="pb-3">{title.replace(/(<([^>]+)>)/gi, "")}</h1>
       {blocks?.map((block, index) =>
         block.name === "core/heading" ? (
           <div className="cancer_heading">

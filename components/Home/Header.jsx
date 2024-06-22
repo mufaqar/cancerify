@@ -58,7 +58,7 @@ const Header = () => {
                 href="/contact"
                 className="theme-btn btn-style-five"
               >
-                Contact
+                Contact Us
               </Link>
             </div>
           </div>

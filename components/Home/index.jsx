@@ -10,7 +10,7 @@ import BlogSection from "./BlogSection";
 
 
 const index = (props) => {
-  const {cancers,testimonials, posts, page} = props
+  const {locations,testimonials, posts, page,cancers} = props
   
   return (
     <>
@@ -21,7 +21,7 @@ const index = (props) => {
       <MobileMenu />
       {/* End MobileMenu */}
 
-      <Hero cancers={cancers}/>
+      <Hero locations={locations}/>
       {/* <!-- End Hero Section --> */}
 
       <section className="job-categories">

@@ -19,6 +19,7 @@ const FilterTopBox = (props) => {
   const page = searchParams.get("endCursor");
 
   const [filteredData, setFilteredData] = useState([]);
+
   const [isLoading, setIsLoading] = useState(false);
 
   const { keyword, location, category, sort } =
@@ -26,11 +27,10 @@ const FilterTopBox = (props) => {
 
   const dispatch = useDispatch();
 
-  // sort handler
-  const sortHandler = (e) => {
-    dispatch(addSort(e.target.value));
-  };
 
+
+
+  console.log("keyword", keyword);
   // if there is new data save previous doctors data in variable and append new data to it.
 
   useEffect(() => {
@@ -50,25 +50,26 @@ const FilterTopBox = (props) => {
 
   // Filter data
   useEffect(() => {
-    if (keyword || location || category || sort) {
-      const SearchfilteredData = doctors.filter((doctor) => {
-        // return console.log(doctor?.doctorsoptions?.cancerTreated, 'doctors')
+    if (keyword || location) {
+      const SearchfilteredData = doctors?.filter((doctor) => {
         return (
           // doctor.title.toLowerCase().includes(keyword.toLowerCase()) &&
-          doctor.doctorsoptions.address
-            .toLowerCase()
-            .includes(location.toLowerCase()) ||
-          doctor?.doctorsoptions?.cancerTreated?.some((val) =>
-            val?.title?.toLowerCase().includes(category.toLowerCase())
+            doctor?.doctorsoptions?.location?.some((val) =>
+            val?.title?.toLowerCase() === location.toLowerCase()) ||
+            doctor?.doctorsoptions?.cancerTreated?.some((val) =>
+            val?.title?.replace(/(<([^>]+)>)/gi, "").toLowerCase().includes(keyword.toLowerCase())
           )
         );
       });
+
 
       setFilteredData(SearchfilteredData);
     } else {
       setFilteredData([...doctors]);
     }
-  }, [keyword, location, category, sort, doctors]);
+  }, [keyword, location, doctors]);
+
+ 
 
   return (
     <>
@@ -90,7 +91,7 @@ const FilterTopBox = (props) => {
         filteredData?.map((doctor) => (
           <div className="candidate-block-three" key={doctor.id}>
             <div className="inner-box">
-              <div className="content">
+              <div className="content custom-content">
                 <h4 className="name">
                   <Link href={`/doctors/${doctor.slug}`}>{doctor.title}</Link>
                 </h4>
@@ -109,14 +110,17 @@ const FilterTopBox = (props) => {
                   </li> */}
                 </ul>
                 {/* End candidate-info */}
-
-                <ul className="post-tags">
-                  {doctor.expertiseOfDoctors?.nodes?.map((val, i) => (
-                    <li className="" key={i}>
-                      <span>{val.name}</span>
-                    </li>
-                  ))}
-                </ul>
+                    {
+                      doctor?.doctorsoptions?.cancerTreated && 
+                      <ul className="post-tags">
+                      {doctor?.doctorsoptions?.cancerTreated?.map((val, i) => (
+                        <li className="" key={i}>
+                          <span>{val?.title?.replace(/(<([^>]+)>)/gi, "")}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    }
+ 
               </div>
               {/* End content */}
 

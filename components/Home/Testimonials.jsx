@@ -45,14 +45,6 @@ const Testimonials = (props) => {
                   />
                 </div>
                 }
-                <div className="thumb custom_thumb">
-                  <Image
-                    width={70}
-                    height={70}
-                    src={item?.testimonialOptions?.avatar ? item?.testimonialOptions?.avatar : '/images/resource/testi-thumb-1.png'}
-                    alt="testimonial"
-                  />
-                </div>
                 
                 <h4 className="name text_white">{item?.testimonialOptions?.authorName}</h4>
                 <span className="designation text_white">{item?.testimonialOptions?.designation}</span>

@@ -32,7 +32,8 @@ const TypesOfCancers = (props) => {
                   </div>
                 )}
 
-                <h4 className="cancer_text"><strong >{item?.title}</strong> <span className="pl-1">Cancer</span></h4>
+                {/* <h4 className="cancer_text"><strong >{item?.title}</strong> <span className="pl-1">Cancer</span></h4> */}
+                <h4 className="cancer_text" dangerouslySetInnerHTML={{__html: `${item?.title}`}} />
               </Link>
             </div>
           ))

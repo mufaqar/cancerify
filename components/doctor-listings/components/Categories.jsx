@@ -1,41 +1,56 @@
-
-'use client'
+"use client";
 import { useDispatch, useSelector } from "react-redux";
-import { addCategory } from "../../../features/filter/candidateFilterSlice";
+import {
+  addCategory,
+  addKeyword,
+} from "../../../features/filter/candidateFilterSlice";
 import Link from "next/link";
 
 const Categories = (props) => {
-    const { cancers } = props;
+  const { cancers } = props;
 
-    const { category: getCategory } =
-        useSelector((state) => state.candidateFilter) || {};
+  const { category: getCategory, keyword } =
+    useSelector((state) => state.candidateFilter) || {};
 
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-    // category handler
-    const categoryHandler = ({name}) => {
-        dispatch(addCategory(name));
-    };
+  // category handler
+  const cancerHandler = ({ name }) => {
+    dispatch(addKeyword(name));
+  };
 
+  return (
+    <div className="flex tag-list">
+      {cancers?.length ? (
+        cancers
+          ?.sort((a, b) =>
+            a.title.replace(/(<([^>]+)>)/gi, "").localeCompare(b.title.replace(/(<([^>]+)>)/gi, ""))
+          )
+          ?.map((item) => (
+            <li
+              className="rounded-full"
+              key={item?.id}
+              onClick={() =>
+                cancerHandler({ name: item.title.replace(/(<([^>]+)>)/gi, "") })
+              }
+            >
+              <Link
+                className={`${
+                    keyword === item.title.replace(/(<([^>]+)>)/gi, "")
+                    ? "text-theme-color border-theme-color "
+                    : "border"
+                } rounded-50  `}
+                href="#"
+              >
+                {item.title.replace(/(<([^>]+)>)/gi, "")}
+              </Link>
+            </li>
+          ))
+      ) : (
+        <p>No cancers found!</p>
+      )}
 
-
-
-
-    return (
-        <div className="flex tag-list">
-            {
-                cancers?.length ?
-                cancers?.sort((a, b) => a.title.localeCompare(b.title))?.map((item) => (
-                    <li className="rounded-full" key={item?.id}  onClick={() => categoryHandler({name: item.title})}>
-                        <Link className={`${getCategory === item.title ? 'text-theme-color border-theme-color ' : 'border'} rounded-50  `}  href="#">{item.title}</Link>
-                    </li>
-                ))
-                : 
-                <p>No cancers found!</p>
-            }
-
-
-            {/* <select
+      {/* <select
                 onChange={categoryHandler}
                 value={getCategory}
                 className="form-select"
@@ -48,8 +63,8 @@ const Categories = (props) => {
                 ))}
             </select>
             <span className="icon flaticon-briefcase"></span> */}
-        </div>
-    );
+    </div>
+  );
 };
 
 export default Categories;

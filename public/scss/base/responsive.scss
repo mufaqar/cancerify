@@ -1,6 +1,10 @@
 /* Superio | Just another HTML Template  */
 
 @media only screen and (max-width: 1600px) {
+	.cancer_text{
+		font-size: 16px !important;
+	}
+
 	.main-menu .navigation > li {
 		margin-right: 35px;
 	}
@@ -784,7 +788,9 @@
 }
 
 @media only screen and (max-width: 1023px) {
-
+	.cancer_text{
+		font-size: 14px !important;
+	}
 	.news_feed_wraper .news_feed_lists {
 		column-count: 2 !important;
 	}
@@ -1301,6 +1307,9 @@
 }
 
 @media only screen and (max-width: 767px) {
+	.banner-section-nine .job-search-form{
+		padding-left: 0px !important;
+	  }
 	.grid-cols-md-2{
 		grid-template-columns: repeat(2, 1fr) !important;
 	  }
@@ -1659,7 +1668,7 @@
 @media only screen and (max-width: 599px) {
 
 	.col-xs-4{
-		width: 33.33%;
+		width: 50%;
 	}
 	.banner-section-six,
 	.banner-section-five,
@@ -2407,7 +2416,7 @@
 @media only screen and (max-width: 479px) {
 
 	.col-xs-4{
-		width: 33.33%;
+		width: 50%;
 	}
 	.news_feed_wraper .news_feed_lists {
 		column-count: 1 !important;

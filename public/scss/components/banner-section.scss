@@ -1474,14 +1474,14 @@ Banner Section Nine
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  min-height: 100vh;
   text-align: center;
-  padding: 360px 0 75px;
+  // padding: 360px 0 75px;
+
 }
 
 .banner-section-nine .title-box{
   position: relative;
-  margin-bottom: 90px;
+  margin-bottom: 0px;
 }
 
 .banner-section-nine h3{
@@ -1501,7 +1501,7 @@ Banner Section Nine
 }
 
 .banner-section-nine .job-search-form{
-  max-width: 1070px;
+  max-width: 900px ;
   margin: 0 auto 20px;
 }
 

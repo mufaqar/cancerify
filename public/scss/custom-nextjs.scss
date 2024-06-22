@@ -508,7 +508,7 @@
 }
 
 .cancer_text{
-  font-size: 16px !important;
+  font-size: 16px;
   display: flex !important;
   align-items: center !important;
   padding-top: 5px !important;
@@ -594,12 +594,45 @@
 }
 
 .custom-row{
-  width: 75%;
+  width: 80%;
   margin: auto;
 }
 .custom_thumb{
     padding-right: 90px;
+    background-color: transparent !important;
 }
+.cancer_text strong{
+  padding-right: 5px;
+}
+
+.banner-section-nine .job-search-form{
+  max-width: 820px !important;
+}
+
+.banner-section-nine{
+  min-height: 0vh ;
+  padding-top: 200px ;
+  padding-bottom: 200px ;
+}
+.banner-section-nine .title-box{
+  margin-bottom: 45px;
+
+}
+
+.custom-isurance {
+	padding: 5px 20px;
+	display: block;
+	font-size: 14px;
+	line-height: 19px;
+	color: #696969;
+	border-radius: 4px;
+	background: #ffffff;
+}
+
+.custom-content{
+  padding-top: 11px;
+}
+
 // Responsive css
 
 @media only screen and (min-width: 992px) {

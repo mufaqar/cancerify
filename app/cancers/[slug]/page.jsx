@@ -17,7 +17,7 @@ export async function generateMetadata({ params: { slug } }) {
 
   const seo = res?.cancer?.seo || {};
   return {
-    title: seo?.title || "",
+    title: seo?.title.replace(/(<([^>]+)>)/gi, "") || "",
     description: seo?.metaDesc || "",
     keywords: `${seo.focuskw},${seo?.metaKeywords}`,
     openGraph: {
@@ -36,8 +36,6 @@ const Page = async ({ params }) => {
 
   if (!cancer?.title) return notFound();
 
-  const symptoms = cancer?.cancersOptions?.symptoms;
-  const riskFactors = cancer?.cancersOptions?.riskFactors;
   const topLinks = cancer?.cancersOptions?.topLinks;
 
   const blocks = JSON.parse(cancer?.blocksJSON);
@@ -72,9 +70,13 @@ const Page = async ({ params }) => {
             <div className="row">
               <div className="sidebar-column col-lg-4 col-md-12 col-sm-12">
                 <aside className="sidebar pd-right">
+
                   <div className="sidebar-widget company-widget">
+                  <div className="btn-box pb-4">
+                      <FindDocButton title={cancer?.title.replace(/(<([^>]+)>)/gi, "")} />
+                    </div>
                     <div className="widget-content">
-                      <h4 className="widget-title"> Symptons</h4>
+                      <h4 className="widget-title"> Symptoms</h4>
                       <ul className="list-disc">
                         {metaSymptoms?.map((symptom, idx) => (
                           <li className="p-1" key={idx}>
@@ -85,9 +87,7 @@ const Page = async ({ params }) => {
                       </ul>
                     </div>
 
-                    <div className="btn-box pt-4">
-                      <FindDocButton title={cancer?.title} />
-                    </div>
+
                   </div>
                   {/* End company-widget */}
 

@@ -28,7 +28,7 @@ const Page = async () => {
 
  
       {/* <!--End Page Title--> */}
-      <div className="news_feed_wraper auto-container mt-5">
+      <div className="news_feed_wraper auto-container  my-5">
         {newsFeeds?.length ? (
           <div className="news_feed_lists">
             {newsFeeds?.map((newsFeed) => (

@@ -104,8 +104,10 @@ const Page = async ({ params: { slug } }) => {
                           {doctor?.doctorsoptions?.address}
                         </li>
                         <li>
-                          <span className="icon flaticon-telephone"></span>
-                          {doctor?.doctorsoptions?.phoneNumber}
+                          <a href={`tel:${doctor?.doctorsoptions?.phoneNumber}`}>
+                            <span className="icon flaticon-telephone"></span>
+                            {doctor?.doctorsoptions?.phoneNumber}
+                          </a>
                         </li>
                       </ul>
 
@@ -330,7 +332,7 @@ const Page = async ({ params: { slug } }) => {
                     <h4 className="widget-title pb-3">Cancer Treated</h4>
                    <ul className="post-tags grid grid-cols-3 grid-cols-md-2 gap-10">
                         {cancerTreated?.map((val, i) => (
-                          <li className="" key={i}>{val?.title} Cancer</li>
+                          <li className="" key={i}>{val?.title.replace(/(<([^>]+)>)/gi, "")}</li>
                         ))}
                       </ul>
                   </div>

@@ -1,15 +1,11 @@
 "use client";
 
-import {
-
-  Sidebar,
-} from "react-pro-sidebar";
+import { Sidebar } from "react-pro-sidebar";
 
 import Link from "next/link";
 
 import SidebarFooter from "./SidebarFooter";
 import SidebarHeader from "./SidebarHeader";
-
 
 const menus = [
   {
@@ -37,15 +33,9 @@ const menus = [
     title: "Blog",
     href: "/blog",
   },
-
-
 ];
 
-
 const Index = () => {
-
-
-
   return (
     <div
       className="offcanvas offcanvas-start mobile_menu-contnet"
@@ -56,22 +46,25 @@ const Index = () => {
       <SidebarHeader />
       {/* End pro-header */}
 
-      
-        <Sidebar>
-          <ul className="px-3">
+      <Sidebar>
+        <ul className="px-3">
           {menus?.map((menu) => (
             <li className="p-2 list_itm">
-              <Link href={menu?.href}>
-                {menu?.title}
-              </Link>
+              <Link href={menu?.href}>{menu?.title}</Link>
             </li>
-   
           ))}
-          </ul>
-        </Sidebar>
+        </ul>
+        <div className="px-3  pt-3">
 
+        <div className="btn-box ">
+          <Link href="/contact" className="theme-btn btn-style-one">
+            Contact Us
+          </Link>
+        </div>
+        </div>
+      </Sidebar>
 
-      {/* <SidebarFooter /> */}
+      <SidebarFooter />
     </div>
   );
 };

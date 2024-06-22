@@ -36,13 +36,25 @@ const OurMission = (props) => {
                     </li>
                   ))} */}
                   <li>
-                    <span className="count">1</span> {ourMission.lists.itemOne}
+                    <span className="count">1</span> 
+                    <div>
+                    {ourMission.lists.itemOne}
+                      <p className="text">{ourMission.lists.descriptionOne}</p>  
+                    </div>
                   </li>
                   <li>
-                    <span className="count">2</span> {ourMission.lists.itemTwo}
+                    <span className="count">2</span> 
+                    <div>
+                    {ourMission.lists.itemTwo}
+                      <p className="text">{ourMission.lists.descriptionOne}</p>  
+                    </div>
                   </li>
                   <li>
-                    <span className="count">3</span> {ourMission.lists.itemThree}
+                    <span className="count">3</span> 
+                    <div>
+                    {ourMission.lists.itemThree}
+                      <p className="text">{ourMission.lists.descriptionOne}</p>  
+                    </div>
                   </li>
                 </ul>
               </div>

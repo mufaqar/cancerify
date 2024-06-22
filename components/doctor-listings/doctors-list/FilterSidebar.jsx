@@ -10,17 +10,15 @@ import {
 // import { addLocation } from "../../../features/filter/candidateFilterSlice";
 
 const FilterSidebar = (props) => {
-  const {cancers} = props;
+  const {cancers,locations} = props;
   const dispatch = useDispatch();
-  const { category: getCategory } =
+  const { category: getCategory, keyword, location } =
     useSelector((state) => state.candidateFilter) || {};
 
-  const categoryHandler = ({ name }) => {
-    dispatch(addCategory(name));
+  const cancerHandler = ({ name }) => {
+    dispatch(addKeyword(name));
   };
 
-  // Location
-  const { location } = useSelector((state) => state.candidateFilter) || {};
 
   // location handler
   const locationHandler = ({ name }) => {
@@ -41,9 +39,9 @@ const FilterSidebar = (props) => {
           <div className="filter-block">
             <div className=" relative">
               <h4>Search by Cancer</h4>
-              {getCategory && (
+              {keyword && (
                 <button
-                  onClick={() => categoryHandler({ name: "" })}
+                  onClick={() => cancerHandler({ name: "" })}
                   className="absolute custom-align"
                 >
                   <span className="icon flaticon-close"></span>
@@ -68,7 +66,7 @@ const FilterSidebar = (props) => {
               )}
             </div>
             <div className="form-group">
-              <LocationBox />
+              <LocationBox locations={locations} />
             </div>
 
           </div>

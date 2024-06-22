@@ -1,11 +1,10 @@
-import DefaulHeader2 from "../../header/DefaulHeader2";
 import MobileMenu from "../../header/MobileMenu";
 import FilterTopBox from "./FilterTopBox";
 import FilterSidebar from "./FilterSidebar";
 import Header from "@/components/Home/Header";
 
 const DoctorsList = (props) => {
-  const { doctors, pageInfo, cancers } = props;
+  const { doctors, pageInfo, cancers,locations } = props;
   return (
     <>
       {/* <!-- Header Span --> */}
@@ -31,13 +30,13 @@ const DoctorsList = (props) => {
               aria-labelledby="offcanvasLabel"
             >
               <div className="filters-column hide-left ">
-                <FilterSidebar cancers={cancers} />
+                <FilterSidebar locations={locations} cancers={cancers} />
               </div>
             </div>
             {/* End filter column for tablet and mobile devices */}
       
             <div className="filters-column hidden-1023 col-lg-4 col-md-12 col-sm-12 ">
-                <FilterSidebar cancers={cancers} />
+                <FilterSidebar locations={locations} cancers={cancers} />
             </div>
             {/* <!-- End Filters Column for destop and laptop --> */}
 
