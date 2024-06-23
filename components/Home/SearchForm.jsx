@@ -7,9 +7,33 @@ import {
 } from "@/features/filter/candidateFilterSlice";
 
 import { useRouter } from "next/navigation";
+import { useState } from "react";
+
+const mostSearched = [
+  {
+    id: 1,
+    title: "Colorectal Cancer",
+  },
+  {
+    id: 2,
+    title: "Prostate Cancer",
+  },
+  {
+    id: 3,
+    title: "Breast Cancer",
+  },
+  {
+    id: 4,
+    title: "Lung Cancer",
+  },
+  {
+    id: 5,
+    title: "Stomach Cancer",
+  },
+];
 
 const SearchForm4 = (props) => {
-  const { locations } = props;
+  const { locations,setIsInputFocused, isInputFocused } = props;
   const router = useRouter();
   const dispatch = useDispatch();
 
@@ -38,11 +62,12 @@ const SearchForm4 = (props) => {
 
     // const location = event.target.location.value;
     // const cancers = event.target.cancers.value;
-    const name = event.target.name.value == '' ? event.target.mbname.value : event.target.name.value;
+    const name =
+      event.target.name.value == ""
+        ? event.target.mbname.value
+        : event.target.name.value;
 
-    console.log("name", name);
-
-    if (name === "Locations" && !name) {
+    if (!name) {
       alert("Please select location and cancer type");
     } else {
       keywordHandler({ value: name });
@@ -52,13 +77,26 @@ const SearchForm4 = (props) => {
     }
   };
 
+  // get input focused or not!
+  const handleFocus = () => {
+    setIsInputFocused(true);
+  };
+
+
+
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="relative " >
       <div className="row desktop-hidden">
         <div className="form-group col-lg-10 col-md-8 col-sm-8">
           {/* <label>Type of Cancer</label> */}
           <span className="icon flaticon-search-1"></span>
-          <input type="text" name="name" placeholder="Search by type cancer" />
+          <input
+            type="text"
+            name="name"
+            placeholder="Search by type cancer"
+            onFocus={handleFocus}
+            // onBlur={handleBlur}
+          />
         </div>
 
         {/* <!-- Form Group --> */}
@@ -111,6 +149,8 @@ const SearchForm4 = (props) => {
             type="text"
             name="mbname"
             placeholder="Search by type cancer"
+            onFocus={handleFocus}
+            // onBlur={handleBlur}
           />
           <button
             type="submit"
@@ -120,6 +160,25 @@ const SearchForm4 = (props) => {
           </button>
         </div>
       </div>
+      {isInputFocused && (
+        <div className=" most-searched">
+          <h4>Most Searched</h4>
+          <ul>
+            {mostSearched.map((item) => (
+              <li
+            
+                onClick={() => {
+                  keywordHandler({ value: item.title });
+                  router.push("/doctors");
+                }}
+                key={item.id}
+              >
+                {item.title}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </form>
   );
 };
