@@ -38,7 +38,7 @@ const MobileMenu = () => {
               data-bs-toggle="offcanvas"
               data-bs-target="#offcanvasMenu"
             >
-              <span className="flaticon-menu-1"></span>
+              <span className="flaticon-menu-1 text-white"></span>
             </button>
         
           </div>

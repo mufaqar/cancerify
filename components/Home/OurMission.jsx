@@ -46,14 +46,14 @@ const OurMission = (props) => {
                     <span className="count">2</span> 
                     <div>
                     {ourMission.lists.itemTwo}
-                      <p className="text">{ourMission.lists.descriptionOne}</p>  
+                      <p className="text">{ourMission.lists.descriptionTwo}</p>  
                     </div>
                   </li>
                   <li>
                     <span className="count">3</span> 
                     <div>
                     {ourMission.lists.itemThree}
-                      <p className="text">{ourMission.lists.descriptionOne}</p>  
+                      <p className="text">{ourMission.lists.descriptionThree}</p>  
                     </div>
                   </li>
                 </ul>

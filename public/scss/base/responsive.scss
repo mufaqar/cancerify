@@ -753,7 +753,7 @@
 	}
 
 	.main-header {
-		background: #ffffff;
+		background: var(--primary-color);
 
 		.logo img {
 			max-width: none;
