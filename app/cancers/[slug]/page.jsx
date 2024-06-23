@@ -17,7 +17,7 @@ export async function generateMetadata({ params: { slug } }) {
 
   const seo = res?.cancer?.seo || {};
   return {
-    title: seo?.title || ''.replace(/(<([^>]+)>)/gi, "") || "",
+    title: seo?.title || "".replace(/(<([^>]+)>)/gi, "") || "",
     description: seo?.metaDesc || "",
     keywords: `${seo.focuskw},${seo?.metaKeywords}`,
     openGraph: {
@@ -40,17 +40,16 @@ const Page = async ({ params }) => {
 
   const blocks = JSON.parse(cancer?.blocksJSON);
 
-  const metaDetails = await fetch(`https://vni.fe7.mytemp.website/wp-json/wp/v2/cancers/${cancer?.databaseId}`);
+  const metaDetails = await fetch(
+    `https://vni.fe7.mytemp.website/wp-json/wp/v2/cancers/${cancer?.databaseId}`
+  );
   const metaDetailsJson = await metaDetails.json();
-
-
-
 
   const metaSymptoms = Object.values(metaDetailsJson?.meta?.symptoms) || [];
 
-  const metaRiskFactors = Object.values(metaDetailsJson?.meta?.riskfactors) || [];
+  const metaRiskFactors =
+    Object.values(metaDetailsJson?.meta?.riskfactors) || [];
 
-  
   return (
     <>
       {/* <!-- Header Span --> */}
@@ -63,17 +62,17 @@ const Page = async ({ params }) => {
       {/* End MobileMenu */}
 
       <section className="job-detail-section">
-
         {/* <!-- job-detail-outer--> */}
         <div className="job-detail-outer reverse">
           <div className="auto-container">
             <div className="row cancer_row">
               <div className="sidebar-column col-lg-4 col-md-12 col-sm-12">
                 <aside className="sidebar pd-right">
-
                   <div className="sidebar-widget company-widget">
-                  <div className="btn-box pb-4">
-                      <FindDocButton title={cancer?.title.replace(/(<([^>]+)>)/gi, "")} />
+                    <div className="btn-box pb-4">
+                      <FindDocButton
+                        title={cancer?.title.replace(/(<([^>]+)>)/gi, "")}
+                      />
                     </div>
                     <div className="widget-content">
                       <h4 className="widget-title"> Symptoms</h4>
@@ -86,8 +85,6 @@ const Page = async ({ params }) => {
                         {/* <li></li> */}
                       </ul>
                     </div>
-
-
                   </div>
                   {/* End company-widget */}
 
@@ -108,7 +105,10 @@ const Page = async ({ params }) => {
                   <div className="sidebar-widget company-widget">
                     <div className="widget-content ">
                       <h4 className="widget-title">Top Links</h4>
-                      <div className="top_links" dangerouslySetInnerHTML={{__html: `${topLinks}`}} />
+                      <div
+                        className="top_links"
+                        dangerouslySetInnerHTML={{ __html: `${topLinks}` }}
+                      />
                     </div>
                   </div>
                   {/* End contact-widget */}
@@ -117,7 +117,7 @@ const Page = async ({ params }) => {
               </div>
               {/* End .sidebar-column */}
 
-              <div className="content-column col-lg-8 col-md-12 col-sm-12">
+              <div className="content-column col-lg-8 col-md-12 col-sm-12 pb-5">
                 {/*  job-detail */}
                 <Details title={cancer?.title} blocks={blocks} />
                 {/* End job-detail */}
