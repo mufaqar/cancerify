@@ -625,6 +625,11 @@ h1 {
   color: #696969;
   border-radius: 4px;
   background: #ffffff;
+  // display: flex;
+  // justify-content: start;
+}
+.custom-isurance a{
+  color: var(--primary-color) !important;
 }
 
 .custom-content {

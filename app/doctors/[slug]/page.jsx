@@ -1,4 +1,4 @@
-import dynamic from "next/dynamic";;
+import dynamic from "next/dynamic";
 import MobileMenu from "@/components/header/MobileMenu";
 import Social from "@/components/candidates-single-pages/social/Social";
 import JobSkills from "@/components/candidates-single-pages/shared-components/JobSkills";
@@ -74,8 +74,6 @@ const Page = async ({ params: { slug } }) => {
       : false;
   const cancerTreated = doctor?.doctorsoptions?.cancerTreated || [];
 
-
-
   return (
     <>
       {/* <!-- Header Span --> */}
@@ -91,9 +89,9 @@ const Page = async ({ params: { slug } }) => {
       <section className="candidate-detail-section">
         <div className="candidate-detail-outer">
           <div className="auto-container">
-            <div className="row">
+            <div className="row cancer_row">
               <div className="content-column col-lg-8 col-md-12 col-sm-12">
-                <div className="candidate-block-five">
+                <div className="candidate-block-five desktop-hidden">
                   <div className="inner-box">
                     <div className="content doctor_content">
                       <h4 className="name">{doctor?.title}</h4>
@@ -104,13 +102,14 @@ const Page = async ({ params: { slug } }) => {
                           {doctor?.doctorsoptions?.address}
                         </li>
                         <li>
-                          <a href={`tel:${doctor?.doctorsoptions?.phoneNumber}`}>
+                          <a
+                            href={`tel:${doctor?.doctorsoptions?.phoneNumber}`}
+                          >
                             <span className="icon flaticon-telephone"></span>
                             {doctor?.doctorsoptions?.phoneNumber}
                           </a>
                         </li>
                       </ul>
-
                     </div>
                   </div>
                 </div>
@@ -125,7 +124,7 @@ const Page = async ({ params: { slug } }) => {
                   />
 
                   {/* <!-- cancerstreated Start --> */}
-         
+
                   {/* <!-- cancerstreated Resume End --> */}
 
                   {/* <!-- educations Start --> */}
@@ -145,9 +144,7 @@ const Page = async ({ params: { slug } }) => {
                             <div className="title-box">
                               <div className="info-box">
                                 <h3>{item?.schoolname}</h3>
-                                {
-                                  item?.degree && <span>{item?.degree}</span>
-                                }
+                                {item?.degree && <span>{item?.degree}</span>}
                               </div>
                               {item?.daterange && (
                                 <div className="edit-box">
@@ -157,9 +154,9 @@ const Page = async ({ params: { slug } }) => {
                                 </div>
                               )}
                             </div>
-                            {
-                              item?.description && <div className="text">{item?.description}</div>
-                            }
+                            {item?.description && (
+                              <div className="text">{item?.description}</div>
+                            )}
                           </div>
                         </div>
                       ))}
@@ -185,10 +182,9 @@ const Page = async ({ params: { slug } }) => {
                             <div className="title-box">
                               <div className="info-box">
                                 <h3>{item?.awardname}</h3>
-                                {
-                                  item?.awardfrom && <span>{item?.awardfrom}</span>
-                                }
-                        
+                                {item?.awardfrom && (
+                                  <span>{item?.awardfrom}</span>
+                                )}
                               </div>
                               {item?.daterange && (
                                 <div className="edit-box">
@@ -198,10 +194,9 @@ const Page = async ({ params: { slug } }) => {
                                 </div>
                               )}
                             </div>
-                            {
-                              item?.description && <div className="text">{item?.description}</div>
-                            }
-              
+                            {item?.description && (
+                              <div className="text">{item?.description}</div>
+                            )}
                           </div>
                         </div>
                       ))}
@@ -318,6 +313,28 @@ const Page = async ({ params: { slug } }) => {
               {/* End .content-column */}
 
               <div className="sidebar-column col-lg-4 col-md-12 col-sm-12">
+                <div className="candidate-block-five  mb-hidden">
+                  <div className="inner-box">
+                    <div className="content doctor_content">
+                      <h4 className="name">{doctor?.title}</h4>
+
+                      <ul className="candidate-info">
+                        <li>
+                          <span className="icon flaticon-map-locator"></span>
+                          {doctor?.doctorsoptions?.address}
+                        </li>
+                        <li>
+                          <a
+                            href={`tel:${doctor?.doctorsoptions?.phoneNumber}`}
+                          >
+                            <span className="icon flaticon-telephone"></span>
+                            {doctor?.doctorsoptions?.phoneNumber}
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
                 <aside className="sidebar">
                   <div className="btn-box">
                     <Link
@@ -330,26 +347,27 @@ const Page = async ({ params: { slug } }) => {
                   </div>
                   <div className="cancer_treted pb-5 pt-4">
                     <h4 className="widget-title pb-3">Cancer Treated</h4>
-                   <ul className="post-tags grid grid-cols-3 grid-cols-md-2 gap-10">
-                        {cancerTreated?.map((val, i) => (
-                          <li className="" key={i}>{val?.title.replace(/(<([^>]+)>)/gi, "")}</li>
-                        ))}
-                      </ul>
+                    <ul className="post-tags grid grid-cols-3 grid-cols-md-2 gap-10">
+                      {cancerTreated?.map((val, i) => (
+                        <li className="" key={i}>
+                          {val?.title.replace(/(<([^>]+)>)/gi, "")}
+                        </li>
+                      ))}
+                    </ul>
                   </div>
                   <div className="sidebar-widget">
                     <div className="widget-content">
                       <h4 className="widget-title">Specializations</h4>
-                        <ul className="list-disc">
+                      <ul className="list-disc">
                         {specializations?.map((val, i) => (
-                            <li className="p-1" key={i}>
-                              {val?.title} <br />
-                            </li>
-                          ))}  
-                        </ul> 
+                          <li className="p-1" key={i}>
+                            {val?.title} <br />
+                          </li>
+                        ))}
+                      </ul>
                     </div>
                   </div>
                   {/* End .sidebar-widget conadidate overview */}
-
 
                   <div className="sidebar-widget">
                     <h4 className="widget-title">Insurances</h4>
