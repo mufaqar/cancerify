@@ -494,6 +494,9 @@
 .bg-white{
   background: #fff;
 }
+.text-white{
+  color: #fff !important;
+}
 
 .text_white{
   color: #fff !important;
@@ -633,13 +636,69 @@
   padding-top: 11px;
 }
 
-// Responsive css
 
+.mb-search-form {
+	position: relative;
+	background: #ffffff;
+	border: 1px solid #ecedf2;
+	box-shadow: 0px 7px 18px rgba(64, 79, 104, 0.05);
+	border-radius: 50px;
+  padding: 4px 0px;
+  display: flex;
+  justify-content: space-between;
+}
+.input-mb-search{
+  padding-left: 15px;
+  background-color: transparent;
+  // border-radius: 50%;
+}
+
+.mb-search-btn{
+  position: relative;
+  text-align: center;
+  white-space: nowrap;
+  color: #202124;
+  background-color: var(--primary-2nd-color);
+  font-size: 15px;
+  line-height: 20px;
+  border-radius: 8px;
+  font-weight: 400;
+  padding: 18px 35px 15px 35px;
+  border-radius: 50px;
+  margin-right: 6px;
+
+}
+
+.mb-hidden{
+  display: none;
+}
+
+
+// Responsive css
+@media only screen and (min-width: 576px) {}
+@media only screen and (min-width: 768px) {}
 @media only screen and (min-width: 992px) {
   .col-w-20{
     width: 20% !important;
   }
 
 }
+@media only screen and (max-width: 992px) {
+  .mb-hidden{
+    display: block;
+  }
+  .desktop-hidden{
+    display: none;
+  }
+  .custom-btn-box{
+    display: none;
+  }
+  .cancer_row{
+    flex-direction: column-reverse;
+  }
+
+}
+@media only screen and (min-width: 1200px) {}
+@media only screen and (min-width: 1400px) {}
 
 

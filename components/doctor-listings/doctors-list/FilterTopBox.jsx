@@ -30,7 +30,7 @@ const FilterTopBox = (props) => {
 
 
 
-  console.log("keyword", keyword);
+
   // if there is new data save previous doctors data in variable and append new data to it.
 
   useEffect(() => {
@@ -69,7 +69,7 @@ const FilterTopBox = (props) => {
     }
   }, [keyword, location, doctors]);
 
- 
+
 
   return (
     <>
@@ -124,7 +124,7 @@ const FilterTopBox = (props) => {
               </div>
               {/* End content */}
 
-              <div className="btn-box">
+              <div className="btn-box custom-btn-box">
                 <Link
                   href={`/doctors/${doctor.slug}`}
                   className="theme-btn btn-style-three"
@@ -138,11 +138,16 @@ const FilterTopBox = (props) => {
         ))
       )}
 
-      {filteredData?.length
-        ? pageInfo?.hasNextPage && (
-            <ListingShowing isLoading={isLoading} pageInfo={pageInfo} />
-          )
-        : null}
+      {
+
+      // 
+      filteredData?.length <= 9 
+        ? <></>
+        : pageInfo?.hasNextPage && (
+          <ListingShowing isLoading={isLoading} pageInfo={pageInfo} />
+        )
+
+        }
 
       {/* <!-- Listing Show More --> */}
     </>

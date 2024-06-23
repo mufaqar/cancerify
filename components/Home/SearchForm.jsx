@@ -3,9 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   addCategory,
   addLocation,
-  addKeyword
+  addKeyword,
 } from "@/features/filter/candidateFilterSlice";
-
 
 import { useRouter } from "next/navigation";
 
@@ -30,7 +29,7 @@ const SearchForm4 = (props) => {
   };
 
   // keyword handler
-  const keywordHandler = ({value}) => {
+  const keywordHandler = ({ value }) => {
     dispatch(addKeyword(value));
   };
 
@@ -39,8 +38,9 @@ const SearchForm4 = (props) => {
 
     // const location = event.target.location.value;
     // const cancers = event.target.cancers.value;
-    const name = event.target.name.value;
+    const name = event.target.name.value == '' ? event.target.mbname.value : event.target.name.value;
 
+    console.log("name", name);
 
     if (name === "Locations" && !name) {
       alert("Please select location and cancer type");
@@ -52,19 +52,13 @@ const SearchForm4 = (props) => {
     }
   };
 
-
-
   return (
     <form onSubmit={handleSubmit}>
-      <div className="row">
-        <div className="form-group col-lg-10 col-md-12 col-sm-12">
+      <div className="row desktop-hidden">
+        <div className="form-group col-lg-10 col-md-8 col-sm-8">
           {/* <label>Type of Cancer</label> */}
           <span className="icon flaticon-search-1"></span>
-          <input
-            type="text"
-            name="name"
-            placeholder="Search by type cancer"
-          />
+          <input type="text" name="name" placeholder="Search by type cancer" />
         </div>
 
         {/* <!-- Form Group --> */}
@@ -100,9 +94,29 @@ const SearchForm4 = (props) => {
         </div> */}
 
         {/* <!-- Form Group --> */}
-        <div className="form-group col-lg-2 col-md-12 col-sm-12 text-right ">
-          <button type="submit" className="bg-search_btn theme-btn btn-style-two rounded-50">
+        <div className="form-group col-lg-2 col-md-2 col-sm-2 text-right ">
+          <button
+            type="submit"
+            className="bg-search_btn theme-btn btn-style-two rounded-50"
+          >
             Find Doctor
+          </button>
+        </div>
+      </div>
+      {/* Mobile search */}
+      <div className="mobile_search mb-hidden">
+        <div className="mb-search-form rounded-50 ">
+          <input
+            className="input-mb-search"
+            type="text"
+            name="mbname"
+            placeholder="Search by type cancer"
+          />
+          <button
+            type="submit"
+            className="mb-search-btn bg-search_btn theme-btn"
+          >
+            <span className="icon flaticon-search-1 text-white"></span>
           </button>
         </div>
       </div>

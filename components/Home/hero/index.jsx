@@ -1,6 +1,5 @@
 import SearchForm from "@/components/Home/SearchForm";
 
-
 const index = (props) => {
   const { locations } = props;
   return (
@@ -13,22 +12,18 @@ const index = (props) => {
           <div className="title-box">
             <h3>Find Top Cancer Doctors</h3>
             <div className="text">
-             We've researched and selected only the world's best oncologists!
+              We've researched and selected only the world's best oncologists!
             </div>
           </div>
 
           {/* <!-- Job Search Form --> */}
-          <div
-            className="job-search-form max-w-70 rounded-50"
-            data-aos-delay="0"
-            data-aos="fade-up"
-          >
+          <div className="job-search-form max-w-70 rounded-50">
             <SearchForm locations={locations} />
           </div>
+
+
         </div>
         {/* <!-- Job Search Form --> */}
-
-
       </div>
     </section>
   );

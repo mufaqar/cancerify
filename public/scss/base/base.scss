@@ -35,7 +35,6 @@ $breakpoints: (
 }
 
 body {
-
   font-size: 16px;
   color: #363636;
   line-height: 28px;
@@ -45,6 +44,7 @@ body {
   -moz-font-smoothing: antialiased;
   font-family: "Jost", sans-serif;
   font-style: normal;
+  touch-action: pan-y;
 }
 
 a {

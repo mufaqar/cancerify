@@ -17,7 +17,7 @@ export async function generateMetadata({ params: { slug } }) {
 
   const seo = res?.cancer?.seo || {};
   return {
-    title: seo?.title.replace(/(<([^>]+)>)/gi, "") || "",
+    title: seo?.title || ''.replace(/(<([^>]+)>)/gi, "") || "",
     description: seo?.metaDesc || "",
     keywords: `${seo.focuskw},${seo?.metaKeywords}`,
     openGraph: {
@@ -67,7 +67,7 @@ const Page = async ({ params }) => {
         {/* <!-- job-detail-outer--> */}
         <div className="job-detail-outer reverse">
           <div className="auto-container">
-            <div className="row">
+            <div className="row cancer_row">
               <div className="sidebar-column col-lg-4 col-md-12 col-sm-12">
                 <aside className="sidebar pd-right">
 
