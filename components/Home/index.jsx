@@ -27,7 +27,7 @@ const index = (props) => {
       <section className="job-categories">
         <div className="auto-container">
           <div className="sec-title text-center">
-            <h2 className="text_theme">Learn more about your cancer</h2>
+            <h2 className="text_theme mx-5">Learn more about these cancers</h2>
             
           </div>
 

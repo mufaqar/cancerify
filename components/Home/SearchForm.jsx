@@ -93,7 +93,7 @@ const SearchForm4 = (props) => {
           <input
             type="text"
             name="name"
-            placeholder="Search by type cancer"
+            placeholder="Search by cancer type"
             onFocus={handleFocus}
             // onBlur={handleBlur}
           />
@@ -148,15 +148,16 @@ const SearchForm4 = (props) => {
             className="input-mb-search"
             type="text"
             name="mbname"
-            placeholder="Search by type cancer"
+            placeholder="Search by cancer type"
             onFocus={handleFocus}
             // onBlur={handleBlur}
           />
           <button
             type="submit"
-            className="mb-search-btn bg-search_btn theme-btn"
+            className="mb-search-btn bg-search_btn theme-btn text-white"
           >
-            <span className="icon flaticon-search-1 text-white"></span>
+            Find Doctor
+            {/* <span className="icon flaticon-search-1 text-white"></span> */}
           </button>
         </div>
       </div>

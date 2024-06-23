@@ -109,7 +109,7 @@ const TypesOfCancers = (props) => {
       <div className=" flex justify-center items-center pt-3 w-full bg-white">
         <button onClick={() => setSeeMore(!seeMore)} className="">
           <span className="pr-2">
-            {cancersToShow === cancers.length ? "See Less" : "See More"}
+            {cancersToShow === cancers.length ? "Show less" : "Show more"}
           </span>
         </button>
       </div>

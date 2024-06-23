@@ -15,7 +15,7 @@ const index = (props) => {
           <div className="title-box">
             <h3>Find Top Cancer Doctors</h3>
             <div className="text">
-              We've researched and selected only the world's best oncologists!
+              We've done the research and selected only the world's best oncologists!
             </div>
           </div>
 
