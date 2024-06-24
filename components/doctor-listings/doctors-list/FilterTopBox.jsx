@@ -144,11 +144,7 @@ const FilterTopBox = (props) => {
 
       <div ref={ref}></div>
 
-      {
-        !hasNextPage && <div className="alert alert-info text-center">All data  loaded!
 
-        </div>
-      }
       {/* <!-- Listing Show More --> */}
     </>
   );

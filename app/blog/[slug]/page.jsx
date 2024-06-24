@@ -6,6 +6,7 @@ import Image from "next/image";
 import client from "@/lib/ApolloClient";
 import { GET_SINGLE_POST, GET_POST_SEO } from "@/lib/Queries";
 import Header from "@/components/Home/Header";
+import Disclaimer from "@/components/Home/Disclaimer";
 
 export async function generateMetadata({ params: { slug } }) {
   const res = await client.request(
@@ -89,7 +90,7 @@ const SingleBlog = async ({ params }) => {
         />
       </section>
       {/* <!-- End Blog Single --> */}
-
+        <Disclaimer />
     </>
   );
 };

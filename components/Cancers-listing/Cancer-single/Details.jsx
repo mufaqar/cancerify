@@ -11,6 +11,8 @@ import TableBlock from "@/components/BlogPage/Blocks/TableBlock";
 const Details = (props) => {
   const { blocks,title } = props;
 
+
+
   return (
     <div className="job-detail cancer_detail">
       <h1 className="pb-3">{title.replace(/(<([^>]+)>)/gi, "")}</h1>

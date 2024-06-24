@@ -7,6 +7,7 @@ import { GET_CANCER, GET_CANCER_SEO } from "@/lib/Queries";
 import { notFound } from "next/navigation";
 import FindDocButton from "@/components/Cancers-listing/FindDocButton";
 import Header from "@/components/Home/Header";
+import Disclaimer from "@/components/Home/Disclaimer";
 
 export async function generateMetadata({ params: { slug } }) {
   const res = await client.request(
@@ -128,6 +129,8 @@ const Page = async ({ params }) => {
           </div>
         </div>
       </section>
+
+      <Disclaimer />
     </>
   );
 };

@@ -1,4 +1,3 @@
-'use client';
 const SidebarFooter = () => {
   const socialContent = [
     { id: 1, icon: "fa-facebook-f", link: "https://www.facebook.com/" },

@@ -2,6 +2,7 @@ import MobileMenu from "../../header/MobileMenu";
 import FilterTopBox from "./FilterTopBox";
 import FilterSidebar from "./FilterSidebar";
 import Header from "@/components/Home/Header";
+import Disclaimer from "@/components/Home/Disclaimer";
 
 const DoctorsList = (props) => {
   const { cancers,locations } = props;
@@ -53,7 +54,7 @@ const DoctorsList = (props) => {
         {/* End container */}
       </section>
       {/* <!--End Listing Page Section --> */}
-
+      <Disclaimer />
     </>
   );
 };

@@ -9,7 +9,7 @@ import { store } from "../store/store";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 import {QueryClientProvider, QueryClient} from "@tanstack/react-query";
-import Disclaimer from "@/components/Home/Disclaimer";
+
 if (typeof window !== "undefined") {
   require("bootstrap/dist/js/bootstrap");
 }
@@ -46,7 +46,7 @@ export default function RootLayout({ children }) {
         <QueryClientProvider client={client}>
           <div className="page-wrapper">
             {children}
-            <Disclaimer />
+
             {/* Toastify */}
             <ToastContainer
               position="bottom-right"

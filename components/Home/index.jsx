@@ -5,7 +5,7 @@ import OurMission from '@/components/Home/OurMission';
 import TypesOfCancers from "@/components/Home/TypesOfCancers";
 import MobileMenu from "../header/MobileMenu";
 import Testimonials from "./Testimonials";
-
+import Disclaimer from "@/components/Home/Disclaimer";
 import BlogSection from "./BlogSection";
 
 
@@ -56,10 +56,7 @@ const index = (props) => {
         <div className="auto-container">
           {/* <!-- Sec Title --> */}
           <div className="sec-title dark text-center">
-            <h2>Testimonials From Our Customers</h2>
-            {/* <div className="text">
-              Lorem ipsum dolor sit amet elit, sed do eiusmod tempor
-            </div> */}
+            <h2>What Our Community Is Saying</h2>
           </div>
 
           <div className="carousel-outer" data-aos="fade-up">
@@ -92,7 +89,7 @@ const index = (props) => {
       </section>
       {/* <!-- End News Section --> */}
 
-
+      <Disclaimer />
       {/* <!-- End Call To Action --> */}
       {/* Disclaimer */}
     </>

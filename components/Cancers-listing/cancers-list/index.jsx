@@ -1,6 +1,7 @@
 import Header from "@/components/Home/Header";
 import MobileMenu from "../../header/MobileMenu";
 import Link from "next/link";
+import Disclaimer from "@/components/Home/Disclaimer";
 
 const index = (props) => {
   const { cancers } = props;
@@ -58,6 +59,7 @@ const index = (props) => {
           </div>
         </div>
       </section>
+      <Disclaimer />
       {/* <!--End Listing Page Section --> */}
     </>
   );

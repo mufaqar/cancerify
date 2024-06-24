@@ -1,11 +1,9 @@
 import Header from "@/components/Home/Header";
-import LoginPopup from "../../common/form/login/LoginPopup";
-import FooterDefault from "../../footer/common-footer";
-import DefaulHeader from "../../header/DefaulHeader";
 import MobileMenu from "../../header/MobileMenu";
 import Address from "./Address";
 import ContactForm from "./ContactForm";
 import MapBox from "./MapBox";
+import Disclaimer from "@/components/Home/Disclaimer";
 
 const index = () => {
   return (
@@ -47,7 +45,7 @@ const index = () => {
       </section>
       {/* <!-- Contact Section --> */}
 
-      <FooterDefault footerStyle="alternate5" />
+      <Disclaimer />
       {/* <!-- End Main Footer --> */}
     </>
   );

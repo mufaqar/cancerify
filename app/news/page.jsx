@@ -4,6 +4,7 @@ import MobileMenu from "@/components/header/MobileMenu";
 import NewsFeedItem from "@/components/NewsFeeds/NewsFeedItem";
 import dynamic from "next/dynamic";
 import Header from "@/components/Home/Header";
+import Disclaimer from "@/components/Home/Disclaimer";
 
 export const metadata = {
   title: "News Feed || Cancerify Find Cancer doctors",
@@ -41,7 +42,7 @@ const Page = async () => {
       </div>
 
       {/* End .row */}
-
+        <Disclaimer />
 
     </>
   );

@@ -1,3 +1,12 @@
+'use client'
+import Link from "next/link";
+const socialContent = [
+  { id: 1, icon: "fa-facebook-f", link: "https://www.facebook.com/" },
+  { id: 2, icon: "fa-twitter", link: "https://www.twitter.com/" },
+  { id: 3, icon: "fa-instagram", link: "https://www.instagram.com/" },
+  { id: 4, icon: "fa-linkedin-in", link: "https://www.linkedin.com/" },
+];
+
 const Disclaimer = () => {
   return (
     <footer className="call-to-action-three style-two">
@@ -14,6 +23,19 @@ const Disclaimer = () => {
          
         </div>
         {/* End outer-box */}
+        <div className="social-links pl-2 flex justify-center pt-5">
+          {socialContent.map((item) => (
+            <Link
+              className="text-white px-3"
+              href={item.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              key={item.id}
+            >
+              <i className={`fab ${item.icon}`}></i>
+            </Link>
+          ))}
+        </div>
       </div>
     </footer>
   );

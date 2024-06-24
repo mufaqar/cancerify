@@ -6,6 +6,7 @@ import client from "@/lib/ApolloClient";
 import { GET_DOCTOR, GET_DOCTORS_SEO } from "@/lib/Queries";
 import Link from "next/link";
 import Header from "@/components/Home/Header";
+import Disclaimer from "@/components/Home/Disclaimer";
 
 export async function generateMetadata({ params: { slug } }) {
   const res = await client.request(
@@ -405,6 +406,7 @@ const Page = async ({ params: { slug } }) => {
         {/* <!-- job-detail-outer--> */}
       </section>
       {/* <!-- End Job Detail Section --> */}
+      <Disclaimer />
     </>
   );
 };

@@ -3,6 +3,7 @@ import MobileMenu from "../../header/MobileMenu";
 import BlogPagination from "../blog-sidebar/BlogPagination";
 import BlogSidebar from "../blog-sidebar";
 import Header from "@/components/Home/Header";
+import Disclaimer from "@/components/Home/Disclaimer";
 // import Breadcrumb from "../../common/Breadcrumb";
 
 const index = (props) => {
@@ -52,7 +53,8 @@ const index = (props) => {
         </div>
       </div>
       {/* <!-- End Sidebar Container --> */}
-
+      
+      <Disclaimer />
 
     </>
   );
