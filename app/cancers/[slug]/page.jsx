@@ -17,7 +17,7 @@ export async function generateMetadata({ params: { slug } }) {
 
   const seo = res?.cancer?.seo || {};
   return {
-    title: seo?.title || "".replace(/(<([^>]+)>)/gi, "") || "",
+    title: seo?.title?.replace(/(<([^>]+)>)/gi, "") || "",
     description: seo?.metaDesc || "",
     keywords: `${seo.focuskw},${seo?.metaKeywords}`,
     openGraph: {

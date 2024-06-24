@@ -27,6 +27,7 @@ const index = (props) => {
                 cancers
                   ?.sort((a, b) => a.title.localeCompare(b.title))
                   ?.map((item) => (
+                    !item?.cancersOptions?.disableFromUser &&
                     <div
                       className="category-block col-lg-3 col-w-20 col-md-3 col-sm-3 col-xs-4 col-xss-6"
                       key={item.id}
@@ -57,7 +58,6 @@ const index = (props) => {
           </div>
         </div>
       </section>
-
       {/* <!--End Listing Page Section --> */}
     </>
   );

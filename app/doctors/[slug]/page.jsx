@@ -142,9 +142,10 @@ const Page = async ({ params: { slug } }) => {
                               {item?.schoolname.substring(0, 1) + ""}
                             </span>
                             <div className="title-box">
-                              <div className="info-box">
-                                <h3>{item?.schoolname}</h3>
-                                {item?.degree && <span>{item?.degree}</span>}
+                              <div className="info-box custom-info-box">
+                              {item?.degree && <span className="px-1"> {item?.degree}:</span>}
+                                <h3 >{item?.schoolname} </h3>
+                                
                               </div>
                               {item?.daterange && (
                                 <div className="edit-box">

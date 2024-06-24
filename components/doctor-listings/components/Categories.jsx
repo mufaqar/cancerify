@@ -4,7 +4,8 @@ import {
   addCategory,
   addKeyword,
 } from "../../../features/filter/candidateFilterSlice";
-import Link from "next/link";
+
+
 
 const Categories = (props) => {
   const { cancers } = props;
@@ -20,7 +21,7 @@ const Categories = (props) => {
   };
 
   return (
-    <div className="flex tag-list">
+    <div className="flex tag-list custom-tag-list grid-md grid-cols-md-2 ">
       {cancers?.length ? (
         cancers
           ?.sort((a, b) =>
@@ -28,41 +29,26 @@ const Categories = (props) => {
           )
           ?.map((item) => (
             <li
-              className="rounded-full"
+            className={`${
+              keyword === item.title.replace(/(<([^>]+)>)/gi, "")
+              ? "text-theme-color border-theme-color bg-theme-color text-white"
+              : "border"
+          } rounded-50  `}
               key={item?.id}
-              onClick={() =>
+              onClick={() =>{
+                cancerHandler({ name: '' })
                 cancerHandler({ name: item.title.replace(/(<([^>]+)>)/gi, "") })
               }
+
+              }
             >
-              <Link
-                className={`${
-                    keyword === item.title.replace(/(<([^>]+)>)/gi, "")
-                    ? "text-theme-color border-theme-color "
-                    : "border"
-                } rounded-50  `}
-                href="#"
-              >
-                {item.title.replace(/(<([^>]+)>)/gi, "")}
-              </Link>
+              {item.title.replace(/(<([^>]+)>)/gi, "")}
             </li>
           ))
       ) : (
         <p>No cancers found!</p>
       )}
 
-      {/* <select
-                onChange={categoryHandler}
-                value={getCategory}
-                className="form-select"
-            >
-                <option value="">Choose a cencer</option>
-                {getExpertise?.map((item) => (
-                    <option key={item.id} value={item.name}>
-                        {item.name}
-                    </option>
-                ))}
-            </select>
-            <span className="icon flaticon-briefcase"></span> */}
     </div>
   );
 };

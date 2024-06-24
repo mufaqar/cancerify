@@ -74,7 +74,7 @@ const TypesOfCancers = (props) => {
           .slice(0, cancersToShow)
           ?.sort((a, b) => a.title.localeCompare(b.title))
           ?.map((item) => (
-            // sort the cancers by alphabetical order
+            !item?.cancersOptions?.disableFromUser &&
             <div
               className="category-block custom-category-block col-lg-3 col-w-20 col-md-3 col-sm-3 col-xs-4 col-xss-6"
               key={item.id}

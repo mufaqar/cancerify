@@ -1,6 +1,6 @@
 const Disclaimer = () => {
   return (
-    <section className="call-to-action-three style-two">
+    <footer className="call-to-action-three style-two">
       <div className="auto-container">
         <div className="outer-box">
           <div className="sec-title light">
@@ -15,7 +15,7 @@ const Disclaimer = () => {
         </div>
         {/* End outer-box */}
       </div>
-    </section>
+    </footer>
   );
 };
 

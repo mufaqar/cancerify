@@ -478,7 +478,7 @@ h1 {
 }
 
 .cancer_wraper {
-  margin: 80px 0px;
+  margin: 120px 0px;
 }
 
 .header-style-two-other-page .main-menu {
@@ -559,6 +559,9 @@ h1 {
   grid-template-columns: repeat(3, 1fr);
 }
 
+.grid-cols-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
 .gap-20 {
   gap: 20px;
 }
@@ -719,6 +722,41 @@ h1 {
   background:  transparent;
   z-index: 1;
 }
+
+.slick-dots li.slick-active {
+  width: 20px !important;
+  background: #202124 !important; 
+}
+.custom-tag-list li {
+	position: relative;
+	display: block;
+	font-size: 14px;
+	line-height: 20px;
+	color: #696969;
+	padding: 5px 10px;
+	font-weight: 400;
+	text-align: center;
+	background: #ffffff;
+	text-transform: capitalize;
+	transition: all 300ms ease;
+  cursor: pointer;
+}
+
+.doctor-list-sekleton {
+  width: 100%;
+  height: 140px;
+  border-radius: 12px;
+  background: #e0e0e0 !important;
+  margin-bottom: 10px;
+}
+
+.h-100vh{
+  width: 100%;
+  height: 100vh;
+}
+.custom-info-box{
+  display: flex;
+}
 // Responsive css
 
 @media only screen and (min-width: 992px) {
@@ -727,6 +765,12 @@ h1 {
   }
 }
 @media only screen and (max-width: 992px) {
+  .grid-md{
+    display: grid;
+  }
+  .grid-cols-md-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
   .mb-hidden {
     display: block;
   }

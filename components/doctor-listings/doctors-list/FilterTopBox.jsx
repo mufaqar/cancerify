@@ -1,74 +1,70 @@
 "use client";
-
+import { useInView } from "react-intersection-observer";
 import Link from "next/link";
-import ListingShowing from "../components/ListingShowing";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  addSort,
-} from "../../../features/filter/candidateFilterSlice";
-
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { GET_ALL_DOCTORS } from "@/lib/Queries";
 import client from "@/lib/ApolloClient";
+import { useInfiniteQuery } from "@tanstack/react-query";
 
 const FilterTopBox = (props) => {
-  const { doctors, pageInfo } = props;
+  const { ref, inView } = useInView();
   const searchParams = useSearchParams();
 
   const page = searchParams.get("endCursor");
 
   const [filteredData, setFilteredData] = useState([]);
 
-  const [isLoading, setIsLoading] = useState(false);
-
   const { keyword, location, category, sort } =
     useSelector((state) => state.candidateFilter) || {};
 
-  const dispatch = useDispatch();
-
-
-
-
-
   // if there is new data save previous doctors data in variable and append new data to it.
 
-  useEffect(() => {
-    if (page) {
-      setIsLoading(true);
-      const fetchMoreData = async () => {
-        const res = await client.request(GET_ALL_DOCTORS, { after: page });
-        const newDoctors = res?.doctors?.nodes || [];
-        const allDoctors = [...doctors, ...newDoctors];
-
-        setFilteredData(allDoctors);
-        setIsLoading(false);
-      };
-      fetchMoreData();
-    }
-  }, [page]);
+  const { data, fetchNextPage, hasNextPage, isLoading, status } = useInfiniteQuery({
+    queryKey: ["doctors", page],
+    queryFn: async ({ pageParam = page }) => {
+      const res = await client.request(GET_ALL_DOCTORS, { after: pageParam });
+      return res?.doctors;
+    },
+    getNextPageParam: (lastPage) => lastPage?.pageInfo?.endCursor,
+  });
 
   // Filter data
   useEffect(() => {
-    if (keyword || location) {
-      const SearchfilteredData = doctors?.filter((doctor) => {
-        return (
-          // doctor.title.toLowerCase().includes(keyword.toLowerCase()) &&
+    if (keyword === "" && location === "") {
+      if (data?.pages?.length > 0) {
+        const allDoctors = data?.pages?.map((page) => page?.nodes).flat();
+        setFilteredData([...allDoctors]);
+      }
+    } else {
+      const SearchfilteredData = filteredData?.filter((doctor) => {
+        return doctor?.doctorsoptions?.cancerTreated?.some(
+          (val) =>
+            val?.title
+              ?.replace(/(<([^>]+)>)/gi, "")
+              .toLowerCase()
+              .includes(keyword.replace(/(<([^>]+)>)/gi, "").toLowerCase()) &&
             doctor?.doctorsoptions?.location?.some((val) =>
-            val?.title?.toLowerCase() === location.toLowerCase()) ||
-            doctor?.doctorsoptions?.cancerTreated?.some((val) =>
-            val?.title?.replace(/(<([^>]+)>)/gi, "").toLowerCase().includes(keyword.toLowerCase())
-          )
+              val?.title?.toLowerCase().includes(location.toLowerCase())
+            )
         );
       });
 
-
       setFilteredData(SearchfilteredData);
-    } else {
-      setFilteredData([...doctors]);
     }
-  }, [keyword, location, doctors]);
+  }, [keyword, location, data?.pages]);
 
+  // console.log(typeCancer)
+
+  useEffect(() => {
+    if (inView && hasNextPage) {
+      fetchNextPage();
+    }
+  }, [inView, hasNextPage, fetchNextPage]);
+
+
+  if(status === "pendding") return <div className="h-100vh"></div>
 
 
   return (
@@ -85,15 +81,23 @@ const FilterTopBox = (props) => {
       </div>
       {/* End top filter bar box */}
 
-      {filteredData?.length === 0 ? (
+      {
+
+      isLoading ? (
+        Array.from({ length: 10 }).map((_, idx) => (
+          <div key={idx} className="doctor-list-sekleton"></div>
+        ))
+      ):
+      
+      filteredData?.length === 0 ? (
         <div className="alert alert-warning">No doctors found</div>
       ) : (
-        filteredData?.map((doctor) => (
-          <div className="candidate-block-three" key={doctor.id}>
+        filteredData?.map((doctor, idx) => (
+          <div className="candidate-block-three" key={idx}>
             <div className="inner-box">
               <div className="content custom-content">
                 <h4 className="name">
-                  <Link href={`/doctors/${doctor.slug}`}>{doctor.title}</Link>
+                  <Link href={`/doctors/${doctor?.slug}`}>{doctor.title}</Link>
                 </h4>
 
                 <ul className="candidate-info">
@@ -110,17 +114,15 @@ const FilterTopBox = (props) => {
                   </li> */}
                 </ul>
                 {/* End candidate-info */}
-                    {
-                      doctor?.doctorsoptions?.cancerTreated && 
-                      <ul className="post-tags">
-                      {doctor?.doctorsoptions?.cancerTreated?.map((val, i) => (
-                        <li className="" key={i}>
-                          <span>{val?.title?.replace(/(<([^>]+)>)/gi, "")}</span>
-                        </li>
-                      ))}
-                    </ul>
-                    }
- 
+                {doctor?.doctorsoptions?.cancerTreated && (
+                  <ul className="post-tags">
+                    {doctor?.doctorsoptions?.cancerTreated?.map((val, i) => (
+                      <li className="" key={i}>
+                        <span>{val?.title?.replace(/(<([^>]+)>)/gi, "")}</span>
+                      </li>
+                    ))}
+                  </ul>
+                )}
               </div>
               {/* End content */}
 
@@ -136,19 +138,11 @@ const FilterTopBox = (props) => {
             </div>
           </div>
         ))
-      )}
+      )
+      
+      }
 
-      {
-
-      // 
-      filteredData?.length <= 9 
-        ? <></>
-        : pageInfo?.hasNextPage && (
-          <ListingShowing isLoading={isLoading} pageInfo={pageInfo} />
-        )
-
-        }
-
+      <div ref={ref}></div>
       {/* <!-- Listing Show More --> */}
     </>
   );

@@ -67,14 +67,16 @@ const SearchForm4 = (props) => {
         ? event.target.mbname.value
         : event.target.name.value;
 
-    if (!name) {
-      alert("Please select location and cancer type");
-    } else {
-      keywordHandler({ value: name });
-      // locationHandler({ name: location });
-      // categoryHandler({ name: cancers });
-      router.push("/doctors");
-    }
+        keywordHandler({ value: name });
+        // locationHandler({ name: location });
+        // categoryHandler({ name: cancers });
+        router.push("/doctors");
+
+    // if (!name) {
+    //   alert("Please select location and cancer type");
+    // } else {
+      
+    // }
   };
 
   // get input focused or not!

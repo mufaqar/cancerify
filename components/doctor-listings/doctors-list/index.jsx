@@ -4,7 +4,7 @@ import FilterSidebar from "./FilterSidebar";
 import Header from "@/components/Home/Header";
 
 const DoctorsList = (props) => {
-  const { doctors, pageInfo, cancers,locations } = props;
+  const { cancers,locations } = props;
   return (
     <>
       {/* <!-- Header Span --> */}
@@ -42,7 +42,7 @@ const DoctorsList = (props) => {
 
             <div className="content-column col-lg-8 col-md-12 col-sm-12">
               <div className="ls-outer  ">
-                <FilterTopBox pageInfo={pageInfo} doctors={doctors} />
+                <FilterTopBox />
                 {/* <!-- ls Switcher --> */}
               </div>
             </div>

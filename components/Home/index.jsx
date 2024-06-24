@@ -5,7 +5,7 @@ import OurMission from '@/components/Home/OurMission';
 import TypesOfCancers from "@/components/Home/TypesOfCancers";
 import MobileMenu from "../header/MobileMenu";
 import Testimonials from "./Testimonials";
-import Disclaimer from "./Disclaimer";
+
 import BlogSection from "./BlogSection";
 
 
@@ -27,8 +27,7 @@ const index = (props) => {
       <section className="job-categories">
         <div className="auto-container">
           <div className="sec-title text-center">
-            <h2 className="text_theme mx-5">Learn more about these cancers</h2>
-            
+            <h2 className="text_theme">Learn More About Cancer</h2>
           </div>
 
           <div
@@ -93,7 +92,7 @@ const index = (props) => {
       </section>
       {/* <!-- End News Section --> */}
 
-      <Disclaimer />
+
       {/* <!-- End Call To Action --> */}
       {/* Disclaimer */}
     </>

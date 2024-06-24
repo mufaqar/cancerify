@@ -21,15 +21,15 @@ const LocationBox = (props) => {
   }, [dispath, addLocation, getLocation]);
 
   return (
-    <div className="flex tag-list">
+    <div className="flex tag-list custom-tag-list">
       {
         locations.map((item, index) => (
           <li
             key={index}
-            className="rounded-full"
+            className={`rounded-50  ${location === item?.title ? 'text-theme-color border-theme-color bg-theme-color text-white' : 'border'} `}
             onClick={() => locationHandler({ name: item?.title })}
           >
-            <a className={`rounded-50  ${location === item?.title ? 'text-theme-color border-theme-color' : 'border'} `} href="#">{item?.title}</a>
+            {item?.title}
 
           </li>
         ))
