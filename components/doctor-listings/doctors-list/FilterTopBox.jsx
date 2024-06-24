@@ -64,9 +64,9 @@ const FilterTopBox = (props) => {
   }, [inView, hasNextPage, fetchNextPage]);
 
 
-  if(status === "pendding") return <div className="h-100vh"></div>
+  if(status === "pending") return <div className="h-100vh"></div>
 
-
+  console.log(hasNextPage)
   return (
     <>
       <div className="show-1023">
@@ -143,6 +143,12 @@ const FilterTopBox = (props) => {
       }
 
       <div ref={ref}></div>
+
+      {
+        !hasNextPage && <div className="alert alert-info text-center">All data  loaded!
+
+        </div>
+      }
       {/* <!-- Listing Show More --> */}
     </>
   );
