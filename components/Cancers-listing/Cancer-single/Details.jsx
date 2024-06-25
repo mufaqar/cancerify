@@ -12,7 +12,15 @@ import FindDocButton from "@/components/Cancers-listing/FindDocButton";
 import parseHtml from "@/lib/Parser";
 import SidebarDropdown from "@/components/common/wp-blocks/SidebarDropdown";
 const Details = (props) => {
-  const { blocks, title, mobileInrtoduction, mobileContent, topLinks, metaSymptoms, metaRiskFactors } = props;
+  const {
+    blocks,
+    title,
+    mobileInrtoduction,
+    mobileContent,
+    topLinks,
+    metaSymptoms,
+    metaRiskFactors,
+  } = props;
   // console.log(mobileContent.splice(2, 0, {type: "button"}))
 
   const sceondBlock = mobileContent?.length ? mobileContent[0] : {};
@@ -22,10 +30,10 @@ const Details = (props) => {
       <h1 className="pb-3">{title.replace(/(<([^>]+)>)/gi, "")}</h1>
       <div>{parseHtml(mobileInrtoduction)}</div>
 
-      <div  className="cancer_heading mb-hidden">
-          <h2>{sceondBlock?.heading}</h2>
-          <div>{parseHtml(sceondBlock?.content)}</div>
-        </div>
+      <div className="cancer_heading mb-hidden">
+        <h2>{sceondBlock?.heading}</h2>
+        <div>{parseHtml(sceondBlock?.content)}</div>
+      </div>
 
       <div className="cus-btn-cancer pb-5 pt-3 mb-hidden">
         <FindDocButton title={title.replace(/(<([^>]+)>)/gi, "")} />

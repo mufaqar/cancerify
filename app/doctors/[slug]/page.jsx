@@ -7,6 +7,7 @@ import { GET_DOCTOR, GET_DOCTORS_SEO } from "@/lib/Queries";
 import Link from "next/link";
 import Header from "@/components/Home/Header";
 import Disclaimer from "@/components/Home/Disclaimer";
+import DoctorMobileDetails from "@/components/doctor-listings/Mobile/DoctorMobileDetails";
 
 export async function generateMetadata({ params: { slug } }) {
   const res = await client.request(
@@ -90,13 +91,12 @@ const Page = async ({ params: { slug } }) => {
       <section className="candidate-detail-section">
         <div className="candidate-detail-outer">
           <div className="auto-container">
-            <div className="row cancer_row">
+            <div className="row cancer_row  desktop-hidden">
               <div className="content-column col-lg-8 col-md-12 col-sm-12">
                 <div className="candidate-block-five desktop-hidden">
                   <div className="inner-box">
                     <div className="content doctor_content">
                       <h4 className="name">{doctor?.title}</h4>
-
                       <ul className="candidate-info">
                         <li>
                           <span className="icon flaticon-map-locator"></span>
@@ -124,10 +124,6 @@ const Page = async ({ params: { slug } }) => {
                     }}
                   />
 
-                  {/* <!-- cancerstreated Start --> */}
-
-                  {/* <!-- cancerstreated Resume End --> */}
-
                   {/* <!-- educations Start --> */}
                   {educations?.length ? (
                     <div className={`resume-outer theme-blue`}>
@@ -144,9 +140,10 @@ const Page = async ({ params: { slug } }) => {
                             </span>
                             <div className="title-box">
                               <div className="info-box custom-info-box">
-                              {item?.degree && <span className="px-1"> {item?.degree}:</span>}
-                                <h3 >{item?.schoolname} </h3>
-                                
+                                {item?.degree && (
+                                  <span className="px-1"> {item?.degree}:</span>
+                                )}
+                                <h3>{item?.schoolname} </h3>
                               </div>
                               {item?.daterange && (
                                 <div className="edit-box">
@@ -401,6 +398,21 @@ const Page = async ({ params: { slug } }) => {
               </div>
               {/* End .sidebar-column */}
             </div>
+
+            {/* Mobile version */}
+            <DoctorMobileDetails
+              doctor={doctor}
+              educations={educations}
+              awards={awards}
+              professionalMemberships={professionalMemberships}
+              clinicalExperience={clinicalExperience}
+              researchpublications={researchpublications}
+              cancerTreated={cancerTreated}
+              isSocial={isSocial}
+              socials={doctor?.doctorsoptions?.socialMedias}
+              insurances={insurances}
+              specializations={specializations}
+            />
           </div>
         </div>
         {/* <!-- job-detail-outer--> */}

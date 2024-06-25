@@ -369,7 +369,7 @@
 
 .custom-align {
   top: 14px;
-  right: 50px;
+  right: 75px;
 }
 
 .rounded-50 {
@@ -770,9 +770,16 @@ h1 {
 
 .mb_details_block_title h4{
   line-height: 28px !important;
-  font-size: 1rem !important;
+  // font-size: 1.3rem !important;
   color: var(--primary-color) !important;
   margin-bottom: 0px !important;
+}
+
+.mb_details_block_title h3{
+  color: var(--primary-color) !important;
+}
+.mb_details_block_title h2{
+  color: var(--primary-color) !important;
 }
 
 .cus-btn-cancer a{
@@ -781,6 +788,28 @@ h1 {
 
 .content_details iframe{
   width: 100% !important;
+}
+
+.border-t{
+  border-top: 1px solid var(--primary-color);
+}
+.text-gray{
+  color: #4D4B40;
+}
+
+.socail-text-theme{
+  color: var(--primary-color) !important;;
+}
+
+.bg-gray{
+  background-color: #4D4B40 !important;
+}
+
+.font-500{
+  font-weight: 500 !important;
+}
+.underline{
+  text-decoration: underline;
 }
 // Responsive css
 

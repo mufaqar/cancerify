@@ -13,7 +13,7 @@ export default function DetailsBlock({ title, blocks }) {
         onClick={() => setOpen(!open)}
         className="mb_details_block_title flex items-center justify-between w-full "
       >
-        <h4>{title.replace(/(<([^>]+)>)/gi, "")}</h4>
+        <h2>{title.replace(/(<([^>]+)>)/gi, "")}</h2>
         {open ? (
           <span>
             <svg
