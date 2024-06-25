@@ -7,7 +7,7 @@ import {
   addLocation,
   addKeyword
 } from "@/features/filter/candidateFilterSlice";
-// import { addLocation } from "../../../features/filter/candidateFilterSlice";
+
 
 const FilterSidebar = (props) => {
   const {cancers,locations} = props;
