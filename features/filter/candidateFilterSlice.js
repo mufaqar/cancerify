@@ -1,8 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    keyword: "",
-    location: "",
+    keyword: '',
+    location: '',
     destination: {
         min: 0,
         max: 100,

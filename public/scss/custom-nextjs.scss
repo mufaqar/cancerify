@@ -757,6 +757,27 @@ h1 {
 .custom-info-box{
   display: flex;
 }
+
+.w-full{
+  width: 100%;
+}
+
+.mb_details_block_title{
+  background-color: #F6F7FC;
+  padding: 10px 20px;
+  border-radius: 8px;
+}
+
+.mb_details_block_title h4{
+  line-height: 28px !important;
+  font-size: 1rem !important;
+  color: var(--primary-color) !important;
+  margin-bottom: 0px !important;
+}
+
+.cus-btn-cancer a{
+  width: 100%;
+}
 // Responsive css
 
 @media only screen and (min-width: 992px) {
@@ -775,7 +796,7 @@ h1 {
     display: block;
   }
   .desktop-hidden {
-    display: none;
+    display: none !important;
   }
   .custom-btn-box {
     display: none;
@@ -790,6 +811,10 @@ h1 {
   .banner-section-nine .job-search-form{
     margin: 0 auto 0px !important;
     padding: 0px 0px;
+  }
+  .cancer_sidebar_mb{
+    display: flex;
+    flex-direction: column-reverse;
   }
   
 }

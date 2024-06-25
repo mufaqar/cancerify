@@ -1,5 +1,4 @@
 import dynamic from "next/dynamic";
-import DefaulHeader from "@/components/header/DefaulHeader";
 import MobileMenu from "@/components/header/MobileMenu";
 import Details from "@/components/Cancers-listing/Cancer-single/Details";
 import client from "@/lib/ApolloClient";
@@ -8,6 +7,7 @@ import { notFound } from "next/navigation";
 import FindDocButton from "@/components/Cancers-listing/FindDocButton";
 import Header from "@/components/Home/Header";
 import Disclaimer from "@/components/Home/Disclaimer";
+import { isDesktop, isMobile } from "react-device-detect";
 
 export async function generateMetadata({ params: { slug } }) {
   const res = await client.request(
@@ -51,6 +51,12 @@ const Page = async ({ params }) => {
   const metaRiskFactors =
     Object.values(metaDetailsJson?.meta?.riskfactors) || [];
 
+  const mobileContent =
+    Object.values(metaDetailsJson?.meta?.mobilecontent) || [];
+  const mobileInrtoduction = metaDetailsJson?.meta?._description || "";
+
+  console.log("isDesktop", isMobile);
+
   return (
     <>
       {/* <!-- Header Span --> */}
@@ -67,60 +73,73 @@ const Page = async ({ params }) => {
         <div className="job-detail-outer reverse">
           <div className="auto-container">
             <div className="row cancer_row">
-              <div className="sidebar-column col-lg-4 col-md-12 col-sm-12">
-                <aside className="sidebar pd-right">
-                  <div className="sidebar-widget company-widget">
-                    <div className="btn-box pb-4">
-                      <FindDocButton
-                        title={cancer?.title.replace(/(<([^>]+)>)/gi, "")}
-                      />
+              {isDesktop && (
+                <div className="sidebar-column col-lg-4 col-md-12 col-sm-12">
+                  <aside className="sidebar pd-right">
+                    {/* <!-- Sidebar Widget --> */}
+                    <div className="sidebar-widget company-widget">
+                      <div className="btn-box pb-4 desktop-hidden">
+                        <FindDocButton
+                          title={cancer?.title.replace(/(<([^>]+)>)/gi, "")}
+                        />
+                      </div>
+                      <div className="widget-content">
+                        <h4 className="widget-title"> Symptoms</h4>
+                        <ul className="list-disc">
+                          {metaSymptoms?.map((symptom, idx) => (
+                            <li className="p-1" key={idx}>
+                              {symptom.title}
+                            </li>
+                          ))}
+                          {/* <li></li> */}
+                        </ul>
+                      </div>
                     </div>
-                    <div className="widget-content">
-                      <h4 className="widget-title"> Symptoms</h4>
-                      <ul className="list-disc">
-                        {metaSymptoms?.map((symptom, idx) => (
-                          <li className="p-1" key={idx}>
-                            {symptom.title}
-                          </li>
-                        ))}
-                        {/* <li></li> */}
-                      </ul>
-                    </div>
-                  </div>
-                  {/* End company-widget */}
 
-                  <div className="sidebar-widget company-widget">
-                    <h4 className="widget-title"> Risk Factors</h4>
-                    <div className="widget-content">
-                      {/*  compnay-info */}
-                      <ul className="company-info mt-0 custom-risk">
-                        {metaRiskFactors?.map((risk, idx) => (
-                          <li className="p-1" key={idx}>
-                            {risk.title}: <p>{risk?.description}</p>
-                          </li>
-                        ))}
-                      </ul>
+                    {/* End company-widget */}
+
+                    <div className="sidebar-widget company-widget">
+                      <h4 className="widget-title"> Risk Factors</h4>
+                      <div className="widget-content">
+                        {/*  compnay-info */}
+                        <ul className="company-info mt-0 custom-risk">
+                          {metaRiskFactors?.map((risk, idx) => (
+                            <li className="p-1" key={idx}>
+                              {risk.title}: <p>{risk?.description}</p>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
                     </div>
-                  </div>
-                  {/* End sidebar-widget */}
-                  <div className="sidebar-widget company-widget">
-                    <div className="widget-content ">
-                      <h4 className="widget-title">Top Links</h4>
-                      <div
-                        className="top_links"
-                        dangerouslySetInnerHTML={{ __html: `${topLinks}` }}
-                      />
+
+                    {/* End sidebar-widget */}
+                    <div className="sidebar-widget company-widget">
+                      <div className="widget-content ">
+                        <h4 className="widget-title">Top Links</h4>
+                        <div
+                          className="top_links"
+                          dangerouslySetInnerHTML={{ __html: `${topLinks}` }}
+                        />
+                      </div>
                     </div>
-                  </div>
-                  {/* End contact-widget */}
-                </aside>
-                {/* End .sidebar */}
-              </div>
+                    {/* End contact-widget */}
+                  </aside>
+                  {/* End .sidebar */}
+                </div>
+              )}
               {/* End .sidebar-column */}
 
               <div className="content-column col-lg-8 col-md-12 col-sm-12 pb-5">
                 {/*  job-detail */}
-                <Details title={cancer?.title} blocks={blocks} />
+                <Details
+                  topLinks={topLinks}
+                  metaSymptoms={metaSymptoms}
+                  metaRiskFactors={metaRiskFactors}
+                  mobileContent={mobileContent}
+                  mobileInrtoduction={mobileInrtoduction}
+                  title={cancer?.title}
+                  blocks={blocks}
+                />
                 {/* End job-detail */}
               </div>
               {/* End .content-column */}
