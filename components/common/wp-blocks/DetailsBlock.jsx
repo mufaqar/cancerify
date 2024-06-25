@@ -8,7 +8,7 @@ import ListsBlock from "@/components/BlogPage/Blocks/ListsBlock";
 export default function DetailsBlock({ title, blocks }) {
   const [open, setOpen] = useState(false);
   return (
-    <div className="mb_details_block pt-2 mb-hidden">
+    <div className="mb_details_block mb-hidden">
       <button
         onClick={() => setOpen(!open)}
         className="mb_details_block_title flex items-center justify-between w-full "

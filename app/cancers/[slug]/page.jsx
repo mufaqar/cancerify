@@ -7,7 +7,7 @@ import { notFound } from "next/navigation";
 import FindDocButton from "@/components/Cancers-listing/FindDocButton";
 import Header from "@/components/Home/Header";
 import Disclaimer from "@/components/Home/Disclaimer";
-import { isDesktop, isMobile } from "react-device-detect";
+
 
 export async function generateMetadata({ params: { slug } }) {
   const res = await client.request(
@@ -55,7 +55,7 @@ const Page = async ({ params }) => {
     Object.values(metaDetailsJson?.meta?.mobilecontent) || [];
   const mobileInrtoduction = metaDetailsJson?.meta?._description || "";
 
-  console.log("isDesktop", isMobile);
+
 
   return (
     <>
@@ -73,8 +73,8 @@ const Page = async ({ params }) => {
         <div className="job-detail-outer reverse">
           <div className="auto-container">
             <div className="row cancer_row">
-              {isDesktop && (
-                <div className="sidebar-column col-lg-4 col-md-12 col-sm-12">
+              
+                <div className="desktop-hidden sidebar-column col-lg-4 col-md-12 col-sm-12">
                   <aside className="sidebar pd-right">
                     {/* <!-- Sidebar Widget --> */}
                     <div className="sidebar-widget company-widget">
@@ -126,7 +126,7 @@ const Page = async ({ params }) => {
                   </aside>
                   {/* End .sidebar */}
                 </div>
-              )}
+
               {/* End .sidebar-column */}
 
               <div className="content-column col-lg-8 col-md-12 col-sm-12 pb-5">
