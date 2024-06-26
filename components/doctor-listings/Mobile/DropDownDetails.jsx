@@ -13,7 +13,15 @@ const DropDownDetails = (props) => {
     specializations,
   } = props;
 
-  const [open, setOpen] = useState(null);
+
+  const [specialOpen, setSpecialOpen] = useState(false);
+  const [educationOpen, setEducationOpen] = useState(false);
+  const [awardOpen, setAwardOpen] = useState(false);
+  const [affiliationOpen, setAffiliationOpen] = useState(false);
+  const [clinicalOpen, setClinicalOpen] = useState(false);
+  const [publicationOpen, setPublicationOpen] = useState(false);
+
+
 
   const alldropdown = [
     {
@@ -51,11 +59,11 @@ const DropDownDetails = (props) => {
           item?.data?.length ? (
             <div key={index} className="mb_details_block mb-hidden">
               <button
-                onClick={() => setOpen(index)}
+                onClick={() => setSpecialOpen(!specialOpen)}
                 className="mb_details_block_title mb-3 text-theme-color flex items-center justify-between w-full "
               >
                 <h3>{item?.type}</h3>
-                {open === index ? (
+                {specialOpen ? (
                   <span>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -81,7 +89,7 @@ const DropDownDetails = (props) => {
                   </span>
                 )}
               </button>
-              {open === index && (
+              {specialOpen && (
                 <div className="px-3 py-2">
                   <ul className="list-disc">
                     {specializations?.map((val, i) => (
@@ -98,11 +106,11 @@ const DropDownDetails = (props) => {
           item?.data?.length ? (
             <div key={index} className="mb_details_block mb-hidden">
               <button
-                onClick={() => setOpen(index)}
+                onClick={() => setEducationOpen(!educationOpen)}
                 className="mb_details_block_title mb-3 flex items-center justify-between w-full "
               >
                 <h3>{item?.type}</h3>
-                {open === index ? (
+                {educationOpen ? (
                   <span>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -128,7 +136,7 @@ const DropDownDetails = (props) => {
                   </span>
                 )}
               </button>
-              {open === index && (
+              {educationOpen && (
                 <div className="px-3 py-2 resume-outer theme-blue">
                   {item?.data?.map((item, idx) => (
                     <div className="resume-block" key={idx}>
@@ -163,11 +171,11 @@ const DropDownDetails = (props) => {
           item?.data?.length ? (
             <div key={index} className="mb_details_block mb-hidden">
               <button
-                onClick={() => setOpen(index)}
+                onClick={() => setAwardOpen(!awardOpen)}
                 className="mb_details_block_title mb-3 flex items-center justify-between w-full "
               >
                 <h3>{item?.type}</h3>
-                {open === index ? (
+                {awardOpen ? (
                   <span>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -193,7 +201,7 @@ const DropDownDetails = (props) => {
                   </span>
                 )}
               </button>
-              {open === index && (
+              {awardOpen && (
                 <div className="px-3 py-2 resume-outer theme-yellow">
                   {item?.data?.map((item, idx) => (
                     <div className="resume-block" key={idx}>
@@ -226,11 +234,11 @@ const DropDownDetails = (props) => {
           item?.data?.length ? (
             <div key={index} className="mb_details_block mb-hidden ">
               <button
-                onClick={() => setOpen(index)}
+                onClick={() => setAffiliationOpen(!affiliationOpen)}
                 className="mb_details_block_title mb-3 flex items-center justify-between w-full "
               >
                 <h3>{item?.type}</h3>
-                {open === index ? (
+                {affiliationOpen ? (
                   <span>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -256,7 +264,7 @@ const DropDownDetails = (props) => {
                   </span>
                 )}
               </button>
-              {open === index && (
+              {affiliationOpen && (
                 <div className="px-3 py-2 theme-blue">
                   {professionalMemberships?.map((item, idx) => (
                     <div className="resume-block" key={idx}>
@@ -287,11 +295,11 @@ const DropDownDetails = (props) => {
           item?.data?.length ? (
             <div key={index} className="mb_details_block mb-hidden">
               <button
-                onClick={() => setOpen(index)}
+                onClick={() => setClinicalOpen(!clinicalOpen)}
                 className="mb_details_block_title mb-3 flex items-center justify-between w-full "
               >
                 <h3>{item?.type}</h3>
-                {open === index ? (
+                {clinicalOpen ? (
                   <span>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -317,7 +325,7 @@ const DropDownDetails = (props) => {
                   </span>
                 )}
               </button>
-              {open === index && (
+              {clinicalOpen && (
                 <div className="px-3 py-2 resume-outer">
                   {clinicalExperience?.map((item, idx) => (
                     <div className="resume-block" key={idx}>
@@ -348,11 +356,11 @@ const DropDownDetails = (props) => {
           item?.data?.length ? (
             <div key={index} className="mb_details_block mb-hidden">
               <button
-                onClick={() => setOpen(index)}
+                onClick={() => setPublicationOpen(!publicationOpen)}
                 className="mb_details_block_title mb-4 flex items-center justify-between w-full "
               >
                 <h3>{item?.type}</h3>
-                {open === index ? (
+                {publicationOpen ? (
                   <span>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -378,7 +386,7 @@ const DropDownDetails = (props) => {
                   </span>
                 )}
               </button>
-              {open === index && (
+              {publicationOpen && (
                 <div className="px-3 py-2">
                   {researchpublications?.map((item, idx) => (
                     <div className="resume-block" key={idx}>

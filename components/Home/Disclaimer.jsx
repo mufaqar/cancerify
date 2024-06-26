@@ -23,7 +23,7 @@ const Disclaimer = () => {
          
         </div>
         {/* End outer-box */}
-        <div className="social-links pl-2 flex justify-center pt-5">
+        <div className="social-links pl-2 flex justify-center ">
           {socialContent.map((item) => (
             <Link
               className="text-white px-3"

@@ -118,7 +118,7 @@ const DoctorMobileDetails = (props) => {
             {
               insurances?.length ?
               <div className="sidebar-widget">
-              <h4 className="widget-title">Insurances</h4>
+              <h3 className="pb-4">Insurances</h3>
               <div className="widget-content">
                 <JobSkills insurances={insurances} />
               </div>
