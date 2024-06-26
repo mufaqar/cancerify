@@ -9,6 +9,7 @@ import client from "@/lib/ApolloClient";
 import { useInfiniteQuery } from "@tanstack/react-query";
 
 const FilterTopBox = (props) => {
+  const {doctors} = props;
   const { ref, inView } = useInView();
   const searchParams = useSearchParams();
 
@@ -32,6 +33,9 @@ const FilterTopBox = (props) => {
       getNextPageParam: (lastPage) => lastPage?.pageInfo?.endCursor,
     });
 
+
+    // 
+
   useEffect(() => {
     if (keyword !== "" || location !== "") {
 
@@ -51,7 +55,6 @@ const FilterTopBox = (props) => {
       // console.log(SearchfilteredData, "SearchfilteredData");
       setFilteredData(SearchfilteredData);
     } else {
-      console.log( "data?.pages");
       setFilteredData([])
       const allDoctors = data?.pages?.map((page) => page?.nodes).flat() || [];
       setMainData([...allDoctors]);
@@ -67,9 +70,7 @@ const FilterTopBox = (props) => {
     }
   }, [inView, hasNextPage, fetchNextPage]);
 
-  const doctorData = filteredData?.length ? filteredData : mainData;
-
-  console.log(keyword !== "" || location !== "", "doctorData");
+  const doctorsData = mainData?.length ? mainData : doctors;
 
   return (
     <>
@@ -85,11 +86,7 @@ const FilterTopBox = (props) => {
       </div>
       {/* End top filter bar box */}
 
-      {isLoading
-        ? Array.from({ length: 10 }).map((_, idx) => (
-            <div key={idx} className="doctor-list-sekleton"></div>
-          ))
-        : filteredData?.length
+      {filteredData?.length
         ? filteredData?.map((doctor, idx) => (
             <div className="candidate-block-three" key={idx}>
               <div className="inner-box">
@@ -142,7 +139,7 @@ const FilterTopBox = (props) => {
         : keyword !== "" || location !== "" ? 
           !filteredData?.length && <div className="alert alert-warning">No doctors found</div>
           :
-          mainData?.map((doctor, idx) => (
+          doctorsData?.map((doctor, idx) => (
             <div className="candidate-block-three" key={idx}>
               <div className="inner-box">
                 <div className="content custom-content">

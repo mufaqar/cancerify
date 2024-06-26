@@ -10,10 +10,9 @@ export const metadata = {
 
 
 const page = async ({searchParams}) => {
-  const {endCursor} = searchParams;
   // get doctors
-  // const res = await client.request(GET_ALL_DOCTORS,{ after: ""});
-  // const doctors = res?.doctors?.nodes ||[];
+  const res = await client.request(GET_ALL_DOCTORS,{ after: ""});
+  const doctors = res?.doctors?.nodes ||[];
 
   // get cancers
   const resCan = await client.request(GET_ALL_CANCERS);
@@ -25,7 +24,7 @@ const page = async ({searchParams}) => {
   return (
     <>
       
-      <DoctorLists locations={locations} cancers={cancers} />
+      <DoctorLists locations={locations} cancers={cancers} doctors={doctors}/>
     </>
   );
 };
