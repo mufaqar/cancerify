@@ -35,23 +35,6 @@ const LocationBox = (props) => {
         ))
       }
  
-      {/* <select
-        onChange={locationHandler}
-        value={location}
-        className="form-select"
-      >
-        <option value="">Choose a location</option>
-        <option value="New york">
-            New york
-        </option>
-        <option value="California">
-            California 
-        </option>
-        <option value="Florida">
-            Florida
-        </option>
-      </select>
-      <span className="icon flaticon-map-locator"></span> */}
     </div>
   );
 };

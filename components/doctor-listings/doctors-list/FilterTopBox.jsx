@@ -9,7 +9,7 @@ import client from "@/lib/ApolloClient";
 import { useInfiniteQuery } from "@tanstack/react-query";
 
 const FilterTopBox = (props) => {
-  const {doctors} = props;
+  const { doctors } = props;
   const { ref, inView } = useInView();
   const searchParams = useSearchParams();
 
@@ -18,7 +18,7 @@ const FilterTopBox = (props) => {
   const [filteredData, setFilteredData] = useState([]);
   const [mainData, setMainData] = useState([]);
 
-  const { keyword, location, category, sort } =
+  const { keyword, location, category } =
     useSelector((state) => state.candidateFilter) || {};
 
   // if there is new data save previous doctors data in variable and append new data to it.
@@ -33,14 +33,13 @@ const FilterTopBox = (props) => {
       getNextPageParam: (lastPage) => lastPage?.pageInfo?.endCursor,
     });
 
-
-    // 
+  // specializations filter
 
   useEffect(() => {
     if (keyword !== "" || location !== "") {
-
       const SearchfilteredData = mainData?.filter((doc) => {
         return (
+          // cancerTreated filter
           doc?.doctorsoptions?.cancerTreated?.some((val) =>
             val?.title
               ?.replace(/(<([^>]+)>)/gi, "")
@@ -50,18 +49,31 @@ const FilterTopBox = (props) => {
           doc?.doctorsoptions?.location?.some((val) =>
             val?.title?.toLowerCase().includes(location.toLowerCase())
           )
+
         );
       });
       // console.log(SearchfilteredData, "SearchfilteredData");
       setFilteredData(SearchfilteredData);
     } else {
-      setFilteredData([])
+      setFilteredData([]);
       const allDoctors = data?.pages?.map((page) => page?.nodes).flat() || [];
       setMainData([...allDoctors]);
     }
   }, [keyword, location, data?.pages]);
 
-  // console.log(typeCancer)
+  useEffect(() => {
+    if (category !== "") {
+      const SearchfilteredData = mainData?.filter((doc) => {
+        return doc?.specializations?.nodes?.some((val) => val?.name?.toLowerCase().includes(category.toLowerCase()))
+      });
+
+      setFilteredData(SearchfilteredData);
+    } else {
+      setFilteredData([]);
+      const allDoctors = data?.pages?.map((page) => page?.nodes).flat() || [];
+      setMainData([...allDoctors]);
+    }
+  }, [category, data?.pages]);
 
   // infinite scroll
   useEffect(() => {
@@ -136,10 +148,11 @@ const FilterTopBox = (props) => {
               </div>
             </div>
           ))
-        : keyword !== "" || location !== "" ? 
-          !filteredData?.length && <div className="alert alert-warning">No doctors found</div>
-          :
-          doctorsData?.map((doctor, idx) => (
+        : keyword !== "" || location !== "" || category !== ""
+        ? !filteredData?.length && (
+            <div className="alert alert-warning">No doctors found</div>
+          )
+        : doctorsData?.map((doctor, idx) => (
             <div className="candidate-block-three" key={idx}>
               <div className="inner-box">
                 <div className="content custom-content">
