@@ -28,11 +28,11 @@ const Details = (props) => {
   return (
     <div className="job-detail cancer_detail">
       <h1 className="pb-3">{title.replace(/(<([^>]+)>)/gi, "")}</h1>
-      <div>{parseHtml(mobileInrtoduction)}</div>
+      <div>{parseHtml(mobileInrtoduction || '')}</div>
 
       <div className="cancer_heading mb-hidden">
         <h2>{sceondBlock?.heading}</h2>
-        <div>{parseHtml(sceondBlock?.content)}</div>
+        <div>{parseHtml(sceondBlock?.content || '')}</div>
       </div>
 
       <div className="cus-btn-cancer pb-5 pt-3 mb-hidden">
@@ -41,7 +41,7 @@ const Details = (props) => {
       {mobileContent?.slice(1).map((block, index) => (
         <div key={index} className="cancer_heading mb-hidden">
           <h2>{block?.heading}</h2>
-          <div>{parseHtml(block?.content)}</div>
+          <div>{parseHtml(block?.content || '')}</div>
         </div>
       ))}
       {blocks?.map((block, index) =>

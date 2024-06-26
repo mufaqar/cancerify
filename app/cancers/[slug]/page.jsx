@@ -39,20 +39,21 @@ const Page = async ({ params }) => {
 
   const topLinks = cancer?.cancersOptions?.topLinks;
 
-  const blocks = JSON.parse(cancer?.blocksJSON);
+  const blocks = JSON.parse(cancer?.blocksJSON || '');
 
   const metaDetails = await fetch(
     `https://vni.fe7.mytemp.website/wp-json/wp/v2/cancers/${cancer?.databaseId}`
   );
   const metaDetailsJson = await metaDetails.json();
 
-  const metaSymptoms = Object.values(metaDetailsJson?.meta?.symptoms) || [];
+  const metaSymptoms = metaDetailsJson?.meta?.symptoms ? Object.values(metaDetailsJson?.meta?.symptoms || {}) : [];
 
-  const metaRiskFactors =
-    Object.values(metaDetailsJson?.meta?.riskfactors) || [];
+  const metaRiskFactors = metaDetailsJson?.meta?.riskfactors?
+    Object.values(metaDetailsJson?.meta?.riskfactors || {}) : [];
 
-  const mobileContent =
-    Object.values(metaDetailsJson?.meta?.mobilecontent) || [];
+  const mobileContent =metaDetailsJson?.meta?.mobilecontent ?
+    Object.values(metaDetailsJson?.meta?.mobilecontent || {}) : [];
+
   const mobileInrtoduction = metaDetailsJson?.meta?._description || "";
 
 

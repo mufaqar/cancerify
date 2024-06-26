@@ -39,31 +39,31 @@ const Page = async ({ params: { slug } }) => {
   const details = await detailsRes.json();
 
   const educations = details?.meta?.education
-    ? Object.values(details?.meta?.education)
+    ? Object.values(details?.meta?.education || {})
     : [];
 
   const awards = details?.meta?.awards
-    ? Object.values(details?.meta?.awards)
+    ? Object.values(details?.meta?.awards || {})
     : [];
 
   const professionalMemberships = details?.meta
     ?.professionalmembershipsaffiliations
-    ? Object.values(details?.meta?.professionalmembershipsaffiliations)
+    ? Object.values(details?.meta?.professionalmembershipsaffiliations || {})
     : [];
 
   const clinicalExperience = details?.meta?.clinicalexperience
-    ? Object.values(details?.meta?.clinicalexperience)
+    ? Object.values(details?.meta?.clinicalexperience || {})
     : [];
 
   const researchpublications = details?.meta?.researchpublications
-    ? Object.values(details?.meta?.researchpublications)
+    ? Object.values(details?.meta?.researchpublications || {})
     : [];
 
   const insurances = details?.meta?.insurances
-    ? Object.values(details?.meta?.insurances)
+    ? Object.values(details?.meta?.insurances || {})
     : [];
   const specializations = details?.meta?.specializations
-    ? Object.values(details?.meta?.specializations)
+    ? Object.values(details?.meta?.specializations || {})
     : [];
 
   // console.log(doctor);
