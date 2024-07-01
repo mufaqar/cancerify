@@ -3,7 +3,7 @@ import SearchForm from "@/components/Home/SearchForm";
 import { useState } from "react";
 
 const index = (props) => {
-  const { locations } = props;
+  const { mostsearcheds } = props;
   const [isInputFocused, setIsInputFocused] = useState(false);
   return (
     <section
@@ -20,11 +20,8 @@ const index = (props) => {
           </div>
 
           {/* <!-- Job Search Form --> */}
-          <div className="job-search-form max-w-70 rounded-50 z-100">
-            <SearchForm setIsInputFocused={setIsInputFocused} isInputFocused={isInputFocused} locations={locations} />
-          </div>
-
-
+          
+            <SearchForm mostsearcheds={mostsearcheds} setIsInputFocused={setIsInputFocused} isInputFocused={isInputFocused}  />
         </div>
         {/* <!-- Job Search Form --> */}
       </div>

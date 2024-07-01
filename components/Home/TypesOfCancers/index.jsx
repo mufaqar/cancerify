@@ -24,7 +24,7 @@ const TypesOfCancers = (props) => {
     }
   }, [cancers, seeMore, isDesk]);
 
-
+  // custom-category-block col-lg-3 col-w-20 col-md-3 col-sm-3 col-xs-4 col-xss-6
   return isDesk ? (
     <>
       {
@@ -35,7 +35,7 @@ const TypesOfCancers = (props) => {
             ?.map((item) => (
               // sort the cancers by alphabetical order
               <div
-                className="category-block custom-category-block col-lg-3 col-w-20 col-md-3 col-sm-3 col-xs-4 col-xss-6"
+                className="category-block mx-10 mb-10"
                 key={item.id}
               >
                 {/* inner-box  */}
@@ -76,7 +76,7 @@ const TypesOfCancers = (props) => {
           ?.map((item) => (
             !item?.cancersOptions?.disableFromUser &&
             <div
-              className="category-block custom-category-block col-lg-3 col-w-20 col-md-3 col-sm-3 col-xs-4 col-xss-6"
+              className="category-block mx-10 mb-10 cust-w-50"
               key={item.id}
             >
               {/* inner-box  */}

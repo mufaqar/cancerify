@@ -1,27 +1,25 @@
 import Header from "./Header";
 import Hero from "../Home/hero";
 import CallToAction from "@/components/Home/CallToAction";
-import OurMission from '@/components/Home/OurMission';
+import OurMission from "@/components/Home/OurMission";
 import TypesOfCancers from "@/components/Home/TypesOfCancers";
 import MobileMenu from "../header/MobileMenu";
 import Testimonials from "./Testimonials";
 import Disclaimer from "@/components/Home/Disclaimer";
 import BlogSection from "./BlogSection";
 
-
 const index = (props) => {
-  const {locations,testimonials, posts, page,cancers} = props
-  
+  const { locations, testimonials, posts, page, cancers,mostsearcheds } = props;
+
   return (
     <>
-
       <Header />
       {/* <!--End Main Header --> */}
 
       <MobileMenu />
       {/* End MobileMenu */}
 
-      <Hero locations={locations}/>
+      <Hero mostsearcheds={mostsearcheds} />
       {/* <!-- End Hero Section --> */}
 
       <section className="job-categories">
@@ -29,13 +27,8 @@ const index = (props) => {
           <div className="sec-title text-center">
             <h2 className="text_theme">Learn More About Cancer</h2>
           </div>
-
-          <div
-            className="row custom-row"
-            data-aos="fade-up"
-            data-aos-anchor-placement="top-bottom"
-          >
-            
+          {/* custom-row */}
+          <div className=" custom-row flex flex-wrap justify-center ">
             {/* <!-- Category Block --> */}
             <TypesOfCancers cancers={cancers} />
           </div>
@@ -49,10 +42,7 @@ const index = (props) => {
       <CallToAction />
       {/* <!-- End Call To Action --> */}
 
-
-      <section
-        className="testimonial-section  style-two alternate bg-white"
-      >
+      <section className="testimonial-section  style-two alternate bg-white">
         <div className="auto-container">
           {/* <!-- Sec Title --> */}
           <div className="sec-title dark text-center">
@@ -70,8 +60,6 @@ const index = (props) => {
         {/* End auto-container */}
       </section>
       {/* <!-- End Testimonial Section --> */}
-
-    
 
       <section className="news-section">
         <div className="auto-container">
