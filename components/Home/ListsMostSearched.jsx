@@ -6,18 +6,21 @@ import {
   addLocation,
   addKeyword,
 } from "@/features/filter/candidateFilterSlice";
+import Highlighter from "react-highlight-words";
 
 export default function MostSearched(props) {
-  const {mostsearcheds} = props;
+  const { mostsearcheds, cancerSearch } = props;
   const dispatch = useDispatch();
   const router = useRouter();
+
   const keywordHandler = ({ value }) => {
     dispatch(addKeyword(value));
   };
 
-
+  const Highlight = ({ children, highlightIndex }) => (
+    <strong className="highlighted-text">{children}</strong>
+  );
   // const mostsearcheds = data?.mostsearcheds?.nodes || [];
-
 
 
   return (
@@ -25,12 +28,20 @@ export default function MostSearched(props) {
       {mostsearcheds?.map((item) => (
         <li
           onClick={() => {
-            keywordHandler({ value: item.title });
+            keywordHandler({ value: item.title.replace(/(<([^>]+)>)/gi, "") });
             router.push("/doctors");
           }}
           key={item.id}
         >
-          {item.title?.replace(/(<([^>]+)>)/gi, "")}
+
+          <Highlighter
+            highlightClassName="YourHighlightClass"
+            searchWords={[cancerSearch]}
+            autoEscape={true}
+            textToHighlight={item.title?.replace(/(<([^>]+)>)/gi, "")}
+            highlightTag={Highlight}
+          />
+
         </li>
       ))}
     </ul>

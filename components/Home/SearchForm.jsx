@@ -16,8 +16,8 @@ import { useState } from "react";
 
 const SearchForm4 = (props) => {
   const { mostsearcheds, setIsInputFocused, isInputFocused } = props;
-
   const [cancerSearch, setCancerSearch] = useState("");
+// 
 
   const router = useRouter();
   const dispatch = useDispatch();
@@ -60,7 +60,7 @@ const SearchForm4 = (props) => {
 
   const Filteredcancers = data?.cancers?.nodes || [];
 
-
+  console.log(Filteredcancers);
 
   return (
     <div className="custom-form-wraper relative">
@@ -130,12 +130,12 @@ const SearchForm4 = (props) => {
         isInputFocused && (
           <div className="most-searched ">
             {
-              cancerSearch !== '' ?  <ListMostSearched mostsearcheds={Filteredcancers} /> :
+              cancerSearch !== '' ?  <ListMostSearched cancerSearch={cancerSearch} mostsearcheds={Filteredcancers} /> :
               (
                 <>
                 
                 <h6>Most Searched</h6>
-                <ListMostSearched mostsearcheds={mostsearcheds} />
+                <ListMostSearched cancerSearch={cancerSearch} mostsearcheds={mostsearcheds} />
                 </>
               )
 
@@ -182,12 +182,12 @@ const SearchForm4 = (props) => {
           </div>
           <div className="mb-most-searched text-left pt-4">
           {
-              cancerSearch !== '' ?  <ListMostSearched mostsearcheds={Filteredcancers} /> :
+              cancerSearch !== '' ?  <ListMostSearched cancerSearch={cancerSearch} mostsearcheds={Filteredcancers} /> :
               (
                 <>
                 
                 <h6>Most Searched</h6>
-                <ListMostSearched mostsearcheds={mostsearcheds} />
+                <ListMostSearched cancerSearch={cancerSearch} mostsearcheds={mostsearcheds} />
                 </>
               )
 
