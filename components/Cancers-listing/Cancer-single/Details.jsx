@@ -17,33 +17,39 @@ const Details = (props) => {
     title,
     mobileInrtoduction,
     mobileContent,
-    topLinks,
-    metaSymptoms,
-    metaRiskFactors,
+    supportGroups,
+    trustedInstitutions,
+    financialSupportOrganizations,
   } = props;
   // console.log(mobileContent.splice(2, 0, {type: "button"}))
 
   const sceondBlock = mobileContent?.length ? mobileContent[0] : {};
 
+
+
   return (
     <div className="job-detail cancer_detail">
-      <h1 className="pb-3">{title.replace(/(<([^>]+)>)/gi, "")}</h1>
-      <div>{parseHtml(mobileInrtoduction || '')}</div>
+   
+        <h3 className="pb-3">{title.replace(/(<([^>]+)>)/gi, "")}</h3>
+        <div className="mb-hidden">{parseHtml(mobileInrtoduction || '')}</div>
+
 
       <div className="cancer_heading mb-hidden">
-        <h2>{sceondBlock?.heading}</h2>
+        <h3>{sceondBlock?.heading}</h3>
         <div>{parseHtml(sceondBlock?.content || '')}</div>
       </div>
 
       <div className="cus-btn-cancer pb-5 pt-3 mb-hidden">
         <FindDocButton title={title.replace(/(<([^>]+)>)/gi, "")} />
       </div>
+
       {mobileContent?.slice(1).map((block, index) => (
         <div key={index} className="cancer_heading mb-hidden">
-          <h2>{block?.heading}</h2>
+          <h3>{block?.heading}</h3>
           <div>{parseHtml(block?.content || '')}</div>
         </div>
       ))}
+
       {blocks?.map((block, index) =>
         block.name === "core/heading" ? (
           <div className="cancer_heading desktop-hidden">
@@ -119,9 +125,9 @@ const Details = (props) => {
         ) : null
       )}
 
-      <SidebarDropdown title="Top Links" content={topLinks} />
-      <SidebarDropdown title="Symptoms" content={metaSymptoms} />
-      <SidebarDropdown title="Risk Factors" content={metaRiskFactors} />
+      <SidebarDropdown title="Support Groups" content={supportGroups} />
+      <SidebarDropdown title="Financial support organisations" content={financialSupportOrganizations} />
+      <SidebarDropdown title="Trusted institutions" content={trustedInstitutions} />
     </div>
   );
 };

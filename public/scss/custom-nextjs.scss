@@ -420,13 +420,23 @@
   background: var(--primary-color) !important;
   // background: var(--sceondary-color);
 }
-.list-disc {
-  padding-left: 20px;
-}
-.list-disc li {
-  list-style-type: disc;
-}
+// .list-disc {
+//   padding-left: 20px;
+// }
+// .list-disc li {
+//   list-style-type: disc;
+// }
+// .block-lists{
+//   padding-left: 21px;
+// }
+.cancer_list .cancer-block-list{
+  padding-left: 0px !important;
 
+}
+.cancer_list ul li{
+  list-style: none !important;
+  color: #696969;
+}
 .category-block .cancers {
   padding-left: 0 !important;
   min-height: 0px !important;
@@ -469,16 +479,29 @@
   color: #fff !important;
 }
 
-.cancer_heading > h2,
-h1 {
-  font-size: 28px !important;
-  font-weight: 600 !important;
+// .cancer_heading > h2,
+// h1 {
+//   font-size: 28px !important;
+//   font-weight: 600 !important;
+// }
+.sidebar_content_wraper ul{
+  padding-top: 20px;
 }
-
-.cancer_heading p {
-  font-size: 16px !important;
-  font-weight: 400 !important;
+.sidebar_content_wraper ul li {
+  line-height: 20px;
+  padding-bottom: 13px;
+  color: #696969;
 }
+.cancer-widget-content .widget-title{
+  margin-bottom: 20px;
+}
+// .cancer_heading > h2 {
+// color: var(--primary-color);
+// }
+// .cancer_heading p {
+//   font-size: 16px !important;
+//   font-weight: 400 !important;
+// }
 
 .top_links ul {
   margin-top: 20px;
@@ -845,7 +868,7 @@ h1 {
 
 .mb_details_block_title{
   background-color: #F6F7FC;
-  padding: 10px 20px;
+  padding: 10px 15px;
   border-radius: 8px;
 }
 
@@ -861,6 +884,9 @@ h1 {
 }
 .mb_details_block_title h2{
   color: var(--primary-color) !important;
+  font-weight: 500;
+  font-size: 23px;
+  line-height: 35px;
 }
 
 .cus-btn-cancer a{

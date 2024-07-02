@@ -39,7 +39,7 @@ export default function SidebarDropdown({ title, content }) {
       </button>
 
       {open && (
-        <div className="px-3 py-2">
+        <div className="px-3 py-2 sidebar_content_wraper">
           {title === "Symptoms" ? (
             <ul className="list-disc">
               {content?.map((symptom, idx) => (
@@ -58,7 +58,7 @@ export default function SidebarDropdown({ title, content }) {
               ))}
             </ul>
           ) : (
-            parseHtml(content)
+            parseHtml(content || '')
           )}
         </div>
       )}

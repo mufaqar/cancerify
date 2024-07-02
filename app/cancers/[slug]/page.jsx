@@ -7,6 +7,7 @@ import { notFound } from "next/navigation";
 import FindDocButton from "@/components/Cancers-listing/FindDocButton";
 import Header from "@/components/Home/Header";
 import Disclaimer from "@/components/Home/Disclaimer";
+import parseHtml from "@/lib/Parser";
 
 
 export async function generateMetadata({ params: { slug } }) {
@@ -37,7 +38,9 @@ const Page = async ({ params }) => {
 
   if (!cancer?.title) return notFound();
 
-  const topLinks = cancer?.cancersOptions?.topLinks;
+  const supportGroups = cancer?.cancersOptions?.supportGroups || '';
+  const financialSupportOrganizations = cancer?.cancersOptions?.financialSupportOrganizations || '';
+  const trustedInstitutions = cancer?.cancersOptions?.trustedInstitutions || '';
 
   const blocks = JSON.parse(cancer?.blocksJSON || '');
 
@@ -46,15 +49,17 @@ const Page = async ({ params }) => {
   );
   const metaDetailsJson = await metaDetails.json();
 
-  const metaSymptoms = metaDetailsJson?.meta?.symptoms ? Object.values(metaDetailsJson?.meta?.symptoms || {}) : [];
+  // const metaSymptoms = metaDetailsJson?.meta?.symptoms ? Object.values(metaDetailsJson?.meta?.symptoms || {}) : [];
 
-  const metaRiskFactors = metaDetailsJson?.meta?.riskfactors?
-    Object.values(metaDetailsJson?.meta?.riskfactors || {}) : [];
+  // const metaRiskFactors = metaDetailsJson?.meta?.riskfactors?
+  //   Object.values(metaDetailsJson?.meta?.riskfactors || {}) : [];
 
   const mobileContent =metaDetailsJson?.meta?.mobilecontent ?
     Object.values(metaDetailsJson?.meta?.mobilecontent || {}) : [];
 
   const mobileInrtoduction = metaDetailsJson?.meta?._description || "";
+
+
 
 
 
@@ -74,7 +79,6 @@ const Page = async ({ params }) => {
         <div className="job-detail-outer reverse">
           <div className="auto-container">
             <div className="row cancer_row">
-              
                 <div className="desktop-hidden sidebar-column col-lg-4 col-md-12 col-sm-12">
                   <aside className="sidebar pd-right">
                     {/* <!-- Sidebar Widget --> */}
@@ -84,45 +88,47 @@ const Page = async ({ params }) => {
                           title={cancer?.title.replace(/(<([^>]+)>)/gi, "")}
                         />
                       </div>
-                      <div className="widget-content">
-                        <h4 className="widget-title"> Symptoms</h4>
-                        <ul className="list-disc">
-                          {metaSymptoms?.map((symptom, idx) => (
-                            <li className="p-1" key={idx}>
-                              {symptom.title}
-                            </li>
-                          ))}
-                          {/* <li></li> */}
-                        </ul>
-                      </div>
+                      
+                      {
+                        supportGroups !== "" &&
+                        <div className="widget-content cancer-widget-content pt-4">
+                        <h4 className="widget-title"> Support Groups</h4>
+                        <div
+                          className="sidebar_content_wraper"
+                        >
+                          {parseHtml(supportGroups)}
+                        </div>
+                      </div>}
                     </div>
 
                     {/* End company-widget */}
 
-                    <div className="sidebar-widget company-widget">
-                      <h4 className="widget-title"> Risk Factors</h4>
-                      <div className="widget-content">
+                    {
+                      financialSupportOrganizations !== "" &&
+                      <div className="sidebar-widget cancer-widget-content company-widget">
+                      <h4 className="widget-title"> Financial support organisations</h4>
+                      <div className="widget-content ">
                         {/*  compnay-info */}
-                        <ul className="company-info mt-0 custom-risk">
-                          {metaRiskFactors?.map((risk, idx) => (
-                            <li className="p-1" key={idx}>
-                              {risk.title}: <p>{risk?.description}</p>
-                            </li>
-                          ))}
-                        </ul>
+                        <div
+                          className="sidebar_content_wraper"
+                        >
+                          {parseHtml(financialSupportOrganizations)}
+                        </div>
+                        
                       </div>
-                    </div>
+                    </div>}
 
                     {/* End sidebar-widget */}
-                    <div className="sidebar-widget company-widget">
-                      <div className="widget-content ">
-                        <h4 className="widget-title">Top Links</h4>
+                    {
+                      trustedInstitutions !== "" &&
+                      <div className="sidebar-widget company-widget">
+                      <div className="widget-content cancer-widget-content ">
+                        <h4 className="widget-title">Trusted institutions</h4>
                         <div
-                          className="top_links"
-                          dangerouslySetInnerHTML={{ __html: `${topLinks}` }}
-                        />
+                          className="sidebar_content_wraper"
+                        >{parseHtml(trustedInstitutions)}</div>
                       </div>
-                    </div>
+                    </div>}
                     {/* End contact-widget */}
                   </aside>
                   {/* End .sidebar */}
@@ -133,9 +139,9 @@ const Page = async ({ params }) => {
               <div className="content-column col-lg-8 col-md-12 col-sm-12 pb-5">
                 {/*  job-detail */}
                 <Details
-                  topLinks={topLinks}
-                  metaSymptoms={metaSymptoms}
-                  metaRiskFactors={metaRiskFactors}
+                  supportGroups={supportGroups}
+                  financialSupportOrganizations={financialSupportOrganizations}
+                  trustedInstitutions={trustedInstitutions}
                   mobileContent={mobileContent}
                   mobileInrtoduction={mobileInrtoduction}
                   title={cancer?.title}

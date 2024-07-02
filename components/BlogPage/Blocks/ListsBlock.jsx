@@ -19,7 +19,7 @@ export default function ListsBlock({
   innerBlocks,
 }) {
   return (
-    <ul className={`${getClassName(align)} block-list`}>
+    <ul className={`${getClassName(align)} cancer-block-list block-lists`}>
       {innerBlocks.map((block, index) => (
         <li key={index}>{parseHtml(block?.originalContent)}</li>
       ))}
