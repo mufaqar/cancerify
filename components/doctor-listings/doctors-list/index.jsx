@@ -19,8 +19,6 @@ const DoctorsList = (props) => {
 
       {/* <!--End Breadcrumb Start--> */}
 
-      {/* <div className="sticky">I will stick to the screen when you reach my scroll position</div> */}
-
       <section className="ls-section">
         <div className="auto-container">
           <div className="row">

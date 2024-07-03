@@ -436,6 +436,7 @@
 .cancer_list ul li{
   list-style: none !important;
   color: #696969;
+  padding-bottom: 5px;
 }
 .category-block .cancers {
   padding-left: 0 !important;
@@ -882,7 +883,7 @@
 .mb_details_block_title h3{
   color: var(--primary-color) !important;
 }
-.mb_details_block_title h2{
+.mb_details_block_title h3{
   color: var(--primary-color) !important;
   font-weight: 500;
   font-size: 23px;
