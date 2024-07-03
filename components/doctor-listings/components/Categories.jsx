@@ -4,8 +4,7 @@ import {
   addCategory,
   addKeyword,
 } from "../../../features/filter/candidateFilterSlice";
-import { isDesktop } from "react-device-detect";
-import dynamic from "next/dynamic";
+
 
 const Categories = (props) => {
   const { cancers } = props;
@@ -22,7 +21,7 @@ const Categories = (props) => {
 
 
   return (
-    <div className="flex tag-list custom-tag-list grid-md grid-cols-md-2 ">
+    <div className="flex tag-list custom-tag-list ">
       {cancers?.length ? (
         cancers
           ?.sort((a, b) =>
@@ -43,7 +42,7 @@ const Categories = (props) => {
 
               }
             >
-              {isDesktop ?  item.title.replace(/(<([^>]+)>)/gi, "") : item.title.replace(/(<([^>]+)>)/gi, "").replace('Cancer', "")}
+              { item.title.replace(/(<([^>]+)>)/gi, "").replace('Cancer', "")}
             </li>
           ))
       ) : (
@@ -54,4 +53,4 @@ const Categories = (props) => {
   );
 };
 
-export default dynamic(() => Promise.resolve(Categories), { ssr: false });
+export default Categories;

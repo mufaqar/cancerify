@@ -33,7 +33,7 @@ const FilterSidebar = (props) => {
 
   return (
     <div className="inner-column pd-right sticky">
-      <div className="filters-outer  ">
+      <div className="filters-outer  mb-h-100vh">
         <button
           type="button"
           className="btn-close text-reset close-filters show-1023"
@@ -41,17 +41,9 @@ const FilterSidebar = (props) => {
           aria-label="Close"
         ></button>
         {/* End .close filter */}
-        <div className="filter-block">
+        <div className="filter-block custom-filter-block">
           <div className=" relative">
             <h4>Search by Cancer</h4>
-            {keyword && (
-              <button
-                onClick={() => cancerHandler({ name: "" })}
-                className="absolute custom-align"
-              >
-                <span className="icon flaticon-close"></span>
-              </button>
-            )}
           </div>
           <div className="form-group">
             <Categories cancers={cancers} />
@@ -59,41 +51,75 @@ const FilterSidebar = (props) => {
         </div>
 
         <div className="filter-block">
-          <div className=" relative">
+          <div className=" relative custom-filter-block">
             <h4> Specializations </h4>
-            {specializations && (
+            {/* {specializations && (
               <button
                 onClick={() => SpecializationsHandler({ name: "" })}
                 className="absolute custom-align"
               >
                 <span className="icon flaticon-close"></span>
               </button>
-            )}
+            )} */}
           </div>
           <div className="form-group">
-              <SpecializationsBox 
+            <SpecializationsBox
               specialities={specialities}
               SpecializationsHandler={SpecializationsHandler}
               specializations={specializations}
-              />
+            />
           </div>
         </div>
 
         <div className="filter-block">
-          <div className=" relative">
+          <div className=" relative custom-filter-block">
             <h4>Location</h4>
-            {location && (
+            {/* {location && (
               <button
                 onClick={() => locationHandler({ name: "" })}
                 className="absolute custom-align"
               >
                 <span className="icon flaticon-close"></span>
               </button>
-            )}
+            )} */}
           </div>
           <div className="form-group">
             <LocationBox locations={locations} />
           </div>
+        </div>
+
+        <div className="mb-4">
+          <button
+            type="button"
+            className="btn btn-primary bg-theme-color rounded-50 w-100 mb-3 custom-see-filter mb-hidden "
+            data-bs-dismiss="offcanvas"
+            aria-label="Close"
+          >
+            See Doctors
+          </button>
+          <button
+            type="button"
+            className="btn btn-primary bg-theme-color rounded-50 w-100 custom-see-filter desktop-hidden"
+            onClick={() => {
+              dispatch(addCategory(""));
+              dispatch(addLocation(""));
+              dispatch(addKeyword(""));
+            }}
+          >
+            Clear filter
+          </button>
+
+          <button
+            type="button"
+            className="mb-hidden text-center text-theme underline clear-btn"
+            onClick={() => {
+              dispatch(addCategory(""));
+              dispatch(addLocation(""));
+              dispatch(addKeyword(""));
+            }}
+          >
+            Clear filter
+          </button>
         </div>
       </div>
       {/* Filter Outer */}

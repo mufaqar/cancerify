@@ -1,6 +1,5 @@
 'use client'
-import { isDesktop } from "react-device-detect";
-import dynamic from "next/dynamic";
+
 
 
 const SpecializationsBox = (props) => {
@@ -17,11 +16,11 @@ const SpecializationsBox = (props) => {
             } `}
             onClick={() => SpecializationsHandler({ name: item?.name })}
           >
-            {isDesktop ?  item?.name : item?.name.replace('Oncologists', "")}
+            {item?.name.replace('Oncologists', "")}
           </li>
         ))}
       </div>
     )
 }
 
-export default dynamic(() => Promise.resolve(SpecializationsBox), { ssr: false });
+export default SpecializationsBox;

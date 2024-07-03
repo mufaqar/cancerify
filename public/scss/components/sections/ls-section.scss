@@ -41,7 +41,7 @@ Listing Section  (Ls Section)
   left: 0;
   top: 0;
   height: 100vh !important;
-  max-width: 320px;
+  max-width: 100%;
   width: 100%;
   padding: 0 !important;
   background: #fff;
@@ -175,10 +175,11 @@ Listing Section  (Ls Section)
 
 .ls-section .filters-outer {
   position: relative;
-  background: #f5f7fc;
+  background: #D8E3FF;
   border-radius: 8px;
   margin-bottom: 30px;
   padding: 30px 30px 10px;
+  border: 1px solid var(--primary-color);
 }
 
 .ls-section .close-filters {
@@ -188,9 +189,9 @@ Listing Section  (Ls Section)
   width: 25px;
   min-width: auto;
   height: 25px;
-  border: 1px solid #333;
+  border: 1px solid var(--primary-color);
   border-radius: 50%;
-  color: #000;
+  color: var(--primary-color) !important;
   line-height: 25px;
   font-size: 12px;
   z-index: 3;
