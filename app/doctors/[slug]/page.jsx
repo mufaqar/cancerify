@@ -134,7 +134,7 @@ const Page = async ({ params: { slug } }) => {
                   {doctor?.doctorsoptions?.educations ? (
                     <div className={`resume-outer theme-blue`}>
                       <div className="upper-title">
-                        <h4>Education</h4>
+                        <h3>Education</h3>
                       </div>
                       {/* educations */}
                       <div className="doc-custom-lists">{parseHtml(doctor?.doctorsoptions?.educations || '')}</div>
@@ -175,7 +175,7 @@ const Page = async ({ params: { slug } }) => {
                   {doctor?.doctorsoptions?.awardss ? (
                     <div className={`resume-outer theme-yellow`}>
                       <div className="upper-title">
-                        <h4>Awards</h4>
+                        <h3>Awards</h3>
                       </div>
                       {/* educations */}
                       <div className="doc-custom-lists">{parseHtml(doctor?.doctorsoptions?.awardss || '')}</div>
@@ -213,7 +213,7 @@ const Page = async ({ params: { slug } }) => {
                   {doctor?.doctorsoptions?.professionalMemberships ? (
                     <div className={`resume-outer theme-blue`}>
                       <div className="upper-title">
-                        <h4>Professional Memberships and Affiliations</h4>
+                        <h3>Professional Memberships and Affiliations</h3>
                       </div>
                       {/*  */}
                       <div className="doc-custom-lists">{parseHtml(doctor?.doctorsoptions?.professionalMemberships || '')}</div>
@@ -247,7 +247,7 @@ const Page = async ({ params: { slug } }) => {
                   {doctor?.doctorsoptions?.clinicalExperiences ? (
                     <div className={`resume-outer`}>
                       <div className="upper-title">
-                        <h4>Clinical Experience</h4>
+                        <h3>Clinical Experience</h3>
                       </div>
                       {/*  */}
                       <div className="doc-custom-lists">{parseHtml(doctor?.doctorsoptions?.clinicalExperiences || '')}</div>
@@ -281,7 +281,7 @@ const Page = async ({ params: { slug } }) => {
                   {doctor?.doctorsoptions?.researchPublicationsss ? (
                     <div className={`resume-outer theme-yellow`}>
                       <div className="upper-title">
-                        <h4>Research and Publications</h4>
+                        <h3>Research and Publications</h3>
                       </div>
                       {/*  */}
                       <div className="doc-custom-lists">{parseHtml(doctor?.doctorsoptions?.researchPublicationsss || '')}</div>
@@ -353,7 +353,7 @@ const Page = async ({ params: { slug } }) => {
                     </Link>
                   </div>
                   <div className="cancer_treted pb-5 pt-4">
-                    <h4 className="widget-title pb-3">Cancer Treated</h4>
+                    <h4 className="widget-title pb-1">Cancer Treated</h4>
                     <ul className="post-tags grid grid-cols-2 grid-cols-md-2">
                       {cancerTreated?.map((val, i) => (
                         <li className="" key={i}>

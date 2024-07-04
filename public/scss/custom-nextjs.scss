@@ -1039,6 +1039,11 @@
   flex-direction: column;
 }
 
+.job-detail h3{
+  padding-bottom: 6px;
+  color: var(--primary-color);
+}
+
 // Responsive css
 @media only screen and (min-width: 992px) {
   .col-w-20 {
