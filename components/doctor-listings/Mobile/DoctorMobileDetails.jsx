@@ -1,6 +1,7 @@
 import Link from "next/link";
 import JobSkills from "@/components/candidates-single-pages/shared-components/JobSkills";
 import DropDownDetails from "./DropDownDetails";
+import parseHtml from "@/lib/Parser";
 
 
 const DoctorMobileDetails = (props) => {
@@ -25,8 +26,14 @@ const DoctorMobileDetails = (props) => {
             <div className="inner-box">
               <div className="content doctor_content">
                 <h4 className="name">{doctor?.title}</h4>
+                {doctor?.specializations?.nodes?.map((val) => (
+                        <h6 key={val.id} className="designation mb-2">
+                        {val?.name}
+                        </h6>
+                      ))}
                 <div className="cancer_treted pb-3">
-                  <ul className="post-tags grid grid-cols-3 grid-cols-md-2 gap-10">
+                  <h6 className="text-gray-2 pb-1">Cancer Treated</h6>
+                  <ul className="post-tags grid grid-cols-3 grid-cols-md-2 mb-cust-lists-23">
                     {cancerTreated?.map((val, i) => (
                       <li className="bg-gray" key={i}>
                         {val?.title.replace(/(<([^>]+)>)/gi, "")}
@@ -49,48 +56,7 @@ const DoctorMobileDetails = (props) => {
                     </Link>
                   </li>
                 </ul>
-                <div className="social-links w-full">
-                  {socials?.facebook && (
-                    <Link
-                      className="font-500"
-                      target="__blank"
-                      href={socials?.facebook || ""}
-                    >
-                      {<i className="fab fa-facebook-f  text-gray"></i>}{" "}
-                      facebook
-                    </Link>
-                  )}
-                  {socials?.twitter && (
-                    <Link
-                      className="font-500"
-                      target="__blank"
-                      href={socials?.twitter || ""}
-                    >
-                      {<i class="icon flaticon-megaphone text-gray"></i>}{" "}
-                      twitter
-                    </Link>
-                    //   <FontAwesomeIcon icon="fa-solid fa-bullhorn" />
-                  )}
-                  {socials?.instagram && (
-                    <Link
-                      className="font-500"
-                      target="__blank"
-                      href={socials?.instagram || ""}
-                    >
-                      {<i className="fab fa-instagram text-gray"></i>} instagram
-                    </Link>
-                  )}
-                  {socials?.linkedin && (
-                    <Link
-                      className="font-500"
-                      target="__blank"
-                      href={socials?.linkedin || ""}
-                    >
-                      {<i className="fab fa-linkedin-in text-gray"></i>}{" "}
-                      linkedin
-                    </Link>
-                  )}
-                </div>
+
               </div>
             </div>
           </div>
@@ -114,18 +80,6 @@ const DoctorMobileDetails = (props) => {
               </Link>
             </div>
 
-            {/* insurance */}
-            {
-              insurances?.length ?
-              <div className="sidebar-widget">
-              <h3 className="pb-4">Insurances</h3>
-              <div className="widget-content">
-                <JobSkills insurances={insurances} />
-              </div>
-            </div>
-            : null
-            }
-
 
             {/* specializations */}
             <DropDownDetails
@@ -135,6 +89,7 @@ const DoctorMobileDetails = (props) => {
               clinicalExperience={clinicalExperience}
               researchpublications={researchpublications}
               specializations={specializations}
+              insurances={insurances}
             /> 
 
             {/* <!-- Portfolio --> */}

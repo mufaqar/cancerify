@@ -460,7 +460,6 @@
 // }
 .cancer_treted .post-tags li {
   position: relative;
-  // background: #d3e1f5;
   border-radius: 30px;
   font-size: 14px;
   line-height: 20px;
@@ -470,6 +469,7 @@
   margin-right: 10px;
   background-color: var(--primary-color);
   margin: 5px;
+  text-align: center;
 }
 .cancer_treted > h4 {
   font-weight: 500;
@@ -485,6 +485,9 @@
 //   font-size: 28px !important;
 //   font-weight: 600 !important;
 // }
+.sidebar_content_wraper ol{
+  padding-left: 0px !important;
+}
 .sidebar_content_wraper ul{
   padding-top: 20px;
 }
@@ -914,7 +917,12 @@
 }
 
 .bg-gray{
-  background-color: #4D4B40 !important;
+  background-color: #E5E5E5 !important;
+  color: #434343 !important;
+}
+.text-gray-2{
+  color: #7B7B7B !important;
+  font-weight: 400 !important;
 }
 
 .font-500{
@@ -1008,6 +1016,29 @@
 .mb-lists ul li{
   margin: 0px 6px 6px 0px !important;
 }
+
+.doc-custom-lists ul li{
+  padding-bottom: 5px;
+  color: #696969;
+}
+.sidebar-widget h4 {
+	position: relative;
+	font-weight: 500;
+	font-size: 18px;
+	line-height: 24px;
+	color: #202124;
+	margin-bottom: 30px;
+}
+
+.mb-cust-lists-23 ul li{
+  margin: 0px 5px 5px 0px !important;
+}
+
+.custom-footer{
+  display: flex;
+  flex-direction: column;
+}
+
 // Responsive css
 @media only screen and (min-width: 992px) {
   .col-w-20 {
@@ -1015,6 +1046,12 @@
   }
 }
 @media only screen and (max-width: 992px) {
+  .custom-footer{
+    flex-direction: column-reverse !important;
+  }
+  .custom-footer .social-links{
+    padding: 35px 0px 40px 0px !important;
+  }
   .box-height{
     height: 150px;
   }
@@ -1060,6 +1097,9 @@
   }
   .social-links{
     padding-top: 0px !important;
+  }
+  .doc-custom-lists ul {
+    padding-left: 10px !important;
   }
 }
 @media only screen and (max-width: 1023px) {

@@ -92,7 +92,7 @@ const Page = async ({ params }) => {
                       {
                         supportGroups !== "" &&
                         <div className="widget-content cancer-widget-content pt-4">
-                        <h4 className="widget-title"> Support Groups</h4>
+                        {/* <h4 className="widget-title"> Support Groups</h4> */}
                         <div
                           className="sidebar_content_wraper"
                         >
@@ -106,7 +106,7 @@ const Page = async ({ params }) => {
                     {
                       financialSupportOrganizations !== "" &&
                       <div className="sidebar-widget cancer-widget-content company-widget">
-                      <h4 className="widget-title"> Financial support organisations</h4>
+                      {/* <h4 className="widget-title"> Financial support organisations</h4> */}
                       <div className="widget-content ">
                         {/*  compnay-info */}
                         <div
@@ -123,7 +123,7 @@ const Page = async ({ params }) => {
                       trustedInstitutions !== "" &&
                       <div className="sidebar-widget company-widget">
                       <div className="widget-content cancer-widget-content ">
-                        <h4 className="widget-title">Trusted institutions</h4>
+                        {/* <h4 className="widget-title">Trusted institutions</h4> */}
                         <div
                           className="sidebar_content_wraper"
                         >{parseHtml(trustedInstitutions)}</div>

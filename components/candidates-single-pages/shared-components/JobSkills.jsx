@@ -33,10 +33,17 @@ const JobSkills = (props) => {
           </li>
         ))}
       </ul>
+      {
+        isDesktop ? null : insurances?.length > 5 ? (
+          <button
+            className="btn btn-link btn-sm"
+            onClick={() => setSeeMore(!seeMore)}
+          >
+            {seeMore ? "See Less" : "See More"}
+          </button>
+        ) : null
+      }
 
-      <button onClick={() => setSeeMore(!seeMore)} className="text-theme-color pt-2 underline"> 
-        {seeMore ? "Show Less" : "Show More"}
-      </button>
     </>
   );
 };

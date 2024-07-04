@@ -10,7 +10,7 @@ const socialContent = [
 const Disclaimer = () => {
   return (
     <footer className="call-to-action-three style-two">
-      <div className="auto-container">
+      <div className="auto-container custom-footer">
         <div className="outer-box">
           <div className="sec-title light">
             <h2>Disclaimer</h2>

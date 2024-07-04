@@ -2,6 +2,7 @@
 import { useState } from "react";
 import dynamic from "next/dynamic";
 import { isMobile } from "react-device-detect";
+import parseHtml from "@/lib/Parser";
 
 const DropDownDetails = (props) => {
   const {
@@ -11,9 +12,11 @@ const DropDownDetails = (props) => {
     clinicalExperience,
     researchpublications,
     specializations,
+    insurances
   } = props;
 
 
+  const [insurancesOpen, setInsurancesOpen] = useState(false);
   const [specialOpen, setSpecialOpen] = useState(false);
   const [educationOpen, setEducationOpen] = useState(false);
   const [awardOpen, setAwardOpen] = useState(false);
@@ -24,6 +27,10 @@ const DropDownDetails = (props) => {
 
 
   const alldropdown = [
+    {
+      type: "Insurances",
+      data: insurances,
+    },
     {
       type: "Specializations",
       data: specializations,
@@ -55,7 +62,52 @@ const DropDownDetails = (props) => {
       {
       isMobile &&
       alldropdown.map((item, index) => {
-        return item?.type === "Specializations" ? (
+        return item?.type === "Insurances" ? (
+          item?.data?.length ? (
+            <div key={index} className="mb_details_block mb-hidden">
+              <button
+                onClick={() => setInsurancesOpen(!insurancesOpen)}
+                className="mb_details_block_title mb-3 text-theme-color flex items-center justify-between w-full "
+              >
+                <h3>{item?.type}</h3>
+                {insurancesOpen ? (
+                  <span>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      id="Outline"
+                      viewBox="0 0 24 24"
+                      width="25"
+                      height="25"
+                      fill="#21208c"
+                    >
+                      <rect x="6" y="11" width="12" height="2" rx="1" />
+                    </svg>
+                  </span>
+                ) : (
+                  <span>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      id="Outline"
+                      viewBox="0 0 24 24"
+                      width="25"
+                      height="25"
+                      fill="#21208c"
+                    >
+                      <path d="M17,11H13V7a1,1,0,0,0-1-1h0a1,1,0,0,0-1,1v4H7a1,1,0,0,0-1,1H6a1,1,0,0,0,1,1h4v4a1,1,0,0,0,1,1h0a1,1,0,0,0,1-1V13h4a1,1,0,0,0,1-1h0A1,1,0,0,0,17,11Z" />
+                    </svg>
+                  </span>
+                )}
+              </button>
+              {insurancesOpen && (
+                <div className="px-3 py-2">
+                  <div className="doc-custom-lists pb-2">{parseHtml(insurances || '')}</div>
+                  
+                </div>
+              )}
+            </div>
+          ) : null
+        ):
+        item?.type === "Specializations" ? (
           item?.data?.length ? (
             <div key={index} className="mb_details_block mb-hidden">
               <button
@@ -71,6 +123,7 @@ const DropDownDetails = (props) => {
                       viewBox="0 0 24 24"
                       width="25"
                       height="25"
+                      fill="#21208c"
                     >
                       <rect x="6" y="11" width="12" height="2" rx="1" />
                     </svg>
@@ -83,6 +136,7 @@ const DropDownDetails = (props) => {
                       viewBox="0 0 24 24"
                       width="25"
                       height="25"
+                      fill="#21208c"
                     >
                       <path d="M17,11H13V7a1,1,0,0,0-1-1h0a1,1,0,0,0-1,1v4H7a1,1,0,0,0-1,1H6a1,1,0,0,0,1,1h4v4a1,1,0,0,0,1,1h0a1,1,0,0,0,1-1V13h4a1,1,0,0,0,1-1h0A1,1,0,0,0,17,11Z" />
                     </svg>
@@ -91,13 +145,8 @@ const DropDownDetails = (props) => {
               </button>
               {specialOpen && (
                 <div className="px-3 py-2">
-                  <ul className="list-disc">
-                    {specializations?.map((val, i) => (
-                      <li className="p-1" key={i}>
-                        {val?.title} <br />
-                      </li>
-                    ))}
-                  </ul>
+                  <div className="doc-custom-lists pb-2">{parseHtml(specializations || '')}</div>
+                  
                 </div>
               )}
             </div>
@@ -118,6 +167,7 @@ const DropDownDetails = (props) => {
                       viewBox="0 0 24 24"
                       width="25"
                       height="25"
+                      fill="#21208c"
                     >
                       <rect x="6" y="11" width="12" height="2" rx="1" />
                     </svg>
@@ -130,6 +180,7 @@ const DropDownDetails = (props) => {
                       viewBox="0 0 24 24"
                       width="25"
                       height="25"
+                      fill="#21208c"
                     >
                       <path d="M17,11H13V7a1,1,0,0,0-1-1h0a1,1,0,0,0-1,1v4H7a1,1,0,0,0-1,1H6a1,1,0,0,0,1,1h4v4a1,1,0,0,0,1,1h0a1,1,0,0,0,1-1V13h4a1,1,0,0,0,1-1h0A1,1,0,0,0,17,11Z" />
                     </svg>
@@ -137,33 +188,7 @@ const DropDownDetails = (props) => {
                 )}
               </button>
               {educationOpen && (
-                <div className="px-3 py-2 resume-outer theme-blue">
-                  {item?.data?.map((item, idx) => (
-                    <div className="resume-block" key={idx}>
-                      <div className="inner">
-                        <span className="name">
-                          {item?.schoolname.substring(0, 1) + ""}
-                        </span>
-                        <div className="title-box">
-                          <div className="info-box custom-info-box">
-                            {item?.degree && (
-                              <span className="px-1"> {item?.degree}:</span>
-                            )}
-                            <h3>{item?.schoolname} </h3>
-                          </div>
-                          {item?.daterange && (
-                            <div className="edit-box">
-                              <span className="year">{item?.daterange}</span>
-                            </div>
-                          )}
-                        </div>
-                        {item?.description && (
-                          <div className="text">{item?.description}</div>
-                        )}
-                      </div>
-                    </div>
-                  ))}
-                </div>
+                <div className="doc-custom-lists pb-2">{parseHtml(educations || '')}</div>
               )}
             </div>
           ) : null
@@ -183,6 +208,7 @@ const DropDownDetails = (props) => {
                       viewBox="0 0 24 24"
                       width="25"
                       height="25"
+                      fill="#21208c"
                     >
                       <rect x="6" y="11" width="12" height="2" rx="1" />
                     </svg>
@@ -195,6 +221,7 @@ const DropDownDetails = (props) => {
                       viewBox="0 0 24 24"
                       width="25"
                       height="25"
+                      fill="#21208c"
                     >
                       <path d="M17,11H13V7a1,1,0,0,0-1-1h0a1,1,0,0,0-1,1v4H7a1,1,0,0,0-1,1H6a1,1,0,0,0,1,1h4v4a1,1,0,0,0,1,1h0a1,1,0,0,0,1-1V13h4a1,1,0,0,0,1-1h0A1,1,0,0,0,17,11Z" />
                     </svg>
@@ -202,31 +229,7 @@ const DropDownDetails = (props) => {
                 )}
               </button>
               {awardOpen && (
-                <div className="px-3 py-2 resume-outer theme-yellow">
-                  {item?.data?.map((item, idx) => (
-                    <div className="resume-block" key={idx}>
-                      <div className="inner">
-                        <span className="name">
-                          {item?.awardname?.substring(0, 1) + "" || ""}
-                        </span>
-                        <div className="title-box">
-                          <div className="info-box">
-                            <h3>{item?.awardname}</h3>
-                            {item?.awardfrom && <span>{item?.awardfrom}</span>}
-                          </div>
-                          {item?.daterange && (
-                            <div className="edit-box">
-                              <span className="year">{item?.daterange}</span>
-                            </div>
-                          )}
-                        </div>
-                        {item?.description && (
-                          <div className="text">{item?.description}</div>
-                        )}
-                      </div>
-                    </div>
-                  ))}
-                </div>
+                <div className="doc-custom-lists pb-2">{parseHtml(awards || '')}</div>
               )}
             </div>
           ) : null
@@ -246,6 +249,7 @@ const DropDownDetails = (props) => {
                       viewBox="0 0 24 24"
                       width="25"
                       height="25"
+                      fill="#21208c"
                     >
                       <rect x="6" y="11" width="12" height="2" rx="1" />
                     </svg>
@@ -258,6 +262,7 @@ const DropDownDetails = (props) => {
                       viewBox="0 0 24 24"
                       width="25"
                       height="25"
+                      fill="#21208c"
                     >
                       <path d="M17,11H13V7a1,1,0,0,0-1-1h0a1,1,0,0,0-1,1v4H7a1,1,0,0,0-1,1H6a1,1,0,0,0,1,1h4v4a1,1,0,0,0,1,1h0a1,1,0,0,0,1-1V13h4a1,1,0,0,0,1-1h0A1,1,0,0,0,17,11Z" />
                     </svg>
@@ -265,29 +270,7 @@ const DropDownDetails = (props) => {
                 )}
               </button>
               {affiliationOpen && (
-                <div className="px-3 py-2 theme-blue">
-                  {professionalMemberships?.map((item, idx) => (
-                    <div className="resume-block" key={idx}>
-                      <div className="inner">
-                        <span className="name">
-                          {item?.title?.substring(0, 1) + "" || ""}
-                        </span>
-                        <div className="title-box">
-                          <div className="info-box">
-                            <h3>{item?.title}</h3>
-                            <span>{item?.subtitle}</span>
-                          </div>
-                          {item?.daterange && (
-                            <div className="edit-box">
-                              <span className="year">{item?.daterange}</span>
-                            </div>
-                          )}
-                        </div>
-                        <div className="text">{item?.description}</div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
+                <div className="doc-custom-lists pb-2">{parseHtml(professionalMemberships || '')}</div>
               )}
             </div>
           ) : null
@@ -307,6 +290,7 @@ const DropDownDetails = (props) => {
                       viewBox="0 0 24 24"
                       width="25"
                       height="25"
+                      fill="#21208c"
                     >
                       <rect x="6" y="11" width="12" height="2" rx="1" />
                     </svg>
@@ -319,6 +303,7 @@ const DropDownDetails = (props) => {
                       viewBox="0 0 24 24"
                       width="25"
                       height="25"
+                      fill="#21208c"
                     >
                       <path d="M17,11H13V7a1,1,0,0,0-1-1h0a1,1,0,0,0-1,1v4H7a1,1,0,0,0-1,1H6a1,1,0,0,0,1,1h4v4a1,1,0,0,0,1,1h0a1,1,0,0,0,1-1V13h4a1,1,0,0,0,1-1h0A1,1,0,0,0,17,11Z" />
                     </svg>
@@ -326,29 +311,7 @@ const DropDownDetails = (props) => {
                 )}
               </button>
               {clinicalOpen && (
-                <div className="px-3 py-2 resume-outer">
-                  {clinicalExperience?.map((item, idx) => (
-                    <div className="resume-block" key={idx}>
-                      <div className="inner">
-                        <span className="name">
-                          {item?.title?.substring(0, 1) + "" || ""}
-                        </span>
-                        <div className="title-box">
-                          <div className="info-box">
-                            <h3>{item?.title}</h3>
-                            <span>{item?.institution}</span>
-                          </div>
-                          {item?.daterange && (
-                            <div className="edit-box">
-                              <span className="year">{item?.daterange}</span>
-                            </div>
-                          )}
-                        </div>
-                        <div className="text">{item?.description}</div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
+                <div className="doc-custom-lists pb-2">{parseHtml(clinicalExperience || '')}</div>
               )}
             </div>
           ) : null
@@ -368,6 +331,7 @@ const DropDownDetails = (props) => {
                       viewBox="0 0 24 24"
                       width="25"
                       height="25"
+                      fill="#21208c"
                     >
                       <rect x="6" y="11" width="12" height="2" rx="1" />
                     </svg>
@@ -380,6 +344,7 @@ const DropDownDetails = (props) => {
                       viewBox="0 0 24 24"
                       width="25"
                       height="25"
+                      fill="#21208c"
                     >
                       <path d="M17,11H13V7a1,1,0,0,0-1-1h0a1,1,0,0,0-1,1v4H7a1,1,0,0,0-1,1H6a1,1,0,0,0,1,1h4v4a1,1,0,0,0,1,1h0a1,1,0,0,0,1-1V13h4a1,1,0,0,0,1-1h0A1,1,0,0,0,17,11Z" />
                     </svg>
@@ -387,29 +352,7 @@ const DropDownDetails = (props) => {
                 )}
               </button>
               {publicationOpen && (
-                <div className="px-3 py-2">
-                  {researchpublications?.map((item, idx) => (
-                    <div className="resume-block" key={idx}>
-                      <div className="inner">
-                        <span className="name">
-                          {item?.title?.substring(0, 1) + "" || ""}
-                        </span>
-                        <div className="title-box">
-                          <div className="info-box">
-                            <h3>{item?.title}</h3>
-                            <span>{item?.subtitle}</span>
-                          </div>
-                          {item?.daterange && (
-                            <div className="edit-box">
-                              <span className="year">{item?.daterange}</span>
-                            </div>
-                          )}
-                        </div>
-                        <div className="text">{item?.description}</div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
+                <div className="doc-custom-lists pb-2">{parseHtml(researchpublications || '')}</div>
               )}
             </div>
           ) : null

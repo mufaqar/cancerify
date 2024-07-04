@@ -8,6 +8,7 @@ import Link from "next/link";
 import Header from "@/components/Home/Header";
 import Disclaimer from "@/components/Home/Disclaimer";
 import DoctorMobileDetails from "@/components/doctor-listings/Mobile/DoctorMobileDetails";
+import parseHtml from "@/lib/Parser";
 
 export async function generateMetadata({ params: { slug } }) {
   const res = await client.request(
@@ -32,7 +33,7 @@ export async function generateMetadata({ params: { slug } }) {
 const Page = async ({ params: { slug } }) => {
   const res = await client.request(GET_DOCTOR, { id: slug });
   const doctor = res?.doctor || {};
-  // https://vni.fe7.mytemp.website/wp-json/wp/v2/doctors/60
+
   const detailsRes = await fetch(
     `https://vni.fe7.mytemp.website/wp-json/wp/v2/doctors/${doctor.databaseId}`
   );
@@ -97,6 +98,11 @@ const Page = async ({ params: { slug } }) => {
                   <div className="inner-box">
                     <div className="content doctor_content">
                       <h4 className="name">{doctor?.title}</h4>
+                      {doctor?.specializations?.nodes?.map((val) => (
+                        <h6 key={val.id} className="designation mb-3">
+                        {val?.name}
+                        </h6>
+                      ))}
                       <ul className="candidate-info">
                         <li>
                           <span className="icon flaticon-map-locator"></span>
@@ -125,14 +131,15 @@ const Page = async ({ params: { slug } }) => {
                   />
 
                   {/* <!-- educations Start --> */}
-                  {educations?.length ? (
+                  {doctor?.doctorsoptions?.educations ? (
                     <div className={`resume-outer theme-blue`}>
                       <div className="upper-title">
                         <h4>Education</h4>
                       </div>
                       {/* educations */}
+                      <div className="doc-custom-lists">{parseHtml(doctor?.doctorsoptions?.educations || '')}</div>
 
-                      {educations?.map((item, idx) => (
+                      {/* {educations?.map((item, idx) => (
                         <div className="resume-block" key={idx}>
                           <div className="inner">
                             <span className="name">
@@ -158,21 +165,21 @@ const Page = async ({ params: { slug } }) => {
                             )}
                           </div>
                         </div>
-                      ))}
+                      ))} */}
                     </div>
                   ) : null}
 
                   {/* <!-- educations Resume End --> */}
 
                   {/* <!-- awards Start --> */}
-                  {awards?.length ? (
+                  {doctor?.doctorsoptions?.awardss ? (
                     <div className={`resume-outer theme-yellow`}>
                       <div className="upper-title">
                         <h4>Awards</h4>
                       </div>
                       {/* educations */}
-
-                      {awards?.map((item, idx) => (
+                      <div className="doc-custom-lists">{parseHtml(doctor?.doctorsoptions?.awardss || '')}</div>
+                      {/* {awards?.map((item, idx) => (
                         <div className="resume-block" key={idx}>
                           <div className="inner">
                             <span className="name">
@@ -198,19 +205,19 @@ const Page = async ({ params: { slug } }) => {
                             )}
                           </div>
                         </div>
-                      ))}
+                      ))} */}
                     </div>
                   ) : null}
                   {/* <!-- awards Resume End --> */}
                   {/* <!-- professionalMemberships Start --> */}
-                  {professionalMemberships?.length ? (
+                  {doctor?.doctorsoptions?.professionalMemberships ? (
                     <div className={`resume-outer theme-blue`}>
                       <div className="upper-title">
                         <h4>Professional Memberships and Affiliations</h4>
                       </div>
-                      {/* educations */}
-
-                      {professionalMemberships?.map((item, idx) => (
+                      {/*  */}
+                      <div className="doc-custom-lists">{parseHtml(doctor?.doctorsoptions?.professionalMemberships || '')}</div>
+                      {/* {professionalMemberships?.map((item, idx) => (
                         <div className="resume-block" key={idx}>
                           <div className="inner">
                             <span className="name">
@@ -232,19 +239,19 @@ const Page = async ({ params: { slug } }) => {
                             <div className="text">{item?.description}</div>
                           </div>
                         </div>
-                      ))}
+                      ))} */}
                     </div>
                   ) : null}
                   {/* <!-- professionalMemberships Resume End --> */}
                   {/* <!-- Clinical Experience: Start --> */}
-                  {clinicalExperience?.length ? (
+                  {doctor?.doctorsoptions?.clinicalExperiences ? (
                     <div className={`resume-outer`}>
                       <div className="upper-title">
                         <h4>Clinical Experience</h4>
                       </div>
                       {/*  */}
-
-                      {clinicalExperience?.map((item, idx) => (
+                      <div className="doc-custom-lists">{parseHtml(doctor?.doctorsoptions?.clinicalExperiences || '')}</div>
+                      {/* {clinicalExperience?.map((item, idx) => (
                         <div className="resume-block" key={idx}>
                           <div className="inner">
                             <span className="name">
@@ -266,19 +273,19 @@ const Page = async ({ params: { slug } }) => {
                             <div className="text">{item?.description}</div>
                           </div>
                         </div>
-                      ))}
+                      ))} */}
                     </div>
                   ) : null}
                   {/* <!-- Clinical Experience Resume End --> */}
                   {/* <!-- researchpublications Start --> */}
-                  {researchpublications?.length ? (
+                  {doctor?.doctorsoptions?.researchPublicationsss ? (
                     <div className={`resume-outer theme-yellow`}>
                       <div className="upper-title">
                         <h4>Research and Publications</h4>
                       </div>
                       {/*  */}
-
-                      {researchpublications?.map((item, idx) => (
+                      <div className="doc-custom-lists">{parseHtml(doctor?.doctorsoptions?.researchPublicationsss || '')}</div>
+                      {/* {researchpublications?.map((item, idx) => (
                         <div className="resume-block" key={idx}>
                           <div className="inner">
                             <span className="name">
@@ -300,7 +307,7 @@ const Page = async ({ params: { slug } }) => {
                             <div className="text">{item?.description}</div>
                           </div>
                         </div>
-                      ))}
+                      ))} */}
                     </div>
                   ) : null}
                   {/* <!-- researchpublications Resume End --> */}
@@ -334,6 +341,7 @@ const Page = async ({ params: { slug } }) => {
                     </div>
                   </div>
                 </div>
+                {/* Sidebar */}
                 <aside className="sidebar">
                   <div className="btn-box">
                     <Link
@@ -346,7 +354,7 @@ const Page = async ({ params: { slug } }) => {
                   </div>
                   <div className="cancer_treted pb-5 pt-4">
                     <h4 className="widget-title pb-3">Cancer Treated</h4>
-                    <ul className="post-tags grid grid-cols-3 grid-cols-md-2 gap-10">
+                    <ul className="post-tags grid grid-cols-2 grid-cols-md-2">
                       {cancerTreated?.map((val, i) => (
                         <li className="" key={i}>
                           {val?.title.replace(/(<([^>]+)>)/gi, "")}
@@ -354,29 +362,45 @@ const Page = async ({ params: { slug } }) => {
                       ))}
                     </ul>
                   </div>
-                  <div className="sidebar-widget">
-                    <div className="widget-content">
+                  {
+                    doctor?.doctorsoptions?.specializationss &&
+                    <div className="sidebar-widget">
+                    {
+                      
+                      <div className="widget-content">
                       <h4 className="widget-title">Specializations</h4>
-                      <ul className="list-disc">
+                      <div>
+                        {parseHtml(doctor?.doctorsoptions?.specializationss || '')}
+                      </div>
+                      {/* <ul className="list-disc">
                         {specializations?.map((val, i) => (
                           <li className="p-1" key={i}>
                             {val?.title} <br />
                           </li>
                         ))}
-                      </ul>
+                      </ul> */}
                     </div>
-                  </div>
-                  {/* End .sidebar-widget conadidate overview */}
+                    }
 
-                  <div className="sidebar-widget">
-                    <h4 className="widget-title">Insurances</h4>
-                    <div className="widget-content">
-                      <ul className="job-skills">
-                        <JobSkills insurances={insurances} />
-                      </ul>
-                    </div>
                   </div>
-                  {isSocial && (
+                  }
+
+                  {/* End .sidebar-widget conadidate overview */}
+                  {
+                    doctor?.doctorsoptions?.insurancess ? (
+                      <div className="sidebar-widget">
+                      <h4 className="widget-title">Insurances</h4>
+                      <div className="widget-content">
+                        {parseHtml(doctor?.doctorsoptions?.insurancess || '')}
+                        {/* <ul className="job-skills">
+                          <JobSkills insurances={insurances} />
+                        </ul> */}
+                      </div>
+                    </div>
+                    ): null
+                  }
+
+                  {/* {isSocial && (
                     <div className="sidebar-widget social-media-widget">
                       <h4 className="widget-title">Social media</h4>
                       <div className="widget-content">
@@ -387,12 +411,9 @@ const Page = async ({ params: { slug } }) => {
                         </div>
                       </div>
                     </div>
-                  )}
+                  )} */}
 
-                  {/* End .sidebar-widget social-media-widget */}
-                  {/* End .sidebar-widget skill widget */}
 
-                  {/* End .sidebar-widget contact-widget */}
                 </aside>
                 {/* End .sidebar */}
               </div>
@@ -402,16 +423,16 @@ const Page = async ({ params: { slug } }) => {
             {/* Mobile version */}
             <DoctorMobileDetails
               doctor={doctor}
-              educations={educations}
-              awards={awards}
-              professionalMemberships={professionalMemberships}
-              clinicalExperience={clinicalExperience}
-              researchpublications={researchpublications}
+              educations={doctor?.doctorsoptions?.educations}
+              awards={doctor?.doctorsoptions?.awardss}
+              professionalMemberships={doctor?.doctorsoptions?.professionalMemberships}
+              clinicalExperience={doctor?.doctorsoptions?.clinicalExperiences}
+              researchpublications={doctor?.doctorsoptions?.researchPublicationsss}
               cancerTreated={cancerTreated}
               isSocial={isSocial}
               socials={doctor?.doctorsoptions?.socialMedias}
-              insurances={insurances}
-              specializations={specializations}
+              insurances={doctor?.doctorsoptions?.insurancess}
+              specializations={doctor?.doctorsoptions?.specializationss}
             />
           </div>
         </div>
