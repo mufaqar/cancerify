@@ -8,8 +8,8 @@ const DetailsBlock = ({ title, blocks }) => {
 
   return (
     <>
-        <MobileDetailsBlock title={title} blocks={blocks} />
-          <div className="desktop-hidden">
+          <MobileDetailsBlock title={title} blocks={blocks} />
+          <div className="desktop-hidden text-15">
             <h3 className="pb-3">{title.replace(/(<([^>]+)>)/gi, "")}</h3>
             {blocks.map((block, index) => {
               return block.name === "core/heading" ? (
@@ -22,7 +22,7 @@ const DetailsBlock = ({ title, blocks }) => {
                   />
                 </div>
               ) : block.name === "core/paragraph" ? (
-                <div className="cancer_paragraph">
+                <div className="cancer_paragraph text-15">
                   <ParagraphBlock
                     key={index}
                     content={block?.originalContent}
@@ -42,7 +42,7 @@ const DetailsBlock = ({ title, blocks }) => {
                   />
                 </div>
               ) : block.name === "core/list" ? (
-                <div className="cancer_list pb-3">
+                <div className="cancer_list pb-3 text-15">
                   <ListsBlock
                     key={index}
                     align={block?.attributes?.align}

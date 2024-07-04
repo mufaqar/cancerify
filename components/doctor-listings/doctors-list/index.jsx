@@ -5,7 +5,7 @@ import Header from "@/components/Home/Header";
 import Disclaimer from "@/components/Home/Disclaimer";
 
 const DoctorsList = (props) => {
-  const { cancers,locations, doctors, specialities } = props;
+  const { cancers,locations, doctors, specialities,pageInfo } = props;
   return (
     <>
       {/* <!-- Header Span --> */}
@@ -41,7 +41,7 @@ const DoctorsList = (props) => {
 
             <div className="content-column col-lg-8 col-md-12 col-sm-12">
               <div className="ls-outer  ">
-                <FilterTopBox doctors={doctors}/>
+                <FilterTopBox doctors={doctors} pageInfo={pageInfo}/>
                 {/* <!-- ls Switcher --> */}
               </div>
             </div>

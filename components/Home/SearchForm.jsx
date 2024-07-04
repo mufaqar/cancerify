@@ -96,7 +96,7 @@ const SearchForm4 = (props) => {
             {/* <!-- Form Group --> */}
             <div className="form-group col-lg-3 col-md-2 col-sm-2 text-right ">
               <button
-                type="button"
+                type="submit"
                 className="bg-search_btn lg-search-form-btn theme-btn btn-style-two rounded-50"
               >
                 Find Doctor

@@ -433,8 +433,15 @@
   padding-left: 0px !important;
 
 }
+.cancer_list ol li{
+  list-style: none !important;
+  font-size: 15px !important;
+  color: #696969;
+  padding-bottom: 5px;
+}
 .cancer_list ul li{
   list-style: none !important;
+  font-size: 15px !important;
   color: #696969;
   padding-bottom: 5px;
 }
@@ -491,10 +498,15 @@
 .sidebar_content_wraper ul{
   padding-top: 20px;
 }
+.sidebar_content_wraper ol li{
+  color: #696969;
+  font-size: 15px !important;
+}
 .sidebar_content_wraper ul li {
   line-height: 20px;
   padding-bottom: 13px;
   color: #696969;
+  font-size: 15px !important;
 }
 .cancer-widget-content .widget-title{
   margin-bottom: 20px;
@@ -1019,6 +1031,13 @@
 
 .doc-custom-lists ul li{
   padding-bottom: 5px;
+  font-size: 15px !important;
+  line-height: 26px;
+  color: #696969;
+}
+.widget-content ul li{
+  font-size: 15px !important;
+  line-height: 26px;
   color: #696969;
 }
 .sidebar-widget h4 {
@@ -1042,7 +1061,13 @@
 .job-detail h3{
   padding-bottom: 6px;
 }
+.mb_details_block ul li{
+  padding-bottom: 6px !important;
+}
 
+.text-15{
+  font-size: 15px !important;
+}
 // Responsive css
 @media only screen and (min-width: 992px) {
   .col-w-20 {

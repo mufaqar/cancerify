@@ -24,12 +24,12 @@ const Details = (props) => {
   // console.log(mobileContent.splice(2, 0, {type: "button"}))
 
   return (
-    <div className="job-detail cancer_detail">
+    <div className="job-detail cancer_detail text-15">
       <h3 className="pb-3">{title.replace(/(<([^>]+)>)/gi, "")}</h3>
 
       {blocks?.map((block, index) =>
         block.name === "core/paragraph" ? (
-          <div className="cancer_paragraph">
+          <div className="cancer_paragraph ">
             <ParagraphBlock
               key={index}
               content={block?.originalContent}

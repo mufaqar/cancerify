@@ -2,7 +2,6 @@
 import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  addCategory,
   addKeyword
 } from "@/features/filter/candidateFilterSlice";
 export default function FindDocButton(props) {

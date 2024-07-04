@@ -94,7 +94,7 @@ const Page = async ({ params }) => {
                         <div className="widget-content cancer-widget-content pt-4">
                         {/* <h4 className="widget-title"> Support Groups</h4> */}
                         <div
-                          className="sidebar_content_wraper"
+                          className="sidebar_content_wraper text-15"
                         >
                           {parseHtml(supportGroups)}
                         </div>
@@ -110,7 +110,7 @@ const Page = async ({ params }) => {
                       <div className="widget-content ">
                         {/*  compnay-info */}
                         <div
-                          className="sidebar_content_wraper"
+                          className="sidebar_content_wraper text-15"
                         >
                           {parseHtml(financialSupportOrganizations)}
                         </div>
@@ -125,7 +125,7 @@ const Page = async ({ params }) => {
                       <div className="widget-content cancer-widget-content ">
                         {/* <h4 className="widget-title">Trusted institutions</h4> */}
                         <div
-                          className="sidebar_content_wraper"
+                          className="sidebar_content_wraper text-15"
                         >{parseHtml(trustedInstitutions)}</div>
                       </div>
                     </div>}
@@ -136,7 +136,7 @@ const Page = async ({ params }) => {
 
               {/* End .sidebar-column */}
 
-              <div className="content-column col-lg-8 col-md-12 col-sm-12 pb-5">
+              <div className="content-column col-lg-8 col-md-12 col-sm-12 pb-5 ">
                 {/*  job-detail */}
                 <Details
                   supportGroups={supportGroups}

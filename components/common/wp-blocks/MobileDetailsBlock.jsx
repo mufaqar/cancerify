@@ -48,7 +48,7 @@ const MobileDetailsBlock = ({ title, blocks }) => {
             )}
           </button>
 
-          <div className="px-3 py-2">
+          <div className="px-3 py-2 text-gray-2">
             {open &&
               blocks.map((block, index) => {
                 return block.name === "core/heading" ? (

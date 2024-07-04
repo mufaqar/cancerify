@@ -53,14 +53,7 @@ const FilterSidebar = (props) => {
         <div className="filter-block">
           <div className=" relative custom-filter-block">
             <h4> Specializations </h4>
-            {/* {specializations && (
-              <button
-                onClick={() => SpecializationsHandler({ name: "" })}
-                className="absolute custom-align"
-              >
-                <span className="icon flaticon-close"></span>
-              </button>
-            )} */}
+
           </div>
           <div className="form-group">
             <SpecializationsBox
@@ -74,14 +67,7 @@ const FilterSidebar = (props) => {
         <div className="filter-block">
           <div className=" relative custom-filter-block">
             <h4>Location</h4>
-            {/* {location && (
-              <button
-                onClick={() => locationHandler({ name: "" })}
-                className="absolute custom-align"
-              >
-                <span className="icon flaticon-close"></span>
-              </button>
-            )} */}
+
           </div>
           <div className="form-group">
             <LocationBox locations={locations} />

@@ -8,7 +8,7 @@ import { Provider } from "react-redux";
 import { store } from "../store/store";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
-import {QueryClientProvider, QueryClient} from "@tanstack/react-query";
+import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 
 if (typeof window !== "undefined") {
   require("bootstrap/dist/js/bootstrap");
@@ -23,49 +23,52 @@ export default function RootLayout({ children }) {
   }, []);
 
   const [client] = useState(
-    new QueryClient({defaultOptions: {queries: {staleTime: 5000}}})
-);
-
-
+    new QueryClient({ defaultOptions: { 
+      queries: { 
+        refetchOnWindowFocus: false, // default: true
+      } 
+    } 
+  }));
 
   return (
-    <html lang="en" >
+    <html lang="en">
       <head>
         <link
           rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         />
-        <meta name="viewport" 
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+        />
         <meta httpEquiv="x-ua-compatible" content="ie=edge" />
         <link rel="icon" href="./favicon.ico" />
       </head>
 
       <body>
         <Provider store={store}>
-        <QueryClientProvider client={client}>
-          <div className="page-wrapper">
-            {children}
+          <QueryClientProvider client={client}>
+            <div className="page-wrapper">
+              {children}
 
-            {/* Toastify */}
-            <ToastContainer
-              position="bottom-right"
-              autoClose={500}
-              hideProgressBar={false}
-              newestOnTop={false}
-              closeOnClick
-              rtl={false}
-              pauseOnFocusLoss
-              draggable
-              pauseOnHover
-              theme="colored"
-            />
-            {/* <!-- Scroll To Top --> */}
-            <ScrollToTop />
-          </div>
+              {/* Toastify */}
+              <ToastContainer
+                position="bottom-right"
+                autoClose={500}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="colored"
+              />
+              {/* <!-- Scroll To Top --> */}
+              <ScrollToTop />
+            </div>
           </QueryClientProvider>
         </Provider>
-
       </body>
     </html>
   );
