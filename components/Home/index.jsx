@@ -9,7 +9,7 @@ import Disclaimer from "@/components/Home/Disclaimer";
 import BlogSection from "./BlogSection";
 
 const index = (props) => {
-  const { locations, testimonials, posts, page, cancers,mostsearcheds } = props;
+  const { testimonials, posts, page, cancers,mostsearcheds } = props;
 
   return (
     <>

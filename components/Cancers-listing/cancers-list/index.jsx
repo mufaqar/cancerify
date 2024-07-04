@@ -2,6 +2,7 @@ import Header from "@/components/Home/Header";
 import MobileMenu from "../../header/MobileMenu";
 import Link from "next/link";
 import Disclaimer from "@/components/Home/Disclaimer";
+import TypesOfCancers from "@/components/Home/TypesOfCancers";
 
 const index = (props) => {
   const { cancers } = props;
@@ -17,46 +18,18 @@ const index = (props) => {
       {/* End MobileMenu */}
       <section className="cancer_wraper flex item-center">
         <div className="auto-container">
-          <div
-            className="row "
-            data-aos="fade-up"
-            data-aos-anchor-placement="top-bottom"
-          >
-            {/* <!-- Category Block --> */}
-            <>
-              {cancers?.length ? (
-                cancers
-                  ?.sort((a, b) => a.title.localeCompare(b.title))
-                  ?.map((item) => (
-                    !item?.cancersOptions?.disableFromUser &&
-                    <div
-                      className="category-block col-lg-3 col-w-20 col-md-3 col-sm-3 col-xs-4 col-xss-6"
-                      key={item.id}
-                    >
-                      <Link
-                        href={`/cancers/${item?.slug}`}
-                        className="inner-box flex items-center"
-                      >
-                        {item?.cancersOptions?.cancerIcon?.sourceUrl && (
-                          <div className="cancer_icons ">
-                            <Image
-                              width={50}
-                              height={50}
-                              src={item?.cancersOptions?.cancerIcon?.sourceUrl}
-                              alt="item brand"
-                            />
-                          </div>
-                        )}
-
-                        <h4 className="cancer_text">{item?.title.replace(/(<([^>]+)>)/gi, "")}</h4>
-                      </Link>
-                    </div>
-                  ))
-              ) : (
-                <p>No cancers found!</p>
-              )}
-            </>
+        <section className="job-categories">
+        <div className="auto-container">
+          <div className="sec-title text-center">
+            {/* <h2 className="text_theme">Learn More About Cancer</h2> */}
           </div>
+          {/* custom-row */}
+          <div className=" custom-row flex flex-wrap justify-center ">
+            {/* <!-- Category Block --> */}
+            <TypesOfCancers cancers={cancers} />
+          </div>
+        </div>
+      </section>
         </div>
       </section>
       <Disclaimer />

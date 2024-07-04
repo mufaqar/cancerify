@@ -346,7 +346,7 @@ const Page = async ({ params: { slug } }) => {
                   <div className="btn-box">
                     <Link
                       target="__blank"
-                      className="theme-btn btn-style-one"
+                      className="theme-btn btn-style-one custom-btn"
                       href={doctor?.doctorsoptions?.bookAppointmentLink || "#"}
                     >
                       Book An Appointment
@@ -354,7 +354,7 @@ const Page = async ({ params: { slug } }) => {
                   </div>
                   <div className="cancer_treted pb-5 pt-4">
                     <h4 className="widget-title pb-1">Cancer Treated</h4>
-                    <ul className="post-tags grid grid-cols-2 grid-cols-md-2">
+                    <ul className="post-tags flex items-center flex-wrap">
                       {cancerTreated?.map((val, i) => (
                         <li className="" key={i}>
                           {val?.title.replace(/(<([^>]+)>)/gi, "")}
@@ -372,13 +372,7 @@ const Page = async ({ params: { slug } }) => {
                       <div>
                         {parseHtml(doctor?.doctorsoptions?.specializationss || '')}
                       </div>
-                      {/* <ul className="list-disc">
-                        {specializations?.map((val, i) => (
-                          <li className="p-1" key={i}>
-                            {val?.title} <br />
-                          </li>
-                        ))}
-                      </ul> */}
+ 
                     </div>
                     }
 
@@ -400,18 +394,6 @@ const Page = async ({ params: { slug } }) => {
                     ): null
                   }
 
-                  {/* {isSocial && (
-                    <div className="sidebar-widget social-media-widget">
-                      <h4 className="widget-title">Social media</h4>
-                      <div className="widget-content">
-                        <div className="social-links">
-                          <Social
-                            socials={doctor?.doctorsoptions?.socialMedias}
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  )} */}
 
 
                 </aside>

@@ -73,7 +73,7 @@ const DoctorMobileDetails = (props) => {
             <div className="btn-box pb-5">
               <Link
                 target="__blank"
-                className="theme-btn btn-style-one w-full"
+                className="theme-btn btn-style-one w-full custom-btn"
                 href={doctor?.doctorsoptions?.bookAppointmentLink || "#"}
               >
                 Book An Appointment
