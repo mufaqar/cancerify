@@ -42,7 +42,6 @@ const FilterTopBox = (props) => {
   useEffect(() => {
     if (keyword !== "" || location !== "") {
       if(mainData?.length){
-        console.log(keyword, 'if')
         const SearchfilteredData = mainData?.filter((doc) => {
           return (
             // cancerTreated filter
@@ -60,7 +59,6 @@ const FilterTopBox = (props) => {
         // console.log(SearchfilteredData, "SearchfilteredData");
         setFilteredData(SearchfilteredData);
       }else{
-        console.log(keyword, 'else')
         const SearchfilteredData = doctors?.filter((doc) => {
           return (
             // cancerTreated filter
@@ -83,7 +81,6 @@ const FilterTopBox = (props) => {
       setFilteredData([]);
       const allDoctors = data?.pages?.map((page) => page?.nodes).flat() || [];
       setMainData([...allDoctors]);
-      // setDoctorssData([...doctors])
     }
   }, [keyword, location, data?.pages, mainData?.length]);
 
