@@ -60,7 +60,7 @@ const SearchForm4 = (props) => {
 
   const Filteredcancers = data?.cancers?.nodes || [];
 
-  console.log(Filteredcancers);
+
 
   return (
     <div className="custom-form-wraper relative">
