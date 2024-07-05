@@ -762,6 +762,9 @@
 .most-searched::-webkit-scrollbar { 
   display: none;  /* Safari and Chrome */
 }
+.mb-most-searched{
+  padding-top: 65px;
+}
 .mb-most-searched ul{
   text-align: left;
 }
@@ -977,6 +980,10 @@
 }
 .mb-sidebar-search-bar{
   border-bottom: 1px solid var(--primary-color);
+  position: fixed;
+  width: 100%;
+  left: 0px;
+  padding: 0px 15px;
 }
 .mobile_search_offcanvas{
   position: fixed; 
@@ -1069,6 +1076,7 @@
 .text-15{
   font-size: 15px !important;
 }
+
 // Responsive css
 @media only screen and (min-width: 992px) {
   .col-w-20 {

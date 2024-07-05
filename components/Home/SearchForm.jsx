@@ -180,7 +180,7 @@ const SearchForm4 = (props) => {
               {/* <span className="icon flaticon-search-1 text-white"></span> */}
             </button>
           </div>
-          <div className="mb-most-searched text-left pt-4">
+          <div className="mb-most-searched text-left">
           {
               cancerSearch !== '' ?  <ListMostSearched cancerSearch={cancerSearch} mostsearcheds={Filteredcancers} /> :
               (
