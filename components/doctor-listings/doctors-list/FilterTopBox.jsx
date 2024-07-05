@@ -40,67 +40,46 @@ const FilterTopBox = (props) => {
   const doctorsData = mainData?.length ? mainData : doctors;
 
   useEffect(() => {
+    setFilteredData([]);
+    const allDoctors = data?.pages?.map((page) => page?.nodes).flat() || [];
+    setMainData([...allDoctors]);
+  }, [data?.pages]);
+
+  useEffect(() => {
     if (keyword !== "" || location !== "") {
-      if(mainData?.length){
-        const SearchfilteredData = mainData?.filter((doc) => {
-          return (
-            // cancerTreated filter
-            doc?.doctorsoptions?.cancerTreated?.some((val) =>
-              val?.title
-                ?.replace(/(<([^>]+)>)/gi, "")
-                .toLowerCase()
-                .includes(keyword.replace(/(<([^>]+)>)/gi, "").toLowerCase())
-            ) &&
-            doc?.doctorsoptions?.location?.some((val) =>
-              val?.title?.toLowerCase().includes(location.toLowerCase())
-            )
-          );
-        });
-        // console.log(SearchfilteredData, "SearchfilteredData");
-        setFilteredData(SearchfilteredData);
-      }else{
-        const SearchfilteredData = doctors?.filter((doc) => {
-          return (
-            // cancerTreated filter
-            doc?.doctorsoptions?.cancerTreated?.some((val) =>
-              val?.title
-                ?.replace(/(<([^>]+)>)/gi, "")
-                .toLowerCase()
-                .includes(keyword.replace(/(<([^>]+)>)/gi, "").toLowerCase())
-            ) &&
-            doc?.doctorsoptions?.location?.some((val) =>
-              val?.title?.toLowerCase().includes(location.toLowerCase())
-            )
-          );
-        });
-        // console.log(SearchfilteredData, "SearchfilteredData");
-        setFilteredData(SearchfilteredData);
-      }
+      console.log("keyword", keyword, "location", location);
+      const SearchfilteredData = doctorsData?.filter((doc) => {
+        return (
+          // cancerTreated filter
+          doc?.doctorsoptions?.cancerTreated?.some((val) =>
+            val?.title
+              ?.replace(/(<([^>]+)>)/gi, "")
+              .toLowerCase()
+              .includes(keyword.replace(/(<([^>]+)>)/gi, "").toLowerCase())
+          ) &&
+          doc?.doctorsoptions?.location?.some((val) =>
+            val?.title?.toLowerCase().includes(location.toLowerCase())
+          )
+        );
+      });
+      // console.log(SearchfilteredData, "SearchfilteredData");
+      setFilteredData(SearchfilteredData);
 
     } else {
       setFilteredData([]);
       const allDoctors = data?.pages?.map((page) => page?.nodes).flat() || [];
       setMainData([...allDoctors]);
     }
-  }, [keyword, location, data?.pages, mainData?.length]);
+  }, [keyword, location]);
 
   useEffect(() => {
     if (category !== "") {
-      if(mainData?.length){
-        const SearchfilteredData = mainData?.filter((doc) => {
-          return doc?.specializations?.nodes?.some((val) =>
-            val?.name?.toLowerCase().includes(category.toLowerCase())
-          );
-        });
-        setFilteredData(SearchfilteredData);
-      }else{
-        const SearchfilteredData = doctors?.filter((doc) => {
-          return doc?.specializations?.nodes?.some((val) =>
-            val?.name?.toLowerCase().includes(category.toLowerCase())
-          );
-        });
-        setFilteredData(SearchfilteredData);
-      }
+      const SearchfilteredData = doctorsData?.filter((doc) => {
+        return doc?.specializations?.nodes?.some((val) =>
+          val?.name?.toLowerCase().includes(category.toLowerCase())
+        );
+      });
+      setFilteredData(SearchfilteredData);
 
 
     } else {
@@ -109,7 +88,7 @@ const FilterTopBox = (props) => {
       setMainData([...allDoctors]);
       // setDoctorssData([...doctors])
     }
-  }, [category, data?.pages, mainData?.length]);
+  }, [category]);
 
   // infinite scroll
   useEffect(() => {
@@ -121,7 +100,7 @@ const FilterTopBox = (props) => {
 
 
 
-
+  console.log("filteredData", filteredData);
 
   return (
     <>
