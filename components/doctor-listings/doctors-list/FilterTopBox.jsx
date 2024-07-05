@@ -40,7 +40,6 @@ const FilterTopBox = (props) => {
   const doctorsData = mainData?.length ? mainData : doctors;
 
   useEffect(() => {
-    setFilteredData([]);
     const allDoctors = data?.pages?.map((page) => page?.nodes).flat() || [];
     setMainData([...allDoctors]);
   }, [data?.pages]);
