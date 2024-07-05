@@ -45,6 +45,12 @@ const FilterTopBox = (props) => {
   }, [data?.pages]);
 
   useEffect(() => {
+    if(keyword === "" && location === "" && category === ""){
+      setFilteredData([]);
+    }
+  }, [keyword, location, category]);
+
+  useEffect(() => {
     if (keyword !== "" || location !== "") {
       const SearchfilteredData = doctorsData?.filter((doc) => {
         return (
@@ -87,7 +93,7 @@ const FilterTopBox = (props) => {
   }, [inView, hasNextPage, fetchNextPage]);
 
 
-  console.log("filteredData", filteredData);
+
 
   return (
     <>
@@ -322,7 +328,9 @@ const FilterTopBox = (props) => {
               </div>
             </>
           ))}
-         <div ref={ref}></div>
+
+          { hasNextPage && <div ref={ref}></div>}
+         
       {/* <!-- Listing Show More --> */}
     </>
   );
