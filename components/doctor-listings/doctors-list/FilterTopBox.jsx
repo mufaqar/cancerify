@@ -7,16 +7,19 @@ import { useSearchParams } from "next/navigation";
 import { GET_ALL_DOCTORS } from "@/lib/Queries";
 import client from "@/lib/ApolloClient";
 import { useInfiniteQuery } from "@tanstack/react-query";
+import { useRouter } from "next/navigation";
 
 const FilterTopBox = (props) => {
   const { doctors, pageInfo } = props;
   const { ref, inView } = useInView();
   const searchParams = useSearchParams();
   const page = searchParams.get("endCursor");
+  const router = useRouter();
 
   const [filteredData, setFilteredData] = useState([]);
 
   const [mainData, setMainData] = useState([]);
+  const [mainDatas, setMainDatas] = useState([]);
 
   const { keyword, location, category } =
     useSelector((state) => state.candidateFilter) || {};
@@ -94,6 +97,8 @@ const FilterTopBox = (props) => {
 
 
 
+  // console.log(mainDatas, "mainDatas");
+
 
   return (
     <>
@@ -134,6 +139,7 @@ const FilterTopBox = (props) => {
         </button>
       </div>
       {/* End top filter bar box */}
+      <div ref={ref}></div>
 
       {filteredData?.length
         ? filteredData?.map((doctor, idx) => (
@@ -231,7 +237,7 @@ const FilterTopBox = (props) => {
         ? !filteredData?.length && (
             <div className="alert alert-warning">No doctors found</div>
           )
-        : doctorsData?.map((doctor, idx) => (
+        : mainDatas?.map((doctor, idx) => (
             <>
               <div className="candidate-block-three" key={idx}>
               <Link href={`/doctors/${doctor?.slug}`}>
@@ -328,9 +334,9 @@ const FilterTopBox = (props) => {
               </div>
             </>
           ))}
+   
+          {/* { hasNextPage && } */}
 
-          { hasNextPage && <div ref={ref}></div>}
-         
       {/* <!-- Listing Show More --> */}
     </>
   );

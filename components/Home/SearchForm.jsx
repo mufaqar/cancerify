@@ -12,7 +12,7 @@ import ListMostSearched from '@/components/Home/ListsMostSearched';
 import {GET_CANCER_SEARCH} from "@/lib/Queries";
 import { useQuery } from "@tanstack/react-query";
 import client from "@/lib/ApolloClient";
-import { useState } from "react";
+import { useState} from "react";
 
 const SearchForm4 = (props) => {
   const { mostsearcheds, setIsInputFocused, isInputFocused } = props;
@@ -49,6 +49,8 @@ const SearchForm4 = (props) => {
   // get input focused or not!
   const handleFocus = () => {
     setIsInputFocused(true);
+    window.scrollTo(0, 0);
+    document.body.scrollTop = 0;
   };
 
 
@@ -62,10 +64,21 @@ const SearchForm4 = (props) => {
 
 
 
+// const inputElement = useRef(null);
+
+// useEffect(() => {
+//   inputElement.current.onfocus = () => {
+//     window.scrollTo(0, 0);
+//     document.body.scrollTop = 0;
+//   };
+// });
+
+
+
   return (
     <div className="custom-form-wraper relative">
       <div className={`job-search-form max-w-70 rounded-50 z-100  ${isInputFocused && 'box-sahdow'}`}>
-        <form onSubmit={handleSubmit} className="relative desk-search ">
+        <form onSubmit={handleSubmit} className="relative desk-search">
           {/* Desktop search */}
           <div className="row desktop-hidden">
             <div className="form-group col-lg-9 col-md-8 col-sm-8 flex items-center">
@@ -163,6 +176,7 @@ const SearchForm4 = (props) => {
                 </svg>
               </span>
               <input
+
                 className="input-mb-search-2  "
                 type="text"
                 name="mbname"
@@ -193,6 +207,7 @@ const SearchForm4 = (props) => {
 
             }
           </div>
+    
         </div>
       )}
     </div>

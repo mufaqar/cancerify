@@ -2627,6 +2627,11 @@ react-modal-video@^2.0.1:
     core-js "^3.27.2"
     react-transition-group "^4.4.2"
 
+react-native-keyboard-spacer@^0.4.1:
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/react-native-keyboard-spacer/-/react-native-keyboard-spacer-0.4.1.tgz#46f18a320432098a25ea9fa89f5143dd254d332d"
+  integrity sha512-QPX2El4U2VfhRQm1YOTrTsOJIDjJBydpdz87jmiFOxBmKJfVn7CwiTzzipKTiLwfAFoUYQ+sB/xcnIhRZPF+SQ==
+
 react-parallax-tilt@^1.7.169:
   version "1.7.228"
   resolved "https://registry.yarnpkg.com/react-parallax-tilt/-/react-parallax-tilt-1.7.228.tgz#a8a548658546579f81a65ac67a0e0e709a9c1d13"

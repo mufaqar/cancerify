@@ -22,9 +22,6 @@ const index = (props) => {
       <MobileMenu />
       {/* End MobileMenu */}
 
-      {/* <Breadcrumb title="Blog" meta="blog" /> */}
-      {/* <!--End Page Title--> */}
-
       <div className="sidebar-page-container ">
         <div className="auto-container">
           <div className="row">
