@@ -12,7 +12,7 @@ import ListMostSearched from '@/components/Home/ListsMostSearched';
 import {GET_CANCER_SEARCH} from "@/lib/Queries";
 import { useQuery } from "@tanstack/react-query";
 import client from "@/lib/ApolloClient";
-import { useState} from "react";
+import { useEffect, useState} from "react";
 
 const SearchForm4 = (props) => {
   const { mostsearcheds, setIsInputFocused, isInputFocused } = props;
@@ -49,6 +49,8 @@ const SearchForm4 = (props) => {
   // get input focused or not!
   const handleFocus = () => {
     setIsInputFocused(true);
+    window.scrollTo(0, 0);
+    document.body.scrollTop = 0;
   };
 
 
@@ -62,14 +64,11 @@ const SearchForm4 = (props) => {
 
 
 
-// const inputElement = useRef(null);
-
-// useEffect(() => {
-//   inputElement.current.onfocus = () => {
-//     window.scrollTo(0, 0);
-//     document.body.scrollTop = 0;
-//   };
-// });
+  useEffect(() => {
+    if(isInputFocused){
+      document.body.style.overflow = 'hidden';
+    }
+  }, [isInputFocused]);
 
 
 

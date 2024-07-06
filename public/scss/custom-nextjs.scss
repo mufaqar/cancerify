@@ -697,6 +697,7 @@
 }
 .mb-input-wraper{
   width: 100%;
+  background: white;
 }
 .mb-search-form {
   position: relative;
@@ -983,16 +984,20 @@
   position: fixed;
   width: 100%;
   left: 0px;
-  padding: 0px 15px;
+  top: 5px;
+  padding: 7px 15px;
+  background-color: white;
 }
 .mobile_search_offcanvas{
   position: fixed; 
   top: 0px;
   left: 0px;
-  height: 100vh;
+  height: 94%;
   width: 100%;
   background-color: white;
-  z-index: 101;
+  z-index: 1000;
+  padding-bottom: env(safe-area-inset-bottom);
+  overflow: auto;
 }
 
 .custom-filter-block h4{
