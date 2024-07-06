@@ -67,7 +67,13 @@ const SearchForm4 = (props) => {
   useEffect(() => {
     if(isInputFocused){
       document.body.style.overflow = 'hidden';
+    }else{
+      document.body.style.overflow = 'auto';
     }
+    return () => {
+      document.body.style.overflow = 'auto';
+    }
+    
   }, [isInputFocused]);
 
 
@@ -115,7 +121,9 @@ const SearchForm4 = (props) => {
           </div>
           {/* Mobile search */}
           <div className="mobile_search mb-hidden box-sahdow">
-            <div className="mb-search-form rounded-50 ">
+            {
+              !isInputFocused &&
+              <div className="mb-search-form rounded-50 ">
               <input
                 className="input-mb-search"
                 type="text"
@@ -133,6 +141,8 @@ const SearchForm4 = (props) => {
                 {/* <span className="icon flaticon-search-1 text-white"></span> */}
               </button>
             </div>
+            }
+
           </div>
         </form>
       </div>
