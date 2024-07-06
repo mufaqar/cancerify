@@ -33,16 +33,10 @@ const SearchForm4 = (props) => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    // const location = event.target.location.value;
-    // const cancers = event.target.cancers.value;
-    const name =
-      event.target.name.value == ""
-        ? event.target.mbname.value
-        : event.target.name.value;
+    const name = event.target.name.value
 
     keywordHandler({ value: name });
-    // locationHandler({ name: location });
-    // categoryHandler({ name: cancers });
+
     router.push("/doctors");
   };
 
@@ -142,6 +136,7 @@ const SearchForm4 = (props) => {
                 // onBlur={handleBlur}
               />
               <button
+                onClick={() => router.push("/doctors")}
                 type="button"
                 className="mb-search-btn bg-search_btn theme-btn text-white"
               >
