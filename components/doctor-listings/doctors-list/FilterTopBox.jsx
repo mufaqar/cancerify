@@ -241,7 +241,7 @@ const FilterTopBox = (props) => {
         : keyword !== "" || location !== "" || category !== ""
         ? (
           isFilterLoading ? (
-            Array.from({ length: 10 }).map((_, idx) => (
+            Array.from({ length: 8 }).map((_, idx) => (
               <div key={idx} className="doctors_lists_skeleton"></div>
             ))
           ) :
@@ -259,22 +259,22 @@ const FilterTopBox = (props) => {
                     <div className="content custom-content">
                       <h4 className="name">
                         {doctor?.specializations?.nodes?.map((val) => (
-                          <h6
+                          <p
                             key={val.id}
                             className="designation mb-hidden pb-2"
                           >
                             {val?.name}
-                          </h6>
+                          </p>
                         ))}
 
                         <span>{doctor.title} </span>
                         {doctor?.specializations?.nodes?.map((val) => (
-                          <h6
+                          <p
                             key={val.id}
                             className="designation desktop-hidden"
                           >
                             {val?.name}
-                          </h6>
+                          </p>
                         ))}
                       </h4>
 

@@ -12,6 +12,7 @@ import SpecializationsBox from "../components/SpecializationsBox";
 const FilterSidebar = (props) => {
   const { cancers, locations, specialities } = props;
   const dispatch = useDispatch();
+
   const {
     category: specializations,
     keyword,
@@ -22,28 +23,32 @@ const FilterSidebar = (props) => {
     dispatch(addCategory(name));
   };
 
-  const cancerHandler = ({ name }) => {
-    dispatch(addKeyword(name));
-  };
-
-  // location handler
-  const locationHandler = ({ name }) => {
-    dispatch(addLocation(name));
-  };
-
   return (
     <div className="inner-column pd-right sticky">
-      <div className="filters-outer  mb-h-100vh">
+      <div className="filters-outer mb-h-100vh">
         <button
           type="button"
-          className="btn-close text-reset close-filters show-1023"
+          className="btn-close text-reset close-filters show-1023 z-100"
           data-bs-dismiss="offcanvas"
           aria-label="Close"
-        ></button>
+        >
+          <svg
+            width="22"
+            height="22"
+            viewBox="0 0 28 28"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M3.26732 27.4167L0.583984 24.7334L11.3173 14L0.583984 3.26671L3.26732 0.583374L14.0007 11.3167L24.734 0.583374L27.4173 3.26671L16.684 14L27.4173 24.7334L24.734 27.4167L14.0007 16.6834L3.26732 27.4167Z"
+              fill="#22218C"
+            />
+          </svg>
+        </button>
         {/* End .close filter */}
         <div className="filter-block custom-filter-block">
           <div className=" relative">
-            <h4>Search by Cancer</h4>
+            <h4>Cancer Type</h4>
           </div>
           <div className="form-group">
             <Categories cancers={cancers} />
@@ -53,7 +58,6 @@ const FilterSidebar = (props) => {
         <div className="filter-block">
           <div className=" relative custom-filter-block">
             <h4> Specializations </h4>
-
           </div>
           <div className="form-group">
             <SpecializationsBox
@@ -67,7 +71,6 @@ const FilterSidebar = (props) => {
         <div className="filter-block">
           <div className=" relative custom-filter-block">
             <h4>Location</h4>
-
           </div>
           <div className="form-group">
             <LocationBox locations={locations} />
@@ -83,29 +86,35 @@ const FilterSidebar = (props) => {
           >
             See Doctors
           </button>
-          <button
-            type="button"
-            className="btn btn-primary bg-theme-color rounded-50 w-100 custom-see-filter desktop-hidden"
-            onClick={() => {
-              dispatch(addCategory(""));
-              dispatch(addLocation(""));
-              dispatch(addKeyword(""));
-            }}
-          >
-            Clear filter
-          </button>
+          {specializations !== "" ||
+            location !== "" ||
+            (keyword !== "" && (
+              <>
+                <button
+                  type="button"
+                  className="btn btn-primary bg-theme-color rounded-50 w-100 custom-see-filter desktop-hidden"
+                  onClick={() => {
+                    dispatch(addCategory(""));
+                    dispatch(addLocation(""));
+                    dispatch(addKeyword(""));
+                  }}
+                >
+                  Reset filter
+                </button>
 
-          <button
-            type="button"
-            className="mb-hidden text-center text-theme underline clear-btn"
-            onClick={() => {
-              dispatch(addCategory(""));
-              dispatch(addLocation(""));
-              dispatch(addKeyword(""));
-            }}
-          >
-            Clear filter
-          </button>
+                <button
+                  type="button"
+                  className="mb-hidden text-center text-theme underline clear-btn"
+                  onClick={() => {
+                    dispatch(addCategory(""));
+                    dispatch(addLocation(""));
+                    dispatch(addKeyword(""));
+                  }}
+                >
+                  Reset filter
+                </button>
+              </>
+            ))}
         </div>
       </div>
       {/* Filter Outer */}

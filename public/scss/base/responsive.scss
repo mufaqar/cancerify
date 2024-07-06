@@ -1307,6 +1307,9 @@
 }
 
 @media only screen and (max-width: 767px) {
+	.ls-section .filters-outer {
+		padding: 42px 35px;
+	}
 	.banner-section-nine .job-search-form{
 		padding-left: 0px !important;
 	  }
@@ -2421,9 +2424,9 @@
 	.news_feed_wraper .news_feed_lists {
 		column-count: 1 !important;
 	}
-	.ls-section .filters-outer {
-		padding: 30px 20px 10px;
-	}
+	// .ls-section .filters-outer {
+	// 	padding: 30px 20px 10px;
+	// }
 
 	.candidate-block-three .inner-box {
 		padding: 20px 20px 20px;

@@ -861,8 +861,7 @@
 .custom-tag-list li {
 	position: relative;
 	display: block;
-	font-size: 14px;
-	line-height: 20px;
+	font-size: 18px;
 	color: var(--primary-color);
 	padding: 5px 10px;
 	font-weight: 400;
@@ -1009,11 +1008,15 @@
 
 .custom-filter-block h4{
   color: var(--primary-color) !important;
+  font-size: 28px;
+  font-weight: 600;
 }
-.designation{
-  color: #656565;
-  font-weight: 500 !important;
-  padding-top: 5px;
+.designation {
+	color: #656565;
+	font-weight: 600 !important;
+	padding-top: 5px;
+	font-size: 20px;
+	line-height: 24px;
 }
 .toggle-filters{
   width: 100%;
@@ -1089,6 +1092,21 @@
   font-size: 15px !important;
 }
 
+.btn-close {
+	--bs-btn-close-color: transparent !important;
+	--bs-btn-close-bg: transparent !important;
+	--bs-btn-close-opacity: 1;
+	--bs-btn-close-hover-opacity: 1;
+	--bs-btn-close-focus-shadow: none !important;
+	--bs-btn-close-focus-opacity: 1;
+	--bs-btn-close-disabled-opacity: 1;
+	--bs-btn-close-white-filter: invert(1) grayscale(100%) brightness(200%);
+}
+
+.candidate-block-three .name{
+  display: block;
+}
+
 // Responsive css
 @media only screen and (min-width: 992px) {
   .col-w-20 {
@@ -1096,6 +1114,7 @@
   }
 }
 @media only screen and (max-width: 992px) {
+  
   .custom-footer{
     flex-direction: column-reverse !important;
   }
@@ -1105,9 +1124,9 @@
   .box-height{
     height: 150px;
   }
-  .mb-h-100vh{
-    height: 100vh;
-  }
+  // .mb-h-100vh{
+  //   height: 100vh;
+  // }
   .custom-row {
     max-width: 100%;
   }
@@ -1150,6 +1169,19 @@
   }
   .doc-custom-lists ul {
     padding-left: 10px !important;
+  }
+  .sticky{
+    position: none !important;
+  }
+  .ls-section .filters-outer {
+    border-radius: 0px;
+    border: 0px;
+  }
+  .candidate-block-three .name{
+    font-size: 20px;
+  }
+  .designation{
+    font-size: 14px;
   }
 }
 @media only screen and (max-width: 1023px) {
