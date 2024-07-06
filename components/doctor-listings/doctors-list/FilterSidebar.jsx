@@ -23,6 +23,8 @@ const FilterSidebar = (props) => {
     dispatch(addCategory(name));
   };
 
+
+
   return (
     <div className="inner-column pd-right sticky">
       <div className="filters-outer mb-h-100vh">
@@ -86,35 +88,35 @@ const FilterSidebar = (props) => {
           >
             See Doctors
           </button>
-          {specializations !== "" ||
-            location !== "" ||
-            (keyword !== "" && (
-              <>
-                <button
-                  type="button"
-                  className="btn btn-primary bg-theme-color rounded-50 w-100 custom-see-filter desktop-hidden"
-                  onClick={() => {
-                    dispatch(addCategory(""));
-                    dispatch(addLocation(""));
-                    dispatch(addKeyword(""));
-                  }}
-                >
-                  Reset filter
-                </button>
+          {specializations === "" && location === "" && keyword === "" ? (
+            <></>
+          ) : (
+            <>
+              <button
+                type="button"
+                className="btn btn-primary bg-theme-color rounded-50 w-100 custom-see-filter desktop-hidden"
+                onClick={() => {
+                  dispatch(addCategory(""));
+                  dispatch(addLocation(""));
+                  dispatch(addKeyword(""));
+                }}
+              >
+                Reset filter
+              </button>
 
-                <button
-                  type="button"
-                  className="mb-hidden text-center text-theme underline clear-btn"
-                  onClick={() => {
-                    dispatch(addCategory(""));
-                    dispatch(addLocation(""));
-                    dispatch(addKeyword(""));
-                  }}
-                >
-                  Reset filter
-                </button>
-              </>
-            ))}
+              <button
+                type="button"
+                className="mb-hidden text-center text-theme underline clear-btn"
+                onClick={() => {
+                  dispatch(addCategory(""));
+                  dispatch(addLocation(""));
+                  dispatch(addKeyword(""));
+                }}
+              >
+                Reset filter
+              </button>
+            </>
+          )}
         </div>
       </div>
       {/* Filter Outer */}

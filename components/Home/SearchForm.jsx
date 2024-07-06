@@ -56,14 +56,16 @@ const SearchForm4 = (props) => {
 
   const Filteredcancers = data?.cancers?.nodes || [];
 
-  const sortedItems = Filteredcancers?.sort((a, b) => {
-    if (typeof a === 'string' && typeof b === 'string') {
-      if (a.startsWith(`${cancerSearch}`) && !b.startsWith(`${cancerSearch}`)) return -1;
-      if (!a.startsWith(`${cancerSearch}`) && b.startsWith(`${cancerSearch}`)) return 1;
-      return b.localeCompare(a);
-    }
-    return 0;
-  });
+
+
+  const filteredItems = Filteredcancers
+  .filter(item => item.title.toLowerCase().includes(cancerSearch.toLowerCase()))
+  .sort((a, b) => `${a}`.toLowerCase().localeCompare(`${b}`.toLowerCase()));
+
+const sortedItems = [
+  ...filteredItems.filter(item => item.title.toLowerCase().startsWith(cancerSearch.toLowerCase())),
+  ...filteredItems.filter(item => !item.title.toLowerCase().startsWith(cancerSearch.toLowerCase())),
+];
 
 
   useEffect(() => {
@@ -153,7 +155,7 @@ const SearchForm4 = (props) => {
         isInputFocused && (
           <div className="most-searched ">
             {
-              cancerSearch !== '' ?  <ListMostSearched cancerSearch={cancerSearch} mostsearcheds={sortedItems} /> :
+              cancerSearch !== '' ?  <ListMostSearched cancerSearch={cancerSearch} mostsearcheds={sortedItems.sort((a, b) => `${a}`.localeCompare(b))} /> :
               (
                 <>
                 
@@ -206,7 +208,7 @@ const SearchForm4 = (props) => {
           </form>
           <div className="mb-most-searched text-left">
           {
-              cancerSearch !== '' ?  <ListMostSearched cancerSearch={cancerSearch} mostsearcheds={Filteredcancers} /> :
+              cancerSearch !== '' ?  <ListMostSearched cancerSearch={cancerSearch} mostsearcheds={sortedItems} /> :
               (
                 <>
                 
