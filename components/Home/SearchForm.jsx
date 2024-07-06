@@ -62,6 +62,14 @@ const SearchForm4 = (props) => {
 
   const Filteredcancers = data?.cancers?.nodes || [];
 
+  const sortedItems = Filteredcancers?.sort((a, b) => {
+    if (typeof a === 'string' && typeof b === 'string') {
+      if (a.startsWith(`${cancerSearch}`) && !b.startsWith(`${cancerSearch}`)) return -1;
+      if (!a.startsWith(`${cancerSearch}`) && b.startsWith(`${cancerSearch}`)) return 1;
+      return b.localeCompare(a);
+    }
+    return 0;
+  });
 
 
   useEffect(() => {
@@ -150,7 +158,7 @@ const SearchForm4 = (props) => {
         isInputFocused && (
           <div className="most-searched ">
             {
-              cancerSearch !== '' ?  <ListMostSearched cancerSearch={cancerSearch} mostsearcheds={Filteredcancers} /> :
+              cancerSearch !== '' ?  <ListMostSearched cancerSearch={cancerSearch} mostsearcheds={sortedItems} /> :
               (
                 <>
                 

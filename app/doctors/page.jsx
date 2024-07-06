@@ -1,5 +1,5 @@
 import client from "@/lib/ApolloClient";
-import { GET_ALL_DOCTORS,GET_ALL_CANCERS, GET_LOCATIONS, GET_ALL_SPECIALIZATIONS } from "@/lib/Queries";
+import { GET_ALL_DOCTORS, GET_ALL_CANCERS, GET_LOCATIONS, GET_ALL_SPECIALIZATIONS } from "@/lib/Queries";
 import DoctorLists from "@/components/doctor-listings/doctors-list";
 import dynamic from "next/dynamic";
 

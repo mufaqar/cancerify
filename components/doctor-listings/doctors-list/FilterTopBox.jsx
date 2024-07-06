@@ -251,7 +251,7 @@ const FilterTopBox = (props) => {
         )
 
 
-      : doctorsData?.map((doctor, idx) => (
+      : doctorsData?.sort((a, b) => `${a?.doctorsoptions?.lastName}`?.localeCompare(b?.doctorsoptions?.lastName)).map((doctor, idx) => (
             <>
               <div className="candidate-block-three" key={idx}>
                 <Link href={`/doctors/${doctor?.slug}`}>
