@@ -49,8 +49,6 @@ const SearchForm4 = (props) => {
   // get input focused or not!
   const handleFocus = () => {
     setIsInputFocused(true);
-    window.scrollTo(0, 0);
-    document.body.scrollTop = 0;
   };
 
 
