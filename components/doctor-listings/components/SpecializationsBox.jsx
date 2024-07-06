@@ -10,11 +10,11 @@ const SpecializationsBox = (props) => {
           <li
             key={index}
             className={`rounded-50  ${
-              specializations === item?.name
+              specializations === item?.databaseId
                 ? "text-theme-color border-theme-color bg-theme-color text-white"
                 : "border"
             } `}
-            onClick={() => SpecializationsHandler({ name: item?.name })}
+            onClick={() => SpecializationsHandler({ name: item?.databaseId })}
           >
             {item?.name.replace('Oncologists', "")}
           </li>

@@ -1,25 +1,25 @@
 "use client";
 import { useInView } from "react-intersection-observer";
 import Link from "next/link";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { GET_ALL_DOCTORS } from "@/lib/Queries";
 import client from "@/lib/ApolloClient";
 import { useInfiniteQuery } from "@tanstack/react-query";
-import { useRouter } from "next/navigation";
+
 
 const FilterTopBox = (props) => {
-  const { doctors, pageInfo } = props;
+  const { doctors} = props;
   const { ref, inView } = useInView();
   const searchParams = useSearchParams();
   const page = searchParams.get("endCursor");
-  const router = useRouter();
 
   const [filteredData, setFilteredData] = useState([]);
 
   const [mainData, setMainData] = useState([]);
-  const [mainDatas, setMainDatas] = useState([]);
+
+  const [isFilterLoading, setIsFilterLoading] = useState(false);
 
   const { keyword, location, category } =
     useSelector((state) => state.candidateFilter) || {};
@@ -40,64 +40,57 @@ const FilterTopBox = (props) => {
   // filter
   const doctorsData = mainData?.length ? mainData : doctors;
 
-
-
   useEffect(() => {
     const allDoctors = data?.pages?.map((page) => page?.nodes).flat() || [];
     setMainData([...allDoctors]);
   }, [data?.pages]);
 
+  // Apply filtering
   useEffect(() => {
-    if(keyword === "" && location === "" && category === ""){
+
+    const parameterLogicLocation = keyword === "" ? "?" : "&";
+    const parameterLogicSpecialization =
+      keyword === "" && location === "" ? "?" : "&";
+
+    const cancerQuery =
+      keyword !== "" ? `?cancer_q=${keyword.replace(/(<([^>]+)>)/gi, "")}` : "";
+    const locationQuery =
+      location !== ""
+        ? `${parameterLogicLocation}location_ids=%5B${location}%5D`
+        : "";
+    const specialityQuery =
+      category !== ""
+        ? `${parameterLogicSpecialization}specialization_ids=%5B${category}%5D`
+        : "";
+
+    const handleFilter = async () => {
+      const SearchfilteredData = await fetch(
+        `https://vni.fe7.mytemp.website/wp-json/doctors/v1/get_drs${cancerQuery}${locationQuery}${specialityQuery}`
+      );
+
+      const data = await SearchfilteredData.json();
+      const doctors = data?.data?.doctors?.nodes || [];
+      setFilteredData(doctors);
+      setIsFilterLoading(false);
+    };
+
+    if (keyword !== "" || location !== "" || category !== "") {
+      setIsFilterLoading(true);
+      handleFilter();
+    } else {
       setFilteredData([]);
+      setIsFilterLoading(false);
     }
   }, [keyword, location, category]);
-
-  useEffect(() => {
-    if (keyword !== "" || location !== "") {
-      const SearchfilteredData = doctorsData?.filter((doc) => {
-        return (
-          // cancerTreated filter
-          doc?.doctorsoptions?.cancerTreated?.some((val) =>
-            val?.title
-              ?.replace(/(<([^>]+)>)/gi, "")
-              .toLowerCase()
-              .includes(keyword.replace(/(<([^>]+)>)/gi, "").toLowerCase())
-          ) &&
-          doc?.doctorsoptions?.location?.some((val) =>
-            val?.title?.toLowerCase().includes(location.toLowerCase())
-          )
-        );
-      });
-
-      setFilteredData([...SearchfilteredData]);
-      // console.log(keyword, "keyword");
-    } 
-  }, [keyword, location]);
-
-
-  useEffect(() => {
-    if (category !== "") {
-      const SearchfilteredData = doctorsData?.filter((doc) => {
-        return doc?.specializations?.nodes?.some((val) =>
-          val?.name?.toLowerCase().includes(category.toLowerCase())
-        );
-      });
-      setFilteredData([...SearchfilteredData]);
-    } 
-  }, [category]);
 
   // infinite scroll
   useEffect(() => {
     if (inView && hasNextPage) {
       fetchNextPage();
-      // router.push(`/doctors?endCursor=${pageInfo.endCursor}`, { scroll: false });
     }
   }, [inView, hasNextPage, fetchNextPage]);
 
 
-
-  // console.log(mainDatas, "mainDatas");
 
 
   return (
@@ -139,107 +132,12 @@ const FilterTopBox = (props) => {
         </button>
       </div>
       {/* End top filter bar box */}
-      <div ref={ref}></div>
 
-      {filteredData?.length
-        ? filteredData?.map((doctor, idx) => (
+      {
+        
+      filteredData?.length ? 
+        filteredData?.map((doctor, idx) => (
             <div className="candidate-block-three" key={idx}>
-              <Link href={`/doctors/${doctor?.slug}`}>
-              <div className="inner-box">
-                <div className="content custom-content">
-                  <h4 className="name">
-                    {doctor?.specializations?.nodes?.map((val) => (
-                      <h6 key={val.id} className="designation mb-hidden pb-2">
-                        {val?.name}
-                      </h6>
-                    ))}
-                    <span>{doctor.title} </span>
-                    {doctor?.specializations?.nodes?.map((val) => (
-                      <h6 key={val.id} className="designation desktop-hidden">
-                        {val?.name}
-                      </h6>
-                    ))}
-                  </h4>
-                  {/* For mobile   */}
-                  <div className="mb-hidden  pb-1">
-                    {doctor?.doctorsoptions?.location?.map((val) => (
-                      <div className="flex items-center">
-                        {/* <span className="icon flaticon-map-locator"></span>{" "} */}
-                        <p key={val.id} className="line-clamp-1 ">
-                          {val?.title}
-                        </p>
-                      </div>
-                    ))}
-                  </div>
-                  {/* End candidate-info for desktop */}
-                  <ul className="candidate-info desktop-hidden pt-3">
-                    <li className=" ">
-                      <span className="icon flaticon-map-locator"></span>{" "}
-                      <p className="line-clamp-1">
-                        {doctor?.doctorsoptions?.address}
-                      </p>
-                    </li>
-                  </ul>
-                  <div className=" mb-hidden mb-lists">
-                    {doctor?.doctorsoptions?.cancerTreated && (
-                      <ul className="post-tags mb-hidden">
-                        {doctor?.doctorsoptions?.cancerTreated?.map(
-                          (val, i) => (
-                            <li
-                              className={`${
-                                keyword ===
-                                val?.title?.replace(/(<([^>]+)>)/gi, "")
-                                  ? "bg-theme-color text-white"
-                                  : ""
-                              }`}
-                              key={i}
-                            >
-                              <span>
-                                {val?.title
-                                  ?.replace(/(<([^>]+)>)/gi, "")
-                                  .replace("Cancer", "")}
-                              </span>
-                            </li>
-                          )
-                        )}
-                      </ul>
-                    )}
-                  </div>
-                </div>
-                {/* End content */}
-
-                <div className="btn-box custom-btn-box">
-                  {doctor?.doctorsoptions?.cancerTreated && (
-                    <ul className="post-tags">
-                      {doctor?.doctorsoptions?.cancerTreated?.map((val, i) => (
-                        <li
-                          className={`${
-                            keyword === val?.title?.replace(/(<([^>]+)>)/gi, "")
-                              ? "bg-theme-color text-white"
-                              : ""
-                          }`}
-                          key={i}
-                        >
-                          <span>
-                            {val?.title?.replace(/(<([^>]+)>)/gi, "")}
-                          </span>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                </div>
-                {/* End btn-box */}
-              </div>
-              </Link>
-            </div>
-          ))
-        : keyword !== "" || location !== "" || category !== ""
-        ? !filteredData?.length && (
-            <div className="alert alert-warning">No doctors found</div>
-          )
-        : mainDatas?.map((doctor, idx) => (
-            <>
-              <div className="candidate-block-three" key={idx}>
               <Link href={`/doctors/${doctor?.slug}`}>
                 <div className="inner-box box-height">
                   <div className="content custom-content">
@@ -249,7 +147,6 @@ const FilterTopBox = (props) => {
                           {val?.name}
                         </h6>
                       ))}
-
                       <span>{doctor.title} </span>
                       {doctor?.specializations?.nodes?.map((val) => (
                         <h6 key={val.id} className="designation desktop-hidden">
@@ -257,18 +154,18 @@ const FilterTopBox = (props) => {
                         </h6>
                       ))}
                     </h4>
-
-                    <div className="mb-hidden flex items-center pb-1">
+                    {/* For mobile   */}
+                    <div className="mb-hidden  pb-1">
                       {doctor?.doctorsoptions?.location?.map((val) => (
                         <div className="flex items-center">
                           {/* <span className="icon flaticon-map-locator"></span>{" "} */}
-                          <p key={val.id} className="line-clamp-1">
+                          <p key={val.id} className="line-clamp-1 ">
                             {val?.title}
                           </p>
                         </div>
                       ))}
                     </div>
-                    {/* End candidate-info */}
+                    {/* End candidate-info for desktop */}
                     <ul className="candidate-info desktop-hidden pt-3">
                       <li className=" ">
                         <span className="icon flaticon-map-locator"></span>{" "}
@@ -278,6 +175,157 @@ const FilterTopBox = (props) => {
                       </li>
                     </ul>
                     <div className=" mb-hidden mb-lists">
+                    {doctor?.doctorsoptions?.cancerTreated
+                      ? doctor?.doctorsoptions?.cancerTreated
+                      : doctor?.doctorsoptions?.cancer_treated && (
+                          <ul className="post-tags">
+                            {doctor?.doctorsoptions?.cancerTreated
+                              ? doctor?.doctorsoptions?.cancerTreated
+                              : doctor?.doctorsoptions?.cancer_treated.map(
+                                  (val, i) => (
+                                    <li
+                                      className={`${
+                                        keyword ===
+                                        val?.title?.replaceAll('&lt;', "<").replace(/(<([^>]+)>)/gi, "")
+                                          ? "bg-theme-color text-white"
+                                          : ""
+                                      }`}
+                                      key={i}
+                                    >
+                                      <span>
+                             
+                                        {val?.title?.replaceAll('&lt;', "<").replace(/(<([^>]+)>)/gi, "").replace("Cancer", "")}
+                                  
+                                      </span>
+                                    </li>
+                                  )
+                                )}
+                          </ul>
+                        )}
+                    </div>
+                  </div>
+                  {/* End content */}
+
+                  <div className="btn-box custom-btn-box">
+                    {doctor?.doctorsoptions?.cancerTreated
+                      ? doctor?.doctorsoptions?.cancerTreated
+                      : doctor?.doctorsoptions?.cancer_treated && (
+                          <ul className="post-tags">
+                            {doctor?.doctorsoptions?.cancerTreated
+                              ? doctor?.doctorsoptions?.cancerTreated
+                              : doctor?.doctorsoptions?.cancer_treated.map(
+                                  (val, i) => (
+                                    <li
+                                      className={`${
+                                        keyword ===
+                                        val?.title?.replaceAll('&lt;', "<").replace(/(<([^>]+)>)/gi, "")
+                                          ? "bg-theme-color text-white"
+                                          : ""
+                                      }`}
+                                      key={i}
+                                    >
+                                      <span>
+                                        {val?.title?.replaceAll('&lt;', "<").replace(/(<([^>]+)>)/gi, "")}
+                                      </span>
+                                    </li>
+                                  )
+                                )}
+                          </ul>
+                        )}
+                  </div>
+                  {/* End btn-box */}
+                </div>
+              </Link>
+            </div>
+          ))
+        : keyword !== "" || location !== "" || category !== ""
+        ? (
+          isFilterLoading ? (
+            Array.from({ length: 10 }).map((_, idx) => (
+              <div key={idx} className="doctors_lists_skeleton"></div>
+            ))
+          ) :
+          !filteredData?.length && (
+            <div className="alert alert-warning">No doctors found</div>
+          )
+        )
+
+
+      : doctorsData?.map((doctor, idx) => (
+            <>
+              <div className="candidate-block-three" key={idx}>
+                <Link href={`/doctors/${doctor?.slug}`}>
+                  <div className="inner-box box-height">
+                    <div className="content custom-content">
+                      <h4 className="name">
+                        {doctor?.specializations?.nodes?.map((val) => (
+                          <h6
+                            key={val.id}
+                            className="designation mb-hidden pb-2"
+                          >
+                            {val?.name}
+                          </h6>
+                        ))}
+
+                        <span>{doctor.title} </span>
+                        {doctor?.specializations?.nodes?.map((val) => (
+                          <h6
+                            key={val.id}
+                            className="designation desktop-hidden"
+                          >
+                            {val?.name}
+                          </h6>
+                        ))}
+                      </h4>
+
+                      <div className="mb-hidden flex items-center pb-1">
+                        {doctor?.doctorsoptions?.location?.map((val) => (
+                          <div className="flex items-center">
+                            {/* <span className="icon flaticon-map-locator"></span>{" "} */}
+                            <p key={val.id} className="line-clamp-1">
+                              {val?.title}
+                            </p>
+                          </div>
+                        ))}
+                      </div>
+                      {/* End candidate-info */}
+                      <ul className="candidate-info desktop-hidden pt-3">
+                        <li className=" ">
+                          <span className="icon flaticon-map-locator"></span>{" "}
+                          <p className="line-clamp-1">
+                            {doctor?.doctorsoptions?.address}
+                          </p>
+                        </li>
+                      </ul>
+                      <div className=" mb-hidden mb-lists">
+                        {doctor?.doctorsoptions?.cancerTreated && (
+                          <ul className="post-tags">
+                            {doctor?.doctorsoptions?.cancerTreated?.map(
+                              (val, i) => (
+                                <li
+                                  className={`${
+                                    keyword ===
+                                    val?.title?.replace(/(<([^>]+)>)/gi, "")
+                                      ? "bg-theme-color text-white"
+                                      : ""
+                                  }`}
+                                  key={i}
+                                >
+                                  <span>
+                                    {val?.title
+                                      ?.replace(/(<([^>]+)>)/gi, "")
+                                      .replace("Cancer", "")}
+                                  </span>
+                                </li>
+                              )
+                            )}
+                          </ul>
+                        )}
+                      </div>
+                    </div>
+                    {/* End content */}
+
+                    <div className="btn-box custom-btn-box">
                       {doctor?.doctorsoptions?.cancerTreated && (
                         <ul className="post-tags">
                           {doctor?.doctorsoptions?.cancerTreated?.map(
@@ -292,9 +340,7 @@ const FilterTopBox = (props) => {
                                 key={i}
                               >
                                 <span>
-                                  {val?.title
-                                    ?.replace(/(<([^>]+)>)/gi, "")
-                                    .replace("Cancer", "")}
+                                  {val?.title?.replace(/(<([^>]+)>)/gi, "")}
                                 </span>
                               </li>
                             )
@@ -302,41 +348,15 @@ const FilterTopBox = (props) => {
                         </ul>
                       )}
                     </div>
+                    {/* End btn-box */}
                   </div>
-                  {/* End content */}
-
-                  <div className="btn-box custom-btn-box">
-                    {doctor?.doctorsoptions?.cancerTreated && (
-                      <ul className="post-tags">
-                        {doctor?.doctorsoptions?.cancerTreated?.map(
-                          (val, i) => (
-                            <li
-                              className={`${
-                                keyword ===
-                                val?.title?.replace(/(<([^>]+)>)/gi, "")
-                                  ? "bg-theme-color text-white"
-                                  : ""
-                              }`}
-                              key={i}
-                            >
-                              <span>
-                                {val?.title?.replace(/(<([^>]+)>)/gi, "")}
-                              </span>
-                            </li>
-                          )
-                        )}
-                      </ul>
-                    )}
-                  </div>
-                  {/* End btn-box */}
-                </div>
                 </Link>
               </div>
             </>
           ))}
-   
-          {/* { hasNextPage && } */}
 
+      {/* { hasNextPage && } */}
+      <div ref={ref}></div>
       {/* <!-- Listing Show More --> */}
     </>
   );

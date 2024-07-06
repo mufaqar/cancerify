@@ -73,7 +73,7 @@ const SearchForm4 = (props) => {
     return () => {
       document.body.style.overflow = 'auto';
     }
-    
+
   }, [isInputFocused]);
 
 
@@ -127,7 +127,7 @@ const SearchForm4 = (props) => {
               <input
                 className="input-mb-search"
                 type="text"
-                name="mbname"
+                name="name"
                 placeholder="Search by cancer type"
                 onFocus={handleFocus}
                 onChange={(e) => setCancerSearch(e.target.value)}
@@ -166,7 +166,7 @@ const SearchForm4 = (props) => {
       ) : (
         isInputFocused &&
         <div className=" mobile_search_offcanvas px-3 py-3">
-          <div className="mb-sidebar-search-bar pb-2 flex items-center justify-between">
+          <form onSubmit={handleSubmit} className="mb-sidebar-search-bar pb-2 flex items-center justify-between">
             <div className="mb-input-wraper flex items-center">
               <span onClick={() => setIsInputFocused(false)} className="line-height-33">
                 <svg
@@ -186,7 +186,7 @@ const SearchForm4 = (props) => {
 
                 className="input-mb-search-2  "
                 type="text"
-                name="mbname"
+                name="name"
                 placeholder="Search by cancer type"
                 onFocus={handleFocus}
                 onChange={(e) => setCancerSearch(e.target.value)}
@@ -194,13 +194,13 @@ const SearchForm4 = (props) => {
               />
             </div>
             <button
-              type="button"
+              type="submit"
               className="mb-search-btn-2 theme-btn text-white"
             >
               Find Doctor
               {/* <span className="icon flaticon-search-1 text-white"></span> */}
             </button>
-          </div>
+          </form>
           <div className="mb-most-searched text-left">
           {
               cancerSearch !== '' ?  <ListMostSearched cancerSearch={cancerSearch} mostsearcheds={Filteredcancers} /> :

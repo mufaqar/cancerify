@@ -26,8 +26,8 @@ const LocationBox = (props) => {
         locations.map((item, index) => (
           <li
             key={index}
-            className={`rounded-50  ${location === item?.title ? 'text-theme-color border-theme-color bg-theme-color text-white' : 'border'} `}
-            onClick={() => locationHandler({ name: item?.title })}
+            className={`rounded-50  ${location === item?.databaseId ? 'text-theme-color border-theme-color bg-theme-color text-white' : 'border'} `}
+            onClick={() => locationHandler({ name: item?.databaseId })}
           >
             {item?.title}
 
