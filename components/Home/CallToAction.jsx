@@ -1,6 +1,7 @@
 import Link from "next/link";
 
-const CallToAction = () => {
+const CallToAction = (props) => {
+  const { newsFeedSection } = props;
   return (
     <section
       className="call-to-action-two bg-theme-color"
@@ -8,16 +9,16 @@ const CallToAction = () => {
     >
       <div className="auto-container" data-aos="fade-up">
         <div className="sec-title light text-center">
-          <h2>A news feed like no other!</h2>
+          <h2>{newsFeedSection?.heading ? newsFeedSection?.heading : 'A news feed like no other!'}</h2>
           <div className="text">
-            Check out the latest science back cancer news.
+            {newsFeedSection?.subHeading ? newsFeedSection?.subHeading : 'Check out the latest science back cancer news.'}
           </div>
         </div>
         {/* End sec-title */}
 
         <div className="btn-box">
-          <Link href="/news" className="theme-btn btn-style-three">
-            Watch Now
+          <Link href={newsFeedSection?.button?.url ? newsFeedSection?.button?.url :'/news'} className="theme-btn btn-style-three">
+            {newsFeedSection?.button?.label ? newsFeedSection?.button?.label:  'Watch Now'}
           </Link>
         </div>
       </div>

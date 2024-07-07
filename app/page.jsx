@@ -1,7 +1,7 @@
 import Wrapper from "@/layout/Wrapper";
 import Home from "@/components/Home";
 import client from "@/lib/ApolloClient";
-import { GET_ALL_CANCERS,GET_TESTIMONIALS, GET_ALL_POSTS, GET_PAGE_SEO,GET_PAGE,GET_MOST_SEARCHED } from "@/lib/Queries";
+import { GET_ALL_CANCERS,GET_TESTIMONIALS, GET_ALL_POSTS, GET_PAGE_SEO,GET_HOME_PAGE,GET_MOST_SEARCHED } from "@/lib/Queries";
 
 export async function generateMetadata() {
   const res = await client.request(
@@ -24,8 +24,6 @@ export async function generateMetadata() {
 }
 
 export default async function page() {
-
-
   const res = await client.request(
     GET_ALL_CANCERS
   )
@@ -41,17 +39,19 @@ export default async function page() {
   const posts = resPos?.posts?.nodes || [];
 
   // Get page
-  const resPage = await client.request(GET_PAGE, { id: 'home' });
+  const resPage = await client.request(GET_HOME_PAGE, { id: 'home' });
   const page = resPage?.page || [];
 
   const resMostSearch = await client.request(GET_MOST_SEARCHED);
   const mostsearcheds = resMostSearch?.mostsearcheds?.nodes || [];
 
+  
+
 
   return (
     <Wrapper>
       <Home 
-      cancers={cancers}
+        cancers={cancers}
         testimonials={testimonials} 
         posts={posts}
         page={page}

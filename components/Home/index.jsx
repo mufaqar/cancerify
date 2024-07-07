@@ -11,6 +11,10 @@ import BlogSection from "./BlogSection";
 const index = (props) => {
   const { testimonials, posts, page, cancers,mostsearcheds } = props;
 
+  const {hero, cancersHeading,newsHeading, newsFeedSection, testimonialHeading} = page?.homeOptions || {};
+
+
+
   return (
     <>
       <Header />
@@ -19,13 +23,13 @@ const index = (props) => {
       <MobileMenu />
       {/* End MobileMenu */}
 
-      <Hero mostsearcheds={mostsearcheds} />
+      <Hero mostsearcheds={mostsearcheds} hero={hero} />
       {/* <!-- End Hero Section --> */}
 
       <section className="job-categories">
         <div className="auto-container">
           <div className="sec-title text-center">
-            <h2 className="text_theme">Learn More About Cancer</h2>
+            <h2 className="text_theme">{cancersHeading ? cancersHeading : 'Learn More About Cancer'}</h2>
           </div>
           {/* custom-row */}
           <div className=" custom-row flex flex-wrap justify-center ">
@@ -39,14 +43,14 @@ const index = (props) => {
       <OurMission page={page} />
       {/* <!-- End Steps Section --> */}
 
-      <CallToAction />
+      <CallToAction newsFeedSection={newsFeedSection} />
       {/* <!-- End Call To Action --> */}
 
       <section className="testimonial-section  style-two alternate bg-white">
         <div className="auto-container">
           {/* <!-- Sec Title --> */}
           <div className="sec-title dark text-center">
-            <h2>What Our Community Is Saying</h2>
+            <h2>{testimonialHeading ? testimonialHeading : 'What Our Community Is Saying'}</h2>
           </div>
 
           <div className="carousel-outer" data-aos="fade-up">
@@ -64,10 +68,7 @@ const index = (props) => {
       <section className="news-section">
         <div className="auto-container">
           <div className="sec-title text-center">
-            <h2>Recent News Articles</h2>
-            {/* <div className="text">
-              Fresh job related news content posted each day.
-            </div> */}
+            <h2>{newsHeading ? newsHeading : 'Recent News Articles'}</h2>
           </div>
           {/* End ."sec-title */}
           <div className="row" data-aos="fade-up">

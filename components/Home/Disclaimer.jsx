@@ -1,21 +1,45 @@
 'use client'
 import Link from "next/link";
-const socialContent = [
-  { id: 1, icon: "fa-facebook-f", link: "https://www.facebook.com/" },
-  { id: 2, icon: "fa-twitter", link: "https://www.twitter.com/" },
-  { id: 3, icon: "fa-instagram", link: "https://www.instagram.com/" },
-  { id: 4, icon: "fa-linkedin-in", link: "https://www.linkedin.com/" },
-];
+import { useEffect, useState } from "react";
+import client from "@/lib/ApolloClient";
+import { GET_FOOTER } from "@/lib/Queries";
+
+
 
 const Disclaimer = () => {
+  const [footerData, setFooterData] = useState({});
+  
+  // fetching data from the API
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await client.request(GET_FOOTER, {
+        id: "home",
+      });
+      setFooterData(res?.page?.homeOptions || {});
+    };
+    fetchData();
+  }, []);
+
+  const { footer, socials } = footerData;
+
+  const socialContent = [
+    { id: 1, icon: "fa-facebook-f", link: socials?.facebook ? socials?.facebook : "https://www.facebook.com/" },
+    { id: 2, icon: "fa-twitter", link: socials?.twitter ? socials?.twitter :"https://www.twitter.com/" },
+    { id: 3, icon: "fa-instagram", link: socials?.instagram ? socials?.instagram :"https://www.instagram.com/" },
+    { id: 4, icon: "fa-linkedin-in", link: socials?.linkedin ? socials?.linkedin :"https://www.linkedin.com/" },
+  ];
+
+  // console.log("footerData", Object.values(socials));
   return (
     <footer className="call-to-action-three style-two">
       <div className="auto-container custom-footer">
         <div className="outer-box">
           <div className="sec-title light">
-            <h2>Disclaimer</h2>
+            <h2> {footer?.heading ? footer?.heading  :'Disclaimer'}</h2>
             <div className="text">
-            All information on this website is sourced from publicly available records and reputable sources. This listing does not imply endorsement by the listed professionals. We welcome corrections or updates to ensure the accuracy of the information.
+              {
+                footer?.text ? footer?.text : 'All information on this website is sourced from publicly available records and reputable sources. This listing does not imply endorsement by the listed professionals. We welcome corrections or updates to ensure the accuracy of the information.'
+              }
             </div>
           </div>
           {/* End sec-title */}

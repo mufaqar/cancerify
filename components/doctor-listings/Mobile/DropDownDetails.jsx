@@ -12,7 +12,12 @@ const DropDownDetails = (props) => {
     clinicalExperience,
     researchpublications,
     specializations,
-    insurances
+    insurances,
+    insuranceHeading,
+    specializationsHeading,
+    clinicalExperienceHeading,
+    educationHeading,
+    awardsHeading,
   } = props;
 
 
@@ -28,19 +33,19 @@ const DropDownDetails = (props) => {
 
   const alldropdown = [
     {
-      type: "Insurances",
+      type: insuranceHeading,
       data: insurances,
     },
     {
-      type: "Specializations",
+      type: specializationsHeading,
       data: specializations,
     },
     {
-      type: "Educations",
+      type: educationHeading,
       data: educations,
     },
     {
-      type: "Awards",
+      type: awardsHeading,
       data: awards,
     },
     {
@@ -48,7 +53,7 @@ const DropDownDetails = (props) => {
       data: professionalMemberships,
     },
     {
-      type: "Clinical Experience",
+      type: clinicalExperienceHeading,
       data: clinicalExperience,
     },
     {
@@ -100,7 +105,7 @@ const DropDownDetails = (props) => {
               </button>
               {insurancesOpen && (
                 <div className="px-3 py-2">
-                  <div className="doc-custom-lists pb-2">{parseHtml(insurances || '')}</div>
+                  <div className="doc-custom-lists insurance_list pb-2">{parseHtml(insurances || '')}</div>
                   
                 </div>
               )}
