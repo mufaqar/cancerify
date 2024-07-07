@@ -49,16 +49,13 @@ const TypesOfCancers = (props) => {
                         width={50}
                         height={50}
                         src={item?.cancersOptions?.cancerIcon?.sourceUrl}
-                        alt="item brand"
+                        alt={item?.title}
                       />
                     </div>
                   )}
     
-                  {/* <h4 className="cancer_text"><strong >{item?.title}</strong> <span className="pl-1">Cancer</span></h4> */}
-                  <h4
-                    className="cancer_text"
-                    dangerouslySetInnerHTML={{ __html: `${item?.title}` }}
-                  />
+                  <h4 className="cancer_text"><strong >{item?.title?.replace('Cancer', '')}</strong> Cancer</h4>
+
                 </Link>
               </div>
             ))
