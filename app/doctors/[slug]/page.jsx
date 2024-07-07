@@ -1,7 +1,7 @@
 import dynamic from "next/dynamic";
 import MobileMenu from "@/components/header/MobileMenu";
-import Social from "@/components/candidates-single-pages/social/Social";
-import JobSkills from "@/components/candidates-single-pages/shared-components/JobSkills";
+// import Social from "@/components/candidates-single-pages/social/Social";
+// import JobSkills from "@/components/candidates-single-pages/shared-components/JobSkills";
 import client from "@/lib/ApolloClient";
 import { GET_DOCTOR, GET_DOCTORS_SEO } from "@/lib/Queries";
 import Link from "next/link";
@@ -34,38 +34,12 @@ const Page = async ({ params: { slug } }) => {
   const res = await client.request(GET_DOCTOR, { id: slug });
   const doctor = res?.doctor || {};
 
-  const detailsRes = await fetch(
-    `https://vni.fe7.mytemp.website/wp-json/wp/v2/doctors/${doctor.databaseId}`
-  );
-  const details = await detailsRes.json();
+  // const detailsRes = await fetch(
+  //   `https://vni.fe7.mytemp.website/wp-json/wp/v2/doctors/${doctor.databaseId}`
+  // );
+  // const details = await detailsRes.json();
 
-  const educations = details?.meta?.education
-    ? Object.values(details?.meta?.education || {})
-    : [];
 
-  const awards = details?.meta?.awards
-    ? Object.values(details?.meta?.awards || {})
-    : [];
-
-  const professionalMemberships = details?.meta
-    ?.professionalmembershipsaffiliations
-    ? Object.values(details?.meta?.professionalmembershipsaffiliations || {})
-    : [];
-
-  const clinicalExperience = details?.meta?.clinicalexperience
-    ? Object.values(details?.meta?.clinicalexperience || {})
-    : [];
-
-  const researchpublications = details?.meta?.researchpublications
-    ? Object.values(details?.meta?.researchpublications || {})
-    : [];
-
-  const insurances = details?.meta?.insurances
-    ? Object.values(details?.meta?.insurances || {})
-    : [];
-  const specializations = details?.meta?.specializations
-    ? Object.values(details?.meta?.specializations || {})
-    : [];
 
   // console.log(doctor);
   const isSocial =
@@ -100,7 +74,7 @@ const Page = async ({ params: { slug } }) => {
                       <h4 className="name">{doctor?.title}</h4>
                       {doctor?.specializations?.nodes?.map((val) => (
                         <h6 key={val.id} className="designation mb-3">
-                        {val?.name}
+                          {val?.name}
                         </h6>
                       ))}
                       <ul className="candidate-info">
@@ -137,7 +111,9 @@ const Page = async ({ params: { slug } }) => {
                         <h3>Education</h3>
                       </div>
                       {/* educations */}
-                      <div className="doc-custom-lists">{parseHtml(doctor?.doctorsoptions?.educations || '')}</div>
+                      <div className="doc-custom-lists">
+                        {parseHtml(doctor?.doctorsoptions?.educations || "")}
+                      </div>
 
                       {/* {educations?.map((item, idx) => (
                         <div className="resume-block" key={idx}>
@@ -178,7 +154,9 @@ const Page = async ({ params: { slug } }) => {
                         <h3>Awards</h3>
                       </div>
                       {/* educations */}
-                      <div className="doc-custom-lists">{parseHtml(doctor?.doctorsoptions?.awardss || '')}</div>
+                      <div className="doc-custom-lists">
+                        {parseHtml(doctor?.doctorsoptions?.awardss || "")}
+                      </div>
                       {/* {awards?.map((item, idx) => (
                         <div className="resume-block" key={idx}>
                           <div className="inner">
@@ -216,7 +194,11 @@ const Page = async ({ params: { slug } }) => {
                         <h3>Professional Memberships and Affiliations</h3>
                       </div>
                       {/*  */}
-                      <div className="doc-custom-lists">{parseHtml(doctor?.doctorsoptions?.professionalMemberships || '')}</div>
+                      <div className="doc-custom-lists">
+                        {parseHtml(
+                          doctor?.doctorsoptions?.professionalMemberships || ""
+                        )}
+                      </div>
                       {/* {professionalMemberships?.map((item, idx) => (
                         <div className="resume-block" key={idx}>
                           <div className="inner">
@@ -250,7 +232,11 @@ const Page = async ({ params: { slug } }) => {
                         <h3>Clinical Experience</h3>
                       </div>
                       {/*  */}
-                      <div className="doc-custom-lists">{parseHtml(doctor?.doctorsoptions?.clinicalExperiences || '')}</div>
+                      <div className="doc-custom-lists">
+                        {parseHtml(
+                          doctor?.doctorsoptions?.clinicalExperiences || ""
+                        )}
+                      </div>
                       {/* {clinicalExperience?.map((item, idx) => (
                         <div className="resume-block" key={idx}>
                           <div className="inner">
@@ -284,7 +270,11 @@ const Page = async ({ params: { slug } }) => {
                         <h3>Research and Publications</h3>
                       </div>
                       {/*  */}
-                      <div className="doc-custom-lists">{parseHtml(doctor?.doctorsoptions?.researchPublicationsss || '')}</div>
+                      <div className="doc-custom-lists">
+                        {parseHtml(
+                          doctor?.doctorsoptions?.researchPublicationsss || ""
+                        )}
+                      </div>
                       {/* {researchpublications?.map((item, idx) => (
                         <div className="resume-block" key={idx}>
                           <div className="inner">
@@ -357,45 +347,40 @@ const Page = async ({ params: { slug } }) => {
                     <ul className="post-tags flex items-center flex-wrap">
                       {cancerTreated?.map((val, i) => (
                         <li className="" key={i}>
-                          {val?.title.replace(/(<([^>]+)>)/gi, "")}
+                          <Link className="text-white" href={`/cancers/${val?.slug}`}>
+                            {val?.title.replace(/(<([^>]+)>)/gi, "")}
+                          </Link>
                         </li>
                       ))}
                     </ul>
                   </div>
-                  {
-                    doctor?.doctorsoptions?.specializationss &&
+                  {doctor?.doctorsoptions?.specializationss && (
                     <div className="sidebar-widget">
-                    {
-                      
-                      <div className="widget-content">
-                      <h4 className="widget-title">Specializations</h4>
-                      <div>
-                        {parseHtml(doctor?.doctorsoptions?.specializationss || '')}
-                      </div>
- 
+                      {
+                        <div className="widget-content">
+                          <h4 className="widget-title">Specializations</h4>
+                          <div>
+                            {parseHtml(
+                              doctor?.doctorsoptions?.specializationss || ""
+                            )}
+                          </div>
+                        </div>
+                      }
                     </div>
-                    }
-
-                  </div>
-                  }
+                  )}
 
                   {/* End .sidebar-widget conadidate overview */}
-                  {
-                    doctor?.doctorsoptions?.insurancess ? (
-                      <div className="sidebar-widget">
+                  {doctor?.doctorsoptions?.insurancess ? (
+                    <div className="sidebar-widget">
                       <h4 className="widget-title">Insurances</h4>
-                      <div className="widget-content">
-                        {parseHtml(doctor?.doctorsoptions?.insurancess || '')}
+                      <div className="widget-content insurance_list">
+                        {parseHtml(doctor?.doctorsoptions?.insurancess || "")}
                         {/* <ul className="job-skills">
                           <JobSkills insurances={insurances} />
                         </ul> */}
                       </div>
                     </div>
-                    ): null
-                  }
-
-
-
+                  ) : null}
                 </aside>
                 {/* End .sidebar */}
               </div>
@@ -407,9 +392,13 @@ const Page = async ({ params: { slug } }) => {
               doctor={doctor}
               educations={doctor?.doctorsoptions?.educations}
               awards={doctor?.doctorsoptions?.awardss}
-              professionalMemberships={doctor?.doctorsoptions?.professionalMemberships}
+              professionalMemberships={
+                doctor?.doctorsoptions?.professionalMemberships
+              }
               clinicalExperience={doctor?.doctorsoptions?.clinicalExperiences}
-              researchpublications={doctor?.doctorsoptions?.researchPublicationsss}
+              researchpublications={
+                doctor?.doctorsoptions?.researchPublicationsss
+              }
               cancerTreated={cancerTreated}
               isSocial={isSocial}
               socials={doctor?.doctorsoptions?.socialMedias}

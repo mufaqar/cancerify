@@ -58,14 +58,15 @@ const SearchForm4 = (props) => {
 
 
 
-  const filteredItems = Filteredcancers
+const filteredItems = Filteredcancers
   .filter(item => item.title.toLowerCase().includes(cancerSearch.toLowerCase()))
   .sort((a, b) => `${a}`.toLowerCase().localeCompare(`${b}`.toLowerCase()));
 
 const sortedItems = [
   ...filteredItems.filter(item => item.title.toLowerCase().startsWith(cancerSearch.toLowerCase())),
-  ...filteredItems.filter(item => !item.title.toLowerCase().startsWith(cancerSearch.toLowerCase())),
+  // ...filteredItems.filter(item => !item.title.toLowerCase().startsWith(cancerSearch.toLowerCase())),
 ];
+
 
 
   useEffect(() => {

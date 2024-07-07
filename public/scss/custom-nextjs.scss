@@ -654,7 +654,7 @@
 }
 
 .custom-row {
-  max-width: 70%;
+  max-width: 78%;
   margin: auto;
 }
 .custom_thumb {
@@ -789,7 +789,7 @@
   width: 100%;
   background: #fff;
   text-align: left;
-  height: 290px;
+  // height: 385px;
   border-radius: 50px;
   z-index: 2;
   -ms-overflow-style: none;  /* Internet Explorer 10+ */
@@ -839,11 +839,17 @@
 .z-100{
   z-index: 10;
 }
+.z-200{
+  z-index: 20;
+}
 
 .z-1{
   z-index: 1;
 }
+.top-70{
+  top: 70px;
 
+}
 .offset_close{
   position: absolute;
   top: 0;
@@ -861,7 +867,7 @@
 .custom-tag-list li {
 	position: relative;
 	display: block;
-	font-size: 18px;
+	font-size: 16px;
 	color: var(--primary-color);
 	padding: 5px 10px;
 	font-weight: 400;
@@ -1106,6 +1112,27 @@
 .candidate-block-three .name{
   display: block;
 }
+.insurance_list ul{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.insurance_list ul li{
+  padding: 5px 20px;
+  display: block;
+  font-size: 14px;
+  line-height: 19px;
+  color: dimgray;
+  border-radius: 4px;
+  background: #fff;;
+  margin: 5px;
+}
+
+.tag-list li{
+  margin-right: 6px !important;
+  margin-bottom: 6px !important;
+}
 
 // Responsive css
 @media only screen and (min-width: 992px) {
@@ -1127,9 +1154,6 @@
   // .mb-h-100vh{
   //   height: 100vh;
   // }
-  .custom-row {
-    max-width: 100%;
-  }
   .grid-md{
     display: grid;
   }
@@ -1182,6 +1206,9 @@
   }
   .designation{
     font-size: 14px;
+  }
+  .custom-row {
+    max-width: 100%;
   }
 }
 @media only screen and (max-width: 1023px) {

@@ -17,12 +17,9 @@ const index = (props) => {
       <MobileMenu />
       {/* End MobileMenu */}
       <section className="cancer_wraper flex item-center">
-        <div className="auto-container">
+        <div className="auto-container px-0">
         <section className="job-categories">
         <div className="auto-container">
-          <div className="sec-title text-center">
-            {/* <h2 className="text_theme">Learn More About Cancer</h2> */}
-          </div>
           {/* custom-row */}
           <div className=" custom-row flex flex-wrap justify-center ">
             {/* <!-- Category Block --> */}

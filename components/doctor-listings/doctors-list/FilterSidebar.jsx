@@ -26,7 +26,7 @@ const FilterSidebar = (props) => {
 
 
   return (
-    <div className="inner-column pd-right sticky">
+    <div className="inner-column pd-right sticky ">
       <div className="filters-outer mb-h-100vh">
         <button
           type="button"
@@ -79,7 +79,7 @@ const FilterSidebar = (props) => {
           </div>
         </div>
 
-        <div className="mb-4">
+        <div className="mb-3">
           <button
             type="button"
             className="btn btn-primary bg-theme-color rounded-50 w-100 mb-3 custom-see-filter mb-hidden "

@@ -150,9 +150,10 @@ const FilterTopBox = (props) => {
   }, [keyword, location, category]);
 
 
+
   return (
     <>
-      <div className="show-1023">
+      <div className="show-1023 sticky z-200 py-3 bg-white top-70">
         <button
           type="button"
           className="theme-btn toggle-filters custom-filter "
@@ -191,11 +192,12 @@ const FilterTopBox = (props) => {
       {/* End top filter bar box */}
 
       {filteredData?.length
-        ? filteredData?.sort((a, b) =>
-          `${a?.doctorsoptions?.lastName}`?.localeCompare(
-            b?.doctorsoptions?.lastName
-          )
-        ).map((doctor, idx) => (
+        ? filteredData
+        ?.sort((a, b) => {
+          const lastNameA = a.doctorsoptions?.last_name || '';
+          const lastNameB = b.doctorsoptions?.last_name || '';
+          return lastNameA.localeCompare(lastNameB);
+        }).map((doctor, idx) => (
             <div className="candidate-block-three" key={idx}>
               <Link href={`/doctors/${doctor?.slug}`}>
                 <div className="inner-box box-height">
@@ -313,11 +315,11 @@ const FilterTopBox = (props) => {
               <div className="alert alert-warning">No doctors found</div>
             )
         : doctorsData
-            ?.sort((a, b) =>
-              `${a?.doctorsoptions?.lastName}`?.localeCompare(
-                b?.doctorsoptions?.lastName
-              )
-            )
+            ?.sort((a, b) => {
+              const lastNameA = a.doctorsoptions?.lastName || '';
+              const lastNameB = b.doctorsoptions?.lastName || '';
+              return lastNameA.localeCompare(lastNameB);
+            })
             .map((doctor, idx) => (
               <>
                 <div className="candidate-block-three" key={idx}>

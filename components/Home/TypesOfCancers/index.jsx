@@ -8,7 +8,7 @@ import { isDesktop} from "react-device-detect";
 const TypesOfCancers = (props) => {
   const { cancers } = props;
   const [seeMore, setSeeMore] = useState(false);
-  const [cancersToShow, setCancersToShow] = useState(10);
+  const [cancersToShow, setCancersToShow] = useState(9);
   const isDesk = isDesktop;
   // add functionality to see more cancers by clicking on a button to load more 10 cancers
 
@@ -19,7 +19,7 @@ const TypesOfCancers = (props) => {
       if (seeMore) {
         setCancersToShow(cancers.length);
       } else {
-        setCancersToShow(10);
+        setCancersToShow(9);
       }
     }
   }, [cancers, seeMore, isDesk]);
@@ -92,11 +92,8 @@ const TypesOfCancers = (props) => {
                   </div>
                 )}
 
-                {/* <h4 className="cancer_text"><strong >{item?.title}</strong> <span className="pl-1">Cancer</span></h4> */}
-                <h4
-                  className="cancer_text"
-                  dangerouslySetInnerHTML={{ __html: `${item?.title}` }}
-                />
+                <h4 className="cancer_text"><strong >{item?.title?.replace('Cancer', '')}</strong> Cancer</h4>
+                
               </Link>
             </div>
           ))
