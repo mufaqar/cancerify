@@ -3,6 +3,8 @@ import Image from "next/image";
 const OurMission = (props) => {
   const { page } = props;
   const ourMission = page?.homeOptions?.ourMission || {};
+
+
   
   return (
     <section className="steps-section pt-0">
@@ -14,7 +16,7 @@ const OurMission = (props) => {
                 <Image
                   width={608}
                   height={600}
-                  src="/images/resource/steps-img.png"
+                  src={`${ourMission?.image?.sourceUrl}` || '/images/resource/resource-1.jpg'}
                   alt="resource"
                 />
               </figure>
