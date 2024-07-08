@@ -1,8 +1,6 @@
 "use client";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  addCategory,
-  addLocation,
   addKeyword,
 } from "@/features/filter/candidateFilterSlice";
 import dynamic from "next/dynamic";
@@ -61,13 +59,11 @@ const SearchForm4 = (props) => {
 const filteredItems = Filteredcancers
   .filter(item => item.title.toLowerCase().includes(cancerSearch.toLowerCase()))
   .sort((a, b) => {
-    if (`${a?.title}`.toLowerCase() === 'Bladder cancer') return -1;
-    if (`${b?.title}`.toLowerCase() === 'Bladder cancer') return 1;
-    return `${a?.title}`.toLowerCase().localeCompare(`${b?.title}`.toLowerCase());
+    `${a?.title}`.toLowerCase().localeCompare(`${b?.title}`.toLowerCase())
   });
 
 const sortedItems = [
-  ...filteredItems.filter(item => item.title.toLowerCase().startsWith(cancerSearch.toLowerCase())),
+  ...filteredItems.filter(item => item.title.replace('Cancer', '').toLowerCase().startsWith(cancerSearch.toLowerCase())),
   // ...filteredItems.filter(item => !item.title.toLowerCase().startsWith(cancerSearch.toLowerCase())),
 ];
 
@@ -84,6 +80,7 @@ const sortedItems = [
 
   }, [isInputFocused]);
 
+  console.log('Filteredcancers', Filteredcancers);
 
 
   return (
