@@ -60,13 +60,16 @@ const SearchForm4 = (props) => {
 
 const filteredItems = Filteredcancers
   .filter(item => item.title.toLowerCase().includes(cancerSearch.toLowerCase()))
-  .sort((a, b) => `${a}`.toLowerCase().localeCompare(`${b}`.toLowerCase()));
+  .sort((a, b) => {
+    if (`${a?.title}`.toLowerCase() === 'Bladder cancer') return -1;
+    if (`${b?.title}`.toLowerCase() === 'Bladder cancer') return 1;
+    return `${a?.title}`.toLowerCase().localeCompare(`${b?.title}`.toLowerCase());
+  });
 
 const sortedItems = [
   ...filteredItems.filter(item => item.title.toLowerCase().startsWith(cancerSearch.toLowerCase())),
   // ...filteredItems.filter(item => !item.title.toLowerCase().startsWith(cancerSearch.toLowerCase())),
 ];
-
 
 
   useEffect(() => {
@@ -156,7 +159,7 @@ const sortedItems = [
         isInputFocused && (
           <div className="most-searched ">
             {
-              cancerSearch !== '' ?  <ListMostSearched cancerSearch={cancerSearch} mostsearcheds={sortedItems.sort((a, b) => `${a}`.localeCompare(b))} /> :
+              cancerSearch !== '' ?  <ListMostSearched cancerSearch={cancerSearch} mostsearcheds={sortedItems} /> :
               (
                 <>
                 
