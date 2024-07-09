@@ -4,14 +4,21 @@ import ImageBlock from "@/components/BlogPage/Blocks/ImageBlock";
 import ListsBlock from "@/components/BlogPage/Blocks/ListsBlock";
 import MobileDetailsBlock from "./MobileDetailsBlock";
 
-const DetailsBlock = ({ title, blocks }) => {
+const DetailsBlock = ({ title, blocks, type }) => {
 
   return (
     <>
-          <MobileDetailsBlock title={title} blocks={blocks} />
+          <MobileDetailsBlock  title={title} blocks={blocks} />
+
           <div className="desktop-hidden text-15">
-            <h3 className="pb-3">{title.replace(/(<([^>]+)>)/gi, "")}</h3>
-            {blocks.map((block, index) => {
+            {
+              type === 'core/support' || type === 'core/financial'  ? <></> :
+              <h3 className="pb-3">
+              { title.replace(/(<([^>]+)>)/gi, "")}
+            </h3>
+            }
+  
+            {blocks?.map((block, index) => {
               return block.name === "core/heading" ? (
                 <div className="cancer_heading">
                   <HeadingBlock

@@ -6,10 +6,12 @@ import ImageBlock from "@/components/BlogPage/Blocks/ImageBlock";
 import ListsBlock from "@/components/BlogPage/Blocks/ListsBlock";
 import dynamic from "next/dynamic";
 import { isMobile } from "react-device-detect";
-
+import parseHtml from "@/lib/Parser";
 
 const MobileDetailsBlock = ({ title, blocks }) => {
-    const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(false);
+
+
   return (
     <>
       {isMobile ? (
@@ -48,9 +50,9 @@ const MobileDetailsBlock = ({ title, blocks }) => {
             )}
           </button>
 
-          <div className="px-3 py-2 text-gray-2">
-            {open &&
-              blocks.map((block, index) => {
+          {open && (
+            <div className="px-3 py-2 text-gray-2">
+              {blocks?.map((block, index) => {
                 return block.name === "core/heading" ? (
                   <HeadingBlock
                     key={index}
@@ -80,12 +82,29 @@ const MobileDetailsBlock = ({ title, blocks }) => {
                     align={block?.attributes?.align}
                     innerBlocks={block?.innerBlocks}
                   />
+                ) : block.name === "core/support" ? (
+                  <div className="px-3 py-2 sidebar_content_wraper">
+                    {parseHtml(block?.content || '')}  
+                </div>
+                ) : block.name === "core/financial" ? (
+                  <div className="px-3 py-2 sidebar_content_wraper">
+                    {parseHtml(block?.content || '')}  
+                  </div>
                 ) : null;
               })}
-          </div>
+            </div>
+          )}
         </div>
       ) : null}
     </>
   );
 };
-export default dynamic(() => Promise.resolve(MobileDetailsBlock), { ssr: false });
+export default dynamic(() => Promise.resolve(MobileDetailsBlock), {
+  ssr: false,
+});
+
+     {/* <SidebarDropdown title="Support Groups" content={supportGroups} />
+      <SidebarDropdown
+        title="Financial support organisations"
+        content={financialSupportOrganizations}
+      /> */}

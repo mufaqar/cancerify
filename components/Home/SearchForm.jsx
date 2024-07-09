@@ -7,23 +7,20 @@ import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
 import { isDesktop } from "react-device-detect";
 import ListMostSearched from '@/components/Home/ListsMostSearched';
-import {GET_CANCER_SEARCH} from "@/lib/Queries";
 import { useQuery } from "@tanstack/react-query";
-import client from "@/lib/ApolloClient";
 import { useEffect, useState} from "react";
 import { GetCancerSearch } from "@/lib/api/Get-search";
 
 const SearchForm4 = (props) => {
   const { mostsearcheds, setIsInputFocused, isInputFocused } = props;
   const [cancerSearch, setCancerSearch] = useState("");
-  const [searchedData, setSearchedData] = useState([]);
 // 
 
   const router = useRouter();
   const dispatch = useDispatch();
 
-  const { keyword } =
-    useSelector((state) => state.candidateFilter) || {};
+  // const { keyword } =
+  //   useSelector((state) => state.candidateFilter) || {};
 
   // keyword handler
   const keywordHandler = ({ value }) => {
@@ -184,7 +181,6 @@ const SearchForm4 = (props) => {
                 </svg>
               </span>
               <input
-
                 className="input-mb-search-2  "
                 type="text"
                 name="name"

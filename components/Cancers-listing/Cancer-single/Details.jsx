@@ -2,14 +2,8 @@
 import ParagraphBlock from "@/components/BlogPage/Blocks/ParagraphBlock";
 import DetailsBlock from "@/components/common/wp-blocks/DetailsBlock";
 import FindDocButton from "@/components/Cancers-listing/FindDocButton";
-import parseHtml from "@/lib/Parser";
 import SidebarDropdown from "@/components/common/wp-blocks/SidebarDropdown";
-import HeadingBlock from "@/components/BlogPage/Blocks/HeadingBlock";
-import ImageBlock from "@/components/BlogPage/Blocks/ImageBlock";
-import ListsBlock from "@/components/BlogPage/Blocks/ListsBlock";
-import QuoteBlock from "@/components/BlogPage/Blocks/QuoteBlock";
-import EmbedBlock from "@/components/BlogPage/Blocks/EmbedBlock";
-import TableBlock from "@/components/BlogPage/Blocks/TableBlock";
+import { useEffect, useState } from "react";
 
 
 
@@ -21,13 +15,60 @@ const Details = (props) => {
     trustedInstitutions,
     financialSupportOrganizations,
   } = props;
-  // console.log(mobileContent.splice(2, 0, {type: "button"}))
+
+  const [updatedBlocks, setUpdatedBlocks] = useState([]);
+
+    // Use another useEffect to handle pushing the items to the array
+    useEffect(() => {
+      const handlePush = () => {
+        const support = {
+          name: "core/details",
+          type: "core/support",
+          originalContent: 'Support Groups',
+          innerBlocks: [
+            {
+              name: "core/support",
+              originalContent: 'Support Groups',
+              content: supportGroups,
+            },
+          ]
+        };
+        const financial = {
+          name: "core/details",
+          type: "core/financial",
+          originalContent: 'Financial support organisations',
+          innerBlocks: [
+            {
+              name: "core/financial",
+              originalContent: 'Financial support organisations',
+              content: financialSupportOrganizations,
+            },
+          ]
+        };
+        const mobileContent = [...blocks]; // Create a copy of the array
+  
+        if (mobileContent[3]?.innerBlocks[0]?.name !== support?.innerBlocks[0]?.name) {
+          mobileContent.splice(5, 0, support);
+        }
+  
+        if (mobileContent[4]?.innerBlocks[0]?.name !== financial.innerBlocks[0].name) {
+          mobileContent.splice(6, 0, financial);
+        }
+  
+        setUpdatedBlocks(mobileContent);
+      }
+  
+      if (blocks.length > 0) {
+        handlePush();
+      }
+    }, [blocks]);
+
 
   return (
     <div className="job-detail cancer_detail text-15">
       <h3 className="pb-3">{title.replace(/(<([^>]+)>)/gi, "")}</h3>
 
-      {blocks?.map((block, index) =>
+      {updatedBlocks?.map((block, index) =>
         block.name === "core/paragraph" ? (
           <div className="cancer_paragraph ">
             <ParagraphBlock
@@ -44,17 +85,14 @@ const Details = (props) => {
         ) : block.name === "core/details" ? (
           <DetailsBlock
             key={index}
+            type={block?.type}
             title={block?.originalContent}
             blocks={block?.innerBlocks}
           />
         ) : null
       )}
 
-      <SidebarDropdown title="Support Groups" content={supportGroups} />
-      <SidebarDropdown
-        title="Financial support organisations"
-        content={financialSupportOrganizations}
-      />
+
       <SidebarDropdown
         title="Trusted institutions"
         content={trustedInstitutions}

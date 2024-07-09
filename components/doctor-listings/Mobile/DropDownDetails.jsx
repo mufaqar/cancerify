@@ -41,15 +41,11 @@ const DropDownDetails = (props) => {
     //   type: "Specializations",
     //   data: specializations,
     // },
+
     {
-      name: educationHeading || "Educations",
-      type: "Educations",
-      data: educations,
-    },
-    {
-      name: awardsHeading || "Awards",
-      type: "Awards",
-      data: awards,
+      name: clinicalExperienceHeading || "Clinical Experience",
+      type: "Clinical Experience",
+      data: clinicalExperience,
     },
     {
       name: professionalMembershipsHeading || "Affiliations",
@@ -57,14 +53,19 @@ const DropDownDetails = (props) => {
       data: professionalMemberships,
     },
     {
-      name: clinicalExperienceHeading || "Clinical Experience",
-      type: "Clinical Experience",
-      data: clinicalExperience,
-    },
-    {
       name: researchAndPublicationsHeading || "Publications",
       type: "Publications",
       data: researchpublications,
+    },
+    {
+      name: awardsHeading || "Awards",
+      type: "Awards",
+      data: awards,
+    },
+    {
+      name: educationHeading || "Educations",
+      type: "Educations",
+      data: educations,
     },
   ];
 

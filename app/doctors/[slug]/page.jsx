@@ -1,7 +1,5 @@
 import dynamic from "next/dynamic";
 import MobileMenu from "@/components/header/MobileMenu";
-// import Social from "@/components/candidates-single-pages/social/Social";
-// import JobSkills from "@/components/candidates-single-pages/shared-components/JobSkills";
 import client from "@/lib/ApolloClient";
 import { GET_DOCTOR, GET_DOCTORS_SEO } from "@/lib/Queries";
 import Link from "next/link";
@@ -75,14 +73,19 @@ const Page = async ({ params: { slug } }) => {
                           {val?.name}
                         </h6>
                       ))}
-                      <div className="cancer_treted pb-3">
-                        <h6 className="text-gray-2 pb-1">
-                          {cancerTreatedHeading || "Cancer Treated"}
+                      <div className="cancer_treted pb-3 flex items-center">
+                        <h6 className="text-gray-2 pr-4 line-height-38">
+                          {cancerTreatedHeading || "Cancer Treated"}:
                         </h6>
                         <ul className="post-tags grid grid-cols-3 grid-cols-md-2 mb-cust-lists-23">
                           {cancerTreated?.map((val, i) => (
                             <li className="bg-gray" key={i}>
-                              {val?.title.replace(/(<([^>]+)>)/gi, "")}
+                              <Link
+                            className="cancer-text-gray"
+                            href={`/cancers/${val?.slug}`}
+                          >
+                            {val?.title.replace(/(<([^>]+)>)/gi, "")}
+                          </Link>
                             </li>
                           ))}
                         </ul>

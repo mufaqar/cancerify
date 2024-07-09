@@ -47,7 +47,6 @@ export default async function page() {
 
   
 
-
   return (
     <Wrapper>
       <Home 

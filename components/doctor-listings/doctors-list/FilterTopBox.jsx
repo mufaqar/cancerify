@@ -236,6 +236,10 @@ const FilterTopBox = (props) => {
                       </li>
                     </ul>
                     <div className=" mb-hidden mb-lists">
+                      <div className=" flex items-center">
+                    <h6 className="text-gray-2 pr-4 line-height-38 mb-line-height-30">
+                      Cancer Treated:
+                    </h6>
                       {doctor?.doctorsoptions?.cancerTreated
                         ? doctor?.doctorsoptions?.cancerTreated
                         : doctor?.doctorsoptions?.cancer_treated && (
@@ -266,11 +270,13 @@ const FilterTopBox = (props) => {
                                   )}
                             </ul>
                           )}
+                          </div>
                     </div>
                   </div>
                   {/* End content */}
 
-                  <div className="btn-box custom-btn-box">
+                  <div className="btn-box custom-btn-box s">
+
                     {doctor?.doctorsoptions?.cancerTreated
                       ? doctor?.doctorsoptions?.cancerTreated
                       : doctor?.doctorsoptions?.cancer_treated && (
@@ -366,7 +372,11 @@ const FilterTopBox = (props) => {
                             </p>
                           </li>
                         </ul>
-                        <div className=" mb-hidden mb-lists">
+                        <div className=" mb-hidden mb-lists ">
+                          <div className="flex items-center">
+                            <h6 className="text-gray-2 pr-4 line-height-38 mb-line-height-30">
+                            Cancer Treated:
+                            </h6>
                           {doctor?.doctorsoptions?.cancerTreated && (
                             <ul className="post-tags">
                               {doctor?.doctorsoptions?.cancerTreated?.map(
@@ -389,6 +399,7 @@ const FilterTopBox = (props) => {
                               )}
                             </ul>
                           )}
+                          </div>
                         </div>
                       </div>
                       {/* End content */}

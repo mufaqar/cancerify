@@ -647,7 +647,7 @@
 }
 
 .sec-title {
-  margin-bottom: 35px !important;
+  margin-bottom: 35px;
 }
 .bg-search_btn {
   background-color: #313131 !important;
@@ -867,7 +867,7 @@
 .custom-tag-list li {
 	position: relative;
 	display: block;
-	font-size: 16px;
+	font-size: 15px;
 	color: var(--primary-color);
 	padding: 5px 10px;
 	font-weight: 400;
@@ -877,7 +877,15 @@
 	transition: all 300ms ease;
   cursor: pointer;
 }
-
+.line-height-38{
+  line-height: 38px;
+}
+.pr-4{
+  padding-right: 4px;
+}
+.cancer-text-gray{
+  color: #434343 !important;
+}
 .doctor-list-sekleton {
   width: 100%;
   height: 140px;
@@ -1137,6 +1145,12 @@
   margin-bottom: 6px !important;
 }
 
+.mb_details_block_title h3{
+  padding-bottom: 0px !important;
+}
+.ls-section{
+  padding: 10px 0 !important;
+}
 // Responsive css
 @media only screen and (min-width: 992px) {
   .col-w-20 {
@@ -1189,7 +1203,7 @@
     flex-direction: column-reverse;
   }
   .call-to-action-three {
-    padding: 40px 0 !important;
+    padding: 0px 0px 20px 0px !important;
   }
   .social-links{
     padding-top: 0px !important;
@@ -1212,6 +1226,19 @@
   }
   .custom-row {
     max-width: 100%;
+  }
+  .line-height-38 {
+    line-height: 40px;
+  }
+  .mb-line-height-30 {
+    line-height: 30px !important;
+  }
+  
+  .custom-content {
+    padding-top: 0px;
+  }
+  .sec-title {
+    margin-bottom: 0px !important;
   }
 }
 @media only screen and (max-width: 1023px) {
