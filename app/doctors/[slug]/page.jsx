@@ -34,28 +34,20 @@ const Page = async ({ params: { slug } }) => {
   const res = await client.request(GET_DOCTOR, { id: slug });
   const doctor = res?.doctor || {};
 
-  // const detailsRes = await fetch(
-  //   `https://vni.fe7.mytemp.website/wp-json/wp/v2/doctors/${doctor.databaseId}`
-  // );
-  // const details = await detailsRes.json();
-
-
-
-  // console.log(doctor);
-  
   const cancerTreated = doctor?.doctorsoptions?.cancerTreated || [];
 
-  const  insuranceHeading = doctor?.doctorsoptions?.insurancesHeading || 'Insurances';
-  const  specializationsHeading = doctor?.doctorsoptions?.specializationsHeading || 'Specializations';
-  const  researchAndPublicationsHeading = doctor?.doctorsoptions?.researchAndPublicationsHeading || 'Research and Publications';
-  const  professionalMembershipsHeading = doctor?.doctorsoptions?.professionalMembershipsHeading || 'Professional Memberships and Affiliations';
-  const  clinicalExperienceHeading = doctor?.doctorsoptions?.clinicalExperienceHeading || 'Clinical Experience';
-  const  educationHeading = doctor?.doctorsoptions?.educationHeading || 'Education';
-  const  cancerTreatedHeading = doctor?.doctorsoptions?.cancerTreatedHeading || 'Cancer Treated';
-  const  bookAppointmentLabel = doctor?.doctorsoptions?.bookAppointmentLabel || 'Book An Appointment';
-  const  awardsHeading = doctor?.doctorsoptions?.awardsHeading || 'Awards';
-  
-
+  const insuranceHeading = doctor?.doctorsoptions?.insurancesHeading;
+  const specializationsHeading = doctor?.doctorsoptions?.specializationsHeading;
+  const researchAndPublicationsHeading =
+    doctor?.doctorsoptions?.researchAndPublicationsHeading;
+  const professionalMembershipsHeading =
+    doctor?.doctorsoptions?.professionalMembershipsHeading;
+  const clinicalExperienceHeading =
+    doctor?.doctorsoptions?.clinicalExperienceHeading;
+  const educationHeading = doctor?.doctorsoptions?.educationHeading;
+  const cancerTreatedHeading = doctor?.doctorsoptions?.cancerTreatedHeading;
+  const bookAppointmentLabel = doctor?.doctorsoptions?.bookAppointmentLabel;
+  const awardsHeading = doctor?.doctorsoptions?.awardsHeading;
 
   return (
     <>
@@ -83,6 +75,18 @@ const Page = async ({ params: { slug } }) => {
                           {val?.name}
                         </h6>
                       ))}
+                      <div className="cancer_treted pb-3">
+                        <h6 className="text-gray-2 pb-1">
+                          {cancerTreatedHeading || "Cancer Treated"}
+                        </h6>
+                        <ul className="post-tags grid grid-cols-3 grid-cols-md-2 mb-cust-lists-23">
+                          {cancerTreated?.map((val, i) => (
+                            <li className="bg-gray" key={i}>
+                              {val?.title.replace(/(<([^>]+)>)/gi, "")}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
                       <ul className="candidate-info">
                         <li>
                           <span className="icon flaticon-map-locator"></span>
@@ -114,7 +118,7 @@ const Page = async ({ params: { slug } }) => {
                   {doctor?.doctorsoptions?.educations ? (
                     <div className={`resume-outer theme-blue`}>
                       <div className="upper-title">
-                        <h3>{educationHeading}</h3>
+                        <h3>{educationHeading || "Educations"}</h3>
                       </div>
                       {/* educations */}
                       <div className="doc-custom-lists">
@@ -157,13 +161,12 @@ const Page = async ({ params: { slug } }) => {
                   {doctor?.doctorsoptions?.awardss ? (
                     <div className={`resume-outer theme-yellow`}>
                       <div className="upper-title">
-                        <h3>{awardsHeading}</h3>
+                        <h3>{awardsHeading || "Awards"}</h3>
                       </div>
                       {/* educations */}
                       <div className="doc-custom-lists">
                         {parseHtml(doctor?.doctorsoptions?.awardss || "")}
                       </div>
-
                     </div>
                   ) : null}
                   {/* <!-- awards Resume End --> */}
@@ -171,7 +174,10 @@ const Page = async ({ params: { slug } }) => {
                   {doctor?.doctorsoptions?.professionalMemberships ? (
                     <div className={`resume-outer theme-blue`}>
                       <div className="upper-title">
-                        <h3>{professionalMembershipsHeading}</h3>
+                        <h3>
+                          {professionalMembershipsHeading ||
+                            "Professional Memberships and Affiliations"}
+                        </h3>
                       </div>
                       {/*  */}
                       <div className="doc-custom-lists">
@@ -179,17 +185,17 @@ const Page = async ({ params: { slug } }) => {
                           doctor?.doctorsoptions?.professionalMemberships || ""
                         )}
                       </div>
-     
                     </div>
                   ) : null}
-
 
                   {/* <!-- professionalMemberships Resume End --> */}
                   {/* <!-- Clinical Experience: Start --> */}
                   {doctor?.doctorsoptions?.clinicalExperiences ? (
                     <div className={`resume-outer`}>
                       <div className="upper-title">
-                        <h3>{clinicalExperienceHeading}</h3>
+                        <h3>
+                          {clinicalExperienceHeading || "Clinical Experience"}
+                        </h3>
                       </div>
                       {/*  */}
                       <div className="doc-custom-lists">
@@ -197,16 +203,18 @@ const Page = async ({ params: { slug } }) => {
                           doctor?.doctorsoptions?.clinicalExperiences || ""
                         )}
                       </div>
-          
                     </div>
                   ) : null}
-                  
+
                   {/* <!-- Clinical Experience Resume End --> */}
                   {/* <!-- researchpublications Start --> */}
                   {doctor?.doctorsoptions?.researchPublicationsss ? (
                     <div className={`resume-outer theme-yellow`}>
                       <div className="upper-title">
-                        <h3>{researchAndPublicationsHeading}</h3>
+                        <h3>
+                          {researchAndPublicationsHeading ||
+                            "Research and Publications"}
+                        </h3>
                       </div>
                       {/*  */}
                       <div className="doc-custom-lists">
@@ -214,7 +222,6 @@ const Page = async ({ params: { slug } }) => {
                           doctor?.doctorsoptions?.researchPublicationsss || ""
                         )}
                       </div>
-          
                     </div>
                   ) : null}
                   {/* <!-- researchpublications Resume End --> */}
@@ -249,7 +256,7 @@ const Page = async ({ params: { slug } }) => {
                   </div>
                 </div>
                 {/* Sidebar */}
-                
+
                 <aside className="sidebar">
                   <div className="btn-box">
                     <Link
@@ -257,26 +264,31 @@ const Page = async ({ params: { slug } }) => {
                       className="theme-btn btn-style-one custom-btn"
                       href={doctor?.doctorsoptions?.bookAppointmentLink || "#"}
                     >
-                       {bookAppointmentLabel}
+                      {bookAppointmentLabel || "Book An Appointment"}
                     </Link>
                   </div>
-                  <div className="cancer_treted pb-5 pt-4">
-                    <h4 className="widget-title pb-1">{cancerTreatedHeading}</h4>
+                  {/* <div className="cancer_treted pb-5 pt-4">
+                    <h4 className="widget-title pb-1">
+                      {cancerTreatedHeading || "Cancer Treated"}
+                    </h4>
                     <ul className="post-tags flex items-center flex-wrap">
                       {cancerTreated?.map((val, i) => (
                         <li className="" key={i}>
-                          <Link className="text-white" href={`/cancers/${val?.slug}`}>
+                          <Link
+                            className="text-white"
+                            href={`/cancers/${val?.slug}`}
+                          >
                             {val?.title.replace(/(<([^>]+)>)/gi, "")}
                           </Link>
                         </li>
                       ))}
                     </ul>
-                  </div>
-                  {doctor?.doctorsoptions?.specializationss && (
+                  </div> */}
+                  {/* {doctor?.doctorsoptions?.specializationss && (
                     <div className="sidebar-widget">
                       {
                         <div className="widget-content">
-                          <h4 className="widget-title">{specializationsHeading}</h4>
+                          <h4 className="widget-title">{specializationsHeading || 'Specializations'}</h4>
                           <div>
                             {parseHtml(
                               doctor?.doctorsoptions?.specializationss || ""
@@ -285,12 +297,14 @@ const Page = async ({ params: { slug } }) => {
                         </div>
                       }
                     </div>
-                  )}
+                  )} */}
 
                   {/* End .sidebar-widget conadidate overview */}
                   {doctor?.doctorsoptions?.insurancess ? (
                     <div className="sidebar-widget">
-                      <h4 className="widget-title">{ insuranceHeading}</h4>
+                      <h4 className="widget-title">
+                        {insuranceHeading || "Insurances"}
+                      </h4>
                       <div className="widget-content insurance_list">
                         {parseHtml(doctor?.doctorsoptions?.insurancess || "")}
                         {/* <ul className="job-skills">
@@ -304,7 +318,7 @@ const Page = async ({ params: { slug } }) => {
               </div>
               {/* End .sidebar-column */}
             </div>
-{/*     cancerTreatedHeading  */}
+            {/*     cancerTreatedHeading  */}
             {/* Mobile version */}
             <DoctorMobileDetails
               doctor={doctor}
@@ -320,7 +334,6 @@ const Page = async ({ params: { slug } }) => {
               cancerTreated={cancerTreated}
               insurances={doctor?.doctorsoptions?.insurancess}
               specializations={doctor?.doctorsoptions?.specializationss}
-              
               insuranceHeading={insuranceHeading}
               specializationsHeading={specializationsHeading}
               researchAndPublicationsHeading={researchAndPublicationsHeading}
@@ -330,7 +343,6 @@ const Page = async ({ params: { slug } }) => {
               cancerTreatedHeading={cancerTreatedHeading}
               bookAppointmentLabel={bookAppointmentLabel}
               awardsHeading={awardsHeading}
-
             />
           </div>
         </div>

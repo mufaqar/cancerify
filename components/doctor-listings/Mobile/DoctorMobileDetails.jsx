@@ -1,7 +1,5 @@
 import Link from "next/link";
-import JobSkills from "@/components/candidates-single-pages/shared-components/JobSkills";
 import DropDownDetails from "./DropDownDetails";
-import parseHtml from "@/lib/Parser";
 
 
 const DoctorMobileDetails = (props) => {
@@ -22,6 +20,8 @@ const DoctorMobileDetails = (props) => {
     cancerTreatedHeading,
     bookAppointmentLabel,
     awardsHeading,
+    professionalMembershipsHeading,
+    researchAndPublicationsHeading
   } = props;
 
   return (
@@ -38,7 +38,7 @@ const DoctorMobileDetails = (props) => {
                         </h6>
                       ))}
                 <div className="cancer_treted pb-3">
-                  <h6 className="text-gray-2 pb-1">{cancerTreatedHeading}</h6>
+                  <h6 className="text-gray-2 pb-1">{cancerTreatedHeading || 'Cancer Treated'}</h6>
                   <ul className="post-tags grid grid-cols-3 grid-cols-md-2 mb-cust-lists-23">
                     {cancerTreated?.map((val, i) => (
                       <li className="bg-gray" key={i}>
@@ -82,12 +82,12 @@ const DoctorMobileDetails = (props) => {
                 className="theme-btn btn-style-one w-full custom-btn"
                 href={doctor?.doctorsoptions?.bookAppointmentLink || "#"}
               >
-                {bookAppointmentLabel}
+                {bookAppointmentLabel || 'Book An Appointment'}
               </Link>
             </div>
 
 
-            {/* specializations */}
+ 
             <DropDownDetails
               educations={educations}
               awards={awards}
@@ -104,6 +104,8 @@ const DoctorMobileDetails = (props) => {
               cancerTreatedHeading={cancerTreatedHeading}
               bookAppointmentLabel={bookAppointmentLabel}
               awardsHeading={awardsHeading}
+              professionalMembershipsHeading={professionalMembershipsHeading}
+              researchAndPublicationsHeading={researchAndPublicationsHeading}
             /> 
 
             {/* <!-- Portfolio --> */}

@@ -11,10 +11,12 @@ import {GET_CANCER_SEARCH} from "@/lib/Queries";
 import { useQuery } from "@tanstack/react-query";
 import client from "@/lib/ApolloClient";
 import { useEffect, useState} from "react";
+import { GetCancerSearch } from "@/lib/api/Get-search";
 
 const SearchForm4 = (props) => {
   const { mostsearcheds, setIsInputFocused, isInputFocused } = props;
   const [cancerSearch, setCancerSearch] = useState("");
+  const [searchedData, setSearchedData] = useState([]);
 // 
 
   const router = useRouter();
@@ -49,23 +51,16 @@ const SearchForm4 = (props) => {
   
   const { data, isLoading } = useQuery({
     queryKey: ["cancer-search", cancerSearch],
-    queryFn: async () => await client.request(GET_CANCER_SEARCH, { search: cancerSearch }),
+    queryFn: async () => await GetCancerSearch({ cancerSearch }),
   });
 
-  const Filteredcancers = data?.cancers?.nodes || [];
 
-
-
-const filteredItems = Filteredcancers
-  .filter(item => item.title.toLowerCase().includes(cancerSearch.toLowerCase()))
-  .sort((a, b) => {
-    `${a?.title}`.toLowerCase().localeCompare(`${b?.title}`.toLowerCase())
+  const filteredItems = data?.data?.sort((a, b) => {
+    if (`${a.title}`.replace('Cancer', '').toLowerCase() === 'bladder cancer') return -1;
+    if (`${b.title}`.replace('Cancer', '').toLowerCase() === 'bladder cancer') return 1;
+    return `${a.title}`.replace('Cancer', '').toLowerCase().localeCompare(`${b.title}`.replace('Cancer', '').toLowerCase());
   });
 
-const sortedItems = [
-  ...filteredItems.filter(item => item.title.replace('Cancer', '').toLowerCase().startsWith(cancerSearch.toLowerCase())),
-  // ...filteredItems.filter(item => !item.title.toLowerCase().startsWith(cancerSearch.toLowerCase())),
-];
 
 
   useEffect(() => {
@@ -80,7 +75,7 @@ const sortedItems = [
 
   }, [isInputFocused]);
 
-  console.log('Filteredcancers', Filteredcancers);
+  // console.log('Filteredcancers', Filteredcancers);
 
 
   return (
@@ -156,7 +151,7 @@ const sortedItems = [
         isInputFocused && (
           <div className="most-searched ">
             {
-              cancerSearch !== '' ?  <ListMostSearched cancerSearch={cancerSearch} mostsearcheds={sortedItems} /> :
+              cancerSearch !== '' ?  <ListMostSearched cancerSearch={cancerSearch} mostsearcheds={filteredItems} /> :
               (
                 <>
                 
@@ -209,7 +204,7 @@ const sortedItems = [
           </form>
           <div className="mb-most-searched text-left">
           {
-              cancerSearch !== '' ?  <ListMostSearched cancerSearch={cancerSearch} mostsearcheds={sortedItems} /> :
+              cancerSearch !== '' ?  <ListMostSearched cancerSearch={cancerSearch} mostsearcheds={filteredItems} /> :
               (
                 <>
                 

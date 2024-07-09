@@ -259,7 +259,7 @@ const FilterTopBox = (props) => {
                                           {val?.title
                                             ?.replaceAll("&lt;", "<")
                                             .replace(/(<([^>]+)>)/gi, "")
-                                            .replace("Cancer", "")}
+                                            }
                                         </span>
                                       </li>
                                     )
@@ -382,8 +382,7 @@ const FilterTopBox = (props) => {
                                   >
                                     <span>
                                       {val?.title
-                                        ?.replace(/(<([^>]+)>)/gi, "")
-                                        .replace("Cancer", "")}
+                                        ?.replace(/(<([^>]+)>)/gi, "")}
                                     </span>
                                   </li>
                                 )

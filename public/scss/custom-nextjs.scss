@@ -482,7 +482,7 @@
   border-radius: 20px;
   margin-right: 10px;
   background-color: var(--primary-color);
-  margin: 5px;
+  margin: 5px 5px 5px 0px;
   text-align: center;
 }
 .cancer_treted > h4 {
@@ -819,7 +819,7 @@
 .most-searched ul {
   overflow-x: hidden;
   overflow-y: scroll;
-  max-height: 232px;
+  max-height: 245px;
 }
 .box-sahdow {
   box-shadow: 0px 4px 9px 0px rgba(0, 0, 0, 0.3);
