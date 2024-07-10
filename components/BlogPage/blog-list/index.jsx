@@ -31,9 +31,8 @@ const index = (props) => {
                   <Blog6 pageInfo={pageInfo} posts={posts} />
                 </div>
                 {/* End .row */}
-                {
-                  pageInfo?.hasNextPage && <BlogPagination />
-                }
+       
+                <BlogPagination pageInfo={pageInfo} />
                 
                 {/* End blog pagination */}
               </div>

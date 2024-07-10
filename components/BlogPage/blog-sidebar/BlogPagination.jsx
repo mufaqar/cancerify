@@ -1,36 +1,32 @@
-const BlogPagination = () => {
+'use client'
+
+import { useRouter } from "next/navigation";
+const BlogPagination = (props) => {
+  const {pageInfo} = props;
+  const router = useRouter();
   return (
     <nav className="ls-pagination">
       <ul>
-        <li className="prev">
-          <a href="#">
-            <i className="fa fa-arrow-left"></i>
-          </a>
-        </li>
+        {
+          pageInfo?.hasPreviousPage && (
+            <li className="prev">
+              <button onClick={() => router.push(`/blog?endCursor=${pageInfo?.startCursor}`, {scroll: false})}>
+                <i className="fa fa-arrow-left"></i>
+              </button>
+            </li>
+          )
+        }
         {/* End li */}
 
-        <li>
-          <a href="#">1</a>
-        </li>
-        {/* End li */}
-
-        <li>
-          <a href="#" className="current-page">
-            2
-          </a>
-        </li>
-        {/* End li */}
-
-        <li>
-          <a href="#">3</a>
-        </li>
-        {/* End li */}
-
-        <li className="next">
-          <a href="#">
-            <i className="fa fa-arrow-right"></i>
-          </a>
-        </li>
+        {
+          pageInfo?.hasNextPage && (
+            <li className="next">
+              <button onClick={() => router.push(`/blog?endCursor=${pageInfo?.endCursor}`,{scroll: false})}>
+                <i className="fa fa-arrow-right"></i>
+              </button>
+            </li>
+          )
+        }
       </ul>
     </nav>
   );

@@ -15,7 +15,7 @@ export const metadata = {
 const page = async ({searchParams}) => {
   const {endCursor} = searchParams;
   // Get all posts
-  const res = await client.request(GET_ALL_POSTS, { after: endCursor|| "", first: 10});
+  const res = await client.request(GET_ALL_POSTS, { after: endCursor|| "", first: 6});
   const posts = res?.posts?.nodes || [];
   // get all categories
 
