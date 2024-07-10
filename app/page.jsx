@@ -42,6 +42,10 @@ export default async function page() {
   const resPage = await client.request(GET_HOME_PAGE, { id: 'home' });
   const page = resPage?.page || [];
 
+  const resMission = await fetch('https://vni.fe7.mytemp.website/wp-json/wp/v2/pages/39');
+  const missionData = await resMission.json();
+  const ourMission = missionData?.meta?.ourmissionlists || {};
+
   const resMostSearch = await client.request(GET_MOST_SEARCHED);
   const mostsearcheds = resMostSearch?.mostsearcheds?.nodes || [];
 
@@ -55,6 +59,7 @@ export default async function page() {
         posts={posts}
         page={page}
         mostsearcheds={mostsearcheds}
+        ourMission={ourMission}
       />
     </Wrapper>
   );

@@ -10,7 +10,7 @@ import {
 import SpecializationsBox from "../components/SpecializationsBox";
 
 const FilterSidebar = (props) => {
-  const { cancers, locations, specialities } = props;
+  const { cancers, locations, specialities,filter } = props;
   const dispatch = useDispatch();
 
   const {
@@ -50,7 +50,7 @@ const FilterSidebar = (props) => {
         {/* End .close filter */}
         <div className="filter-block custom-filter-block">
           <div className=" relative">
-            <h4>Cancer Type</h4>
+            <h4>{ filter?.cancerHeading || 'Cancer Type'}</h4>
           </div>
           <div className="form-group">
             <Categories cancers={cancers} />
@@ -59,7 +59,7 @@ const FilterSidebar = (props) => {
 
         <div className="filter-block">
           <div className=" relative custom-filter-block">
-            <h4> Specialization </h4>
+            <h4>{ filter?.specializationHeading || 'Specialization'}  </h4>
           </div>
           <div className="form-group">
             <SpecializationsBox
@@ -72,7 +72,7 @@ const FilterSidebar = (props) => {
 
         <div className="filter-block">
           <div className=" relative custom-filter-block">
-            <h4>Location</h4>
+            <h4>{ filter?.locationHeading || 'Location'} </h4>
           </div>
           <div className="form-group">
             <LocationBox locations={locations} />

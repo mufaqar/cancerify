@@ -14,8 +14,9 @@ const FilterTopBox = (props) => {
   const [filteredData, setFilteredData] = useState([]);
 
   const [mainData, setMainData] = useState([]);
-
+  const [isMainInfiniteLoading, setIsMainInfiniteLoading] = useState(false);
   const [isFilterLoading, setIsFilterLoading] = useState(false);
+  const [isFilterInfiniteLoading, setIsFilterInfiniteLoading] = useState(false);
 
   const [filterPage, setFilterPage] = useState(0);
 
@@ -26,10 +27,11 @@ const FilterTopBox = (props) => {
 
   // if there is new data save previous doctors data in variable and append new data to it.
 
-  const { data, fetchNextPage, hasNextPage, isLoading, status } =
+  const { data, fetchNextPage, hasNextPage, isLoading, status, fetchStatus } =
     useInfiniteQuery({
       queryKey: ["doctors_infinity"],
       queryFn: async ({ pageParam }) => {
+        setIsMainInfiniteLoading(true)
         const res = await client.request(GET_ALL_DOCTORS, { after: pageParam });
         return res?.doctors;
       },
@@ -41,8 +43,10 @@ const FilterTopBox = (props) => {
   const doctorsData = mainData?.length ? mainData : doctors;
 
   useEffect(() => {
+    setIsMainInfiniteLoading(true)
     const allDoctors = data?.pages?.map((page) => page?.nodes).flat() || [];
     setMainData([...allDoctors]);
+    setIsMainInfiniteLoading(false);
   }, [data?.pages]);
 
   // Apply filtering
@@ -87,6 +91,7 @@ const FilterTopBox = (props) => {
   // Filter infinite scroll
   useEffect(() => {
     const handleInfinityFilter = async () => {
+      setIsFilterInfiniteLoading(true);
       const parameterLogicLocation = keyword === "" ? "?" : "&";
       const parameterLogicSpecialization =
         keyword === "" && location === "" ? "?" : "&";
@@ -112,6 +117,7 @@ const FilterTopBox = (props) => {
       const doctors = data?.data?.doctors?.nodes || [];
 
       setFilteredData([...filteredData, ...doctors]);
+      setIsFilterInfiniteLoading(false);
     };
 
     if (filterPage > 0) {
@@ -144,7 +150,10 @@ const FilterTopBox = (props) => {
     }
   }, [keyword, location, category]);
 
-  console.log("filterPage", filterPage);
+
+  console.log(isMainInfiniteLoading)
+
+ 
 
   return (
     <>
@@ -321,7 +330,9 @@ const FilterTopBox = (props) => {
           Array.from({ length: 8 }).map((_, idx) => (
             <div key={idx} className="doctors_lists_skeleton"></div>
           ))
-        ) : (
+        )
+        
+        : (
           !filteredData?.length && (
             <div className="alert alert-warning">No doctors found</div>
           )
@@ -446,6 +457,22 @@ const FilterTopBox = (props) => {
           <div ref={ref}></div>
         </>
       )}
+
+
+      {
+        isMainInfiniteLoading && (
+          Array.from({ length: 6 }).map((_, idx) => (
+            <div key={idx} className="doctors_lists_skeleton"></div>
+          ))
+        )
+      }
+      {
+        isFilterInfiniteLoading && (
+          Array.from({ length: 6 }).map((_, idx) => (
+            <div key={idx} className="doctors_lists_skeleton"></div>
+          ))
+        )
+      }
 
       {/* { hasNextPage && } */}
 

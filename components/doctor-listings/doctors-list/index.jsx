@@ -5,7 +5,7 @@ import Header from "@/components/Home/Header";
 import Disclaimer from "@/components/Home/Disclaimer";
 
 const DoctorsList = (props) => {
-  const { cancers,locations, doctors, specialities } = props;
+  const { cancers,locations, doctors, specialities, filter } = props;
   return (
     <>
       {/* <!-- Header Span --> */}
@@ -29,13 +29,13 @@ const DoctorsList = (props) => {
               aria-labelledby="offcanvasLabel"
             >
               <div className="filters-column hide-left ">
-                <FilterSidebar locations={locations} cancers={cancers} specialities={specialities} />
+                <FilterSidebar filter={filter} locations={locations} cancers={cancers} specialities={specialities} />
               </div>
             </div>
             {/* End filter column for tablet and mobile devices */}
       
             <div className="filters-column hidden-1023 col-lg-4 col-md-12 col-sm-12 ">
-                <FilterSidebar locations={locations} cancers={cancers} specialities={specialities} />
+                <FilterSidebar filter={filter} locations={locations} cancers={cancers} specialities={specialities} />
             </div>
             {/* <!-- End Filters Column for destop and laptop --> */}
 

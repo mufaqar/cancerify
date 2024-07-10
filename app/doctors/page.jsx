@@ -1,5 +1,5 @@
 import client from "@/lib/ApolloClient";
-import { GET_ALL_DOCTORS, GET_ALL_CANCERS, GET_LOCATIONS, GET_ALL_SPECIALIZATIONS } from "@/lib/Queries";
+import { GET_ALL_DOCTORS, GET_ALL_CANCERS, GET_LOCATIONS, GET_ALL_SPECIALIZATIONS,GET_DOCTORS_PAGE } from "@/lib/Queries";
 import DoctorLists from "@/components/doctor-listings/doctors-list";
 import dynamic from "next/dynamic";
 
@@ -26,10 +26,14 @@ const page = async () => {
   const resSpecialities = await client.request(GET_ALL_SPECIALIZATIONS);
   const specialities = resSpecialities?.specializations?.nodes || [];
 
+  const docPage = await client.request(GET_DOCTORS_PAGE);
+  const {filter} = docPage?.page?.doctorsOptions || {};
+
+
   return (
     <>
       
-      <DoctorLists locations={locations} cancers={cancers} doctors={doctors} specialities={specialities}/>
+      <DoctorLists filter={filter} locations={locations} cancers={cancers} doctors={doctors} specialities={specialities}/>
     </>
   );
 };

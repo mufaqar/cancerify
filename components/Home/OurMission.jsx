@@ -1,7 +1,7 @@
 import Image from "next/image";
 
 const OurMission = (props) => {
-  const { page } = props;
+  const { page, cleanMission } = props;
   const ourMission = page?.homeOptions?.ourMission || {};
 
 
@@ -32,32 +32,20 @@ const OurMission = (props) => {
                 <h2>{ourMission?.heading}</h2>
                 <div className="text">{ourMission?.description}</div>
                 <ul className="steps-list">
-                  {/* {Object.values(ourMission.lists) || [].map((list, i) => (
-                    <li key={i}>
-                      <span className="count">{ i + 1}</span> {list}
+
+                  {
+                    cleanMission.map((item, i) => (
+                      <li key={i}>
+                      <span className="count">{i + 1}</span> 
+                      <div>
+                        {item?.title}
+                        <p className="text">{item?.description}</p>  
+                      </div>
                     </li>
-                  ))} */}
-                  <li>
-                    <span className="count">1</span> 
-                    <div>
-                    {ourMission.lists.itemOne}
-                      <p className="text">{ourMission.lists.descriptionOne}</p>  
-                    </div>
-                  </li>
-                  <li>
-                    <span className="count">2</span> 
-                    <div>
-                    {ourMission.lists.itemTwo}
-                      <p className="text">{ourMission.lists.descriptionTwo}</p>  
-                    </div>
-                  </li>
-                  <li>
-                    <span className="count">3</span> 
-                    <div>
-                    {ourMission.lists.itemThree}
-                      <p className="text">{ourMission.lists.descriptionThree}</p>  
-                    </div>
-                  </li>
+                    ))
+
+                  }
+                  
                 </ul>
               </div>
             </div>

@@ -9,10 +9,12 @@ import Disclaimer from "@/components/Home/Disclaimer";
 import BlogSection from "./BlogSection";
 
 const index = (props) => {
-  const { testimonials, posts, page, cancers,mostsearcheds } = props;
+  const { testimonials, posts, page, cancers,mostsearcheds,ourMission } = props;
 
   const {hero, cancersHeading,newsHeading, newsFeedSection, testimonialHeading} = page?.homeOptions || {};
 
+
+  const cleanMission = ourMission ? Object.values(ourMission) : [];
 
 
   return (
@@ -40,7 +42,7 @@ const index = (props) => {
       </section>
       {/* <!-- End Job Section --> */}
 
-      <OurMission page={page} />
+      <OurMission page={page} cleanMission={cleanMission} />
       {/* <!-- End Steps Section --> */}
 
       <CallToAction newsFeedSection={newsFeedSection} />
