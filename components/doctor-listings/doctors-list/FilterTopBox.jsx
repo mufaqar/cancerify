@@ -13,7 +13,6 @@ const FilterTopBox = (props) => {
 
   const [filteredData, setFilteredData] = useState([]);
 
-
   const [mainData, setMainData] = useState([]);
 
   const [isFilterLoading, setIsFilterLoading] = useState(false);
@@ -46,9 +45,6 @@ const FilterTopBox = (props) => {
     setMainData([...allDoctors]);
   }, [data?.pages]);
 
-
-
-
   // Apply filtering
   useEffect(() => {
     const parameterLogicLocation = keyword === "" ? "?" : "&";
@@ -66,7 +62,7 @@ const FilterTopBox = (props) => {
         ? `${parameterLogicSpecialization}specialization_ids=%5B${category}%5D`
         : "";
 
-    const handleFilter = async () => {      
+    const handleFilter = async () => {
       const SearchfilteredData = await fetch(
         `https://vni.fe7.mytemp.website/wp-json/doctors/v1/get_drs${cancerQuery}${locationQuery}${specialityQuery}&limit=6&offset=0`
       );
@@ -88,25 +84,25 @@ const FilterTopBox = (props) => {
     }
   }, [keyword, location, category]);
 
-
-// Filter infinite scroll
+  // Filter infinite scroll
   useEffect(() => {
-
     const handleInfinityFilter = async () => {
       const parameterLogicLocation = keyword === "" ? "?" : "&";
-    const parameterLogicSpecialization =
-      keyword === "" && location === "" ? "?" : "&";
+      const parameterLogicSpecialization =
+        keyword === "" && location === "" ? "?" : "&";
 
-    const cancerQuery =
-      keyword !== "" ? `?cancer_q=${keyword.replace(/(<([^>]+)>)/gi, "")}` : "";
-    const locationQuery =
-      location !== ""
-        ? `${parameterLogicLocation}location_ids=%5B${location}%5D`
-        : "";
-    const specialityQuery =
-      category !== ""
-        ? `${parameterLogicSpecialization}specialization_ids=%5B${category}%5D`
-        : "";
+      const cancerQuery =
+        keyword !== ""
+          ? `?cancer_q=${keyword.replace(/(<([^>]+)>)/gi, "")}`
+          : "";
+      const locationQuery =
+        location !== ""
+          ? `${parameterLogicLocation}location_ids=%5B${location}%5D`
+          : "";
+      const specialityQuery =
+        category !== ""
+          ? `${parameterLogicSpecialization}specialization_ids=%5B${category}%5D`
+          : "";
 
       const SearchfilteredData = await fetch(
         `https://vni.fe7.mytemp.website/wp-json/doctors/v1/get_drs${cancerQuery}${locationQuery}${specialityQuery}&limit=6&offset=${filterPage}`
@@ -116,12 +112,11 @@ const FilterTopBox = (props) => {
       const doctors = data?.data?.doctors?.nodes || [];
 
       setFilteredData([...filteredData, ...doctors]);
-    }
+    };
 
     if (filterPage > 0) {
       handleInfinityFilter();
     }
-    
   }, [filterPage]);
 
   // infinite scroll all doctors
@@ -136,11 +131,11 @@ const FilterTopBox = (props) => {
     if (inView && pagination?.total > filteredData?.length) {
       // setFilterPage(pagination?.total);
       const calculatePage = Math.ceil(pagination?.total / pagination.limit);
-      calculatePage > filterPage + 1  && setFilterPage((prev) => prev + 1);
-      // console.log(filterPage);
+      // calculate offset
+      const offset = calculatePage * pagination.limit;
+      offset > filterPage + 6 && setFilterPage((prev) => prev + 6);
     }
   }, [inView]);
-
 
   // if we click on filter button again then it will set the specific data
   useEffect(() => {
@@ -149,7 +144,7 @@ const FilterTopBox = (props) => {
     }
   }, [keyword, location, category]);
 
-
+  console.log("filterPage", filterPage);
 
   return (
     <>
@@ -191,55 +186,98 @@ const FilterTopBox = (props) => {
       </div>
       {/* End top filter bar box */}
 
-      {filteredData?.length
-        ? filteredData
-        ?.sort((a, b) => {
-          const lastNameA = a.doctorsoptions?.last_name || '';
-          const lastNameB = b.doctorsoptions?.last_name || '';
-          return lastNameA.localeCompare(lastNameB);
-        }).map((doctor, idx) => (
-            <div className="candidate-block-three" key={idx}>
-              <Link href={`/doctors/${doctor?.slug}`}>
-                <div className="inner-box box-height">
-                  <div className="content custom-content">
-                    <h4 className="name">
-                      {doctor?.specializations?.nodes?.map((val) => (
-                        <h6 key={val.id} className="designation mb-hidden pb-2">
-                          {val?.name}
-                        </h6>
-                      ))}
-                      <span>{doctor.title} </span>
-                      {doctor?.specializations?.nodes?.map((val) => (
-                        <h6 key={val.id} className="designation desktop-hidden">
-                          {val?.name}
-                        </h6>
-                      ))}
-                    </h4>
-                    {/* For mobile   */}
-                    <div className="mb-hidden  pb-1">
-                      {doctor?.doctorsoptions?.location?.map((val) => (
-                        <div className="flex items-center">
-                          {/* <span className="icon flaticon-map-locator"></span>{" "} */}
-                          <p key={val.id} className="line-clamp-1 ">
-                            {val?.title}
+      {filteredData?.length ? (
+        <>
+          {filteredData
+            ?.sort((a, b) => {
+              const lastNameA = a.doctorsoptions?.last_name || "";
+              const lastNameB = b.doctorsoptions?.last_name || "";
+              return lastNameA.localeCompare(lastNameB);
+            })
+            .map((doctor, idx) => (
+              <div className="candidate-block-three" key={idx}>
+                <Link href={`/doctors/${doctor?.slug}`}>
+                  <div className="inner-box box-height">
+                    <div className="content custom-content">
+                      <h4 className="name">
+                        {doctor?.specializations?.nodes?.map((val) => (
+                          <h6
+                            key={val.id}
+                            className="designation mb-hidden pb-2"
+                          >
+                            {val?.name}
+                          </h6>
+                        ))}
+                        <span>{doctor.title} </span>
+                        {doctor?.specializations?.nodes?.map((val) => (
+                          <h6
+                            key={val.id}
+                            className="designation desktop-hidden"
+                          >
+                            {val?.name}
+                          </h6>
+                        ))}
+                      </h4>
+                      {/* For mobile   */}
+                      <div className="mb-hidden  pb-1">
+                        {doctor?.doctorsoptions?.location?.map((val) => (
+                          <div className="flex items-center">
+                            {/* <span className="icon flaticon-map-locator"></span>{" "} */}
+                            <p key={val.id} className="line-clamp-1 ">
+                              {val?.title}
+                            </p>
+                          </div>
+                        ))}
+                      </div>
+                      {/* End candidate-info for desktop */}
+                      <ul className="candidate-info desktop-hidden pt-3">
+                        <li className=" ">
+                          <span className="icon flaticon-map-locator"></span>{" "}
+                          <p className="line-clamp-1">
+                            {doctor?.doctorsoptions?.address}
                           </p>
+                        </li>
+                      </ul>
+                      <div className=" mb-hidden mb-lists">
+                        <div className=" flex items-center">
+                          <h6 className="text-gray-2 pr-4 line-height-38 mb-line-height-30">
+                            Cancer Treated:
+                          </h6>
+                          {doctor?.doctorsoptions?.cancerTreated
+                            ? doctor?.doctorsoptions?.cancerTreated
+                            : doctor?.doctorsoptions?.cancer_treated && (
+                                <ul className="post-tags">
+                                  {doctor?.doctorsoptions?.cancerTreated
+                                    ? doctor?.doctorsoptions?.cancerTreated
+                                    : doctor?.doctorsoptions?.cancer_treated.map(
+                                        (val, i) => (
+                                          <li
+                                            className={`${
+                                              keyword ===
+                                              val?.title
+                                                ?.replaceAll("&lt;", "<")
+                                                .replace(/(<([^>]+)>)/gi, "")
+                                                ? "bg-theme-color text-white"
+                                                : ""
+                                            }`}
+                                            key={i}
+                                          >
+                                            <span>
+                                              {val?.title
+                                                ?.replaceAll("&lt;", "<")
+                                                .replace(/(<([^>]+)>)/gi, "")}
+                                            </span>
+                                          </li>
+                                        )
+                                      )}
+                                </ul>
+                              )}
                         </div>
-                      ))}
+                      </div>
                     </div>
-                    {/* End candidate-info for desktop */}
-                    <ul className="candidate-info desktop-hidden pt-3">
-                      <li className=" ">
-                        <span className="icon flaticon-map-locator"></span>{" "}
-                        <p className="line-clamp-1">
-                          {doctor?.doctorsoptions?.address}
-                        </p>
-                      </li>
-                    </ul>
-                    <div className=" mb-hidden mb-lists">
-                      <div className=" flex items-center">
-                    <h6 className="text-gray-2 pr-4 line-height-38 mb-line-height-30">
-                      Cancer Treated:
-                    </h6>
+                    {/* End content */}
+
+                    <div className="btn-box custom-btn-box s">
                       {doctor?.doctorsoptions?.cancerTreated
                         ? doctor?.doctorsoptions?.cancerTreated
                         : doctor?.doctorsoptions?.cancer_treated && (
@@ -262,68 +300,38 @@ const FilterTopBox = (props) => {
                                         <span>
                                           {val?.title
                                             ?.replaceAll("&lt;", "<")
-                                            .replace(/(<([^>]+)>)/gi, "")
-                                            }
+                                            .replace(/(<([^>]+)>)/gi, "")}
                                         </span>
                                       </li>
                                     )
                                   )}
                             </ul>
                           )}
-                          </div>
                     </div>
+                    {/* End btn-box */}
                   </div>
-                  {/* End content */}
+                </Link>
+              </div>
+            ))}
 
-                  <div className="btn-box custom-btn-box s">
-
-                    {doctor?.doctorsoptions?.cancerTreated
-                      ? doctor?.doctorsoptions?.cancerTreated
-                      : doctor?.doctorsoptions?.cancer_treated && (
-                          <ul className="post-tags">
-                            {doctor?.doctorsoptions?.cancerTreated
-                              ? doctor?.doctorsoptions?.cancerTreated
-                              : doctor?.doctorsoptions?.cancer_treated.map(
-                                  (val, i) => (
-                                    <li
-                                      className={`${
-                                        keyword ===
-                                        val?.title
-                                          ?.replaceAll("&lt;", "<")
-                                          .replace(/(<([^>]+)>)/gi, "")
-                                          ? "bg-theme-color text-white"
-                                          : ""
-                                      }`}
-                                      key={i}
-                                    >
-                                      <span>
-                                        {val?.title
-                                          ?.replaceAll("&lt;", "<")
-                                          .replace(/(<([^>]+)>)/gi, "")}
-                                      </span>
-                                    </li>
-                                  )
-                                )}
-                          </ul>
-                        )}
-                  </div>
-                  {/* End btn-box */}
-                </div>
-              </Link>
-            </div>
+          <div ref={ref}></div>
+        </>
+      ) : keyword !== "" || location !== "" || category !== "" ? (
+        isFilterLoading ? (
+          Array.from({ length: 8 }).map((_, idx) => (
+            <div key={idx} className="doctors_lists_skeleton"></div>
           ))
-        : keyword !== "" || location !== "" || category !== ""
-        ? isFilterLoading
-          ? Array.from({ length: 8 }).map((_, idx) => (
-              <div key={idx} className="doctors_lists_skeleton"></div>
-            ))
-          : !filteredData?.length && (
-              <div className="alert alert-warning">No doctors found</div>
-            )
-        : doctorsData
+        ) : (
+          !filteredData?.length && (
+            <div className="alert alert-warning">No doctors found</div>
+          )
+        )
+      ) : (
+        <>
+          {doctorsData
             ?.sort((a, b) => {
-              const lastNameA = a.doctorsoptions?.lastName || '';
-              const lastNameB = b.doctorsoptions?.lastName || '';
+              const lastNameA = a.doctorsoptions?.lastName || "";
+              const lastNameB = b.doctorsoptions?.lastName || "";
               return lastNameA.localeCompare(lastNameB);
             })
             .map((doctor, idx) => (
@@ -375,30 +383,32 @@ const FilterTopBox = (props) => {
                         <div className=" mb-hidden mb-lists ">
                           <div className="flex items-center">
                             <h6 className="text-gray-2 pr-4 line-height-38 mb-line-height-30">
-                            Cancer Treated:
+                              Cancer Treated:
                             </h6>
-                          {doctor?.doctorsoptions?.cancerTreated && (
-                            <ul className="post-tags">
-                              {doctor?.doctorsoptions?.cancerTreated?.map(
-                                (val, i) => (
-                                  <li
-                                    className={`${
-                                      keyword ===
-                                      val?.title?.replace(/(<([^>]+)>)/gi, "")
-                                        ? "bg-theme-color text-white"
-                                        : ""
-                                    }`}
-                                    key={i}
-                                  >
-                                    <span>
-                                      {val?.title
-                                        ?.replace(/(<([^>]+)>)/gi, "")}
-                                    </span>
-                                  </li>
-                                )
-                              )}
-                            </ul>
-                          )}
+                            {doctor?.doctorsoptions?.cancerTreated && (
+                              <ul className="post-tags">
+                                {doctor?.doctorsoptions?.cancerTreated?.map(
+                                  (val, i) => (
+                                    <li
+                                      className={`${
+                                        keyword ===
+                                        val?.title?.replace(/(<([^>]+)>)/gi, "")
+                                          ? "bg-theme-color text-white"
+                                          : ""
+                                      }`}
+                                      key={i}
+                                    >
+                                      <span>
+                                        {val?.title?.replace(
+                                          /(<([^>]+)>)/gi,
+                                          ""
+                                        )}
+                                      </span>
+                                    </li>
+                                  )
+                                )}
+                              </ul>
+                            )}
                           </div>
                         </div>
                       </div>
@@ -433,9 +443,12 @@ const FilterTopBox = (props) => {
                 </div>
               </>
             ))}
+          <div ref={ref}></div>
+        </>
+      )}
 
       {/* { hasNextPage && } */}
-      <div ref={ref}></div>
+
       {/* <!-- Listing Show More --> */}
     </>
   );
