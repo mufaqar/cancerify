@@ -151,7 +151,7 @@ const FilterTopBox = (props) => {
   }, [keyword, location, category]);
 
 
-  console.log(isMainInfiniteLoading)
+
 
  
 
@@ -334,7 +334,7 @@ const FilterTopBox = (props) => {
         
         : (
           !filteredData?.length && (
-            <div className="alert alert-warning">No doctors found</div>
+            <div className="alert alert-warning">No results found</div>
           )
         )
       ) : (
