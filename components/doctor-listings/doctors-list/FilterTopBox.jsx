@@ -327,9 +327,10 @@ const FilterTopBox = (props) => {
         </>
       ) : keyword !== "" || location !== "" || category !== "" ? (
         isFilterLoading ? (
-          Array.from({ length: 8 }).map((_, idx) => (
-            <div key={idx} className="doctors_lists_skeleton"></div>
-          ))
+          // Array.from({ length: 8 }).map((_, idx) => (
+          //   <div key={idx} className="doctors_lists_skeleton"></div>
+          // ))
+          <></>
         )
         
         : (
@@ -467,11 +468,13 @@ const FilterTopBox = (props) => {
         )
       }
       {
+        // filteredData?.length ?
         isFilterInfiniteLoading && (
           Array.from({ length: 6 }).map((_, idx) => (
             <div key={idx} className="doctors_lists_skeleton"></div>
           ))
         )
+        // : null
       }
 
       {/* { hasNextPage && } */}
