@@ -1034,6 +1034,10 @@
 	padding-top: 5px;
 	font-size: 20px;
 	line-height: 24px;
+  padding-right: 8px;
+}
+.pr-8{
+  padding-right: 8px;
 }
 .toggle-filters{
   width: 100%;
@@ -1063,7 +1067,7 @@
 }
 
 .box-height{
-  height: 120px;
+  height: 130px;
 }
 .mb-lists ul li{
   margin: 0px 6px 6px 0px !important;
@@ -1166,7 +1170,7 @@
     padding: 35px 0px 40px 0px !important;
   }
   .box-height{
-    height: 150px;
+    height: 160px;
   }
   // .mb-h-100vh{
   //   height: 100vh;
@@ -1239,6 +1243,14 @@
   }
   .footer-box > div {
     margin-bottom: 0px !important;
+  }
+  .candidate-block-three .post-tags li {
+    font-size: 13px;
+    padding: 4px 10px;
+    margin: 6px;
+  }
+  .mb-lists div h6{
+    font-size: 14px;
   }
 }
 @media only screen and (max-width: 1023px) {
