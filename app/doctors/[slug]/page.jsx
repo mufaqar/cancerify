@@ -68,11 +68,13 @@ const Page = async ({ params: { slug } }) => {
                   <div className="inner-box">
                     <div className="content doctor_content">
                       <h4 className="name">{doctor?.title}</h4>
+                      <div className="flex items-center ">
                       {doctor?.specializations?.nodes?.map((val) => (
                         <h6 key={val.id} className="designation mb-3">
                           {val?.name}
                         </h6>
                       ))}
+                      </div>
                       <div className="cancer_treted pb-3 flex items-center">
                         <h6 className="text-gray-2 pr-4 line-height-38">
                           {cancerTreatedHeading || "Cancer Treated"}:
@@ -270,37 +272,7 @@ const Page = async ({ params: { slug } }) => {
                       {bookAppointmentLabel || "Book An Appointment"}
                     </Link>
                   </div>
-                  {/* <div className="cancer_treted pb-5 pt-4">
-                    <h4 className="widget-title pb-1">
-                      {cancerTreatedHeading || "Cancer Treated"}
-                    </h4>
-                    <ul className="post-tags flex items-center flex-wrap">
-                      {cancerTreated?.map((val, i) => (
-                        <li className="" key={i}>
-                          <Link
-                            className="text-white"
-                            href={`/cancers/${val?.slug}`}
-                          >
-                            {val?.title.replace(/(<([^>]+)>)/gi, "")}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </div> */}
-                  {/* {doctor?.doctorsoptions?.specializationss && (
-                    <div className="sidebar-widget">
-                      {
-                        <div className="widget-content">
-                          <h4 className="widget-title">{specializationsHeading || 'Specializations'}</h4>
-                          <div>
-                            {parseHtml(
-                              doctor?.doctorsoptions?.specializationss || ""
-                            )}
-                          </div>
-                        </div>
-                      }
-                    </div>
-                  )} */}
+     
 
                   {/* End .sidebar-widget conadidate overview */}
                   {doctor?.doctorsoptions?.insurancess ? (
@@ -310,9 +282,7 @@ const Page = async ({ params: { slug } }) => {
                       </h4>
                       <div className="widget-content insurance_list">
                         {parseHtml(doctor?.doctorsoptions?.insurancess || "")}
-                        {/* <ul className="job-skills">
-                          <JobSkills insurances={insurances} />
-                        </ul> */}
+            
                       </div>
                     </div>
                   ) : null}

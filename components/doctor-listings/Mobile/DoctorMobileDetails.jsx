@@ -30,11 +30,13 @@ const DoctorMobileDetails = (props) => {
           <div className="inner-box">
             <div className="content doctor_content">
               <h4 className="name">{doctor?.title}</h4>
+              <div className="flex items-center ">
               {doctor?.specializations?.nodes?.map((val) => (
                 <h6 key={val.id} className="designation mb-2">
                   {val?.name}
                 </h6>
               ))}
+              </div>
               <div className="cancer_treted pb-3 flex items-center">
                 <h6 className="text-gray-2 pr-4 line-height-38">
                   {cancerTreatedHeading || "Cancer Treated"}:
