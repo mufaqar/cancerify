@@ -117,7 +117,7 @@ const SearchForm4 = (props) => {
             </div>
           </div>
           {/* Mobile search */}
-          <div className="mobile_search mb-hidden box-sahdow">
+          <div className="mobile_search mb-hidden">
             {
               !isInputFocused &&
               <div className="mb-search-form rounded-50 ">
@@ -187,7 +187,7 @@ const SearchForm4 = (props) => {
                 placeholder="Search by cancer type"
                 onFocus={handleFocus}
                 onChange={(e) => setCancerSearch(e.target.value)}
-                // onBlur={handleBlur}
+                autoFocus
               />
             </div>
             <button
