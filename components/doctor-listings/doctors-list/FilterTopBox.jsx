@@ -239,15 +239,14 @@ const FilterTopBox = (props) => {
                         </div>
                       </div>
                       {/* For mobile   */}
-                      <div className="mb-hidden  pb-1">
+                      <div className="mb-hidden  pb-1 ">
+                        <div className="flex items-center">
                         {doctor?.doctorsoptions?.location?.map((val) => (
-                          <div className="flex items-center">
-                            {/* <span className="icon flaticon-map-locator"></span>{" "} */}
-                            <p key={val.id} className="line-clamp-1 pl-2">
-                              {val?.title}
-                            </p>
-                          </div>
+                          <h6 key={val.id} className="location_name pr-8 pb-2">
+                          {val?.title}
+                        </h6>
                         ))}
+                        </div>
                       </div>
                       {/* End candidate-info for desktop */}
                       <ul className="candidate-info desktop-hidden pt-3">
@@ -334,7 +333,7 @@ const FilterTopBox = (props) => {
               </div>
             ))}
 
-          <div ref={ref}></div>
+          {pagination?.total > 6 ? <div ref={ref}></div> : null}
         </>
       ) : keyword !== "" || location !== "" || category !== "" ? (
         isFilterLoading ? (
