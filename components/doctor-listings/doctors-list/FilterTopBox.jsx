@@ -12,6 +12,7 @@ const FilterTopBox = (props) => {
   const { ref, inView } = useInView();
 
   const [filteredData, setFilteredData] = useState([]);
+  const [cleanFilteredData, setCleanFilteredData] = useState([]);
 
   const [mainData, setMainData] = useState([]);
   const [isMainInfiniteLoading, setIsMainInfiniteLoading] = useState(false);
@@ -160,6 +161,15 @@ const FilterTopBox = (props) => {
 
 
 
+  const isShow = keyword !== "" ? filteredData?.filter((doctor) => {
+    return doctor?.doctorsoptions?.cancerTreated
+    ? doctor?.doctorsoptions?.cancerTreated
+    : doctor?.doctorsoptions?.cancer_treated.some((item) => item.title.replace(' Cancer', '').toLowerCase() === keyword.replace(' Cancer', '').toLowerCase() )
+  }): filteredData
+
+
+  
+
   return (
     <>
       <div className="show-1023 sticky z-200 py-3 bg-white top-70">
@@ -200,15 +210,17 @@ const FilterTopBox = (props) => {
       </div>
       {/* End top filter bar box */}
 
-      {filteredData?.length ? (
+      {isShow?.length ? (
         <>
-          {filteredData
+          {isShow
             ?.sort((a, b) => {
               const lastNameA = a.doctorsoptions?.last_name || "";
               const lastNameB = b.doctorsoptions?.last_name || "";
               return lastNameA.localeCompare(lastNameB);
             })
-            .map((doctor, idx) => (
+            .map((doctor, idx) => {
+              return(
+     
               <div className="candidate-block-three" key={idx}>
                 <Link href={`/doctors/${doctor?.slug}`}>
                   <div className="inner-box box-height">
@@ -330,10 +342,15 @@ const FilterTopBox = (props) => {
                     {/* End btn-box */}
                   </div>
                 </Link>
-              </div>
-            ))}
+              </div> 
 
-          {pagination?.total > 6 ? <div ref={ref}></div> : null}
+
+              )
+            }
+            )}
+
+          {/* { pagination?.total > 6 ? <div ref={ref}></div> : null} */}
+          {pagination?.total > 6 || isShow?.length > 6 ? <div ref={ref}></div> : null}
         </>
       ) : keyword !== "" || location !== "" || category !== "" ? (
         isFilterLoading ? (
@@ -342,9 +359,9 @@ const FilterTopBox = (props) => {
           // ))
           <></>
         ) : (
-          !filteredData?.length && (
+          !isShow?.length  ? (
             <div className="alert alert-warning">No results found</div>
-          )
+          ): null
         )
       ) : (
         <>
