@@ -260,9 +260,9 @@ const FilterTopBox = (props) => {
                       </ul>
                       <div className=" mb-hidden mb-lists">
                         <div className=" flex items-center">
-                          <h6 className="text-gray-2 pr-4 line-height-38 mb-line-height-30">
+                          {/* <h6 className="text-gray-2 pr-4 line-height-38 mb-line-height-30">
                             Cancer Treated:
-                          </h6>
+                          </h6> */}
                           {doctor?.doctorsoptions?.cancerTreated
                             ? doctor?.doctorsoptions?.cancerTreated
                             : doctor?.doctorsoptions?.cancer_treated && (
@@ -391,7 +391,7 @@ const FilterTopBox = (props) => {
                         <div className="mb-hidden  ">
                           <div className="flex items-center pb-1">
                           {doctor?.doctorsoptions?.location?.map((val) => (
-                            <h6 key={val.id} className=" pr-8 pb-2">
+                            <h6 key={val.id} className="location_name pr-8 pb-2">
                               {val?.title}
                             </h6>
                           ))}
@@ -408,9 +408,9 @@ const FilterTopBox = (props) => {
                         </ul>
                         <div className=" mb-hidden mb-lists ">
                           <div className="flex items-center">
-                            <h6 className="text-gray-2 pr-4 line-height-38 mb-line-height-30">
+                            {/* <h6 className="text-gray-2 pr-4 line-height-38 mb-line-height-30">
                               Cancer Treated:
-                            </h6>
+                            </h6> */}
                             {doctor?.doctorsoptions?.cancerTreated && (
                               <ul className="post-tags">
                                 {doctor?.doctorsoptions?.cancerTreated?.map(

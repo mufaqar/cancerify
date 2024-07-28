@@ -6,7 +6,7 @@ const index = (props) => {
   const { mostsearcheds, hero } = props;
   const [isInputFocused, setIsInputFocused] = useState(false);
 
-  console.log(hero)
+
   return (
     <section
       className="banner-section-nine bg-theme-color"

@@ -1155,6 +1155,9 @@
 .ls-section{
   padding: 10px 0 !important;
 }
+.location_name{
+  color: #656565;
+}
 // Responsive css
 @media only screen and (min-width: 992px) {
   .col-w-20 {
@@ -1245,7 +1248,7 @@
     margin-bottom: 0px !important;
   }
   .candidate-block-three .post-tags li {
-    font-size: 13px;
+    font-size: 14px;
     padding: 4px 10px;
     margin: 6px;
   }
