@@ -1158,6 +1158,9 @@
 .location_name{
   color: #656565;
 }
+.h-screen{
+  height: 350px;
+}
 // Responsive css
 @media only screen and (min-width: 992px) {
   .col-w-20 {
@@ -1262,6 +1265,9 @@
   }
   .mb-lists div h6{
     font-size: 14px;
+  }
+  #filter-sidebar{
+    height: 100vh;
   }
 }
 @media only screen and (max-width: 1023px) {
