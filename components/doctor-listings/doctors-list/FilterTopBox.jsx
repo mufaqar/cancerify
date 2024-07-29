@@ -435,9 +435,7 @@ const FilterTopBox = (props) => {
                         </ul>
                         <div className=" mb-hidden mb-lists ">
                           <div className="flex items-center">
-                            {/* <h6 className="text-gray-2 pr-4 line-height-38 mb-line-height-30">
-                              Cancer Treated:
-                            </h6> */}
+               
                             {doctor?.doctorsoptions?.cancerTreated && (
                               <ul className="post-tags">
                                 {doctor?.doctorsoptions?.cancerTreated?.map(
@@ -448,7 +446,7 @@ const FilterTopBox = (props) => {
                                         val?.title?.replace(/(<([^>]+)>)/gi, "")
                                           ? "bg-theme-color text-white"
                                           : ""
-                                      }`}
+                                      } `}
                                       key={i}
                                     >
                                       <span>

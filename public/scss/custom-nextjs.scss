@@ -1161,6 +1161,9 @@
 .h-screen{
   height: 350px;
 }
+.mb-bg-light-gray{
+  background-color: #D9D9D9 !important;
+}
 // Responsive css
 @media only screen and (min-width: 992px) {
   .col-w-20 {
@@ -1259,8 +1262,6 @@
     font-size: 14px;
     padding: 5px 10px;
     margin: 6px;
-    background-color: #D9D9D9 !important;
-    color: white !important;
     font-weight: 400;
   }
   .mb-lists div h6{
