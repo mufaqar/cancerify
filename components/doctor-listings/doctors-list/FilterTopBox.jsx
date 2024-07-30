@@ -14,7 +14,7 @@ const FilterTopBox = (props) => {
   const { ref, inView } = useInView();
 
   const [filteredData, setFilteredData] = useState([]);
-  // const [cleanFilteredData, setCleanFilteredData] = useState([]);
+
 
   const [mainData, setMainData] = useState([]);
   const [isMainInfiniteLoading, setIsMainInfiniteLoading] = useState(false);
@@ -162,25 +162,7 @@ const FilterTopBox = (props) => {
     }
   }, [keyword, location, category]);
 
-  // const isShow = filteredData;
 
-  // useEffect(() => {
-  //   const isShow =
-  //     keyword !== ""
-  //       ? filteredData?.filter((doctor) => {
-  //           return doctor?.doctorsoptions?.cancerTreated
-  //             ? doctor?.doctorsoptions?.cancerTreated
-  //             : doctor?.doctorsoptions?.cancer_treated.some(
-  //                 (item) =>
-  //                   item.title.replace(" Cancer", "").toLowerCase() ===
-  //                   keyword.replace(" Cancer", "").toLowerCase()
-  //               );
-  //         })
-  //       : filteredData;
-  //   setCleanFilteredData(isShow);
-  // }, [keyword, filteredData]);
-
-  const cleanFilteredData = filteredData;
 
   return (
     <>
