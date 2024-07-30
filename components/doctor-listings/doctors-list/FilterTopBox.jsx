@@ -61,7 +61,6 @@ const FilterTopBox = (props) => {
       keyword !== ""
         ? `?cancer_q=${keyword
             .replace(/(<([^>]+)>)/gi, "")
-            .replace(" Cancer", "")
             .toLowerCase()}`
         : "";
     const locationQuery =
@@ -109,7 +108,6 @@ const FilterTopBox = (props) => {
         keyword !== ""
           ? `?cancer_q=${keyword
               .replace(/(<([^>]+)>)/gi, "")
-              .replace(" Cancer", "")
               .toLowerCase()}`
           : "";
       const locationQuery =
@@ -224,9 +222,9 @@ const FilterTopBox = (props) => {
       </div>
       {/* End top filter bar box */}
 
-      {cleanFilteredData?.length ? (
+      {filteredData?.length ? (
         <>
-          {cleanFilteredData
+          {filteredData
             ?.sort((a, b) => {
               const lastNameA = a.doctorsoptions?.last_name || "";
               const lastNameB = b.doctorsoptions?.last_name || "";
@@ -360,7 +358,7 @@ const FilterTopBox = (props) => {
             })}
 
           {/* { pagination?.total > 6 ? <div ref={ref}></div> : null} */}
-          {pagination?.total > 6 || cleanFilteredData?.length > 6 ? (
+          {pagination?.total > 6 ? (
             <div ref={ref}></div>
           ) : null}
         </>
@@ -370,7 +368,7 @@ const FilterTopBox = (props) => {
           //   <div key={idx} className="doctors_lists_skeleton"></div>
           // ))
           <></>
-        ) : !cleanFilteredData?.length ? (
+        ) : !filteredData?.length ? (
           <div className="h-screen">
             <div className="alert alert-warning ">No results found</div>
           </div>
