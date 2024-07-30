@@ -8,6 +8,7 @@ import {
   addKeyword,
 } from "@/features/filter/candidateFilterSlice";
 import SpecializationsBox from "../components/SpecializationsBox";
+import { useEffect } from "react";
 
 const FilterSidebar = (props) => {
   const { cancers, locations, specialities,filter } = props;
@@ -23,6 +24,11 @@ const FilterSidebar = (props) => {
     dispatch(addCategory(name));
   };
 
+  useEffect(() => {
+    dispatch(addCategory(""));
+    dispatch(addLocation(""));
+    dispatch(addKeyword(""));
+  }, [])
 
 
   return (

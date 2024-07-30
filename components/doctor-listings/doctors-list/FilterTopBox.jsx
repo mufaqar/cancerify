@@ -15,7 +15,6 @@ const FilterTopBox = (props) => {
 
   const [filteredData, setFilteredData] = useState([]);
 
-
   const [mainData, setMainData] = useState([]);
   const [isMainInfiniteLoading, setIsMainInfiniteLoading] = useState(false);
   const [isFilterLoading, setIsFilterLoading] = useState(false);
@@ -339,10 +338,8 @@ const FilterTopBox = (props) => {
               );
             })}
 
-          {/* { pagination?.total > 6 ? <div ref={ref}></div> : null} */}
-          {pagination?.total > 6 ? (
-            <div ref={ref}></div>
-          ) : null}
+          { pagination?.total > 6 ? <div ref={ref}></div> : null}
+
         </>
       ) : keyword !== "" || location !== "" || category !== "" ? (
         isFilterLoading ? (
