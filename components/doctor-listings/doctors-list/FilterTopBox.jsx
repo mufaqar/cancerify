@@ -7,6 +7,8 @@ import { GET_ALL_DOCTORS } from "@/lib/Queries";
 import client from "@/lib/ApolloClient";
 import { useInfiniteQuery } from "@tanstack/react-query";
 
+
+
 const FilterTopBox = (props) => {
   const { doctors } = props;
   const { ref, inView } = useInView();
@@ -180,6 +182,8 @@ const FilterTopBox = (props) => {
     setCleanFilteredData(isShow);
   }, [keyword, filteredData]);
 
+  // const cleanFilteredData = filteredData;
+
   return (
     <>
       <div className="show-1023 sticky z-200 py-3 bg-white top-70">
@@ -228,9 +232,9 @@ const FilterTopBox = (props) => {
               const lastNameB = b.doctorsoptions?.last_name || "";
               return lastNameA.localeCompare(lastNameB);
             })
-            .map((doctor, idx) => {
+            .map((doctor) => {
               return (
-                <div className="candidate-block-three" key={idx}>
+                <div className="candidate-block-three" key={doctor.id}>
                   <Link href={`/doctors/${doctor?.slug}`}>
                     <div className="inner-box box-height">
                       <div className="content custom-content">
