@@ -33,7 +33,7 @@ export default async function Page() {
       <MobileMenu />
       {/* End MobileMenu */}
 
-      <section className="tnc-section">
+      <section className="tnc-section custom-tnc-section">
         <div className="auto-container mt-5">
           {blocks?.map((block, index) =>
             block.name === "core/heading" ? (

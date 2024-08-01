@@ -11,7 +11,7 @@ import TableBlock from "../../Blocks/TableBlock";
 
 const index = (props) => {
 
-  const {postBlocks,categories} = props;
+  const {postBlocks,categories,title, slug} = props;
 
   const blocks = JSON.parse(postBlocks);
 
@@ -44,7 +44,7 @@ const index = (props) => {
       <div className="other-options">
         <div className="social-share">
           <h5>Share this post</h5>
-          <SocialShare />
+          <SocialShare title={title} slug={slug} />
         </div>
         {/* End social-share */}
 

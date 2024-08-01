@@ -87,6 +87,8 @@ const SingleBlog = async ({ params }) => {
         <DetailsContent
           categories={post?.categories?.nodes || []}
           postBlocks={post?.blocksJSON}
+          slug={slug}
+          title={post?.title}
         />
       </section>
       {/* <!-- End Blog Single --> */}

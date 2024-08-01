@@ -78,7 +78,7 @@ const FilterTopBox = (props) => {
 
       const data = await SearchfilteredData.json();
       const doctors = data?.data?.doctors?.nodes || [];
-      console.log(data?.pagination, "doctorsdoctors");
+      // console.log(data?.pagination, "doctorsdoctors");
 
       setFilteredData([...doctors]);
 
@@ -161,6 +161,9 @@ const FilterTopBox = (props) => {
     }
   }, [keyword, location, category]);
 
+
+
+  console.log(isFilterLoading)
 
 
   return (
@@ -343,9 +346,6 @@ const FilterTopBox = (props) => {
         </>
       ) : keyword !== "" || location !== "" || category !== "" ? (
         isFilterLoading ? (
-          // Array.from({ length: 8 }).map((_, idx) => (
-          //   <div key={idx} className="doctors_lists_skeleton"></div>
-          // ))
           <></>
         ) : !filteredData?.length ? (
           <div className="h-screen">
@@ -491,6 +491,9 @@ const FilterTopBox = (props) => {
           ))
         // : null
       }
+      {
+        isFilterLoading && <></>
+      }
 
       {/* { hasNextPage && } */}
 
@@ -500,3 +503,9 @@ const FilterTopBox = (props) => {
 };
 
 export default FilterTopBox;
+
+
+
+          // Array.from({ length: 8 }).map((_, idx) => (
+          //   <div key={idx} className="doctors_lists_skeleton"></div>
+          // ))

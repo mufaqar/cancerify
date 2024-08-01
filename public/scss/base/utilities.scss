@@ -258,10 +258,10 @@ Scroll To Top
   color: #ffffff;
 }
 
-.social-share a.facebook {
+.social-share .facebook {
   background: #3b5998;
 }
-.social-share a.twitter {
+.social-share .twitter {
   background: #55acee;
 }
 .social-share a.google {
@@ -329,4 +329,7 @@ Scroll To Top
 
 .social-share a i {
   margin-right: 5px;
+}
+.social-share button{
+
 }
