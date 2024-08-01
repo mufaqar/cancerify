@@ -1,11 +1,10 @@
-'use client'
+"use client";
 import SearchForm from "@/components/Home/SearchForm";
 import { useState } from "react";
 
 const index = (props) => {
   const { mostsearcheds, hero } = props;
   const [isInputFocused, setIsInputFocused] = useState(false);
-
 
   return (
     <section
@@ -15,22 +14,26 @@ const index = (props) => {
       <div className="auto-container">
         <div className="cotnent-box">
           <div className="title-box">
-            <h3>{hero?.heading ? hero?.heading :'Find Top Cancer Doctors'}</h3>
-            <div className="text">
-              {hero?.subHeading ? hero?.subHeading : `We've done the research and selected only the world's best oncologists!`}
-            </div>
+            {hero?.heading && <h3>{hero?.heading}</h3>}
+            {hero?.subHeading && <div className="text">{hero?.subHeading}</div>}
           </div>
 
           {/* <!-- Job Search Form --> */}
-          
-            <SearchForm mostsearcheds={mostsearcheds} setIsInputFocused={setIsInputFocused} isInputFocused={isInputFocused}  />
+
+          <SearchForm
+            mostsearcheds={mostsearcheds}
+            setIsInputFocused={setIsInputFocused}
+            isInputFocused={isInputFocused}
+          />
         </div>
         {/* <!-- Job Search Form --> */}
       </div>
-      {
-        isInputFocused && <div onClick={() => setIsInputFocused(false)} className="offset_close"></div>
-      }
-      
+      {isInputFocused && (
+        <div
+          onClick={() => setIsInputFocused(false)}
+          className="offset_close"
+        ></div>
+      )}
     </section>
   );
 };
