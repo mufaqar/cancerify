@@ -163,7 +163,7 @@ const FilterTopBox = (props) => {
 
 
 
-  console.log(isFilterLoading)
+
 
 
   return (
@@ -341,7 +341,7 @@ const FilterTopBox = (props) => {
               );
             })}
 
-          { pagination?.total > 6 ? <div ref={ref}></div> : null}
+          { pagination?.total > filteredData?.length ? <div ref={ref}></div> : null}
 
         </>
       ) : keyword !== "" || location !== "" || category !== "" ? (
@@ -491,9 +491,7 @@ const FilterTopBox = (props) => {
           ))
         // : null
       }
-      {
-        isFilterLoading && <></>
-      }
+
 
       {/* { hasNextPage && } */}
 
