@@ -7,8 +7,6 @@ import { GET_ALL_DOCTORS } from "@/lib/Queries";
 import client from "@/lib/ApolloClient";
 import { useInfiniteQuery } from "@tanstack/react-query";
 
-
-
 const FilterTopBox = (props) => {
   const { doctors } = props;
   const { ref, inView } = useInView();
@@ -29,7 +27,7 @@ const FilterTopBox = (props) => {
 
   // if there is new data save previous doctors data in variable and append new data to it.
 
-  const { data, fetchNextPage, hasNextPage } = useInfiniteQuery({
+  const { data, fetchNextPage, hasNextPage, isFetchingNextPage, } = useInfiniteQuery({
     queryKey: ["doctors_infinity"],
     queryFn: async ({ pageParam }) => {
       setIsMainInfiniteLoading(true);
@@ -58,9 +56,7 @@ const FilterTopBox = (props) => {
 
     const cancerQuery =
       keyword !== ""
-        ? `?cancer_q=${keyword
-            .replace(/(<([^>]+)>)/gi, "")
-            .toLowerCase()}`
+        ? `?cancer_q=${keyword.replace(/(<([^>]+)>)/gi, "").toLowerCase()}`
         : "";
     const locationQuery =
       location !== ""
@@ -105,9 +101,7 @@ const FilterTopBox = (props) => {
 
       const cancerQuery =
         keyword !== ""
-          ? `?cancer_q=${keyword
-              .replace(/(<([^>]+)>)/gi, "")
-              .toLowerCase()}`
+          ? `?cancer_q=${keyword.replace(/(<([^>]+)>)/gi, "").toLowerCase()}`
           : "";
       const locationQuery =
         location !== ""
@@ -124,8 +118,6 @@ const FilterTopBox = (props) => {
 
       const data = await SearchfilteredData.json();
       const doctors = data?.data?.doctors?.nodes || [];
-
-      
 
       setFilteredData([...filteredData, ...doctors]);
       setIsFilterInfiniteLoading(false);
@@ -160,9 +152,6 @@ const FilterTopBox = (props) => {
       setFilterPage(0);
     }
   }, [keyword, location, category]);
-
-
-
 
 
 
@@ -341,8 +330,13 @@ const FilterTopBox = (props) => {
               );
             })}
 
-          { pagination?.total > filteredData?.length ? <div ref={ref}></div> : null}
-
+          {pagination?.total > filteredData?.length ? (
+            <>
+              {filteredData?.length ? (
+                <div className="infinity-filter" ref={ref}></div>
+              ) : null}
+            </>
+          ) : null}
         </>
       ) : keyword !== "" || location !== "" || category !== "" ? (
         isFilterLoading ? (
@@ -416,7 +410,6 @@ const FilterTopBox = (props) => {
                         </ul>
                         <div className=" mb-hidden mb-lists ">
                           <div className="flex items-center">
-               
                             {doctor?.doctorsoptions?.cancerTreated && (
                               <ul className="post-tags">
                                 {doctor?.doctorsoptions?.cancerTreated?.map(
@@ -475,11 +468,11 @@ const FilterTopBox = (props) => {
                 </div>
               </>
             ))}
-          <div ref={ref}></div>
+          <div className="infinity-main" ref={ref}></div>
         </>
       )}
 
-      {isMainInfiniteLoading &&
+      {isFetchingNextPage &&
         Array.from({ length: 6 }).map((_, idx) => (
           <div key={idx} className="doctors_lists_skeleton"></div>
         ))}
@@ -492,7 +485,6 @@ const FilterTopBox = (props) => {
         // : null
       }
 
-
       {/* { hasNextPage && } */}
 
       {/* <!-- Listing Show More --> */}
@@ -502,8 +494,6 @@ const FilterTopBox = (props) => {
 
 export default FilterTopBox;
 
-
-
-          // Array.from({ length: 8 }).map((_, idx) => (
-          //   <div key={idx} className="doctors_lists_skeleton"></div>
-          // ))
+// Array.from({ length: 8 }).map((_, idx) => (
+//   <div key={idx} className="doctors_lists_skeleton"></div>
+// ))
