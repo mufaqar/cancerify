@@ -139,14 +139,16 @@ const FilterTopBox = (props) => {
     }
   }, [inView, hasNextPage, fetchNextPage]);
 
-  // infinite scroll filter doctors
+  // infinite scroll filter doctors 
+  // && pagination?.total > filteredData?.length
   useEffect(() => {
-    if (inView && pagination?.total > filteredData?.length) {
+    if (inView) {
       // setFilterPage(pagination?.total);
       const calculatePage = Math.ceil(pagination?.total / pagination.limit);
       // calculate offset
       const offset = calculatePage * pagination.limit;
       offset > filterPage + 6 && setFilterPage((prev) => prev + 6);
+      console.log(pagination?.total > filteredData?.length, 'offset > filterPage + 6')
     }
   }, [inView]);
 
@@ -159,8 +161,11 @@ const FilterTopBox = (props) => {
 
 
 
-  console.log(mainKeyword, 'mainKeyword')
 
+  console.log(mainKeyword)
+  console.log(filterPage)
+  console.log(inView)
+  console.log(filteredData)
 
 
   return (
@@ -211,9 +216,9 @@ const FilterTopBox = (props) => {
               const lastNameB = b.doctorsoptions?.last_name || "";
               return lastNameA.localeCompare(lastNameB);
             })
-            .map((doctor) => {
+            .map((doctor, idx) => {
               return (
-                <div className="candidate-block-three" key={doctor.id}>
+                <div className="candidate-block-three" key={idx}>
                   <Link href={`/doctors/${doctor?.slug}`}>
                     <div className="inner-box box-height">
                       <div className="content custom-content">
@@ -338,13 +343,7 @@ const FilterTopBox = (props) => {
               );
             })}
 
-          {pagination?.total > filteredData?.length ? (
-            <>
-              {filteredData?.length ? (
-                <div className="infinity-filter" ref={ref}></div>
-              ) : null}
-            </>
-          ) : null}
+          {pagination?.total > filteredData?.length ? <div className="infinity-filter" ref={ref}></div> : null}
         </>
       ) : mainKeyword !== "" || location !== "" || category !== "" ? (
         isFilterLoading ? (
