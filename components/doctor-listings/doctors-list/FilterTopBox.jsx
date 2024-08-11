@@ -10,9 +10,7 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 const FilterTopBox = (props) => {
   const { doctors } = props;
   const { ref, inView } = useInView();
-
   const [filteredData, setFilteredData] = useState([]);
-
   const [mainData, setMainData] = useState([]);
   const [isMainInfiniteLoading, setIsMainInfiniteLoading] = useState(false);
   const [isFilterLoading, setIsFilterLoading] = useState(false);
@@ -152,6 +150,9 @@ const FilterTopBox = (props) => {
       setFilterPage(0);
     }
   }, [keyword, location, category]);
+
+
+
 
 
 

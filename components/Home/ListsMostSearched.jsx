@@ -2,8 +2,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
 import {
-  addCategory,
-  addLocation,
   addKeyword,
 } from "@/features/filter/candidateFilterSlice";
 import Highlighter from "react-highlight-words";
@@ -28,8 +26,8 @@ export default function MostSearched(props) {
       {mostsearcheds?.map((item) => (
         <li
           onClick={() => {
-            keywordHandler({ value: item.title.replace(/(<([^>]+)>)/gi, "") });
-            router.push("/doctors");
+            keywordHandler({ value: item.title });
+            router.push(`/doctors?q=${item.title}`);
           }}
           key={item.id}
         >
@@ -38,7 +36,7 @@ export default function MostSearched(props) {
             highlightClassName="YourHighlightClass"
             searchWords={[cancerSearch]}
             autoEscape={true}
-            textToHighlight={item.title?.replace(/(<([^>]+)>)/gi, "")}
+            textToHighlight={item.title}
             highlightTag={Highlight}
           />
 

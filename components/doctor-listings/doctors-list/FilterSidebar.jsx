@@ -9,10 +9,14 @@ import {
 } from "@/features/filter/candidateFilterSlice";
 import SpecializationsBox from "../components/SpecializationsBox";
 import { useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 
 const FilterSidebar = (props) => {
   const { cancers, locations, specialities,filter } = props;
   const dispatch = useDispatch();
+
+  const searchParams = useSearchParams()
+  const query = searchParams.get('q')
 
   const {
     category: specializations,
@@ -25,10 +29,18 @@ const FilterSidebar = (props) => {
   };
 
   useEffect(() => {
-    dispatch(addCategory(""));
-    dispatch(addLocation(""));
-    dispatch(addKeyword(""));
-  }, [])
+    if (query) { 
+      dispatch(addCategory(""));
+      dispatch(addLocation(""));
+    }else{
+      dispatch(addCategory(""));
+      dispatch(addLocation(""));
+      dispatch(addKeyword(""));
+    }
+  }, [query])
+
+
+  // console.log(query, keyword)
 
 
   return (
