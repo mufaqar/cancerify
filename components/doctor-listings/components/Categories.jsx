@@ -5,9 +5,11 @@ import {
   addKeyword,
 } from "../../../features/filter/candidateFilterSlice";
 import { useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 const Categories = (props) => {
   const { cancers } = props;
+  const router = useRouter();
   const searchParams = useSearchParams()
   const query = searchParams.get('q')
   const { category: getCategory, keyword } =
@@ -40,6 +42,7 @@ const Categories = (props) => {
               onClick={() =>{
                 cancerHandler({ name: '' })
                 cancerHandler({ name: item.title.replace(/(<([^>]+)>)/gi, "") })
+                router.push(`/doctors?q=${item.title}`)
               }
 
               }
