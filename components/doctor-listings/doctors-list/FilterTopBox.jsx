@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { GET_ALL_DOCTORS } from "@/lib/Queries";
 import client from "@/lib/ApolloClient";
 import { useInfiniteQuery } from "@tanstack/react-query";
+import { useSearchParams } from "next/navigation";
 
 const FilterTopBox = (props) => {
   const { doctors } = props;
@@ -23,6 +24,10 @@ const FilterTopBox = (props) => {
   const { keyword, location, category } =
     useSelector((state) => state.candidateFilter) || {};
 
+    const searchParams = useSearchParams()
+    const query = searchParams.get('q')
+    // 
+    const mainKeyword = query ? query : keyword;
   // if there is new data save previous doctors data in variable and append new data to it.
 
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage, } = useInfiniteQuery({
@@ -39,6 +44,7 @@ const FilterTopBox = (props) => {
   // filter
   const doctorsData = mainData?.length ? mainData : doctors;
 
+
   useEffect(() => {
     setIsMainInfiniteLoading(true);
     const allDoctors = data?.pages?.map((page) => page?.nodes).flat() || [];
@@ -48,13 +54,13 @@ const FilterTopBox = (props) => {
 
   // Apply filtering
   useEffect(() => {
-    const parameterLogicLocation = keyword === "" ? "?" : "&";
+    const parameterLogicLocation = mainKeyword === "" ? "?" : "&";
     const parameterLogicSpecialization =
-      keyword === "" && location === "" ? "?" : "&";
+    mainKeyword === "" && location === "" ? "?" : "&";
 
     const cancerQuery =
-      keyword !== ""
-        ? `?cancer_q=${keyword.replace(/(<([^>]+)>)/gi, "").toLowerCase()}`
+    mainKeyword !== ""
+        ? `?cancer_q=${mainKeyword.replace(/(<([^>]+)>)/gi, "").toLowerCase()}`
         : "";
     const locationQuery =
       location !== ""
@@ -80,26 +86,26 @@ const FilterTopBox = (props) => {
       setIsFilterLoading(false);
     };
 
-    if (keyword !== "" || location !== "" || category !== "") {
+    if (mainKeyword !== "" || location !== "" || category !== "") {
       setIsFilterLoading(true);
       handleFilter();
     } else {
       setFilteredData([]);
       setIsFilterLoading(false);
     }
-  }, [keyword, location, category]);
+  }, [mainKeyword, location, category]);
 
   // Filter infinite scroll
   useEffect(() => {
     const handleInfinityFilter = async () => {
       setIsFilterInfiniteLoading(true);
-      const parameterLogicLocation = keyword === "" ? "?" : "&";
+      const parameterLogicLocation = mainKeyword === "" ? "?" : "&";
       const parameterLogicSpecialization =
-        keyword === "" && location === "" ? "?" : "&";
+      mainKeyword === "" && location === "" ? "?" : "&";
 
       const cancerQuery =
-        keyword !== ""
-          ? `?cancer_q=${keyword.replace(/(<([^>]+)>)/gi, "").toLowerCase()}`
+      mainKeyword !== ""
+          ? `?cancer_q=${mainKeyword.replace(/(<([^>]+)>)/gi, "").toLowerCase()}`
           : "";
       const locationQuery =
         location !== ""
@@ -146,13 +152,14 @@ const FilterTopBox = (props) => {
 
   // if we click on filter button again then it will set the specific data
   useEffect(() => {
-    if (keyword !== "" || location !== "" || category !== "") {
+    if (mainKeyword !== "" || location !== "" || category !== "") {
       setFilterPage(0);
     }
-  }, [keyword, location, category]);
+  }, [mainKeyword, location, category]);
 
 
 
+  console.log(mainKeyword, 'mainKeyword')
 
 
 
@@ -269,7 +276,7 @@ const FilterTopBox = (props) => {
                                           (val, i) => (
                                             <li
                                               className={`${
-                                                keyword ===
+                                                mainKeyword ===
                                                 val?.title
                                                   ?.replaceAll("&lt;", "<")
                                                   .replace(/(<([^>]+)>)/gi, "")
@@ -304,7 +311,7 @@ const FilterTopBox = (props) => {
                                       (val, i) => (
                                         <li
                                           className={`${
-                                            keyword ===
+                                            mainKeyword ===
                                             val?.title
                                               ?.replaceAll("&lt;", "<")
                                               .replace(/(<([^>]+)>)/gi, "")
@@ -339,7 +346,7 @@ const FilterTopBox = (props) => {
             </>
           ) : null}
         </>
-      ) : keyword !== "" || location !== "" || category !== "" ? (
+      ) : mainKeyword !== "" || location !== "" || category !== "" ? (
         isFilterLoading ? (
           <></>
         ) : !filteredData?.length ? (
@@ -417,7 +424,7 @@ const FilterTopBox = (props) => {
                                   (val, i) => (
                                     <li
                                       className={`${
-                                        keyword ===
+                                        mainKeyword ===
                                         val?.title?.replace(/(<([^>]+)>)/gi, "")
                                           ? "bg-theme-color text-white"
                                           : ""
@@ -447,7 +454,7 @@ const FilterTopBox = (props) => {
                               (val, i) => (
                                 <li
                                   className={`${
-                                    keyword ===
+                                    mainKeyword ===
                                     val?.title?.replace(/(<([^>]+)>)/gi, "")
                                       ? "bg-theme-color text-white"
                                       : ""

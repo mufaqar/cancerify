@@ -4,16 +4,18 @@ import {
   addCategory,
   addKeyword,
 } from "../../../features/filter/candidateFilterSlice";
-
+import { useSearchParams } from "next/navigation";
 
 const Categories = (props) => {
   const { cancers } = props;
-
+  const searchParams = useSearchParams()
+  const query = searchParams.get('q')
   const { category: getCategory, keyword } =
     useSelector((state) => state.candidateFilter) || {};
 
   const dispatch = useDispatch();
-
+    // 
+    const mainKeyword = query ? query : keyword;
   // category handler
   const cancerHandler = ({ name }) => {
     dispatch(addKeyword(name));
@@ -30,7 +32,7 @@ const Categories = (props) => {
           ?.map((item) => (
             <li
             className={`${
-              keyword === item.title.replace(/(<([^>]+)>)/gi, "")
+              mainKeyword === item.title.replace(/(<([^>]+)>)/gi, "")
               ? "text-theme-color border-theme-color bg-theme-color text-white"
               : "border"
           } rounded-50  `}

@@ -10,13 +10,15 @@ import {
 import SpecializationsBox from "../components/SpecializationsBox";
 import { useEffect } from "react";
 import { useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 const FilterSidebar = (props) => {
   const { cancers, locations, specialities,filter } = props;
   const dispatch = useDispatch();
-
+  const router = useRouter();
   const searchParams = useSearchParams()
   const query = searchParams.get('q')
+
 
   const {
     category: specializations,
@@ -24,23 +26,21 @@ const FilterSidebar = (props) => {
     location,
   } = useSelector((state) => state.candidateFilter) || {};
 
+    // 
+    const mainKeyword = query ? query : keyword;
+
   const SpecializationsHandler = ({ name }) => {
     dispatch(addCategory(name));
   };
 
   useEffect(() => {
-    if (query) { 
-      dispatch(addCategory(""));
-      dispatch(addLocation(""));
-    }else{
-      dispatch(addCategory(""));
-      dispatch(addLocation(""));
-      dispatch(addKeyword(""));
-    }
-  }, [query])
+    dispatch(addCategory(""));
+    dispatch(addLocation(""));
+    dispatch(addKeyword(""));
+  }, [])
 
 
-  // console.log(query, keyword)
+
 
 
   return (
@@ -106,7 +106,7 @@ const FilterSidebar = (props) => {
           >
             See Doctors
           </button>
-          {specializations === "" && location === "" && keyword === "" ? (
+          {specializations === "" && location === "" && mainKeyword === "" ? (
             <></>
           ) : (
             <>
@@ -117,6 +117,7 @@ const FilterSidebar = (props) => {
                   dispatch(addCategory(""));
                   dispatch(addLocation(""));
                   dispatch(addKeyword(""));
+                  router.push('/doctors');
                 }}
               >
                 Reset filter
@@ -129,6 +130,7 @@ const FilterSidebar = (props) => {
                   dispatch(addCategory(""));
                   dispatch(addLocation(""));
                   dispatch(addKeyword(""));
+                  router.push('/doctors');
                 }}
               >
                 Reset filter
