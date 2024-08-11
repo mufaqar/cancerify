@@ -162,12 +162,6 @@ const FilterTopBox = (props) => {
 
 
 
-  console.log(mainKeyword)
-  console.log(filterPage)
-  console.log(inView)
-  console.log(filteredData)
-
-
   return (
     <>
       <div className="show-1023 sticky z-200 py-3 bg-white top-70">
