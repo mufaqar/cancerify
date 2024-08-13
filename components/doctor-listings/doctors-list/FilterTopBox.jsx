@@ -142,7 +142,7 @@ const FilterTopBox = (props) => {
   // infinite scroll filter doctors 
   // && pagination?.total > filteredData?.length
   useEffect(() => {
-    if (inView) {
+    if (inView && pagination?.total > filteredData?.length) {
       // setFilterPage(pagination?.total);
       const calculatePage = Math.ceil(pagination?.total / pagination.limit);
       // calculate offset
