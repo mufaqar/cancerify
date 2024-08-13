@@ -31,8 +31,10 @@ const index = (props) => {
                   <Blog6 pageInfo={pageInfo} posts={posts} />
                 </div>
                 {/* End .row */}
-       
-                <BlogPagination pageInfo={pageInfo} />
+                {
+                  // if posts length less or equal then 4 don't show Pagination
+                  <BlogPagination pageInfo={pageInfo} />
+                }
                 
                 {/* End blog pagination */}
               </div>
