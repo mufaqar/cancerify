@@ -15,7 +15,7 @@ export default function FindDocButton(props) {
   return (
     <Link
       onClick={() => categoryHandler({ name: title })}
-      href="/doctors"
+      href={`/doctors?q=${title}`}
       className="theme-btn btn-style-three custom-btn"
     >
       Find a doctor
