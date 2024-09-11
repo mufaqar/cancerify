@@ -1,12 +1,12 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
-import moment from "moment";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
+import BlogPagination from '@/components/BlogPage/blog-sidebar/BlogPagination';
 
 const Blog6 = (props) => {
-  const { posts } = props;
+  const { posts, pageInfo } = props;
   const [filteredPosts, setFilteredPosts] = useState([...posts]);
   const searchParams = useSearchParams();
 
@@ -25,7 +25,7 @@ const Blog6 = (props) => {
 
   return (
     <>
-      {filteredPosts?.length ? (
+      {!filteredPosts?.length ? (
         <div className="p-5 flex items-center justify-center">
             No posts found!
         </div>
