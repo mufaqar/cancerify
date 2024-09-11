@@ -4,6 +4,9 @@ const OurMission = (props) => {
   const { page, cleanMission } = props;
   const ourMission = page?.homeOptions?.ourMission || {};
 
+    // console.log(ourMission, 'ourMission')
+    // console.log(cleanMission, 'cleanMission')
+
   return (
     <section className="steps-section pt-0">
       <div className="auto-container">

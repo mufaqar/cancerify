@@ -1,7 +1,7 @@
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import Link from "next/link";
-
+import Logo from "@/components/Logo";
 export const metadata = {
   title: "Page Not Found || Superio - Job Borad React NextJS Template",
   description: "Superio - Job Borad React NextJS Template",
@@ -20,7 +20,7 @@ const index = () => {
         <div className="content">
           <div className="logo">
             <Link href="/">
-            <Image width={50} height={50} src="/Cancerify.png" alt="brand" />
+              <Logo />
             </Link>
           </div>
           {/* End logo */}
