@@ -16,7 +16,7 @@ const index = (props) => {
 
   const cleanMission = ourMission ? Object.values(ourMission) : [];
   
-  console.log(ourMission, 'ourMission')
+
 
 
   return (

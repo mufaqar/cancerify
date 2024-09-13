@@ -88,7 +88,7 @@ const Blog6 = (props) => {
 
       {
         // if posts length less or equal then 4 don't show Pagination
-        filteredPosts?.length ? <BlogPagination pageInfo={pageInfo} /> : null
+        filteredPosts?.length >= 4 ? <BlogPagination pageInfo={pageInfo} /> : null
       }
     </>
   );
