@@ -130,47 +130,21 @@ const Page = async ({ params: { slug } }) => {
                         {parseHtml(doctor?.doctorsoptions?.educations || "")}
                       </div>
 
-                      {/* {educations?.map((item, idx) => (
-                        <div className="resume-block" key={idx}>
-                          <div className="inner">
-                            <span className="name">
-                              {item?.schoolname.substring(0, 1) + ""}
-                            </span>
-                            <div className="title-box">
-                              <div className="info-box custom-info-box">
-                                {item?.degree && (
-                                  <span className="px-1"> {item?.degree}:</span>
-                                )}
-                                <h3>{item?.schoolname} </h3>
-                              </div>
-                              {item?.daterange && (
-                                <div className="edit-box">
-                                  <span className="year">
-                                    {item?.daterange}
-                                  </span>
-                                </div>
-                              )}
-                            </div>
-                            {item?.description && (
-                              <div className="text">{item?.description}</div>
-                            )}
-                          </div>
-                        </div>
-                      ))} */}
+                      
                     </div>
                   ) : null}
 
                   {/* <!-- educations Resume End --> */}
 
                   {/* <!-- awards Start --> */}
-                  {doctor?.doctorsoptions?.awardss ? (
+                  {doctor?.doctorsoptions?.awards ? (
                     <div className={`resume-outer theme-yellow`}>
                       <div className="upper-title">
                         <h3>{awardsHeading || "Awards"}</h3>
                       </div>
                       {/* educations */}
                       <div className="doc-custom-lists">
-                        {parseHtml(doctor?.doctorsoptions?.awardss || "")}
+                        {parseHtml(doctor?.doctorsoptions?.awards || "")}
                       </div>
                     </div>
                   ) : null}
@@ -213,7 +187,7 @@ const Page = async ({ params: { slug } }) => {
 
                   {/* <!-- Clinical Experience Resume End --> */}
                   {/* <!-- researchpublications Start --> */}
-                  {doctor?.doctorsoptions?.researchPublicationsss ? (
+                  {doctor?.doctorsoptions?.researchPublications ? (
                     <div className={`resume-outer theme-yellow`}>
                       <div className="upper-title">
                         <h3>
@@ -224,7 +198,7 @@ const Page = async ({ params: { slug } }) => {
                       {/*  */}
                       <div className="doc-custom-lists">
                         {parseHtml(
-                          doctor?.doctorsoptions?.researchPublicationsss || ""
+                          doctor?.doctorsoptions?.researchPublications || ""
                         )}
                       </div>
                     </div>
@@ -275,13 +249,13 @@ const Page = async ({ params: { slug } }) => {
      
 
                   {/* End .sidebar-widget conadidate overview */}
-                  {doctor?.doctorsoptions?.insurancess ? (
+                  {doctor?.doctorsoptions?.insurances ? (
                     <div className="sidebar-widget">
                       <h4 className="widget-title">
                         {insuranceHeading || "Insurances"}
                       </h4>
                       <div className="widget-content insurance_list">
-                        {parseHtml(doctor?.doctorsoptions?.insurancess || "")}
+                        {parseHtml(doctor?.doctorsoptions?.insurances || "")}
             
                       </div>
                     </div>
@@ -296,16 +270,16 @@ const Page = async ({ params: { slug } }) => {
             <DoctorMobileDetails
               doctor={doctor}
               educations={doctor?.doctorsoptions?.educations}
-              awards={doctor?.doctorsoptions?.awardss}
+              awards={doctor?.doctorsoptions?.awards}
               professionalMemberships={
                 doctor?.doctorsoptions?.professionalMemberships
               }
               clinicalExperience={doctor?.doctorsoptions?.clinicalExperiences}
               researchpublications={
-                doctor?.doctorsoptions?.researchPublicationsss
+                doctor?.doctorsoptions?.researchPublications
               }
               cancerTreated={cancerTreated}
-              insurances={doctor?.doctorsoptions?.insurancess}
+              insurances={doctor?.doctorsoptions?.insurances}
               specializations={doctor?.doctorsoptions?.specializationss}
               insuranceHeading={insuranceHeading}
               specializationsHeading={specializationsHeading}

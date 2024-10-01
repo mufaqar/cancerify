@@ -344,7 +344,7 @@ const FilterTopBox = (props) => {
           <></>
         ) : !filteredData?.length ? (
           <div className="h-screen">
-            <div className="alert alert-warning ">No results found</div>
+            <div className="alert alert-warning ">Coming soon</div>
           </div>
         ) : null
       ) : (
