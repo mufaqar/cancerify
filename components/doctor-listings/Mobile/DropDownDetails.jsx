@@ -32,7 +32,7 @@ const DropDownDetails = (props) => {
 
   const alldropdown = [
     {
-      name: insuranceHeading || "Insurances",
+      name: insuranceHeading || "Insurance",
       type: "Insurances",
       data: insurances,
     },
@@ -48,7 +48,7 @@ const DropDownDetails = (props) => {
       data: clinicalExperience,
     },
     {
-      name: professionalMembershipsHeading || "Affiliations",
+      name: professionalMembershipsHeading || "Affiliation",
       type: "Affiliations",
       data: professionalMemberships,
     },
@@ -63,7 +63,7 @@ const DropDownDetails = (props) => {
       data: awards,
     },
     {
-      name: educationHeading || "Educations",
+      name: educationHeading || "Education",
       type: "Educations",
       data: educations,
     },
