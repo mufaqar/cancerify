@@ -2,10 +2,8 @@
 import parseHtml from "@/lib/Parser";
 import Image from "next/image";
 import Slider from "react-slick";
-import {useState} from "react"
 
 const Testimonials = (props) => {
-  const [isExpanded, setIsExpanded] = useState(null);
   const { testimonials } = props;
   const settings = {
     dots: true,
@@ -22,18 +20,7 @@ const Testimonials = (props) => {
       },
     ],
   };
-  const maxLength = 200
 
-  const getShortText = (text, id) => {
-    if(isExpanded === id){
-      return text
-    }else{
-      return text.length > maxLength ? text.slice(0, maxLength) + '...' : text;
-    }
-    
-  };
-
-  console.log(isExpanded)
 
   return (
     <>
@@ -43,14 +30,8 @@ const Testimonials = (props) => {
             <div className="inner-box bg-theme-color reviews_custom">
               <h4 className="title text_white">{item.title}</h4>
               <div className="text text_white">
-                {getShortText(parseHtml(item?.content.replace(/(<([^>]+)>)/gi, "")), idx)} {''}
+                {parseHtml(item?.content.replace(/(<([^>]+)>)/gi, ""))}
                 
-                {
-                  item?.content.replace(/(<([^>]+)>)/gi, "").length > maxLength &&
-                  <span onClick={() => setIsExpanded(isExpanded === idx ? null : idx)} className="">
-                    {isExpanded === idx ? 'Read less' : 'Read more'}
-                  </span>
-                }
               </div>
               <div className="info-box">
                 {
