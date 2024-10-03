@@ -123,7 +123,7 @@ const Page = async ({ params: { slug } }) => {
                   {doctor?.doctorsoptions?.educations ? (
                     <div className={`resume-outer theme-blue`}>
                       <div className="upper-title">
-                        <h3>{educationHeading || "Educations"}</h3>
+                        <h3>{educationHeading || "Education"}</h3>
                       </div>
                       {/* educations */}
                       <div className="doc-custom-lists">
@@ -155,7 +155,7 @@ const Page = async ({ params: { slug } }) => {
                       <div className="upper-title">
                         <h3>
                           {professionalMembershipsHeading ||
-                            "Professional Memberships and Affiliations"}
+                            "Professional Memberships and Affiliation"}
                         </h3>
                       </div>
                       {/*  */}
@@ -252,7 +252,7 @@ const Page = async ({ params: { slug } }) => {
                   {doctor?.doctorsoptions?.insurances ? (
                     <div className="sidebar-widget">
                       <h4 className="widget-title">
-                        {insuranceHeading || "Insurances"}
+                        {insuranceHeading || "Insurance"}
                       </h4>
                       <div className="widget-content insurance_list">
                         {parseHtml(doctor?.doctorsoptions?.insurances || "")}
