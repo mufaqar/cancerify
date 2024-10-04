@@ -13,8 +13,8 @@ const index = (props) => {
     >
       <div className="auto-container">
         <div className="cotnent-box">
-          <div className="title-box">
-            {hero?.heading && <h3>{hero?.heading}</h3>}
+          <div className="title-box custom-title-box">
+            {hero?.heading && <h1>{hero?.heading}</h1>}
             {hero?.subHeading && <div className="text">{hero?.subHeading}</div>}
           </div>
 
