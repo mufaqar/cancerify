@@ -51,12 +51,13 @@ const SearchForm4 = (props) => {
     queryFn: async () => await GetCancerSearch({ cancerSearch }),
   });
 
+  const filteredData = data || [];
 
-  const filteredItems = data?.data?.sort((a, b) => {
+  const filteredItems = filteredData?.length ? filteredData?.sort((a, b) => {
     if (`${a.title}`.replace('Cancer', '').toLowerCase() === 'bladder cancer') return -1;
     if (`${b.title}`.replace('Cancer', '').toLowerCase() === 'bladder cancer') return 1;
     return `${a.title}`.replace('Cancer', '').toLowerCase().localeCompare(`${b.title}`.replace('Cancer', '').toLowerCase());
-  });
+  }) : [];
 
 
 
