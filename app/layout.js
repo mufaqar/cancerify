@@ -9,6 +9,7 @@ import { store } from "../store/store";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
+import Script from "next/script";
 
 if (typeof window !== "undefined") {
   require("bootstrap/dist/js/bootstrap");
@@ -30,6 +31,26 @@ export default function RootLayout({ children }) {
     } 
   }));
 
+
+    // Google analytics
+    useEffect(() => {
+      (function (w, d, s, l, i) {
+  
+          w[l] = w[l] || [];
+   
+          w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+          var f = d.getElementsByTagName(s)[0],
+              j = d.createElement(s),
+              dl = l != 'dataLayer' ? '&l=' + l : '';
+        
+          j.async = true;
+  
+          j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+       
+          f.parentNode.insertBefore(j, f);
+      })(window, document, 'script', 'dataLayer', `${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS || 'GTM-57TZTX5M'}`);
+  }, []);
+
   return (
     <html lang="en">
       <head>
@@ -40,6 +61,22 @@ export default function RootLayout({ children }) {
         <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
         <meta httpEquiv="x-ua-compatible" content="ie=edge" />
         <link rel="icon" href="./favicon.ico" />
+
+        <Script
+                strategy="lazyOnload"
+                src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS || 'GTM-57TZTX5M'}`}
+            />
+
+            <Script id="one" strategy="lazyOnload">
+                {`
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag(){dataLayer.push(arguments);}
+                    gtag('js', new Date());
+                    gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS || 'GTM-57TZTX5M'}', {
+                    page_path: window.location.pathname,
+                    });
+                `}
+            </Script>
       </head>
 
       <body>

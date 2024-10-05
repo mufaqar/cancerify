@@ -67,7 +67,7 @@ const Page = async ({ params: { slug } }) => {
                 <div className="candidate-block-five desktop-hidden">
                   <div className="inner-box">
                     <div className="content doctor_content">
-                      <h4 className="name">{doctor?.title}</h4>
+                      <h1 className="name">{doctor?.title}</h1>
                       <div className="flex items-center ">
                       {doctor?.specializations?.nodes?.map((val) => (
                         <h6 key={val.id} className="designation mb-3">

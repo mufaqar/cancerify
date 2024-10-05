@@ -50,7 +50,7 @@ const SingleBlog = async ({ params }) => {
       <section className="blog-single">
         <div className="auto-container">
           <div className="upper-box">
-            <h3>{post?.title}</h3>
+            <h1 className="blog__title">{post?.title}</h1>
 
             <ul className="post-info">
               <li>
