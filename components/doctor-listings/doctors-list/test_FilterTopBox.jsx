@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { useSearchParams } from "next/navigation";
 
-const FilterTopBox = () => {
+const TestFilterTopBox = () => {
   const { ref, inView } = useInView();
 
   const [mainData, setMainData] = useState([]);
@@ -89,7 +89,16 @@ const FilterTopBox = () => {
     }
   }, [inView, hasNextPage, fetchNextPage]);
 
+  // useEffect(() => {
+  //   if (mainData?.length) {
+  //     setFilteredData([...mainData]);
+  //   } else {
+  //     setFilteredData([...doctors]);
+  //   }
+  // }, [mainData, keyword, location, category]);
 
+
+  // console.log(filteredData, 'filteredData')
 
   return (
     <>
@@ -275,4 +284,4 @@ const FilterTopBox = () => {
   );
 };
 
-export default FilterTopBox;
+export default TestFilterTopBox;

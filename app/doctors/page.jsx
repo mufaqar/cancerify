@@ -28,8 +28,8 @@ export async function generateMetadata() {
 const page = async () => {
 
   // get doctors
-  const res = await client.request(GET_ALL_DOCTORS,{ after: ''});
-  const doctors = res?.doctors?.nodes ||[];
+  // const res = await client.request(GET_ALL_DOCTORS,{ after: ''});
+  // const doctors = res?.doctors?.nodes ||[];
 
   // get cancers
   const resCan = await client.request(GET_ALL_CANCERS);
@@ -49,7 +49,7 @@ const page = async () => {
   return (
     <>
       
-      <DoctorLists filter={filter} locations={locations} cancers={cancers} doctors={doctors} specialities={specialities}/>
+      <DoctorLists filter={filter} locations={locations} cancers={cancers} specialities={specialities}/>
     </>
   );
 };

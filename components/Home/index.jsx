@@ -17,8 +17,6 @@ const index = (props) => {
   const cleanMission = ourMission ? Object.values(ourMission) : [];
   
 
-
-
   return (
     <>
       <Header />
