@@ -46,13 +46,13 @@ const Header = () => {
           </div>
           {/* End .nav-outer */}
 
-          <div className="outer-box">
+          {/* <div className="outer-box">
             <div className="btn-box">
               <Link href="/contact" className="theme-btn btn-style-five">
                 Contact Us
               </Link>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </header>

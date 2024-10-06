@@ -5,13 +5,29 @@ import {
   GET_ALL_POSTS,
   GET_ALL_POSTS_CATEGORY,
   GET_ALL_POSTS_TAGS,
+  GET_PAGE_SEO
 } from "@/lib/Queries";
 
-export const metadata = {
-  title: "Blog || Cancerify Find Cancer doctors",
-  description: "Cancerify - Find Cancer doctors",
-};
+export async function generateMetadata() {
+  const res = await client.request(
+    GET_PAGE_SEO,
+    // variables are type-checked too!
+    { id: 'blogs-seo' }
+  );
 
+  const seo = res?.page?.seo || {};
+ 
+  return {
+    title: seo?.title || "",
+    description: seo?.metaDesc || "",
+    keywords: `${seo.focuskw},${seo?.metaKeywords}`,
+    openGraph: {
+      images: seo?.opengraphImage?.sourceUrl
+        ? [{ url: seo?.opengraphImage?.sourceUrl }]
+        : [],
+    },
+  };
+}
 const page = async ({searchParams}) => {
   const {endCursor, startCursor} = searchParams;
   // Get all posts

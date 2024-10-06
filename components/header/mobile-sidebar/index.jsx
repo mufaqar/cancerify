@@ -56,11 +56,11 @@ const Index = () => {
         </ul>
         <div className="px-3  pt-3">
 
-        <div className="btn-box ">
+        {/* <div className="btn-box ">
           <Link href="/contact" className="theme-btn btn-style-one">
             Contact Us
           </Link>
-        </div>
+        </div> */}
         </div>
       </Sidebar>
 

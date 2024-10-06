@@ -97,14 +97,18 @@ const Page = async ({ params: { slug } }) => {
                           <span className="icon flaticon-map-locator"></span>
                           {doctor?.doctorsoptions?.address}
                         </li>
-                        <li>
-                          <a
+                        {
+                          doctor?.doctorsoptions?.phoneNumber &&
+                          <li>
+                          <Link
                             href={`tel:${doctor?.doctorsoptions?.phoneNumber}`}
                           >
                             <span className="icon flaticon-telephone"></span>
                             {doctor?.doctorsoptions?.phoneNumber}
-                          </a>
+                          </Link>
                         </li>
+                        }
+                        
                       </ul>
                     </div>
                   </div>
@@ -222,14 +226,18 @@ const Page = async ({ params: { slug } }) => {
                           <span className="icon flaticon-map-locator"></span>
                           {doctor?.doctorsoptions?.address}
                         </li>
-                        <li>
-                          <a
+                        {
+                          doctor?.doctorsoptions?.phoneNumber &&
+                          <li>
+                          <Link
                             href={`tel:${doctor?.doctorsoptions?.phoneNumber}`}
                           >
                             <span className="icon flaticon-telephone"></span>
                             {doctor?.doctorsoptions?.phoneNumber}
-                          </a>
+                          </Link>
                         </li>
+                        }
+
                       </ul>
                     </div>
                   </div>

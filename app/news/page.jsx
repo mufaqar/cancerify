@@ -1,4 +1,4 @@
-import { GET_NEWS_FEEDS } from "@/lib/Queries";
+import { GET_NEWS_FEEDS, GET_PAGE_SEO } from "@/lib/Queries";
 import client from "@/lib/ApolloClient";
 import MobileMenu from "@/components/header/MobileMenu";
 import NewsFeedItem from "@/components/NewsFeeds/NewsFeedItem";
@@ -6,10 +6,26 @@ import dynamic from "next/dynamic";
 import Header from "@/components/Home/Header";
 import Disclaimer from "@/components/Home/Disclaimer";
 
-export const metadata = {
-  title: "News Feed || Cancerify Find Cancer doctors",
-  description: "Cancerify - Find Cancer doctors",
-};
+export async function generateMetadata() {
+  const res = await client.request(
+    GET_PAGE_SEO,
+    // variables are type-checked too!
+    { id: 'news' }
+  );
+
+  const seo = res?.page?.seo || {};
+
+  return {
+    title: seo?.title || "",
+    description: seo?.metaDesc || "",
+    keywords: `${seo.focuskw},${seo?.metaKeywords}`,
+    openGraph: {
+      images: seo?.opengraphImage?.sourceUrl
+        ? [{ url: seo?.opengraphImage?.sourceUrl }]
+        : [],
+    },
+  };
+}
 
 const Page = async () => {
   const res = await client.request(GET_NEWS_FEEDS);
