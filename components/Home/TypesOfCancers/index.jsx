@@ -92,7 +92,7 @@ const TypesOfCancers = (props) => {
                   </div>
                 )}
 
-                <h4 className="cancer_text"><strong >{item?.title?.replace('Cancer', '')}</strong> Cancer</h4>
+                <h4 className="cancer_text mb-cancer_text"><strong >{item?.title?.replace('Cancer', '')}</strong> Cancer</h4>
                 
               </Link>
             </div>

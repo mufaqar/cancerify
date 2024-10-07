@@ -69,11 +69,11 @@ const Page = async ({ params: { slug } }) => {
                     <div className="content doctor_content">
                       <h1 className="name">{doctor?.title}</h1>
                       <div className="flex items-center ">
-                      {doctor?.specializations?.nodes?.map((val) => (
-                        <h6 key={val.id} className="designation mb-3">
-                          {val?.name}
-                        </h6>
-                      ))}
+                        {doctor?.specializations?.nodes?.map((val) => (
+                          <h6 key={val.id} className="designation mb-3">
+                            {val?.name}
+                          </h6>
+                        ))}
                       </div>
                       <div className="cancer_treted pb-3 flex items-center">
                         <h6 className="text-gray-2 pr-4 line-height-38">
@@ -81,13 +81,13 @@ const Page = async ({ params: { slug } }) => {
                         </h6>
                         <ul className="post-tags grid grid-cols-3 grid-cols-md-2 mb-cust-lists-23">
                           {cancerTreated?.map((val, i) => (
-                            <li className="bg-gray" key={i}>
+                            <li className="bg-primary" key={i}>
                               <Link
-                            className="cancer-text-gray"
-                            href={`/cancers/${val?.slug}`}
-                          >
-                            {val?.title.replace(/(<([^>]+)>)/gi, "")}
-                          </Link>
+                                className="text-white"
+                                href={`/cancers/${val?.slug}`}
+                              >
+                                {val?.title.replace(/(<([^>]+)>)/gi, "")}
+                              </Link>
                             </li>
                           ))}
                         </ul>
@@ -97,18 +97,16 @@ const Page = async ({ params: { slug } }) => {
                           <span className="icon flaticon-map-locator"></span>
                           {doctor?.doctorsoptions?.address}
                         </li>
-                        {
-                          doctor?.doctorsoptions?.phoneNumber &&
+                        {doctor?.doctorsoptions?.phoneNumber && (
                           <li>
-                          <Link
-                            href={`tel:${doctor?.doctorsoptions?.phoneNumber}`}
-                          >
-                            <span className="icon flaticon-telephone"></span>
-                            {doctor?.doctorsoptions?.phoneNumber}
-                          </Link>
-                        </li>
-                        }
-                        
+                            <Link
+                              href={`tel:${doctor?.doctorsoptions?.phoneNumber}`}
+                            >
+                              <span className="icon flaticon-telephone"></span>
+                              {doctor?.doctorsoptions?.phoneNumber}
+                            </Link>
+                          </li>
+                        )}
                       </ul>
                     </div>
                   </div>
@@ -133,8 +131,6 @@ const Page = async ({ params: { slug } }) => {
                       <div className="doc-custom-lists">
                         {parseHtml(doctor?.doctorsoptions?.educations || "")}
                       </div>
-
-                      
                     </div>
                   ) : null}
 
@@ -226,18 +222,16 @@ const Page = async ({ params: { slug } }) => {
                           <span className="icon flaticon-map-locator"></span>
                           {doctor?.doctorsoptions?.address}
                         </li>
-                        {
-                          doctor?.doctorsoptions?.phoneNumber &&
+                        {doctor?.doctorsoptions?.phoneNumber && (
                           <li>
-                          <Link
-                            href={`tel:${doctor?.doctorsoptions?.phoneNumber}`}
-                          >
-                            <span className="icon flaticon-telephone"></span>
-                            {doctor?.doctorsoptions?.phoneNumber}
-                          </Link>
-                        </li>
-                        }
-
+                            <Link
+                              href={`tel:${doctor?.doctorsoptions?.phoneNumber}`}
+                            >
+                              <span className="icon flaticon-telephone"></span>
+                              {doctor?.doctorsoptions?.phoneNumber}
+                            </Link>
+                          </li>
+                        )}
                       </ul>
                     </div>
                   </div>
@@ -254,17 +248,20 @@ const Page = async ({ params: { slug } }) => {
                       {bookAppointmentLabel || "Book An Appointment"}
                     </Link>
                   </div>
-     
 
                   {/* End .sidebar-widget conadidate overview */}
                   {doctor?.doctorsoptions?.insurances ? (
                     <div className="sidebar-widget">
-                      <h4 className="widget-title">
-                        {insuranceHeading || "Insurance"}
-                      </h4>
+                      <div className="mb-5">
+                        <h4 className="widget-title custom-widget-title">
+                          {insuranceHeading || "Insurance"}
+                        </h4>
+                        <p className="text-gray">
+                          Insurance changes all the time, so please call and confirm if your insurance is accepted.
+                        </p>
+                      </div>
                       <div className="widget-content insurance_list">
                         {parseHtml(doctor?.doctorsoptions?.insurances || "")}
-            
                       </div>
                     </div>
                   ) : null}

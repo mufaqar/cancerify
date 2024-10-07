@@ -43,9 +43,9 @@ const DoctorMobileDetails = (props) => {
                 </h6>
                 <ul className="post-tags grid grid-cols-3 grid-cols-md-2 mb-cust-lists-23">
                   {cancerTreated?.map((val, i) => (
-                    <li className="bg-gray" key={i}>
+                    <li className="bg-primary" key={i}>
                       <Link
-                        className="cancer-text-gray"
+                        className="text-white"
                         href={`/cancers/${val?.slug}`}
                       >
                         {val?.title.replace(/(<([^>]+)>)/gi, "")}

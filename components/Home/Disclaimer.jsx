@@ -34,9 +34,9 @@ const Disclaimer = () => {
     <footer className="call-to-action-three style-two">
       <div className="auto-container custom-footer">
         <div className="outer-box footer-box">
-          <div className="sec-title light">
-            <h2> {footer?.heading ? footer?.heading  :'Disclaimer'}</h2>
+          <div className="sec-title light flex">
             <div className="text">
+              <span className="font-bold">{footer?.heading ? footer?.heading  : 'Disclaimer'}: </span>
               {
                 footer?.text ? footer?.text : 'All information on this website is sourced from publicly available records and reputable sources. This listing does not imply endorsement by the listed professionals. We welcome corrections or updates to ensure the accuracy of the information.'
               }

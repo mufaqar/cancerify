@@ -111,6 +111,9 @@ const DropDownDetails = (props) => {
                 </button>
                 {insurancesOpen && (
                   <div className="px-3 py-2">
+                    <p className="text-gray">
+                          Insurance changes all the time, so please call and confirm if your insurance is accepted.
+                        </p>
                     <div className="doc-custom-lists insurance_list pb-2">
                       {parseHtml(insurances || "")}
                     </div>
