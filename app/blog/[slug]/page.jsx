@@ -46,6 +46,8 @@ const SingleBlog = async ({ params }) => {
       <MobileMenu />
       {/* End MobileMenu */}
 
+
+
       {/* <!-- Blog Single --> */}
       <section className="blog-single">
         <div className="auto-container">
@@ -67,7 +69,6 @@ const SingleBlog = async ({ params }) => {
                 </span>
                 {post?.author?.node?.name}
               </li>
-         
             </ul>
             {/* End post info */}
           </div>
@@ -92,11 +93,11 @@ const SingleBlog = async ({ params }) => {
         />
       </section>
       {/* <!-- End Blog Single --> */}
-        <Disclaimer />
+      <Disclaimer />
     </>
   );
 };
-
-export default dynamic(() => Promise.resolve(SingleBlog), {
-  ssr: false,
-});
+export default SingleBlog;
+// export default dynamic(() => Promise.resolve(SingleBlog), {
+//   ssr: false,
+// });

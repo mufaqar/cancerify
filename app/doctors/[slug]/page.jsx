@@ -309,6 +309,7 @@ const Page = async ({ params: { slug } }) => {
   );
 };
 
-export default dynamic(() => Promise.resolve(Page), {
-  ssr: false,
-});
+export default Page;
+// export default dynamic(() => Promise.resolve(Page), {
+//   ssr: false,
+// });

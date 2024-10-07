@@ -78,7 +78,6 @@ const Page = async ({ params }) => {
             <div className="row cancer_row">
               <div className="desktop-hidden sidebar-column col-lg-4 col-md-12 col-sm-12">
                 <aside className="sidebar pd-right">
-
                   {/* <!-- Sidebar Widget --> */}
                   <div className="sidebar-widget company-widget">
                     <div className="btn-box pb-4 desktop-hidden">

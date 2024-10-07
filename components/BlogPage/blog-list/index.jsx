@@ -7,9 +7,7 @@ import Disclaimer from "@/components/Home/Disclaimer";
 // import Breadcrumb from "../../common/Breadcrumb";
 
 const index = (props) => {
-
-  const {posts, pageInfo, categories,tags}= props;
-
+  const { posts, pageInfo, categories, tags } = props;
 
   return (
     <>
@@ -31,7 +29,7 @@ const index = (props) => {
                   <Blog6 pageInfo={pageInfo} posts={posts} />
                 </div>
                 {/* End .row */}
-                
+
                 {/* End blog pagination */}
               </div>
               {/* End blog-grid */}
@@ -39,7 +37,11 @@ const index = (props) => {
             {/* <!--End Content Side--> */}
 
             <div className="sidebar-side col-lg-4 col-md-12 col-sm-12">
-              <BlogSidebar recentPosts={posts} categories={categories} tags={tags} />
+              <BlogSidebar
+                recentPosts={posts}
+                categories={categories}
+                tags={tags}
+              />
             </div>
             {/* <!--End Sidebar Side--> */}
           </div>
@@ -47,9 +49,8 @@ const index = (props) => {
         </div>
       </div>
       {/* <!-- End Sidebar Container --> */}
-      
-      <Disclaimer />
 
+      <Disclaimer />
     </>
   );
 };

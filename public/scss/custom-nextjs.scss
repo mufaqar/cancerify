@@ -1253,7 +1253,7 @@
 }
 .skeleton .avatar + .line {
   margin-top: 11px;
-  width: 100px;
+  width: 100%;
 }
 .skeleton .line ~ .line {
   background-color: #ddd;
@@ -1262,13 +1262,32 @@
   height: 65px;
   width: 100%;
 }
+.line-text{
+  height: 10px ;
+  width: 100%;
+}
+
+.line-heading{
+  height: 20px;
+  width: 150px;
+}
+.line-image{
+  height: 400px;
+  width: 100%;
+}
+
+.mb-5{
+  margin-bottom: 20px;
+}
+
+
 
 @keyframes shine-lines {
   0% {
     background-position: -100px;
   }
   40%, 100% {
-    background-position: 140px;
+    background-position: 320px;
   }
 }
 @keyframes shine-avatar {

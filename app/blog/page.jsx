@@ -56,4 +56,5 @@ const page = async ({searchParams}) => {
   );
 };
 
-export default dynamic(() => Promise.resolve(page), { ssr: false });
+export default page;
+// export default dynamic(() => Promise.resolve(page), { ssr: false });
