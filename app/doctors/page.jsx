@@ -1,5 +1,5 @@
 import client from "@/lib/ApolloClient";
-import { GET_ALL_DOCTORS,GET_PAGE_SEO, GET_ALL_CANCERS, GET_LOCATIONS, GET_ALL_SPECIALIZATIONS,GET_DOCTORS_PAGE } from "@/lib/Queries";
+import {GET_PAGE_SEO, GET_ALL_CANCERS, GET_LOCATIONS, GET_ALL_SPECIALIZATIONS,GET_DOCTORS_PAGE } from "@/lib/Queries";
 import DoctorLists from "@/components/doctor-listings/doctors-list";
 import dynamic from "next/dynamic";
 
@@ -26,10 +26,6 @@ export async function generateMetadata() {
 
 
 const page = async () => {
-
-  // get doctors
-  // const res = await client.request(GET_ALL_DOCTORS,{ after: ''});
-  // const doctors = res?.doctors?.nodes ||[];
 
   // get cancers
   const resCan = await client.request(GET_ALL_CANCERS);

@@ -45,14 +45,10 @@ const Page = async ({ params }) => {
   const blocks = JSON.parse(cancer?.blocksJSON || "");
 
   const metaDetails = await fetch(
-    `https://vni.fe7.mytemp.website/wp-json/wp/v2/cancers/${cancer?.databaseId}`
+    `${process.env.NEXT_PUBLIC_BACKEND_URL}/wp-json/wp/v2/cancers/${cancer?.databaseId}`
   );
   const metaDetailsJson = await metaDetails.json();
 
-  // const metaSymptoms = metaDetailsJson?.meta?.symptoms ? Object.values(metaDetailsJson?.meta?.symptoms || {}) : [];
-
-  // const metaRiskFactors = metaDetailsJson?.meta?.riskfactors?
-  //   Object.values(metaDetailsJson?.meta?.riskfactors || {}) : [];
 
   const mobileContent = metaDetailsJson?.meta?.mobilecontent
     ? Object.values(metaDetailsJson?.meta?.mobilecontent || {})

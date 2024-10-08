@@ -3,10 +3,10 @@ import { parseStringPromise } from 'xml2js';
 
 export async function GET(request, response) {
     try {
-        const data = await fetch(`https://vni.fe7.mytemp.website/doctors-sitemap.xml`).then(res => res.text());
+        const data = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/doctors-sitemap.xml`).then(res => res.text());
 
         // Define the old domain and the new domain
-        const oldDomain = 'https://vni.fe7.mytemp.website';
+        const oldDomain = `${process.env.NEXT_PUBLIC_BACKEND_URL}`;
         const newDomain = 'https://www.cancerify.com';
 
         // Replace the old domain with the new one in the sitemap URLs

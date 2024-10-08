@@ -12,8 +12,8 @@ import TableBlock from "../../Blocks/TableBlock";
 const index = (props) => {
 
   const {postBlocks,categories,title, slug} = props;
-
-  const blocks = JSON.parse(postBlocks);
+  // console.log(postBlocks);
+  const blocks = postBlocks ? JSON.parse(postBlocks) : [];
 
 
   return (

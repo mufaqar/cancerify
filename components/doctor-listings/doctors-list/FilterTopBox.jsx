@@ -52,7 +52,7 @@ const FilterTopBox = () => {
       }limit=6&offset=${pageParam || 0}`;
 
       const res = await fetch(
-        `https://vni.fe7.mytemp.website/wp-json/doctors/v1/get_drs${cancerQuery}${locationQuery}${specialityQuery}${offset}`
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/wp-json/doctors/v1/get_drs${cancerQuery}${locationQuery}${specialityQuery}${offset}`
       );
       const data = await res.json();
 

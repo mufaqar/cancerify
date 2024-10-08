@@ -42,7 +42,7 @@ export default async function page() {
   const resPage = await client.request(GET_HOME_PAGE, { id: 'home' });
   const page = resPage?.page || [];
 
-  const resMission = await fetch('https://vni.fe7.mytemp.website/wp-json/wp/v2/pages/39');
+  const resMission = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/wp-json/wp/v2/pages/39`);
   const missionData = await resMission.json();
   const ourMission = missionData?.meta?.ourmissionlists || {};
 
