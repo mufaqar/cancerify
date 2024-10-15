@@ -1,11 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
 import { parseStringPromise } from 'xml2js';
-
+import { GetSitemap } from "@/lib/api/Get-Sitemap";
 export async function GET(request, response) {
+
     try {
-        const data = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/doctors-sitemap.xml`).then(res => res.text());
-
-
+        const data = await GetSitemap();
+        
+        // console.log(sitemapdata, 'sitemapdata');
 
         // Define the old domain and the new domain
         const oldDomain = `${process.env.NEXT_PUBLIC_BACKEND_URL}`;

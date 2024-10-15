@@ -2,8 +2,13 @@ import { NextRequest, NextResponse } from "next/server";
 import { parseStringPromise } from 'xml2js';
 
 export async function GET(request, response) {
+
     try {
-        const data = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/cancers-sitemap.xml`).then(res => res.text());
+        const data = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/cancers-sitemap.xml`,{
+            next: {
+                revalidate: 10
+            }
+        }).then(res => res.text());
 
         // Define the old domain and the new domain
         const oldDomain = `${process.env.NEXT_PUBLIC_BACKEND_URL}`;
