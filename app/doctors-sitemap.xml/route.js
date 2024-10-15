@@ -5,6 +5,8 @@ export async function GET(request, response) {
     try {
         const data = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/doctors-sitemap.xml`).then(res => res.text());
 
+
+
         // Define the old domain and the new domain
         const oldDomain = `${process.env.NEXT_PUBLIC_BACKEND_URL}`;
         const newDomain = 'https://www.cancerify.com';
@@ -13,6 +15,7 @@ export async function GET(request, response) {
         const updatedSitemapXML = data.replace(new RegExp(oldDomain, 'g'), newDomain);
 
         const sitemap = await parseStringPromise(updatedSitemapXML);
+     
 
         const generateSitemap = () => {
             return `<?xml version="1.0" encoding="UTF-8"?>
