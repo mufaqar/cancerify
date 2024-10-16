@@ -51,12 +51,12 @@ const FilterTopBox = () => {
         mainKeyword !== "" || location !== "" || category !== "" ? "&" : "?"
       }limit=6&offset=${pageParam || 0}`;
 
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_BACKEND_URL}/wp-json/doctors/v1/get_drs${cancerQuery}${locationQuery}${specialityQuery}${offset}`
-      );
-      const data = await res.json();
+      return await (
+        await fetch(
+          `${process.env.NEXT_PUBLIC_BACKEND_URL}/wp-json/doctors/v1/get_drs${cancerQuery}${locationQuery}${specialityQuery}${offset}`
+        )
+      ).json();
 
-      return data;
     },
     staleTime: 20000,
     keepPreviousData: true,
@@ -78,9 +78,11 @@ const FilterTopBox = () => {
 
   useEffect(() => {
     const allDoctors =
-      data?.pages?.map((page) => page?.data?.doctors?.nodes).flat() || [];
+    data?.pages?.map((page) => page?.data?.doctors?.nodes).flat() || [];
     setMainData([...allDoctors]);
   }, [data?.pages]);
+
+
 
   // infinite scroll all doctors
   useEffect(() => {
@@ -88,6 +90,8 @@ const FilterTopBox = () => {
       fetchNextPage();
     }
   }, [inView, hasNextPage, fetchNextPage]);
+
+
 
 
 
@@ -133,7 +137,9 @@ const FilterTopBox = () => {
 
       {!mainData?.length && isLoading ? (
         Array.from({ length: 6 }).map((_, idx) => (
+          
           <div key={idx} className="doctors_lists_skeleton"></div>
+          
         ))
       ) : (
         <>

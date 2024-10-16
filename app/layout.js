@@ -10,6 +10,8 @@ import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import Script from "next/script";
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+
 
 if (typeof window !== "undefined") {
   require("bootstrap/dist/js/bootstrap");
@@ -101,6 +103,7 @@ export default function RootLayout({ children }) {
               {/* <!-- Scroll To Top --> */}
               <ScrollToTop />
             </div>
+            <ReactQueryDevtools initialIsOpen={true} />
           </QueryClientProvider>
         </Provider>
       </body>
