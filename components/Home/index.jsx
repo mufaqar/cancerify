@@ -10,7 +10,7 @@ import BlogSection from "./BlogSection";
 import Faqs from "../faqs/faqs";
 
 const index = (props) => {
-  const { testimonials, posts, page, cancers,mostsearcheds,ourMission } = props;
+  const { testimonials, posts, page, cancers,mostsearcheds,ourMission, faqs } = props;
 
   const {hero, cancersHeading,newsHeading, newsFeedSection, testimonialHeading} = page?.homeOptions || {};
 
@@ -80,7 +80,7 @@ const index = (props) => {
         </div>
       </section>
       {/* <!-- End News Section --> */}
-      <Faqs/>
+      <Faqs data={faqs}/>
       <Disclaimer />
       {/* <!-- End Call To Action --> */}
       {/* Disclaimer */}

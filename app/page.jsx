@@ -1,7 +1,7 @@
 import Wrapper from "@/layout/Wrapper";
 import Home from "@/components/Home";
 import client from "@/lib/ApolloClient";
-import { GET_ALL_CANCERS,GET_TESTIMONIALS, GET_ALL_POSTS, GET_PAGE_SEO,GET_HOME_PAGE,GET_MOST_SEARCHED } from "@/lib/Queries";
+import { GET_ALL_CANCERS,GET_TESTIMONIALS, GET_ALL_POSTS, GET_PAGE_SEO,GET_HOME_PAGE,GET_MOST_SEARCHED, GET_FAQS } from "@/lib/Queries";
 
 export async function generateMetadata() {
   const res = await client.request(
@@ -49,7 +49,8 @@ export default async function page() {
   const resMostSearch = await client.request(GET_MOST_SEARCHED);
   const mostsearcheds = resMostSearch?.mostsearcheds?.nodes || [];
 
-  
+  // #Faqs 
+  const faqs = await client.request(GET_FAQS);
 
   return (
     <Wrapper>
@@ -60,6 +61,7 @@ export default async function page() {
         page={page}
         mostsearcheds={mostsearcheds}
         ourMission={ourMission}
+        faqs={faqs?.faqs?.nodes}
       />
     </Wrapper>
   );
