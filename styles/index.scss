@@ -4,19 +4,61 @@
 @import "public/scss/main.scss";
 
 
-.faq{
+.faqs{
     background: #ECEDF3;
     padding: 90px 6px;
     padding-top: 0;
 }
-.faq .faq_wrapper{
+.faqs .faq_wrapper{
     max-width: 572px;
     width: 100%;
     margin: 0 auto;
 }
-.faq .faq_wrapper .title{
+.faqs .faq_wrapper .title{
     text-align: center;
     font-size: 28px;
     font-weight: 700;
     color: #22218C;
+}
+.faqs .faq_wrapper .faqs_list{
+    margin-top: 32px;
+}
+.faqs .faq_wrapper .faqs_list .head{
+    display: flex;
+    font-size: 18px;
+    align-items: center;
+    font-weight: 400;
+    color: #22218C;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 16px 0;
+    cursor: pointer;
+    
+}
+
+.faqs .faq_wrapper .faqs_list .head button{
+    border: 1.2px solid #B0B0B0;
+    border-radius: 100%;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: #B0B0B0;
+}
+.faqs .faq_wrapper .faqs_list .head button span{
+    margin-top: -2px;
+}
+.faqs .faq_wrapper .faqs_list .head button.menus span{
+    margin-top: -16px;
+}
+.faqs .faq_wrapper .faq.last_faq{
+    border-bottom: 0 !important;
+}
+.faq{
+    border-bottom: 1px solid #22218C;
+}
+.faqs .faq_wrapper .faqs_list .body{
+    margin-bottom: 12px;
 }
