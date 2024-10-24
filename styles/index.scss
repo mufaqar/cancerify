@@ -2,3 +2,21 @@
 @import "slick-carousel/slick/slick-theme.css";
 @import "~bootstrap/scss/bootstrap";
 @import "public/scss/main.scss";
+
+
+.faq{
+    background: #ECEDF3;
+    padding: 90px 6px;
+    padding-top: 0;
+}
+.faq .faq_wrapper{
+    max-width: 572px;
+    width: 100%;
+    margin: 0 auto;
+}
+.faq .faq_wrapper .title{
+    text-align: center;
+    font-size: 28px;
+    font-weight: 700;
+    color: #22218C;
+}

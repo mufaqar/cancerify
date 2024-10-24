@@ -7,6 +7,7 @@ import MobileMenu from "../header/MobileMenu";
 import Testimonials from "./Testimonials";
 import Disclaimer from "@/components/Home/Disclaimer";
 import BlogSection from "./BlogSection";
+import Faqs from "../faqs/faqs";
 
 const index = (props) => {
   const { testimonials, posts, page, cancers,mostsearcheds,ourMission } = props;
@@ -79,7 +80,7 @@ const index = (props) => {
         </div>
       </section>
       {/* <!-- End News Section --> */}
-
+      <Faqs/>
       <Disclaimer />
       {/* <!-- End Call To Action --> */}
       {/* Disclaimer */}
