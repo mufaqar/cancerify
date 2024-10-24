@@ -2,11 +2,11 @@
 import Link from "next/link";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 
 const FilterTopBox = ({doctors}) => {
   
-  const { keyword, location, category } = useSelector((state) => state.candidateFilter) || {};
+  const { keyword } = useSelector((state) => state.candidateFilter) || {};
   
   const searchParams = useSearchParams();
   const query = searchParams.get("q");
@@ -15,14 +15,16 @@ const FilterTopBox = ({doctors}) => {
   
   const [visibleItems, setVisibleItems] = useState(6);
   const [loading, setLoading] = useState(false);
-  const [count, setcount] = useState(10);
-  const router = useRouter()
   
   // Load more items when scrolling
   const loadMoreItems = () => {
     if (visibleItems < doctors?.length) {
       setVisibleItems(prev => prev + 6);
-      setcount((prevCount) => prevCount + 10)
+      // const url = new URL(window.location.href);
+      // Set or update the offset parameter
+      // url.searchParams.set('offset', visibleItems + 15);
+      // window.history.pushState({}, '', url);
+
     }
   };      
 
@@ -39,11 +41,6 @@ const FilterTopBox = ({doctors}) => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, [visibleItems, doctors?.length]);
-
-
-  // useEffect(()=>{
-  //   router.push(`?offset=${count}`)
-  // },[count])
           
 
   return (

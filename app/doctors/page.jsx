@@ -28,7 +28,7 @@ async function getDoctors(params) {
   const offset = 400;
 
   const cancerQuery =
-  params?.q === undefined ? "" : `&cancer_q=${params?.q?.replace(/ /g, "-").toLowerCase().replace("-cancer", "")}`;
+  params?.q === undefined ? "" : `&cancer_q=${params?.q?.replace(/ /g, "-").toLowerCase().replace("-cancer", "").split('-')[0]}`;
   
   const locationQuery =
   params?.location_ids === undefined ? "" : `&location_ids=%5B${params?.location_ids}%5D`;
