@@ -2,28 +2,29 @@
 import Link from "next/link";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 const FilterTopBox = ({doctors}) => {
-  console.log("🚀 ~ FilterTopBox ~ doctors:", doctors)
   
   const { keyword, location, category } = useSelector((state) => state.candidateFilter) || {};
-
+  
   const searchParams = useSearchParams();
   const query = searchParams.get("q");
   //
   const mainKeyword = query ? query : keyword;
   
-  
   const [visibleItems, setVisibleItems] = useState(6);
   const [loading, setLoading] = useState(false);
+  const [count, setcount] = useState(10);
+  const router = useRouter()
   
   // Load more items when scrolling
   const loadMoreItems = () => {
     if (visibleItems < doctors?.length) {
       setVisibleItems(prev => prev + 6);
+      setcount((prevCount) => prevCount + 10)
     }
-  };
+  };      
 
   // Event listener for scroll
   useEffect(() => {
@@ -39,25 +40,11 @@ const FilterTopBox = ({doctors}) => {
     };
   }, [visibleItems, doctors?.length]);
 
-  const parameterLogicLocation = mainKeyword === "" ? "?" : "&";
-  const parameterLogicSpecialization =
-    mainKeyword === "" && location === "" ? "?" : "&";
 
-    const specialityQuery =
-    category !== ""
-    ? `${parameterLogicSpecialization}specialization_ids=%5B${category}%5D`
-    : "";
-    const cancerQuery =
-    mainKeyword !== ""
-      ? `?cancer_q=${mainKeyword.replace(/(<([^>]+)>)/gi, "").toLowerCase()}`
-      : "";
-  const locationQuery =
-    location !== ""
-      ? `${parameterLogicLocation}location_ids=%5B${location}%5D`
-      : "";
-    
-    console.log("🚀 ~ FilterTopBox ~ specialityQuery:", `${process.env.NEXT_PUBLIC_BACKEND_URL}/wp-json/doctors/v1/get_drs${cancerQuery}${locationQuery}${specialityQuery}`)
-      
+  // useEffect(()=>{
+  //   router.push(`?offset=${count}`)
+  // },[count])
+          
 
   return (
     <>

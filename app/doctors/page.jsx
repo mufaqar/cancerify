@@ -25,6 +25,8 @@ export async function generateMetadata() {
 
 async function getDoctors(params) {
   
+  const offset = 400;
+
   const cancerQuery =
   params?.q === undefined ? "" : `&cancer_q=${params?.q?.replace(/ /g, "-").toLowerCase().replace("-cancer", "")}`;
   
@@ -34,7 +36,7 @@ async function getDoctors(params) {
   const specialityQuery =
     params?.specialization_ids === undefined ? "" : `&specialization_ids=%5B${params?.specialization_ids}%5D`;
   
-  const res =  await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/wp-json/doctors/v1/get_drs?limit=400${cancerQuery}${locationQuery}${specialityQuery}`)
+  const res =  await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/wp-json/doctors/v1/get_drs?limit=${offset}${cancerQuery}${locationQuery}${specialityQuery}`)
   var doctors = await res.json()
   doctors = doctors.data?.doctors?.nodes
   return doctors

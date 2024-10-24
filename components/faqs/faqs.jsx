@@ -10,7 +10,7 @@ const Faqs = ({data}) => {
         }
         setOpen(idx)
     }
-    // const data = [1, 2, 3, 4, 5]
+    
     return (
         <section className='faqs'>
             <div className='faq_wrapper'>
@@ -28,7 +28,7 @@ const Faqs = ({data}) => {
                                         }
                                     </div>
                                     {
-                                        open === idx && <div className='body' dangerouslySetInnerHTML={{__html: item.excerpt}}/>
+                                        open === idx && <div className='body' dangerouslySetInnerHTML={{__html: item?.excerpt}}/>
                                     }
                                 </div>
                             )
