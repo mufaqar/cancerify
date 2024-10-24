@@ -35,7 +35,9 @@ const FilterTopBox = () => {
   const specialityQuery =
     category !== ""
       ? `${parameterLogicSpecialization}specialization_ids=%5B${category}%5D`
-      : "";
+      : "";var doctors = await res.json()
+      doctors = doctors.data?.doctors?.nodes
+      return doctors
 
   const {
     data,

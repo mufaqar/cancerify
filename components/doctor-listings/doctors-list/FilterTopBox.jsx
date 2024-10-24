@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 
 const FilterTopBox = ({doctors}) => {
+  console.log("🚀 ~ FilterTopBox ~ doctors:", doctors)
   
   const { keyword, location, category } = useSelector((state) => state.candidateFilter) || {};
 
