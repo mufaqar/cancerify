@@ -3,8 +3,9 @@ import Link from "next/link";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
+import Footer from "@/components/Home/Footer";
 
-const FilterTopBox = ({doctors}) => {
+const FilterTopBox = ({doctors, handleDataFromChild}) => {
   
   const { keyword } = useSelector((state) => state.candidateFilter) || {};
   
@@ -41,7 +42,10 @@ const FilterTopBox = ({doctors}) => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, [visibleItems, doctors?.length]);
-          
+       
+  useEffect(()=>{
+    handleDataFromChild(visibleItems)
+  },[visibleItems])
 
   return (
     <>
@@ -221,7 +225,6 @@ const FilterTopBox = ({doctors}) => {
             ))} */}
         </>
       )}
-
       {/* <!-- Listing Show More --> */}
     </>
   );

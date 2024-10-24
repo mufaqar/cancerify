@@ -1,13 +1,22 @@
+"use client"
 import MobileMenu from "../../header/MobileMenu";
 import FilterTopBox from "./FilterTopBox";
 import FilterSidebar from "./FilterSidebar";
 import Header from "@/components/Home/Header";
 import Disclaimer from "@/components/Home/Disclaimer";
+import { useState } from "react";
 
 
 
 const DoctorsList = (props) => {
   const { cancers, locations, specialities, filter, doctors } = props;
+  const [loadedData, setLoadedData] = useState('');
+  console.log("🚀 ~ DoctorsList ~ loadedData:", loadedData, doctors.length)
+
+    const handleDataFromChild = (childData) => {
+      setLoadedData(childData);
+    };
+
   return (
     <>
       {/* <!-- Header Span --> */}
@@ -43,7 +52,7 @@ const DoctorsList = (props) => {
 
             <div className="content-column col-lg-8 col-md-12 col-sm-12">
               <div className="ls-outer  ">
-                <FilterTopBox doctors={doctors}/>
+                <FilterTopBox doctors={doctors} handleDataFromChild={handleDataFromChild}/>
                 {/* <!-- ls Switcher --> */}
               </div>
             </div>
@@ -54,7 +63,9 @@ const DoctorsList = (props) => {
         {/* End container */}
       </section>
       {/* <!--End Listing Page Section --> */}
-      <Disclaimer />
+      {
+        loadedData >= doctors.length && <Disclaimer />
+      }
     </>
   );
 };
