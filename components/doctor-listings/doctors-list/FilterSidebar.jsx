@@ -77,7 +77,7 @@ const FilterSidebar = (props) => {
 
         <div className="filter-block">
           <div className=" relative custom-filter-block">
-            <h4>{ filter?.specializationHeading || 'Specialization'}  </h4>
+            <h4>{ filter?.specializationHeading || 'Specialization'} </h4>
           </div>
           <div className="form-group">
             <SpecializationsBox

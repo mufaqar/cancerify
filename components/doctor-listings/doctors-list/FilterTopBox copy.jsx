@@ -1,52 +1,30 @@
 "use client";
+import { useInView } from "react-intersection-observer";
 import Link from "next/link";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
+import { useInfiniteQuery } from "@tanstack/react-query";
 import { useSearchParams } from "next/navigation";
 
-const FilterTopBox = ({doctors}) => {
-  
-  const { keyword, location, category } = useSelector((state) => state.candidateFilter) || {};
+const FilterTopBox = () => {
+  const { ref, inView } = useInView();
+
+  const [mainData, setMainData] = useState([]);
+
+  const { keyword, location, category } =
+    useSelector((state) => state.candidateFilter) || {};
 
   const searchParams = useSearchParams();
   const query = searchParams.get("q");
   //
   const mainKeyword = query ? query : keyword;
-  
-  
-  const [visibleItems, setVisibleItems] = useState(6);
-  const [loading, setLoading] = useState(false);
-  
-  // Load more items when scrolling
-  const loadMoreItems = () => {
-    if (visibleItems < doctors?.length) {
-      setVisibleItems(prev => prev + 6);
-    }
-  };
-
-  // Event listener for scroll
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
-        loadMoreItems();
-      }
-    };
-    window.addEventListener('scroll', handleScroll);
-    // Cleanup the event listener on component unmount
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, [visibleItems, doctors?.length]);
+  // if there is new data save previous doctors data in variable and append new data to it.
 
   const parameterLogicLocation = mainKeyword === "" ? "?" : "&";
   const parameterLogicSpecialization =
     mainKeyword === "" && location === "" ? "?" : "&";
 
-    const specialityQuery =
-    category !== ""
-    ? `${parameterLogicSpecialization}specialization_ids=%5B${category}%5D`
-    : "";
-    const cancerQuery =
+  const cancerQuery =
     mainKeyword !== ""
       ? `?cancer_q=${mainKeyword.replace(/(<([^>]+)>)/gi, "").toLowerCase()}`
       : "";
@@ -54,9 +32,65 @@ const FilterTopBox = ({doctors}) => {
     location !== ""
       ? `${parameterLogicLocation}location_ids=%5B${location}%5D`
       : "";
-    
-    console.log("🚀 ~ FilterTopBox ~ specialityQuery:", `${process.env.NEXT_PUBLIC_BACKEND_URL}/wp-json/doctors/v1/get_drs${cancerQuery}${locationQuery}${specialityQuery}`)
-      
+  const specialityQuery =
+    category !== ""
+      ? `${parameterLogicSpecialization}specialization_ids=%5B${category}%5D`
+      : "";
+
+  const {
+    data,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+    isLoading,
+    isFetching,
+  } = useInfiniteQuery({
+    queryKey: ["doctors_infinity", cancerQuery, locationQuery, specialityQuery],
+    queryFn: async ({ pageParam = 0 }) => {
+      const offset = `${
+        mainKeyword !== "" || location !== "" || category !== "" ? "&" : "?"
+      }limit=6&offset=${pageParam || 0}`;
+
+      return await (
+        await fetch(
+          `${process.env.NEXT_PUBLIC_BACKEND_URL}/wp-json/doctors/v1/get_drs${cancerQuery}${locationQuery}${specialityQuery}${offset}`
+        )
+      ).json();
+    },
+    // staleTime: 20000,
+    keepPreviousData: true,
+    getNextPageParam(lastPage, allPages) {
+      // Check if the last page has data
+      if (
+        lastPage &&
+        lastPage.data &&
+        lastPage.data.doctors &&
+        lastPage.data.doctors.nodes.length > 0
+      ) {
+        // Calculate the next offset based on the number of items per page
+        const nextOffset = allPages.length * 6; // Assuming 6 items per page
+        return nextOffset; // Return the next offset for the next page
+      }
+      return undefined; // No more pages
+    },
+  });
+
+  useEffect(() => {
+    const allDoctors =
+    data?.pages?.map((page) => page?.data?.doctors?.nodes).flat() || [];
+    setMainData([...allDoctors]);
+  }, [data?.pages]);
+
+  // infinite scroll all doctors
+  useEffect(() => {
+    if (inView && hasNextPage) {
+      fetchNextPage();
+    }
+  }, [inView, hasNextPage, fetchNextPage]);
+
+
+
+
 
   return (
     <>
@@ -98,14 +132,14 @@ const FilterTopBox = ({doctors}) => {
       </div>
       {/* End top filter bar box */}
 
-      {!doctors?.length && loading ? (
+      {!mainData?.length && isLoading ? (
         Array.from({ length: 6 }).map((_, idx) => (
           <div key={idx} className="doctors_lists_skeleton"/>
         ))
       ) : (
         <>
-          {doctors?.length ? (
-            doctors.slice(0, visibleItems)?.map((doctor, idx) => {
+          {mainData?.length ? (
+            mainData?.map((doctor, idx) => {
               return (
                 <div className="candidate-block-three" key={idx}>
                   <Link href={`/doctors/${doctor?.slug}`}>
@@ -226,14 +260,14 @@ const FilterTopBox = ({doctors}) => {
             </div>
           )}
 
-          {/* {hasNextPage && mainData?.length ? (
+          {hasNextPage && mainData?.length ? (
             <div className="infinity-filter" ref={ref}></div>
-          ) : null} */}
+          ) : null}
 
-          {/* {isFetchingNextPage &&
+          {isFetchingNextPage &&
             Array.from({ length: mainData?.length + 6 }).map((_, idx) => (
               <div key={idx} className="doctors_lists_skeleton"></div>
-            ))} */}
+            ))}
         </>
       )}
 
