@@ -217,8 +217,15 @@
     }
 }
 
-@media (max-width: 420px){
+@media (max-width: 460px){
     ._progress .progress-wrapper .progress-step .line{
         height: calc(100% - 20%);
     }
+    ._progress .progress-wrapper .first img.main{
+        height: 480px;
+    }
+    ._progress .progress-wrapper .first .images-child img{
+        height: 160px;
+    }
+
 }
