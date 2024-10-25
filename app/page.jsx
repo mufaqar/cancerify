@@ -52,7 +52,7 @@ export default async function page() {
   const mostsearcheds = resMostSearch?.mostsearcheds?.nodes || [];
 
   // #Faqs 
-  const faqs = await client.request(GET_FAQS);
+    const faqs = await client.request(GET_FAQS);
 
   return (
     <Wrapper>
@@ -63,7 +63,7 @@ export default async function page() {
         page={page}
         mostsearcheds={mostsearcheds}
         ourMission={ourMission}
-        faqs={faqs?.faqs?.nodes}
+        // faqs={faqs?.faqs?.nodes}
       />
     </Wrapper>
   );
