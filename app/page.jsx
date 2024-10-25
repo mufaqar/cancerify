@@ -48,27 +48,27 @@ const data = [
 
 
 
-export async function generateMetadata() {
-  const res = await client.request(
-    GET_PAGE_SEO,
-    { id: 'home' }
-  );
+// export async function generateMetadata() {
+//   const res = await client.request(
+//     GET_PAGE_SEO,
+//     { id: 'home' }
+//   );
 
-  const seo = res?.page?.seo || {};
-  return {
-    title: seo?.title || "",
-    description: seo?.metaDesc || "",
-    keywords: `${seo.focuskw},${seo?.metaKeywords}`,
-    alternates: {
-      canonical: `https://www.cancerify.com`,
-    },
-    openGraph: {
-      images: seo?.opengraphImage?.sourceUrl
-        ? [{ url: seo?.opengraphImage?.sourceUrl }]
-        : [],
-    },
-  };
-}
+//   const seo = res?.page?.seo || {};
+//   return {
+//     title: seo?.title || "",
+//     description: seo?.metaDesc || "",
+//     keywords: `${seo.focuskw},${seo?.metaKeywords}`,
+//     alternates: {
+//       canonical: `https://www.cancerify.com`,
+//     },
+//     openGraph: {
+//       images: seo?.opengraphImage?.sourceUrl
+//         ? [{ url: seo?.opengraphImage?.sourceUrl }]
+//         : [],
+//     },
+//   };
+// }
 
 export default async function page() {
   const res = await client.request(
