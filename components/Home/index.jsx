@@ -8,6 +8,7 @@ import Testimonials from "./Testimonials";
 import Disclaimer from "@/components/Home/Disclaimer";
 import BlogSection from "./BlogSection";
 import Faqs from "../faqs/faqs";
+import Link from "next/link";
 
 const index = (props) => {
   const { testimonials, posts, page, cancers,mostsearcheds,ourMission, faqs } = props;
@@ -67,7 +68,21 @@ const index = (props) => {
         {/* End auto-container */}
       </section>
       {/* <!-- End Testimonial Section --> */}
-
+      <section className="types">
+        <div className="types-wrapper auto-container">
+          {
+            [1,2,3,4].map((item, idx)=>(
+              <div className="type" key={idx}>
+                <h6>Breast Cancer</h6>
+                <p>Morem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan, risus sem sollicitudin lacus, ut interdum tellus elit sed risus. Maecenas eget condimentum velit, sit amet feugiat lectus. Read More</p>
+              </div>
+            ))
+          }
+        </div>
+        <div className="loadmore-btn">
+          <button><Link href="/cancers">Show More</Link></button>
+        </div>
+      </section>
       <section className="news-section">
         <div className="auto-container">
           <div className="sec-title text-center">
