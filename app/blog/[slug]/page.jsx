@@ -20,6 +20,9 @@ export async function generateMetadata({ params: { slug } }) {
     title: seo?.title || "",
     description: seo?.metaDesc || "",
     keywords: `${seo.focuskw},${seo?.metaKeywords}`,
+    alternates: {
+      canonical: `https://www.cancerify.com/news/${slug}`,
+    },
     openGraph: {
       images: seo?.opengraphImage?.sourceUrl
         ? [{ url: seo?.opengraphImage?.sourceUrl }]

@@ -15,6 +15,9 @@ export async function generateMetadata() {
     title: seo?.title || "",
     description: seo?.metaDesc || "",
     keywords: `${seo.focuskw},${seo?.metaKeywords}`,
+    alternates: {
+      canonical: `https://www.cancerify.com/doctors`,
+    },
     openGraph: {
       images: seo?.opengraphImage?.sourceUrl
         ? [{ url: seo?.opengraphImage?.sourceUrl }]

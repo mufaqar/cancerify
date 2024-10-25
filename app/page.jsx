@@ -6,7 +6,6 @@ import { GET_ALL_CANCERS,GET_TESTIMONIALS, GET_ALL_POSTS, GET_PAGE_SEO,GET_HOME_
 export async function generateMetadata() {
   const res = await client.request(
     GET_PAGE_SEO,
-    // variables are type-checked too!
     { id: 'home' }
   );
 
@@ -15,6 +14,9 @@ export async function generateMetadata() {
     title: seo?.title || "",
     description: seo?.metaDesc || "",
     keywords: `${seo.focuskw},${seo?.metaKeywords}`,
+    alternates: {
+      canonical: `https://www.cancerify.com`,
+    },
     openGraph: {
       images: seo?.opengraphImage?.sourceUrl
         ? [{ url: seo?.opengraphImage?.sourceUrl }]

@@ -11,7 +11,6 @@ import { useState } from "react";
 const DoctorsList = (props) => {
   const { cancers, locations, specialities, filter, doctors } = props;
   const [loadedData, setLoadedData] = useState('');
-  console.log("🚀 ~ DoctorsList ~ loadedData:", loadedData, doctors.length)
 
     const handleDataFromChild = (childData) => {
       setLoadedData(childData);
