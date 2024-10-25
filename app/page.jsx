@@ -5,18 +5,47 @@ import { GET_ALL_CANCERS,GET_TESTIMONIALS, GET_ALL_POSTS, GET_PAGE_SEO,GET_HOME_
 
 const data = [
   {
-      title: "What is your return policy?",
-      excerpt: "<p>We offer a 30-day return policy on all items.</p>"
+      title: "What is Cancerify's mission?",
+      excerpt: "<p>Cancerify is dedicated to eliminating the fear associated with cancer by empowering individuals with the tools and resources needed to access top-quality care. Our mission is to ensure that everyone has the opportunity to receive superior cancer treatment, guidance, and support, helping them navigate their journey with confidence and hope.</p>"
   },
   {
-      title: "How long does shipping take?",
-      excerpt: "<p>Shipping usually takes 5-7 business days.</p>"
+      title: "How does Cancerify help patients find top cancer doctors?",
+      excerpt: "<p>We provide a curated list of the top 10% of oncologists worldwide. By searching by cancer type on our platform, patients can connect with leading specialists who have a proven track record in treating specific cancers, ensuring they receive the highest standard of care.</p>"
   },
   {
-      title: "Do you ship internationally?",
-      excerpt: "<p>Yes, we ship to most countries worldwide.</p>"
+      title: "What makes Cancerify's news feed unique?",
+      excerpt: "<p>Our news feed delivers the latest science-backed cancer research and breakthroughs through unique video content. Sourced from leading doctors and researchers globally, it keeps patients and caregivers informed about new treatments, clinical trials, and advancements in cancer care.</p>"
+  },
+  {
+      title: "Is Cancerify affiliated with any external organizations or companies?",
+      excerpt: "<p>No, Cancerify is a self-funded platform committed to advancing cancer care without any outside interference. Our independence ensures that the information and resources we provide are unbiased and solely focused on benefiting patients.</p>"
+  },
+  {
+      title: "How does Cancerify ensure the authenticity of its content and resources?",
+      excerpt: "<p>We recognize the challenges within the healthcare industry and prioritize authenticity. All information on our platform is thoroughly vetted by medical professionals to ensure accuracy and reliability, providing users with trustworthy resources.</p>"
+  },
+  {
+      title: "Can anyone access Cancerify's services, and is there a cost involved?",
+      excerpt: "<p>Yes, our platform is accessible to everyone, and there is no cost to use our services. We believe that access to top-quality cancer care and information should be available to all, regardless of financial circumstances.</p>"
+  },
+  {
+      title: "What sets Cancerify apart from other cancer resource websites?",
+      excerpt: "<p>Cancerify stands out by offering a curated list of top oncologists, unique video news feeds with the latest research, and a commitment to authenticity through our self-funded model. We focus on providing unbiased, high-quality resources without external influences, ensuring users receive the best support possible.</p>"
+  },
+  {
+      title: "What types of cancer does Cancerify provide information and resources for?",
+      excerpt: "<p>We cover a comprehensive list of cancer types, including but not limited to bladder, brain, breast, cervical, colorectal, endometrial, esophageal, kidney, laryngeal, leukemia, liver, lung, melanoma, non-Hodgkin lymphoma, oral, ovarian, pancreatic, prostate, stomach, and thyroid cancers.</p>"
+  },
+  {
+      title: "How frequently is the information on Cancerify updated?",
+      excerpt: "<p>We regularly update our platform with the latest research findings, news, and doctor listings to ensure users have access to current information. Our video news feeds and articles are continually refreshed to reflect the newest developments in cancer care.</p>"
+  },
+  {
+      title: "How can I get involved or support Cancerify's mission?",
+      excerpt: "<p>You can support us by sharing our platform on social media and spreading the word to friends and family who may benefit from our resources. By increasing awareness, you help us reach more people in need of top-quality cancer care and information.</p>"
   }
 ];
+
 
 
 export async function generateMetadata() {
