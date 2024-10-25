@@ -2,6 +2,8 @@
 
 import React, { useState } from 'react'
 
+
+
 const Faqs = ({data}) => {
     const [open, setOpen] = useState(null);
     const handleFaq = (idx) => {

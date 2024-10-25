@@ -3,6 +3,22 @@ import Home from "@/components/Home";
 import client from "@/lib/ApolloClient";
 import { GET_ALL_CANCERS,GET_TESTIMONIALS, GET_ALL_POSTS, GET_PAGE_SEO,GET_HOME_PAGE,GET_MOST_SEARCHED, GET_FAQS } from "@/lib/Queries";
 
+const data = [
+  {
+      title: "What is your return policy?",
+      excerpt: "<p>We offer a 30-day return policy on all items.</p>"
+  },
+  {
+      title: "How long does shipping take?",
+      excerpt: "<p>Shipping usually takes 5-7 business days.</p>"
+  },
+  {
+      title: "Do you ship internationally?",
+      excerpt: "<p>Yes, we ship to most countries worldwide.</p>"
+  }
+];
+
+
 export async function generateMetadata() {
   const res = await client.request(
     GET_PAGE_SEO,
@@ -52,7 +68,7 @@ export default async function page() {
   const mostsearcheds = resMostSearch?.mostsearcheds?.nodes || [];
 
   // #Faqs 
-    const faqs = await client.request(GET_FAQS);
+    //const faqs = await client.request(GET_FAQS);
 
   return (
     <Wrapper>
@@ -63,7 +79,7 @@ export default async function page() {
         page={page}
         mostsearcheds={mostsearcheds}
         ourMission={ourMission}
-        // faqs={faqs?.faqs?.nodes}
+       faqs={data}
       />
     </Wrapper>
   );
