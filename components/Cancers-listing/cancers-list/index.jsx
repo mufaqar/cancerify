@@ -33,7 +33,7 @@ const index = (props) => {
       </section> */}
 
       <section className="common-cancer-main">
-        <h4>Most common Cancers in the United States</h4>
+        <h4>Most common Cancers in the world </h4>
         <p>Cancer touches the lives of millions across the globe, with certain types being more prevalent than others. The positive news is that advancements in medical science have led to significant improvements in early detection and treatment of the most common cancers—including breast, prostate, lung, and colorectal cancers—resulting in higher survival rates and better quality of life for patients. Early screening programs and innovative therapies empower individuals to catch cancer at its most treatable stages. These developments offer hope and motivation, demonstrating that with top-quality care and timely intervention, beating cancer is more achievable than ever before.</p>
       </section>
 
