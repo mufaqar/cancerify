@@ -376,10 +376,20 @@
     ._progress .progress-wrapper .progress-step h5{
         font-size: 20px;
     }
-    ._progress .progress-wrapper .progress-step button{
+    ._progress .progress-wrapper .progress-step button, .listing-2 button, .listing-3 button{
         min-width: 40px;
         font-size: 24px;
         height: 40px;    
+    }
+    ._progress .progress-wrapper .progress-step .line{
+        left: 1.2rem;
+        top: 50px;
+    }
+    ._progress .progress-wrapper .progress-step{
+        gap: 1rem;
+    }
+    .listing-2 .list .content h5, .listing-3 .list .content h5{
+        font-size: 20px;
     }
 }
 @media (max-width: 1180px){

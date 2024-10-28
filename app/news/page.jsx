@@ -46,7 +46,13 @@ const Page = async () => {
       <MobileMenu />
       {/* End MobileMenu */}
 
- 
+      <main className="blog_page_head">
+        <div className="b_wrapper">
+          <h2>Find the latest cancer news</h2>
+          <p>Horem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan, risus sem sollicitudin lacus, ut interdum tellus elit sed risus. Maecenas eget condimentum velit, sit amet feugiat lectus. </p>
+        </div>
+      </main>
+      
       {/* <!--End Page Title--> */}
       <div className="news_feed_wraper auto-container  my-5">
         {newsFeeds?.length ? (
