@@ -98,14 +98,14 @@
     border-radius: 8px; 
     transition: .2s ease-in-out;
 }
-.loadmore-btn button a{
+.loadmore-btn button{
     color: #fff ;
 }
 .loadmore-btn button:hover{
     background: #fff;
     
 }
-.loadmore-btn button:hover a{
+.loadmore-btn button:hover{
     color: #22218C;
 }
 
@@ -335,7 +335,8 @@
         padding: 0 1.2rem;
     }
     .types .types-wrapper h6{
-        font-size: 22px;
+        font-size: 20px;
+        margin-bottom: 6px;
     }
     ._progress .progress-wrapper{
         display: flex;
@@ -368,6 +369,17 @@
     }
     .b_wrapper p{
         font-size: 18px;
+    }
+    .common-cancer-main h4{
+        font-size: 20px;
+    }
+    ._progress .progress-wrapper .progress-step h5{
+        font-size: 20px;
+    }
+    ._progress .progress-wrapper .progress-step button{
+        min-width: 40px;
+        font-size: 24px;
+        height: 40px;    
     }
 }
 @media (max-width: 1180px){
