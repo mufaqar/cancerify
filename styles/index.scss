@@ -193,7 +193,93 @@
     top: 76px;
 }
 
-@media (max-width: 768px){
+.listing-2{
+    margin: 4rem 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 45px;
+}
+.listing-2 .list{
+    background: #D9D9D9;
+    border-radius: 16px;
+    padding: 18px;
+}
+.listing-2 .list .content{
+    padding-left: 90px;
+    margin-top: 60px;
+    color: #22218C;
+}
+.listing-2 .list .content h5{
+    font-weight: 700;
+    color: #22218C;
+    margin-bottom: 8px;
+    font-size: 32px;
+}
+.listing-2 .list .content p{
+    color: #22218C;
+}
+.listing-2 button{
+    min-width: 65px;
+    font-size: 35px;
+    font-weight: 400;
+    height: 65px;
+    color: #22218C;
+    border-radius: 100%;
+    border: 1px solid #22218C;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    z-index: 10;
+}
+.listing-3{
+    margin: 4rem 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 45px;
+}
+
+.listing-3 .list .content{
+    margin-top: 1rem;
+}
+.listing-3 .border, .border{
+    width: 100%;
+    padding-top: 2px;
+    background: #22218C;
+}
+.listing-3 .list .content h5{
+    font-weight: 700;
+    color: #22218C;
+    margin-bottom: 8px;
+    font-size: 32px;
+}
+.listing-3 .list .content p{
+    color: #22218C;
+    margin-top: 12px;
+}
+.listing-3 button{
+    min-width: 65px;
+    font-size: 35px;
+    font-weight: 400;
+    height: 65px;
+    color: #22218C;
+    border-radius: 100%;
+    border: 1px solid #22218C;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    z-index: 10;
+}
+.nobg{
+    background: transparent !important;
+    margin-top: 6rem;
+}
+
+
+@media (max-width: 768px) {
     .types .types-wrapper{
         grid-template-columns: 1fr;
         padding: 0 1.2rem;
@@ -215,6 +301,30 @@
     ._progress .progress-wrapper .progress-step .line{
         height: calc(100% - 25%);
     }
+    .listing-2{
+        grid-template-columns: 1fr;
+        gap: 1.6rem;
+        
+    }
+    .listing-2 .list .content{
+        padding-left: 0;
+        margin-top: 40px;
+    }
+    .listing-3{
+        grid-template-columns: 1fr !important;
+    }
+}
+@media (max-width: 1180px){
+    .listing-2 .list .content{
+        padding-left: 0;
+        margin-top: 40px;
+    }
+    .listing-2{
+        gap: 25px;
+    }
+    .listing-3{
+        grid-template-columns: 1fr 1fr;
+    }
 }
 
 @media (max-width: 460px){
@@ -227,5 +337,4 @@
     ._progress .progress-wrapper .first .images-child img{
         height: 160px;
     }
-
 }

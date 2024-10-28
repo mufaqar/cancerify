@@ -5,9 +5,10 @@ import Disclaimer from "@/components/Home/Disclaimer";
 import TypesOfCancers from "@/components/Home/TypesOfCancers";
 import CallToAction from "@/components/Home/CallToAction";
 import Image from "next/image";
+import Faqs from "@/components/faqs/faqs";
 
 const index = (props) => {
-  const { cancers } = props;
+  const { cancers, faqs } = props;
   const data = [1, 2, 3, 4, 5];
 
   return (
@@ -70,7 +71,48 @@ const index = (props) => {
         </div>
       </section>
 
-      {/* <CallToAction newsFeedSection={''} /> */}
+      <CallToAction newsFeedSection={''} subTitle="find a doctor" />
+
+      <section className="auto-container ">
+        <div className="listing-2">
+            {
+              [1,2,3,4, 5, 6].map((item,id)=>(
+                <div key={id} className="list">
+                  <button>{id + 1}</button>
+                  <div className="content">
+                    <h5>Breast cancer</h5>
+                    <p>Horem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan, risus sem sollicitudin lacus, ut interdum tellus elit sed risus. Maecenas eget condimentum velit, sit amet feugiat lectus. Class aptent taciti sociosqu ad litora torquent per conubia nostra.</p>
+                  </div>
+                </div>
+              ))
+            }
+        </div>
+      </section>
+
+      <CallToAction newsFeedSection={''} />
+
+      <section className="auto-container">
+        <div className="listing-3">
+            {
+              [1,2,3,4, 5, 6].map((item,id)=>(
+                <div key={id} className="list">
+                  <button>{id + 1}</button>
+                  <div className="content">
+                    <h5>Breast cancer</h5>
+                    <div className="border"/>
+                    <p>Horem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan, risus sem sollicitudin lacus, ut interdum tellus elit sed risus. Maecenas eget condimentum velit, sit amet feugiat lectus. Class aptent taciti sociosqu ad litora torquent per conubia nostra.</p>
+                  </div>
+                </div>
+              ))
+            }
+        </div>
+      </section>
+
+      <section className="auto-container">
+        <div className="border"/>
+      </section>
+
+      <Faqs data={faqs} nobg/>
 
       <Disclaimer />
       {/* <!--End Listing Page Section --> */}

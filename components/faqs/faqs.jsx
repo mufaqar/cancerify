@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 
-const Faqs = ({ data }) => {
+const Faqs = ({ data, nobg }) => {
   const [open, setOpen] = useState(null);
   const handleFaq = (idx) => {
     if (idx === open) {
@@ -13,7 +13,7 @@ const Faqs = ({ data }) => {
   };
 
   return (
-    <section className="faqs">
+    <section className={`faqs ${nobg && "nobg"}`}>
       <div className="faq_wrapper">
         <h2 className="title">Frequently Asked Questions</h2>
         <div className="faqs_list">
