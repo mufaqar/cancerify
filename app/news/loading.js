@@ -1,3 +1,5 @@
+import MobileMenu from '@/components/header/MobileMenu'
+import Header from '@/components/Home/Header'
 import React from 'react'
 
 const Loading = () => {
