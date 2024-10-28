@@ -64,6 +64,7 @@ const FilterSidebar = (props) => {
         {/* End .close filter */}
 
         <div className="filter-block custom-filter-block">
+        <h2 className="top_heading hide_dp"> Top Cancer Doctors </h2>
           <div className=" relative">
             <h4>{filter?.cancerHeading || 'Cancer Type'}</h4>
           </div>

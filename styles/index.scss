@@ -337,6 +337,7 @@
 
 .top_heading { margin-bottom: 10px; margin-top: -16px; font-weight: 600;  color: #22218C;}
 .candidate-block-three { margin-top: 32px;}
+.hide_dp { display: none;}
 
 @media (max-width: 768px) {
     .types .types-wrapper{
@@ -400,6 +401,12 @@
     .listing-2 .list .content h5, .listing-3 .list .content h5{
         font-size: 20px;
     }
+
+   
+       
+
+
+
 }
 @media (max-width: 1180px){
     .listing-2 .list .content{
@@ -424,4 +431,9 @@
     ._progress .progress-wrapper .first .images-child img{
         height: 100px;
     }
+    .top_heading {
+        display: none;
+    }
+    .hide_dp { display: block;}
+
 }
