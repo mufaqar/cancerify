@@ -277,7 +277,57 @@
     background: transparent !important;
     margin-top: 6rem;
 }
-
+.tags_list{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+.tags_list li{
+    width: fit-content; 
+    position: relative;
+    display: block;
+    font-size: 15px;
+    color: var(--primary-color);
+    padding: 5px 10px;
+    font-weight: 400;
+    text-align: center;
+    background: #fff;
+    text-transform: capitalize;
+    transition: all .3s ease;
+    cursor: pointer;   
+}
+.remove_border{
+    border-bottom: 1px solid transparent !important;
+}
+.blog_page_head{
+    background: #ECEDF3;
+}
+.b_wrapper{
+    max-width: 940px;
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+    padding: 72px 12px;
+}
+.b_wrapper h2{
+    font-weight: 600;
+    color: #22218C;
+    margin-bottom: 1rem;
+    font-size: 47px;
+}
+.b_wrapper p{
+    color: #22218C;
+    font-size: 24px;
+}
+._h{
+    font-weight: 600 !important;
+    font-size: 20px;
+    color: #1d1d1d;
+}
+.cancer_treted ul li{
+    font-size: 18px !important;
+    padding: 8px 16px !important;
+}
 
 @media (max-width: 768px) {
     .types .types-wrapper{
@@ -312,6 +362,12 @@
     }
     .listing-3{
         grid-template-columns: 1fr !important;
+    }
+    .b_wrapper h2{
+        font-size: 32px;
+    }
+    .b_wrapper p{
+        font-size: 18px;
     }
 }
 @media (max-width: 1180px){

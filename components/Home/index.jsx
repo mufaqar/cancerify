@@ -71,10 +71,10 @@ const index = (props) => {
       <section className="types">
         <div className="types-wrapper auto-container">
           {
-            [1,2,3,4].map((item, idx)=>(
-              <div className="type" key={idx}>
-                <h6>Breast Cancer</h6>
-                <p>Morem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan, risus sem sollicitudin lacus, ut interdum tellus elit sed risus. Maecenas eget condimentum velit, sit amet feugiat lectus. Read More</p>
+            listOfCancer?.map((item, idx)=>(
+              <div className={`type ${listOfCancer.length <= idx+2 &&  "remove_border"}`} key={idx}>
+                <h6>{item?.title}</h6>
+                <p>{item?.info}</p>
               </div>
             ))
           }
@@ -95,7 +95,7 @@ const index = (props) => {
         </div>
       </section>
       {/* <!-- End News Section --> */}
-      <Faqs data={faqs}/>
+      <Faqs data={faqs} />
       <Disclaimer />
       {/* <!-- End Call To Action --> */}
       {/* Disclaimer */}
@@ -104,3 +104,33 @@ const index = (props) => {
 };
 
 export default index;
+
+
+
+
+const listOfCancer = [
+  {
+    "title": "Bladder Cancer",
+    "info": "Early detection of bladder cancer significantly improves treatment success rates and long-term outcomes. With advancements in medical technology, minimally invasive procedures and targeted therapies are enhancing patient recovery. Top-quality care ensures personalized treatment plans that lead to better quality of life for bladder cancer survivors."
+  },
+  {
+    "title": "Brain Cancer",
+    "info": "Innovative treatments and cutting-edge research are transforming brain cancer care. Early diagnosis allows for more effective interventions, increasing survival rates and preserving neurological functions. Access to specialized neuro-oncologists and state-of-the-art facilities makes a substantial difference in patient outcomes."
+  },
+  {
+    "title": "Breast Cancer",
+    "info": "Breast cancer survival rates have dramatically improved thanks to early detection and advanced therapies. Regular screenings and awareness lead to prompt treatment, resulting in a growing number of survivors living healthy, fulfilling lives. Top breast cancer centers offer comprehensive care that addresses both physical and emotional well-being."
+  },
+  {
+    "title": "Cervical Cancer",
+    "info": "The fight against cervical cancer has seen remarkable progress due to preventive measures like the HPV vaccine and regular Pap tests. Early-stage cervical cancer is highly treatable, with many patients achieving complete remission. Quality care includes personalized treatment and support services that empower women throughout their journey."
+  },
+  {
+    "title": "Colorectal Cancer",
+    "info": "Colorectal cancer, when found early through screenings like colonoscopies, is often curable. Advances in surgical techniques and chemotherapy have improved survival rates significantly. Patients receiving top-notch care benefit from multidisciplinary teams that tailor treatments to individual needs, enhancing recovery and long-term health."
+  },
+  {
+    "title": "Endometrial Cancer",
+    "info": "Early-stage endometrial cancer has a high success rate with appropriate treatment. Minimally invasive surgical options and targeted therapies have improved patient experiences and outcomes. Expert gynecologic oncologists provide compassionate care that focuses on preserving fertility and quality of life."
+  }
+]

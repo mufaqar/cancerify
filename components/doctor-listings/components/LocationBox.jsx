@@ -25,7 +25,7 @@ const LocationBox = (props) => {
   }, [dispath, addLocation, getLocation]);
 
   return (
-    <div className="flex tag-list custom-tag-list">
+    <div className="tags_list">
       {
         locations.map((item, index) => {
 

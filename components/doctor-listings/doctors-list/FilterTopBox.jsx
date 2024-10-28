@@ -107,7 +107,7 @@ const FilterTopBox = ({doctors, handleDataFromChild}) => {
                                 key={val.id}
                                 className="designation pb-2 mb-hidden"
                               >
-                                {val?.name}
+                                {val?.name} 
                               </h6>
                             ))}
                           </div>
@@ -138,7 +138,7 @@ const FilterTopBox = ({doctors, handleDataFromChild}) => {
                         {/* End candidate-info for desktop */}
                         <ul className="candidate-info desktop-hidden pt-3">
                           <li className=" ">
-                            <span className="icon flaticon-map-locator"></span>{" "}
+                            <span className="icon flaticon-map-locator"></span>
                             <p className="line-clamp-1">
                               {doctor?.doctorsoptions?.address}
                             </p>
@@ -161,10 +161,13 @@ const FilterTopBox = ({doctors, handleDataFromChild}) => {
                                       }`}
                                       key={i}
                                     >
-                                      <span>
+                                      <span style={{textTransform: "capitalize"}}>
                                         {val?.title
                                           ?.replaceAll("&lt;", "<")
-                                          .replace(/(<([^>]+)>)/gi, "")}
+                                          .replace(/(<([^>]+)>)/gi, "")
+                                          .toLowerCase()
+                                          .replace("cancer", "")
+                                        }
                                       </span>
                                     </li>
                                   )

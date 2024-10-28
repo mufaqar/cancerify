@@ -25,7 +25,7 @@ const Categories = (props) => {
 
 
   return (
-    <div className="flex tag-list custom-tag-list ">
+    <div className="tags_list ">
       {cancers?.length ? (
         cancers
           ?.sort((a, b) =>

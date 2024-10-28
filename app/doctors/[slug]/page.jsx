@@ -78,23 +78,7 @@ const Page = async ({ params: { slug } }) => {
                           </h6>
                         ))}
                       </div>
-                      <div className="cancer_treted pb-3 flex items-center">
-                        <h6 className="text-gray-2 pr-4 line-height-38">
-                          {cancerTreatedHeading || "Cancer Treated"}:
-                        </h6>
-                        <ul className="post-tags grid grid-cols-3 grid-cols-md-2 mb-cust-lists-23">
-                          {cancerTreated?.map((val, i) => (
-                            <li className="bg-primary" key={i}>
-                              <Link
-                                className="text-white"
-                                href={`/cancers/${val?.slug}`}
-                              >
-                                {val?.title.replace(/(<([^>]+)>)/gi, "")}
-                              </Link>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
+                      
                       <ul className="candidate-info">
                         <li>
                           <span className="icon flaticon-map-locator"></span>
@@ -250,6 +234,24 @@ const Page = async ({ params: { slug } }) => {
                     >
                       {bookAppointmentLabel || "Book An Appointment"}
                     </Link>
+                  </div>
+                  
+                  <div className="cancer_treted pb-3 items-center">
+                    <h6 className="text-gray-2 pr-4 line-height-38 _h">
+                      {cancerTreatedHeading || "Cancer Treated"}:
+                    </h6>
+                    <ul className="post-tags flex flex-wrap mb-cust-lists-23">
+                      {cancerTreated?.map((val, i) => (
+                        <li className="bg-primary" key={i}>
+                          <Link
+                            className="text-white"
+                            href={`/cancers/${val?.slug}`}
+                          >
+                            {val?.title.replace(/(<([^>]+)>)/gi, "")}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
 
                   {/* End .sidebar-widget conadidate overview */}

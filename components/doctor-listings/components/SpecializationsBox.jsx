@@ -8,7 +8,7 @@ const SpecializationsBox = (props) => {
   const params = useSearchParams()
 
   return (
-    <div className="flex tag-list custom-tag-list">
+    <div className="tags_list">
       {specialities?.map((item, index) => {
         const buildQuery = () => {
           const baseParams = [];
