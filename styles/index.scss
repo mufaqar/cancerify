@@ -335,6 +335,8 @@
     padding: 8px 16px !important;
 }
 
+.top_heading { margin-bottom: 10px; font-weight: 600;  color: #22218C;}
+
 @media (max-width: 768px) {
     .types .types-wrapper{
         grid-template-columns: 1fr;

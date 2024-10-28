@@ -1,24 +1,23 @@
-"use client";
-import Categories from "../components/Categories";
-import LocationBox from "../components/LocationBox";
-import { useDispatch, useSelector } from "react-redux";
+'use client';
+import Categories from '../components/Categories';
+import LocationBox from '../components/LocationBox';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   addCategory,
   addLocation,
   addKeyword,
-} from "@/features/filter/candidateFilterSlice";
-import SpecializationsBox from "../components/SpecializationsBox";
-import { useEffect } from "react";
-import { useSearchParams } from "next/navigation";
-import { useRouter } from "next/navigation";
+} from '@/features/filter/candidateFilterSlice';
+import SpecializationsBox from '../components/SpecializationsBox';
+import { useEffect } from 'react';
+import { useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 
 const FilterSidebar = (props) => {
-  const { cancers, locations, specialities,filter } = props;
+  const { cancers, locations, specialities, filter } = props;
   const dispatch = useDispatch();
   const router = useRouter();
-  const searchParams = useSearchParams()
-  const query = searchParams.get('q')
-
+  const searchParams = useSearchParams();
+  const query = searchParams.get('q');
 
   const {
     category: specializations,
@@ -26,25 +25,22 @@ const FilterSidebar = (props) => {
     location,
   } = useSelector((state) => state.candidateFilter) || {};
 
-    // 
-    const mainKeyword = query ? query : keyword;
+  //
+  const mainKeyword = query ? query : keyword;
 
   const SpecializationsHandler = ({ name }) => {
     dispatch(addCategory(name));
   };
 
   useEffect(() => {
-    dispatch(addCategory(""));
-    dispatch(addLocation(""));
-    dispatch(addKeyword(""));
-  }, [])
-
-
-
-
+    dispatch(addCategory(''));
+    dispatch(addLocation(''));
+    dispatch(addKeyword(''));
+  }, []);
 
   return (
     <div className="inner-column pd-right sticky ">
+      <h2 className="top_heading"> Top Cancer Doctors </h2>
       <div className="filters-outer mb-h-100vh">
         <button
           type="button"
@@ -66,9 +62,10 @@ const FilterSidebar = (props) => {
           </svg>
         </button>
         {/* End .close filter */}
+
         <div className="filter-block custom-filter-block">
           <div className=" relative">
-            <h4>{ filter?.cancerHeading || 'Cancer Type'}</h4>
+            <h4>{filter?.cancerHeading || 'Cancer Type'}</h4>
           </div>
           <div className="form-group">
             <Categories cancers={cancers} />
@@ -77,7 +74,7 @@ const FilterSidebar = (props) => {
 
         <div className="filter-block">
           <div className=" relative custom-filter-block">
-            <h4>{ filter?.specializationHeading || 'Specialization'} </h4>
+            <h4>{filter?.specializationHeading || 'Specialization'} </h4>
           </div>
           <div className="form-group">
             <SpecializationsBox
@@ -90,7 +87,7 @@ const FilterSidebar = (props) => {
 
         <div className="filter-block">
           <div className=" relative custom-filter-block">
-            <h4>{ filter?.locationHeading || 'Location'} </h4>
+            <h4>{filter?.locationHeading || 'Location'} </h4>
           </div>
           <div className="form-group">
             <LocationBox locations={locations} />
@@ -106,7 +103,7 @@ const FilterSidebar = (props) => {
           >
             See Doctors
           </button>
-          {specializations === "" && location === "" && mainKeyword === "" ? (
+          {specializations === '' && location === '' && mainKeyword === '' ? (
             <></>
           ) : (
             <>
@@ -114,9 +111,9 @@ const FilterSidebar = (props) => {
                 type="button"
                 className="btn btn-primary bg-theme-color rounded-50 w-100 custom-see-filter desktop-hidden"
                 onClick={() => {
-                  dispatch(addCategory(""));
-                  dispatch(addLocation(""));
-                  dispatch(addKeyword(""));
+                  dispatch(addCategory(''));
+                  dispatch(addLocation(''));
+                  dispatch(addKeyword(''));
                   router.push('/doctors');
                 }}
               >
@@ -127,9 +124,9 @@ const FilterSidebar = (props) => {
                 type="button"
                 className="mb-hidden text-center text-theme underline clear-btn"
                 onClick={() => {
-                  dispatch(addCategory(""));
-                  dispatch(addLocation(""));
-                  dispatch(addKeyword(""));
+                  dispatch(addCategory(''));
+                  dispatch(addLocation(''));
+                  dispatch(addKeyword(''));
                   router.push('/doctors');
                 }}
               >
