@@ -172,6 +172,11 @@
     background: #fff;
     z-index: 10;
 }
+.btn-outer{
+    background: #fff;
+    padding: .7rem 0;
+    z-index: 10;
+}
 ._progress .progress-wrapper .progress-step h5{
     font-size: 32px;
     font-weight: 700;
@@ -180,7 +185,7 @@
 }
 
 ._progress .progress-wrapper .progress-step p{
-    margin-bottom: 100px;
+    margin-bottom: 26px;
     color: #22218C;
 }
 
@@ -188,9 +193,9 @@
     position: absolute;
     background: #22218C;
     left: 2rem;
-    height: 66%;
+    height: 100%;
     width: 2px;
-    top: 76px;
+    top: 0px;
 }
 
 .listing-2{
@@ -243,7 +248,7 @@
 .listing-3 .list .content{
     margin-top: 1rem;
 }
-.listing-3 .border, .border{
+.listing-3 .border, ._border{
     width: 100%;
     padding-top: 2px;
     background: #22218C;
@@ -301,6 +306,7 @@
 }
 .blog_page_head{
     background: #ECEDF3;
+    margin-top: -20px;
 }
 .b_wrapper{
     max-width: 940px;
@@ -350,7 +356,7 @@
         flex: 1;
     }
     ._progress .progress-wrapper .progress-step .line{
-        height: calc(100% - 25%);
+        height: calc(100%);
     }
     .listing-2{
         grid-template-columns: 1fr;
@@ -371,7 +377,7 @@
         font-size: 18px;
     }
     .common-cancer-main h4{
-        font-size: 20px;
+        font-size: 28px;
     }
     ._progress .progress-wrapper .progress-step h5{
         font-size: 20px;
@@ -383,7 +389,7 @@
     }
     ._progress .progress-wrapper .progress-step .line{
         left: 1.2rem;
-        top: 50px;
+        top: 0px;
     }
     ._progress .progress-wrapper .progress-step{
         gap: 1rem;
@@ -407,12 +413,12 @@
 
 @media (max-width: 460px){
     ._progress .progress-wrapper .progress-step .line{
-        height: calc(100% - 20%);
+        height: calc(100%);
     }
     ._progress .progress-wrapper .first img.main{
-        height: 480px;
+        height: 360px;
     }
     ._progress .progress-wrapper .first .images-child img{
-        height: 160px;
+        height: 100px;
     }
 }

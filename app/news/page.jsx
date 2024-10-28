@@ -32,7 +32,6 @@ export async function generateMetadata() {
 
 const Page = async () => {
   const res = await client.request(GET_NEWS_FEEDS);
-
   const newsFeeds = res?.newsFeeds?.nodes || [];
 
   return (

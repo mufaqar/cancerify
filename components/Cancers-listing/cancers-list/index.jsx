@@ -54,7 +54,9 @@ const index = (props) => {
               {
                 first.map((item, idx) => (
                   <div className="progress-step" style={{ position: 'relative' }} key={idx}>
+                    <div className="btn-outer">
                     <button>{idx + 1}</button>
+                    </div>
                     {
                       first.length !== idx+1 && <div className="line"/>
                     }
@@ -108,7 +110,7 @@ const index = (props) => {
       </section>
 
       <section className="auto-container">
-        <div className="border"/>
+        <div className="_border"/>
       </section>
 
       <Faqs data={faqs} nobg/>
