@@ -98,7 +98,7 @@ const index = (props) => {
                     <h5>
                       <Link href={`/cancers/${item?.url}`}>{item?.title}</Link>
                     </h5>
-                    <p>{item.content} <Link style={{ textDecoration: 'underline' }} href={`/cancers/${item?.url}`}>Read more...</Link></p>
+                    <p>{item.content} <Link style={{ textDecoration: 'underline' }} href={`/cancers/${item?.url}`}>Learn more...</Link></p>
                   </div>
                 </div>
               ))}
@@ -118,7 +118,7 @@ const index = (props) => {
               <h5>
                       <Link href={`/cancers/${item?.url}`}>{item?.title}</Link>
                     </h5>
-                <p>{item?.content} <Link style={{ textDecoration: 'underline' }} href={`/cancers/${item?.url}`}>Read more...</Link></p>
+                <p>{item?.content} <Link style={{ textDecoration: 'underline' }} href={`/cancers/${item?.url}`}>Learn more...</Link></p>
               </div>
             </div>
           ))}
@@ -137,7 +137,7 @@ const index = (props) => {
                       <Link href={`/cancers/${item?.url}`}>{item?.title}</Link>
                     </h5>
                 <div className="border" />
-                <p>{item?.content} <Link style={{ textDecoration: 'underline' }} href={`/cancers/${item?.url}`}>Read more...</Link></p>
+                <p>{item?.content} <Link style={{ textDecoration: 'underline' }} href={`/cancers/${item?.url}`}>Learn more...</Link></p>
               </div>
             </div>
           ))}

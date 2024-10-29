@@ -101,7 +101,7 @@ const index = (props) => {
               key={idx}
             >
               <h6>   <Link href={`/cancers/${item?.url}`}>{item?.title}</Link></h6>
-              <p>{item?.info}</p>
+              <p>{item?.info}<Link style={{ textDecoration: 'underline' }} href={`/cancers/${item?.url}`}>Learn more...</Link></p>
             </div>
           ))}
         </div>
