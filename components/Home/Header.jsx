@@ -23,9 +23,7 @@ const Header = () => {
   return (
     // <!-- Main Header-->
     <header
-      className={`main-header header-style-two alternate2 bg-theme-color ${
-        navbar ? "fixed-header animated " : ""
-      }`}
+      className={`main-header header-style-two alternate2 bg-theme-color fixed-header`}
     >
       <div className="auto-container">
         {/* <!-- Main box --> */}

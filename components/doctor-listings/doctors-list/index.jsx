@@ -4,7 +4,7 @@ import FilterTopBox from "./FilterTopBox";
 import FilterSidebar from "./FilterSidebar";
 import Header from "@/components/Home/Header";
 import Disclaimer from "@/components/Home/Disclaimer";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 
 
@@ -15,6 +15,28 @@ const DoctorsList = (props) => {
     const handleDataFromChild = (childData) => {
       setLoadedData(childData);
     };
+
+    useEffect(() => {
+      const handleKeyDown = (event) => {
+        // Check if the down arrow key is pressed (key code 40)
+        if (event.key === 'ArrowDown') {
+          event.preventDefault(); // Prevent default scrolling
+          window.scrollBy({
+            top: 100, // Adjust this value to control the scroll amount
+            left: 0,
+            behavior: 'smooth'
+          });
+        }
+      };
+  
+      window.addEventListener('keydown', handleKeyDown);
+  
+      // Cleanup event listener on component unmount
+      return () => {
+        window.removeEventListener('keydown', handleKeyDown);
+      };
+    }, []);
+  
 
   return (
     <>

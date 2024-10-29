@@ -33,10 +33,6 @@ Main Header
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.main-header.fixed-header .logo {
-  padding: 15px 0;
-}
-
 .main-header .main-box {
   position: relative;
   display: -webkit-box;
@@ -561,16 +557,9 @@ Header Style Five
   padding: 25px 0;
 }
 
-.header-style-five.fixed-header .outer-box {
-  padding: 15px 0;
-}
 
-.header-style-five.fixed-header .logo {
-  padding: 10px 0;
-  -webkit-transition: all 300ms ease;
-  -o-transition: all 300ms ease;
-  transition: all 300ms ease;
-}
+
+
 
 /*** 
 
