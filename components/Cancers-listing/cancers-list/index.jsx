@@ -98,7 +98,7 @@ const index = (props) => {
                     <h5>
                       <Link href={`/cancers/${item?.url}`}>{item?.title}</Link>
                     </h5>
-                    <p>{item.content}</p>
+                    <p>{item.content} <Link style={{ textDecoration: 'underline' }} href={`/cancers/${item?.url}`}>Read more...</Link></p>
                   </div>
                 </div>
               ))}
@@ -113,12 +113,12 @@ const index = (props) => {
         <div className="listing-2">
           {secound?.map((item, id) => (
             <div key={id} className="list">
-              <button>{id + 1}</button>
+              <button>{id + 6}</button>
               <div className="content">
               <h5>
                       <Link href={`/cancers/${item?.url}`}>{item?.title}</Link>
                     </h5>
-                <p>{item?.content}</p>
+                <p>{item?.content} <Link style={{ textDecoration: 'underline' }} href={`/cancers/${item?.url}`}>Read more...</Link></p>
               </div>
             </div>
           ))}
@@ -131,13 +131,13 @@ const index = (props) => {
         <div className="listing-3">
           {third?.map((item, id) => (
             <div key={id} className="list">
-              <button>{id + 1}</button>
+              <button>{id + 12}</button>
               <div className="content">
               <h5>
                       <Link href={`/cancers/${item?.url}`}>{item?.title}</Link>
                     </h5>
                 <div className="border" />
-                <p>{item?.content}</p>
+                <p>{item?.content} <Link style={{ textDecoration: 'underline' }} href={`/cancers/${item?.url}`}>Read more...</Link></p>
               </div>
             </div>
           ))}
