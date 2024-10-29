@@ -348,6 +348,8 @@ html {
     max-height: 797px !important;
 }
 
+.sticky {     top: 97px;}
+
 @media (max-width: 768px) {
     .types .types-wrapper{
         grid-template-columns: 1fr;
